@@ -11,30 +11,46 @@ public class GameController {
     private Player[] players;
     private boolean gameRunning = true;
     private Board board = new Board();
-    private Scanner scanner = new Scanner(System.in); 
+    private Scanner scanner = new Scanner(System.in);
+
     public void startGame() {
         initializePlayers();
         int currentPlayerIndex = determineStartingPlayer();
         System.out.println(players[currentPlayerIndex].getName() + " starts the game.");
 
         while (gameRunning) {
+            boolean turnCompleted = false;
             Player currentPlayer = players[currentPlayerIndex];
-            playerTurn(currentPlayer); 
 
-           
+            while (!turnCompleted) {
+                System.out.println(currentPlayer.getName() + "'s turn. Press 'r' to roll the dice and 's' to show resources.");
+                String action = scanner.nextLine().trim().toLowerCase();
+
+                if ("s".equals(action)) {
+                    System.out.println(currentPlayer.getName() + "'s resources: " + currentPlayer.getResources());
+                    // Continue in the loop, allowing the player to also press 'r' to roll the dice.
+                } else if ("r".equals(action)) {
+                    turnCompleted = playerTurn(currentPlayer); // This method now returns true if the turn is completed.
+                } else {
+                    System.out.println("Invalid input. Please press 'r' to roll the dice or 's' to show resources.");
+                }
+            }
+
+            // Advance to the next player only after the turn is completed.
+            if (turnCompleted) {
+                currentPlayerIndex = (currentPlayerIndex + 1) % players.length;
+            }
+
+            // Check for a game-ending condition
             if (currentPlayer.getResources() <= 0) {
                 System.out.println(currentPlayer.getName() + " has won the game by running out of resources!");
                 gameRunning = false;
-                break;
             }
-
-            currentPlayerIndex = (currentPlayerIndex + 1) % players.length; 
         }
 
         endGame();
-        scanner.close(); 
+        scanner.close();
     }
-
 
 
     private void initializePlayers() {
@@ -53,28 +69,35 @@ public class GameController {
         }
     }
     
-    public void playerTurn(Player player) {
-        System.out.println(player.getName() + "'s turn. Your resources: " + player.getResources());
-        System.out.println(player.getName() + ", press 'y' to roll the dice.");
+    private boolean playerTurn(Player player) {
+        int[] diceRoll = rollDice();
+        System.out.println(player.getName() + " rolled a " + diceRoll[0] + " and a " + diceRoll[1] + ", moves " + (diceRoll[0] + diceRoll[1]) + " spaces.");
+        Square currentSquare = movePlayerAndGetSquare(player, diceRoll[0] + diceRoll[1]);
+        System.out.println(player.getName() + " has landed on " + currentSquare.getName());
+        handleSquareActions(player, currentSquare);
 
-        String input = scanner.nextLine();
-        if ("y".equalsIgnoreCase(input.trim())) {
-            int[] roll = rollDice();
-            System.out.println(player.getName() + " rolled a " + roll[0] + " and a " + roll[1] + ", moves " + (roll[0] + roll[1]) + " spaces.");
-
-            Square currentSquare = movePlayerAndGetSquare(player, roll[0] + roll[1]);
-            System.out.println(player.getName() + " has landed on " + currentSquare.getName());
-            handleSquareActions(player, currentSquare);
-
-            if (roll[0] == roll[1]) {
-                System.out.println("Doubles! " + player.getName() + " gets another turn.");
-                playerTurn(player);
-            }
-        } else {
-            System.out.println("Skipping turn...");
+        if (diceRoll[0] == diceRoll[1]) {
+            System.out.println("Doubles! " + player.getName() + " gets another turn.");
+            return false; // Turn not completed due to doubles.
         }
-
+        return true; // Turn completed.
     }
+
+
+    private boolean handleRollAndActions(Player player) {
+        int[] diceRoll = rollDice();
+        System.out.println(player.getName() + " rolled a " + diceRoll[0] + " and a " + diceRoll[1] + ", moves " + (diceRoll[0] + diceRoll[1]) + " spaces.");
+        Square currentSquare = movePlayerAndGetSquare(player, diceRoll[0] + diceRoll[1]);
+        System.out.println(player.getName() + " has landed on " + currentSquare.getName());
+        handleSquareActions(player, currentSquare);
+
+        // If no doubles are rolled, return true to end the turn.
+        return diceRoll[0] != diceRoll[1];
+    }
+
+
+
+
 
 
 
@@ -98,9 +121,9 @@ public class GameController {
         
         // Initial Roll
         for (int i = 0; i < players.length; i++) {
-            System.out.println(players[i].getName() + ", press 'y' to roll the dice.");
+            System.out.println(players[i].getName() + ", press 'r' to roll the dice.");
             String input = scanner.nextLine();
-            if ("y".equalsIgnoreCase(input.trim())) {
+            if ("r".equalsIgnoreCase(input.trim())) {
                 System.out.println("Rolling dice...");
                 int roll = rollSingleDice();
                 System.out.println(players[i].getName() + " rolled a " + roll);
@@ -122,9 +145,9 @@ public class GameController {
             ArrayList<Integer> newTieBreakers = new ArrayList<>();
             
             for (Integer playerIndex : playersWithHighestRolls) {
-                System.out.println(players[playerIndex].getName() + ", press 'y' to roll again.");
+                System.out.println(players[playerIndex].getName() + ", press 'r' to roll again.");
                 String input = scanner.nextLine();
-                if ("y".equalsIgnoreCase(input.trim())) {
+                if ("r".equalsIgnoreCase(input.trim())) {
                     System.out.println("Rolling dice...");
                     int roll = rollSingleDice();
                     System.out.println(players[playerIndex].getName() + " re-rolled a " + roll);
