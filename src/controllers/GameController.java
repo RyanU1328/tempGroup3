@@ -2,6 +2,8 @@ package controllers;
 
 import models.*;
 import utils.ConsoleUI;
+
+import java.util.ArrayList;
 import java.util.Random;
 import java.util.Scanner;
 
@@ -9,36 +11,30 @@ public class GameController {
     private Player[] players;
     private boolean gameRunning = true;
     private Board board = new Board();
-    private Scanner scanner = new Scanner(System.in); // Keep only this scanner instance
-
+    private Scanner scanner = new Scanner(System.in); 
     public void startGame() {
         initializePlayers();
-        int currentPlayerIndex = 0;
+        int currentPlayerIndex = determineStartingPlayer();
+        System.out.println(players[currentPlayerIndex].getName() + " starts the game.");
 
         while (gameRunning) {
             Player currentPlayer = players[currentPlayerIndex];
-            System.out.println(currentPlayer.getName() + "'s turn. Your resources: " + currentPlayer.getResources());
+            playerTurn(currentPlayer); 
 
-            System.out.println("Do you want to roll the dice? (y/n)");
-            String input = scanner.nextLine();
-            if ("y".equalsIgnoreCase(input.trim())) {
-                playerTurn(currentPlayer);
-            } else { 
-                System.out.println("Skipping turn...");
-            }
-
-            System.out.println("Continue playing? (y/n)");
-            input = scanner.nextLine();
-            if ("n".equalsIgnoreCase(input.trim())) {
+           
+            if (currentPlayer.getResources() <= 0) {
+                System.out.println(currentPlayer.getName() + " has won the game by running out of resources!");
                 gameRunning = false;
+                break;
             }
 
-            currentPlayerIndex = (currentPlayerIndex + 1) % players.length;
+            currentPlayerIndex = (currentPlayerIndex + 1) % players.length; 
         }
-        
+
         endGame();
-        scanner.close(); // Properly close scanner here
+        scanner.close(); 
     }
+
 
 
     private void initializePlayers() {
@@ -59,20 +55,96 @@ public class GameController {
     
     public void playerTurn(Player player) {
         System.out.println(player.getName() + "'s turn. Your resources: " + player.getResources());
-        
-        int roll = rollDice();
-        System.out.println(player.getName() + " rolled a " + roll);
-        
-        Square currentSquare = movePlayerAndGetSquare(player, roll);
-        System.out.println(player.getName() + " has landed on " + currentSquare.getName());
-        
-        handleSquareActions(player, currentSquare);
+        System.out.println(player.getName() + ", press 'y' to roll the dice.");
+
+        String input = scanner.nextLine();
+        if ("y".equalsIgnoreCase(input.trim())) {
+            int[] roll = rollDice();
+            System.out.println(player.getName() + " rolled a " + roll[0] + " and a " + roll[1] + ", moves " + (roll[0] + roll[1]) + " spaces.");
+
+            Square currentSquare = movePlayerAndGetSquare(player, roll[0] + roll[1]);
+            System.out.println(player.getName() + " has landed on " + currentSquare.getName());
+            handleSquareActions(player, currentSquare);
+
+            if (roll[0] == roll[1]) {
+                System.out.println("Doubles! " + player.getName() + " gets another turn.");
+                playerTurn(player);
+            }
+        } else {
+            System.out.println("Skipping turn...");
+        }
+
     }
 
-    private int rollDice() {
+
+
+
+    private int[] rollDice() {
         Random rand = new Random();
-        return rand.nextInt(6) + 1 + rand.nextInt(6) + 1;
+        int die1 = rand.nextInt(6) + 1;
+        int die2 = rand.nextInt(6) + 1;
+        return new int[]{die1, die2};
     }
+
+    
+    private int rollSingleDice() {
+        Random rand = new Random();
+        return rand.nextInt(6) + 1;
+    }
+    
+    private int determineStartingPlayer() {
+        ArrayList<Integer> playersWithHighestRolls = new ArrayList<>();
+        int highestRoll = 0;
+        
+        // Initial Roll
+        for (int i = 0; i < players.length; i++) {
+            System.out.println(players[i].getName() + ", press 'y' to roll the dice.");
+            String input = scanner.nextLine();
+            if ("y".equalsIgnoreCase(input.trim())) {
+                System.out.println("Rolling dice...");
+                int roll = rollSingleDice();
+                System.out.println(players[i].getName() + " rolled a " + roll);
+                
+                if (roll > highestRoll) {
+                    highestRoll = roll;
+                    playersWithHighestRolls.clear();
+                    playersWithHighestRolls.add(i);
+                } else if (roll == highestRoll) {
+                    playersWithHighestRolls.add(i);
+                }
+            }
+        }
+        
+        // Handle Ties
+        while (playersWithHighestRolls.size() > 1) {
+            System.out.println("Tie detected. Tied players will roll again.");
+            highestRoll = 0;
+            ArrayList<Integer> newTieBreakers = new ArrayList<>();
+            
+            for (Integer playerIndex : playersWithHighestRolls) {
+                System.out.println(players[playerIndex].getName() + ", press 'y' to roll again.");
+                String input = scanner.nextLine();
+                if ("y".equalsIgnoreCase(input.trim())) {
+                    System.out.println("Rolling dice...");
+                    int roll = rollSingleDice();
+                    System.out.println(players[playerIndex].getName() + " re-rolled a " + roll);
+                    
+                    if (roll > highestRoll) {
+                        highestRoll = roll;
+                        newTieBreakers.clear();
+                        newTieBreakers.add(playerIndex);
+                    } else if (roll == highestRoll) {
+                        newTieBreakers.add(playerIndex);
+                    }
+                }
+            }
+            
+            playersWithHighestRolls = new ArrayList<>(newTieBreakers);
+        }
+        
+        return playersWithHighestRolls.isEmpty() ? -1 : playersWithHighestRolls.get(0);
+    }
+
 
     private Square movePlayerAndGetSquare(Player player, int roll) {
         int newPosition = (player.getPosition() + roll) % board.getSize();
@@ -89,8 +161,7 @@ public class GameController {
         } else if (square instanceof InvestmentSquare) {
             handleInvestmentSquare(player, (InvestmentSquare) square);
         } else {
-            // Handle other square types appropriately
-            square.performAction(player, scanner); // Now correctly handles squares needing input
+            square.performAction(player, scanner);
         }
     }
 
