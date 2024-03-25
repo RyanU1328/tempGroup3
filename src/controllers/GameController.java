@@ -12,6 +12,7 @@ public class GameController {
     private boolean gameRunning = true;
     private Board board = new Board();
     private Scanner scanner = new Scanner(System.in);
+    private ArrayList<String> nameList = new ArrayList<>();
 
     public void startGame() {
         initializePlayers();
@@ -57,7 +58,8 @@ public class GameController {
         int playerCount = ConsoleUI.promptForPlayerCount();
         players = new Player[playerCount];
         for (int i = 0; i < playerCount; i++) {
-            String name = ConsoleUI.promptForPlayerName(i);
+            String name = ConsoleUI.promptForPlayerName(nameList, i);
+            nameList.add(name);
             players[i] = new Player(name);
         }
     }
@@ -94,13 +96,6 @@ public class GameController {
         // If no doubles are rolled, return true to end the turn.
         return diceRoll[0] != diceRoll[1];
     }
-
-
-
-
-
-
-
 
     private int[] rollDice() {
         Random rand = new Random();
@@ -188,16 +183,12 @@ public class GameController {
         }
     }
 
-
-
     private void handleResourceSquare(Player player, ResourceSquare square) {
         System.out.println("This is a resource square. Collecting resources.");
         player.addResources(square.collectResources());
         System.out.println("Your new balance: " + player.getResources());
     }
 
-
-    
     private void handleInvestmentSquare(Player player, InvestmentSquare square) {
         if (!square.isOwned()) {
         } else if (square.getOwner() != player) {

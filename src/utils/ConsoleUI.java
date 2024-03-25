@@ -1,5 +1,6 @@
 package utils;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class ConsoleUI {
@@ -11,7 +12,7 @@ public class ConsoleUI {
             System.out.println("Enter the number of players (1-4):");
             while (!scanner.hasNextInt()) {
                 System.out.println("That's not a valid number. Enter the number of players (1-4):");
-                scanner.next(); 
+                scanner.next();
             }
             count = scanner.nextInt();
             if (count < 1 || count > 4) {
@@ -21,10 +22,18 @@ public class ConsoleUI {
         return count;
     }
 
-    public static String promptForPlayerName(int playerIndex) {
-        System.out.printf("Enter name for Player %d:%n", playerIndex + 1);
-        String name = scanner.next();
-      
+    public static String promptForPlayerName(ArrayList<String> nameList, int playerIndex) {
+        boolean check = false;
+        String name = "";
+        while (!check) {
+            System.out.printf("Enter name for Player %d:%n", playerIndex + 1);
+            name = scanner.next();
+            if (!nameList.contains(name)) {
+                check = true;
+            } else {
+                System.out.println("The name you have input has already been used, please input another name");
+            }
+        }
         return name;
     }
 }
