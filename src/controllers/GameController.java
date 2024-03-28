@@ -3,6 +3,11 @@ package controllers;
 import models.*;
 import utils.ConsoleUI;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Random;
 import java.util.Scanner;
@@ -15,6 +20,7 @@ public class GameController {
     private ArrayList<String> nameList = new ArrayList<>();
 
     public void startGame() {
+        printFileContents("\\src\\resources\\asciititle.txt");
         initializePlayers();
         int currentPlayerIndex = determineStartingPlayer();
         System.out.println(players[currentPlayerIndex].getName() + " starts the game.");
@@ -24,7 +30,8 @@ public class GameController {
             Player currentPlayer = players[currentPlayerIndex];
 
             while (!turnCompleted) {
-                System.out.println(currentPlayer.getName() + "'s turn. Press 'r' to roll the dice and 's' to show resources.");
+                System.out.println(
+                        currentPlayer.getName() + "'s turn. Press 'r' to roll the dice and 's' to show resources.");
                 String action = scanner.nextLine().trim().toLowerCase();
 
                 if ("s".equals(action)) {
@@ -53,7 +60,6 @@ public class GameController {
         scanner.close();
     }
 
-
     private void initializePlayers() {
         int playerCount = ConsoleUI.promptForPlayerCount();
         players = new Player[playerCount];
@@ -70,10 +76,11 @@ public class GameController {
             System.out.println(player.getName() + ": " + player.getResources());
         }
     }
-    
+
     private boolean playerTurn(Player player) {
         int[] diceRoll = rollDice();
-        System.out.println(player.getName() + " rolled a " + diceRoll[0] + " and a " + diceRoll[1] + ", moves " + (diceRoll[0] + diceRoll[1]) + " spaces.");
+        System.out.println(player.getName() + " rolled a " + diceRoll[0] + " and a " + diceRoll[1] + ", moves "
+                + (diceRoll[0] + diceRoll[1]) + " spaces.");
         Square currentSquare = movePlayerAndGetSquare(player, diceRoll[0] + diceRoll[1]);
         System.out.println(player.getName() + " has landed on " + currentSquare.getName());
         handleSquareActions(player, currentSquare);
@@ -85,10 +92,10 @@ public class GameController {
         return true; // Turn completed.
     }
 
-
     private boolean handleRollAndActions(Player player) {
         int[] diceRoll = rollDice();
-        System.out.println(player.getName() + " rolled a " + diceRoll[0] + " and a " + diceRoll[1] + ", moves " + (diceRoll[0] + diceRoll[1]) + " spaces.");
+        System.out.println(player.getName() + " rolled a " + diceRoll[0] + " and a " + diceRoll[1] + ", moves "
+                + (diceRoll[0] + diceRoll[1]) + " spaces.");
         Square currentSquare = movePlayerAndGetSquare(player, diceRoll[0] + diceRoll[1]);
         System.out.println(player.getName() + " has landed on " + currentSquare.getName());
         handleSquareActions(player, currentSquare);
@@ -101,19 +108,18 @@ public class GameController {
         Random rand = new Random();
         int die1 = rand.nextInt(6) + 1;
         int die2 = rand.nextInt(6) + 1;
-        return new int[]{die1, die2};
+        return new int[] { die1, die2 };
     }
 
-    
     private int rollSingleDice() {
         Random rand = new Random();
         return rand.nextInt(6) + 1;
     }
-    
+
     private int determineStartingPlayer() {
         ArrayList<Integer> playersWithHighestRolls = new ArrayList<>();
         int highestRoll = 0;
-        
+
         // Initial Roll
         for (int i = 0; i < players.length; i++) {
             System.out.println(players[i].getName() + ", press 'r' to roll the dice.");
@@ -122,7 +128,7 @@ public class GameController {
                 System.out.println("Rolling dice...");
                 int roll = rollSingleDice();
                 System.out.println(players[i].getName() + " rolled a " + roll);
-                
+
                 if (roll > highestRoll) {
                     highestRoll = roll;
                     playersWithHighestRolls.clear();
@@ -132,13 +138,13 @@ public class GameController {
                 }
             }
         }
-        
+
         // Handle Ties
         while (playersWithHighestRolls.size() > 1) {
             System.out.println("Tie detected. Tied players will roll again.");
             highestRoll = 0;
             ArrayList<Integer> newTieBreakers = new ArrayList<>();
-            
+
             for (Integer playerIndex : playersWithHighestRolls) {
                 System.out.println(players[playerIndex].getName() + ", press 'r' to roll again.");
                 String input = scanner.nextLine();
@@ -146,7 +152,7 @@ public class GameController {
                     System.out.println("Rolling dice...");
                     int roll = rollSingleDice();
                     System.out.println(players[playerIndex].getName() + " re-rolled a " + roll);
-                    
+
                     if (roll > highestRoll) {
                         highestRoll = roll;
                         newTieBreakers.clear();
@@ -156,13 +162,12 @@ public class GameController {
                     }
                 }
             }
-            
+
             playersWithHighestRolls = new ArrayList<>(newTieBreakers);
         }
-        
+
         return playersWithHighestRolls.isEmpty() ? -1 : playersWithHighestRolls.get(0);
     }
-
 
     private Square movePlayerAndGetSquare(Player player, int roll) {
         int newPosition = (player.getPosition() + roll) % board.getSize();
@@ -203,6 +208,35 @@ public class GameController {
         }
     }
 
-    
-    
+    /**
+     * Reads raw output from files. If data parsing is required it will have to be
+     * done elsewhere.
+     * 
+     * @param filePath file path from root of project folder, i.e.
+     *                 "\\src\\resources\\asciititle.txt"
+     */
+    private void printFileContents(String filePath) {
+        File file;
+        FileReader fr;
+        BufferedReader br;
+
+        // This code snippet is attempting to read and print the
+        // contents of a file specified by the `filePath` parameter.
+        try {
+            file = new File(System.getProperty("user.dir") + "\\CSC7083-2324-G3" + filePath);
+            fr = new FileReader(file);
+            br = new BufferedReader(fr);
+
+            String line = br.readLine();
+            while (line != null) {
+                System.out.println(line);
+                line = br.readLine();
+            }
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
 }
