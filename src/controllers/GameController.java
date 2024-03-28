@@ -1,11 +1,15 @@
 package controllers;
 
-import models.*;
-import utils.ConsoleUI;
-
 import java.util.ArrayList;
 import java.util.Random;
 import java.util.Scanner;
+
+import models.Board;
+import models.InvestmentSquare;
+import models.Player;
+import models.ResourceSquare;
+import models.Square;
+import utils.ConsoleUI;
 
 public class GameController {
     private Player[] players;
@@ -99,15 +103,16 @@ public class GameController {
 
     private int[] rollDice() {
         Random rand = new Random();
-        int die1 = rand.nextInt(6) + 1;
-        int die2 = rand.nextInt(6) + 1;
+        int die1 = rand.nextInt(4) + 1;
+        int die2 = rand.nextInt(4) + 1;
         return new int[]{die1, die2};
     }
 
     
     private int rollSingleDice() {
         Random rand = new Random();
-        return rand.nextInt(6) + 1;
+        return rand.nextInt(4) + 1;
+
     }
     
     private int determineStartingPlayer() {
