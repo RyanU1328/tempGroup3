@@ -21,10 +21,11 @@ JUnit-tests:
   stage: test
   script:
   - echo "Running Tests..."
-  - java -jar ./JARs/junit-platform-console-standalone-1.10.2.jar execute --class-path ./testBin/ --scan-class-path --reports-dir ./reports
-  - echo "Tests complete."
   - pwd
   - find /
+  - java -jar ./JARs/junit-platform-console-standalone-1.10.2.jar execute --class-path ./testBin/ --scan-class-path --reports-dir ./reports
+  - echo "Tests complete."
+
   artifacts:
     when: always
     paths:
