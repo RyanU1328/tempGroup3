@@ -29,6 +29,6 @@ JUnit-tests:
   artifacts:
     when: always
     paths:
-      - ./reports
+      - ./reports/
     reports:
-      junit: TEST-junit-jupiter.xml
+      junit: *.xml
