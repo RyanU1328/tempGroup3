@@ -14,7 +14,7 @@ build-job:       # This job runs in the build stage, which runs first.
     - echo "Compiling the code..."
     - javac -sourcepath ./src -d ./bin/ ./src/main/Main.java
     - echo "Compiling test code..."
-    - javac -cp ./JARs/* -sourcepath ./src -d ./testBin/ ./test/main/AllTests.java
+    - javac -cp ./JARs/junit-jupiter-5.10.0.jar -cp ./JARs/junit-platform-console-standalone-1.10.2.jar -sourcepath ./src -d ./testBin/ ./test/main/*
     - echo "Compile complete."
 
 JUnit-tests:
