@@ -1,0 +1,15 @@
+# This automatically compiles the code when merges are made to main. 
+# It may eventually be integrated with JUnit5 testing. 
+# For now it just shows issues in compiling the codebase
+
+image: openjdk:11
+
+stages:          # List of stages for jobs, and their order of execution
+  - build
+
+build-job:       # This job runs in the build stage, which runs first.
+  stage: build
+  script:
+    - echo "Compiling the code..."
+    - javac -sourcepath ./src -d ./bin/ ./src/main/Main.java
+    - echo "Compile complete."
