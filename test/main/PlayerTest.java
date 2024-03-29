@@ -19,7 +19,6 @@ import models.Player;
 class PlayerTest {
 
 	private String user1, user2, user3, user4;
-	private String results;
 
 	/**
 	 * @throws java.lang.Exception
@@ -114,7 +113,7 @@ class PlayerTest {
 	}
 
 	@Test
-	final void sucessTest() {
+	final void testSuccessTest() {
 		return;
 	}
 
