@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="JUnit Platform Suite" tests="8" skipped="0" failures="8" errors="0" time="0.018" hostname="ryan_urq_laptop" timestamp="2024-03-29T18:26:34">
+<testsuite name="JUnit Platform Suite" tests="0" skipped="0" failures="0" errors="0" time="0.001" hostname="ryan_urq_laptop" timestamp="2024-03-29T18:32:34">
 <properties>
 <property name="awt.toolkit" value="sun.awt.windows.WToolkit"/>
 <property name="file.encoding" value="Cp1252"/>
@@ -59,118 +59,6 @@
 <property name="user.timezone" value="Europe/London"/>
 <property name="user.variant" value=""/>
 </properties>
-<testcase name="testSetResources()" classname="main.PlayerTest" time="0.001">
-<failure message="Not yet implemented" type="org.opentest4j.AssertionFailedError"><![CDATA[org.opentest4j.AssertionFailedError: Not yet implemented
-	at org.junit.jupiter.api.AssertionUtils.fail(AssertionUtils.java:38)
-	at org.junit.jupiter.api.Assertions.fail(Assertions.java:138)
-	at main.PlayerTest.testSetResources(PlayerTest.java:81)
-	at java.base/java.lang.reflect.Method.invoke(Method.java:566)
-	at java.base/java.util.ArrayList.forEach(ArrayList.java:1541)
-	at java.base/java.util.ArrayList.forEach(ArrayList.java:1541)
-]]></failure>
-<system-out><![CDATA[
-unique-id: [engine:junit-platform-suite]/[suite:main.AllTests]/[engine:junit-jupiter]/[class:main.PlayerTest]/[method:testSetResources()]
-display-name: testSetResources()
-]]></system-out>
-</testcase>
-<testcase name="testGetResources()" classname="main.PlayerTest" time="0">
-<failure message="Not yet implemented" type="org.opentest4j.AssertionFailedError"><![CDATA[org.opentest4j.AssertionFailedError: Not yet implemented
-	at org.junit.jupiter.api.AssertionUtils.fail(AssertionUtils.java:38)
-	at org.junit.jupiter.api.Assertions.fail(Assertions.java:138)
-	at main.PlayerTest.testGetResources(PlayerTest.java:73)
-	at java.base/java.lang.reflect.Method.invoke(Method.java:566)
-	at java.base/java.util.ArrayList.forEach(ArrayList.java:1541)
-	at java.base/java.util.ArrayList.forEach(ArrayList.java:1541)
-]]></failure>
-<system-out><![CDATA[
-unique-id: [engine:junit-platform-suite]/[suite:main.AllTests]/[engine:junit-jupiter]/[class:main.PlayerTest]/[method:testGetResources()]
-display-name: testGetResources()
-]]></system-out>
-</testcase>
-<testcase name="testDeductResources()" classname="main.PlayerTest" time="0">
-<failure message="Not yet implemented" type="org.opentest4j.AssertionFailedError"><![CDATA[org.opentest4j.AssertionFailedError: Not yet implemented
-	at org.junit.jupiter.api.AssertionUtils.fail(AssertionUtils.java:38)
-	at org.junit.jupiter.api.Assertions.fail(Assertions.java:138)
-	at main.PlayerTest.testDeductResources(PlayerTest.java:97)
-	at java.base/java.lang.reflect.Method.invoke(Method.java:566)
-	at java.base/java.util.ArrayList.forEach(ArrayList.java:1541)
-	at java.base/java.util.ArrayList.forEach(ArrayList.java:1541)
-]]></failure>
-<system-out><![CDATA[
-unique-id: [engine:junit-platform-suite]/[suite:main.AllTests]/[engine:junit-jupiter]/[class:main.PlayerTest]/[method:testDeductResources()]
-display-name: testDeductResources()
-]]></system-out>
-</testcase>
-<testcase name="testPlayer()" classname="main.PlayerTest" time="0.001">
-<failure message="Not yet implemented" type="org.opentest4j.AssertionFailedError"><![CDATA[org.opentest4j.AssertionFailedError: Not yet implemented
-	at org.junit.jupiter.api.AssertionUtils.fail(AssertionUtils.java:38)
-	at org.junit.jupiter.api.Assertions.fail(Assertions.java:138)
-	at main.PlayerTest.testPlayer(PlayerTest.java:57)
-	at java.base/java.lang.reflect.Method.invoke(Method.java:566)
-	at java.base/java.util.ArrayList.forEach(ArrayList.java:1541)
-	at java.base/java.util.ArrayList.forEach(ArrayList.java:1541)
-]]></failure>
-<system-out><![CDATA[
-unique-id: [engine:junit-platform-suite]/[suite:main.AllTests]/[engine:junit-jupiter]/[class:main.PlayerTest]/[method:testPlayer()]
-display-name: testPlayer()
-]]></system-out>
-</testcase>
-<testcase name="testAddResources()" classname="main.PlayerTest" time="0">
-<failure message="Not yet implemented" type="org.opentest4j.AssertionFailedError"><![CDATA[org.opentest4j.AssertionFailedError: Not yet implemented
-	at org.junit.jupiter.api.AssertionUtils.fail(AssertionUtils.java:38)
-	at org.junit.jupiter.api.Assertions.fail(Assertions.java:138)
-	at main.PlayerTest.testAddResources(PlayerTest.java:89)
-	at java.base/java.lang.reflect.Method.invoke(Method.java:566)
-	at java.base/java.util.ArrayList.forEach(ArrayList.java:1541)
-	at java.base/java.util.ArrayList.forEach(ArrayList.java:1541)
-]]></failure>
-<system-out><![CDATA[
-unique-id: [engine:junit-platform-suite]/[suite:main.AllTests]/[engine:junit-jupiter]/[class:main.PlayerTest]/[method:testAddResources()]
-display-name: testAddResources()
-]]></system-out>
-</testcase>
-<testcase name="testGetName()" classname="main.PlayerTest" time="0.001">
-<failure message="Not yet implemented" type="org.opentest4j.AssertionFailedError"><![CDATA[org.opentest4j.AssertionFailedError: Not yet implemented
-	at org.junit.jupiter.api.AssertionUtils.fail(AssertionUtils.java:38)
-	at org.junit.jupiter.api.Assertions.fail(Assertions.java:138)
-	at main.PlayerTest.testGetName(PlayerTest.java:65)
-	at java.base/java.lang.reflect.Method.invoke(Method.java:566)
-	at java.base/java.util.ArrayList.forEach(ArrayList.java:1541)
-	at java.base/java.util.ArrayList.forEach(ArrayList.java:1541)
-]]></failure>
-<system-out><![CDATA[
-unique-id: [engine:junit-platform-suite]/[suite:main.AllTests]/[engine:junit-jupiter]/[class:main.PlayerTest]/[method:testGetName()]
-display-name: testGetName()
-]]></system-out>
-</testcase>
-<testcase name="testGetPosition()" classname="main.PlayerTest" time="0.002">
-<failure message="Not yet implemented" type="org.opentest4j.AssertionFailedError"><![CDATA[org.opentest4j.AssertionFailedError: Not yet implemented
-	at org.junit.jupiter.api.AssertionUtils.fail(AssertionUtils.java:38)
-	at org.junit.jupiter.api.Assertions.fail(Assertions.java:138)
-	at main.PlayerTest.testGetPosition(PlayerTest.java:105)
-	at java.base/java.lang.reflect.Method.invoke(Method.java:566)
-	at java.base/java.util.ArrayList.forEach(ArrayList.java:1541)
-	at java.base/java.util.ArrayList.forEach(ArrayList.java:1541)
-]]></failure>
-<system-out><![CDATA[
-unique-id: [engine:junit-platform-suite]/[suite:main.AllTests]/[engine:junit-jupiter]/[class:main.PlayerTest]/[method:testGetPosition()]
-display-name: testGetPosition()
-]]></system-out>
-</testcase>
-<testcase name="testSetPosition()" classname="main.PlayerTest" time="0.001">
-<failure message="Not yet implemented" type="org.opentest4j.AssertionFailedError"><![CDATA[org.opentest4j.AssertionFailedError: Not yet implemented
-	at org.junit.jupiter.api.AssertionUtils.fail(AssertionUtils.java:38)
-	at org.junit.jupiter.api.Assertions.fail(Assertions.java:138)
-	at main.PlayerTest.testSetPosition(PlayerTest.java:113)
-	at java.base/java.lang.reflect.Method.invoke(Method.java:566)
-	at java.base/java.util.ArrayList.forEach(ArrayList.java:1541)
-	at java.base/java.util.ArrayList.forEach(ArrayList.java:1541)
-]]></failure>
-<system-out><![CDATA[
-unique-id: [engine:junit-platform-suite]/[suite:main.AllTests]/[engine:junit-jupiter]/[class:main.PlayerTest]/[method:testSetPosition()]
-display-name: testSetPosition()
-]]></system-out>
-</testcase>
 <system-out><![CDATA[
 unique-id: [engine:junit-platform-suite]
 display-name: JUnit Platform Suite

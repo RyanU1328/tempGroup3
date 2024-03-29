@@ -6,10 +6,26 @@ image: openjdk:11
 
 stages:          # List of stages for jobs, and their order of execution
   - build
+  - test
 
 build-job:       # This job runs in the build stage, which runs first.
   stage: build
   script:
     - echo "Compiling the code..."
     - javac -sourcepath ./src -d ./bin/ ./src/main/Main.java
+    - echo "Compiling test code..."
+    - javac -sourcepath ./src -d ./testBin/ ./test/main/AllTests.java
     - echo "Compile complete."
+
+JUnit-tests:
+  stage: test
+  script:
+  - echo "Running Tests..."
+  - java -jar .\JARs\junit-platform-console-standalone-1.10.2.jar execute --class-path .\testBin\ --scan-class-path --reports-dir ./reports
+  - echo "Tests complete."
+  artefacts:
+    when: always
+    paths:
+      - ./reports/*
+    reports:
+      junit: TEST-junit-jupiter.xml

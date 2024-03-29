@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="JUnit Jupiter" tests="8" skipped="0" failures="8" errors="0" time="0.047" hostname="ryan_urq_laptop" timestamp="2024-03-29T18:26:34">
+<testsuite name="JUnit Jupiter" tests="8" skipped="0" failures="8" errors="0" time="0.057" hostname="ryan_urq_laptop" timestamp="2024-03-29T18:32:34">
 <properties>
 <property name="awt.toolkit" value="sun.awt.windows.WToolkit"/>
 <property name="file.encoding" value="Cp1252"/>
@@ -73,7 +73,7 @@ unique-id: [engine:junit-jupiter]/[class:main.PlayerTest]/[method:testAddResourc
 display-name: testAddResources()
 ]]></system-out>
 </testcase>
-<testcase name="testDeductResources()" classname="main.PlayerTest" time="0.001">
+<testcase name="testDeductResources()" classname="main.PlayerTest" time="0">
 <failure message="Not yet implemented" type="org.opentest4j.AssertionFailedError"><![CDATA[org.opentest4j.AssertionFailedError: Not yet implemented
 	at org.junit.jupiter.api.AssertionUtils.fail(AssertionUtils.java:38)
 	at org.junit.jupiter.api.Assertions.fail(Assertions.java:138)
@@ -101,7 +101,7 @@ unique-id: [engine:junit-jupiter]/[class:main.PlayerTest]/[method:testSetResourc
 display-name: testSetResources()
 ]]></system-out>
 </testcase>
-<testcase name="testGetResources()" classname="main.PlayerTest" time="0.002">
+<testcase name="testGetResources()" classname="main.PlayerTest" time="0.001">
 <failure message="Not yet implemented" type="org.opentest4j.AssertionFailedError"><![CDATA[org.opentest4j.AssertionFailedError: Not yet implemented
 	at org.junit.jupiter.api.AssertionUtils.fail(AssertionUtils.java:38)
 	at org.junit.jupiter.api.Assertions.fail(Assertions.java:138)
@@ -115,7 +115,7 @@ unique-id: [engine:junit-jupiter]/[class:main.PlayerTest]/[method:testGetResourc
 display-name: testGetResources()
 ]]></system-out>
 </testcase>
-<testcase name="testPlayer()" classname="main.PlayerTest" time="0">
+<testcase name="testPlayer()" classname="main.PlayerTest" time="0.001">
 <failure message="Not yet implemented" type="org.opentest4j.AssertionFailedError"><![CDATA[org.opentest4j.AssertionFailedError: Not yet implemented
 	at org.junit.jupiter.api.AssertionUtils.fail(AssertionUtils.java:38)
 	at org.junit.jupiter.api.Assertions.fail(Assertions.java:138)
@@ -129,7 +129,7 @@ unique-id: [engine:junit-jupiter]/[class:main.PlayerTest]/[method:testPlayer()]
 display-name: testPlayer()
 ]]></system-out>
 </testcase>
-<testcase name="testGetName()" classname="main.PlayerTest" time="0.001">
+<testcase name="testGetName()" classname="main.PlayerTest" time="0">
 <failure message="Not yet implemented" type="org.opentest4j.AssertionFailedError"><![CDATA[org.opentest4j.AssertionFailedError: Not yet implemented
 	at org.junit.jupiter.api.AssertionUtils.fail(AssertionUtils.java:38)
 	at org.junit.jupiter.api.Assertions.fail(Assertions.java:138)
@@ -143,7 +143,7 @@ unique-id: [engine:junit-jupiter]/[class:main.PlayerTest]/[method:testGetName()]
 display-name: testGetName()
 ]]></system-out>
 </testcase>
-<testcase name="testGetPosition()" classname="main.PlayerTest" time="0.012">
+<testcase name="testGetPosition()" classname="main.PlayerTest" time="0.013">
 <failure message="Not yet implemented" type="org.opentest4j.AssertionFailedError"><![CDATA[org.opentest4j.AssertionFailedError: Not yet implemented
 	at org.junit.jupiter.api.AssertionUtils.fail(AssertionUtils.java:38)
 	at org.junit.jupiter.api.Assertions.fail(Assertions.java:138)
@@ -157,7 +157,7 @@ unique-id: [engine:junit-jupiter]/[class:main.PlayerTest]/[method:testGetPositio
 display-name: testGetPosition()
 ]]></system-out>
 </testcase>
-<testcase name="testSetPosition()" classname="main.PlayerTest" time="0">
+<testcase name="testSetPosition()" classname="main.PlayerTest" time="0.001">
 <failure message="Not yet implemented" type="org.opentest4j.AssertionFailedError"><![CDATA[org.opentest4j.AssertionFailedError: Not yet implemented
 	at org.junit.jupiter.api.AssertionUtils.fail(AssertionUtils.java:38)
 	at org.junit.jupiter.api.Assertions.fail(Assertions.java:138)
