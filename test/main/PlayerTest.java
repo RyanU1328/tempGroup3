@@ -113,4 +113,9 @@ class PlayerTest {
 		fail("Not yet implemented"); // TODO
 	}
 
+	@Test
+	final void sucessTest() {
+		return;
+	}
+
 }
