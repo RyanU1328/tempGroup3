@@ -26,8 +26,5 @@ JUnit-tests:
   - echo "Tests complete."
 
   artifacts:
-    when: always
-    paths:
-      - ./reports/*
     reports:
-      junit: *.xml
+      junit: ./report/*.xml
