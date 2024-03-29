@@ -27,4 +27,4 @@ JUnit-tests:
 
   artifacts:
     reports:
-      junit: ./reports/*.xml
+      junit: ./reports/*jupiter.xml
