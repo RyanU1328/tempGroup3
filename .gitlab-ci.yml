@@ -2,7 +2,7 @@
 # It may eventually be integrated with JUnit5 testing. 
 # For now it just shows issues in compiling the codebase
 
-image: openjdk:11
+image: eclipse-temurin:11
 
 stages:          # List of stages for jobs, and their order of execution
   - build
