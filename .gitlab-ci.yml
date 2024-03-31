@@ -20,8 +20,8 @@ JUnit-tests:
   script:
   - echo "Running Tests..."
   - echo "Compiling test code..."
-  - javac -cp ./JARs/junit-jupiter-5.10.0.jar -cp ./JARs/junit-platform-console-standalone-1.10.2.jar -sourcepath ./src -d ./testBin/ ./test/main/*
-  - ls -R
+  - wget https://repo1.maven.org/maven2/org/junit/jupiter/junit-jupiter/5.10.2/junit-jupiter-5.10.2.jar https://repo1.maven.org/maven2/org/junit/platform/junit-platform-console-standalone/1.10.2/junit-platform-console-standalone-1.10.2.jar -O ./JARs/ -w 10
+  - find . -type f -name "*.java" | xargs -I % javac -cp ./JARs/junit-jupiter-5.10.2.jar -cp ./JARs/junit-platform-console-standalone-1.10.2.jar -sourcepath ./src -d ./bin %
   - java -jar ./JARs/junit-platform-console-standalone-1.10.2.jar execute --class-path ./testBin/ --scan-class-path --reports-dir ./reports
   - echo "Tests complete."
 
