@@ -4,6 +4,7 @@ public class Player {
 	private String name;
 	private int money;
 	private int carbonDebt;
+	private int position = 0;
 
 	private static final int STARTING_CARBON = 500;
 	private static final int STARTING_MONEY = 500;
@@ -53,29 +54,34 @@ public class Player {
 		this.carbonDebt = carbonDebt;
 	}
 
-	public int getResources() {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'getResources'");
+	public int[] getResources() {
+		int[] resources = { money, carbonDebt };
+		return resources;
+
 	}
 
 	public int getPosition() {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'getPosition'");
+		return position;
 	}
 
 	public void setPosition(int newPosition) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'setPosition'");
+		this.position = newPosition;
 	}
 
-	public void addResources(int collectResources) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'addResources'");
+	public void addResources(String kind, int collectResources) {
+		if (kind.equals("money")) {
+			this.money += collectResources;
+		} else {
+			this.carbonDebt += collectResources;
+		}
 	}
 
-	public void deductResources(int fee) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'deductResources'");
+	public void deductResources(String kind, int fee) {
+		if (kind.equals("money")) {
+			this.money -= fee;
+		} else {
+			this.carbonDebt -= fee;
+		}
 	}
 
 }
