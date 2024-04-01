@@ -82,7 +82,7 @@ public class GameController {
     }
 
     private boolean playerTurn(Player player) {
-        int[] diceRoll = rollDice(2); 
+        int[] diceRoll = rollDice(2);
 
         System.out.println(player.getName() + " rolled a " + diceRoll[0] + " and a " + diceRoll[1] + ", moves "
                 + (diceRoll[0] + diceRoll[1]) + " spaces.");
@@ -98,33 +98,31 @@ public class GameController {
     }
 
     private boolean handleRollAndActions(Player player) {
-        int[] diceRoll = rollDice(2); 
+        int[] diceRoll = rollDice(2);
         System.out.println(player.getName() + " rolled a " + diceRoll[0] + " and a " + diceRoll[1] + ", moves "
                 + (diceRoll[0] + diceRoll[1]) + " spaces.");
         Square currentSquare = movePlayerAndGetSquare(player, diceRoll[0] + diceRoll[1]);
         System.out.println(player.getName() + " has landed on " + currentSquare.getName());
         handleSquareActions(player, currentSquare);
-    
+
         // If no doubles are rolled, return true to end the turn.
         return diceRoll[0] != diceRoll[1];
     }
-    
 
-/**
- * Rolls a specified number of dice and returns the result.
- *
- * @param numDice the number of dice to roll.
- * @return an array of integers representing the outcome of each die roll.
- */
-private int[] rollDice(int numDice) {
-    Random rand = new Random();
-    int[] rolls = new int[numDice];
-    for (int i = 0; i < numDice; i++) {
-        rolls[i] = rand.nextInt(4) + 1;
+    /**
+     * Rolls a specified number of dice and returns the result.
+     *
+     * @param numDice the number of dice to roll.
+     * @return an array of integers representing the outcome of each die roll.
+     */
+    private int[] rollDice(int numDice) {
+        Random rand = new Random();
+        int[] rolls = new int[numDice];
+        for (int i = 0; i < numDice; i++) {
+            rolls[i] = rand.nextInt(4) + 1;
+        }
+        return rolls;
     }
-    return rolls;
-}
-
 
     private int determineStartingPlayer() {
         ArrayList<Integer> playersWithHighestRolls = new ArrayList<>();
@@ -219,7 +217,8 @@ private int[] rollDice(int numDice) {
             }
         }
     }
-    String path= "";
+
+    String path = "";
 
     /**
      * Reads raw output from files. If data parsing is required it will have to be
@@ -236,7 +235,7 @@ private int[] rollDice(int numDice) {
         // This code snippet is attempting to read and print the
         // contents of a file specified by the `filePath` parameter.
         try {
-            file = new File(System.getProperty("user.dir")  + filePath);
+            file = new File(System.getProperty("user.dir") + filePath);
             fr = new FileReader(file);
             br = new BufferedReader(fr);
 
