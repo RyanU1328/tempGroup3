@@ -190,8 +190,10 @@ public class GameController {
     
 
         if (newPosition < oldPosition || newPosition == 0) {
-            System.out.println(player.getName() + " passed or landed on Go! Gaining 50 resources.");
+            System.out.println(player.getName() + " passed or landed on Go! Gaining 50 resources and reducing their carbon debt by 10!");
             player.addResources("money", 50);
+            player.addResources("carbonDebt", -10);
+
 
         }
     
