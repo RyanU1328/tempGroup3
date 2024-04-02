@@ -71,10 +71,11 @@ public class Player {
 	public void addResources(String kind, int collectResources) {
 		if (kind.equals("money")) {
 			this.money += collectResources;
-		} else {
-			this.carbonDebt += collectResources;
+		} else if (kind.equals("carbonDebt")) {
+			this.carbonDebt = Math.max(0, this.carbonDebt + collectResources);
 		}
 	}
+	
 
 	public void deductResources(String kind, int fee) {
 		if (kind.equals("money")) {
