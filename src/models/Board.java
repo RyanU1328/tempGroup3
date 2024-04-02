@@ -8,13 +8,12 @@ public class Board {
 
     public Board() {
         squares.add(new GoSquare("Go"));
-
         squares.add(new InvestmentSquare("Sunny Acres", 20, 10)); 
         squares.add(new InvestmentSquare("Radiant Ridge", 30, 15));
         squares.add(new InvestmentSquare("Windy Mills", 50, 25)); 
         squares.add(new InvestmentSquare("Gusto Grove", 60, 30));
         squares.add(new InvestmentSquare("Airy Heights", 70, 35)); 
-        
+        squares.add(new EcoZoneSquare("ECO Zone")); 
         squares.add(new InvestmentSquare("Splashviille", 90, 45));
         squares.add(new InvestmentSquare("Torrential Terrace", 100, 50)); 
         squares.add(new InvestmentSquare("Hydro Haven", 110, 55));
