@@ -10,12 +10,12 @@ public class ResourceSquare extends Square {
 
     @Override
     public void landOn(Player player) {
-        player.addResources(resourceBonus);
-        System.out.println(player.getName() + " landed on " + getName() + " and collected " + resourceBonus + " resources.");
+        player.addResources("money", resourceBonus);
+        System.out.println(
+                player.getName() + " landed on " + getName() + " and collected " + resourceBonus + " resources.");
     }
-    
+
     public int collectResources() {
         return resourceBonus;
     }
 }
-

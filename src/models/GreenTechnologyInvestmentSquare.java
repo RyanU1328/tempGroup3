@@ -12,8 +12,9 @@ public class GreenTechnologyInvestmentSquare extends InvestmentSquare {
     public void landOn(Player player) {
         super.landOn(player);
         if (isOwned() && getOwner().equals(player)) {
-            System.out.println(player.getName() + " receives a bonus return from " + getName() + " for investing in green technology.");
-            player.addResources(bonusReturn);
+            System.out.println(player.getName() + " receives a bonus return from " + getName()
+                    + " for investing in green technology.");
+            player.addResources("money", bonusReturn);
         }
     }
 }
