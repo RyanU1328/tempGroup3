@@ -7,6 +7,7 @@ public class Board {
     private List<Square> squares = new ArrayList<>();
 
     public Board() {
+        squares.add(new GoSquare("Go"));
         squares.add(new ResourceSquare("Green Forest", 100));
         squares.add(new InvestmentSquare("Solar Power Plant", 500, 50));
         squares.add(new ConservationArea("Local Park Conservation", 200, 50)); 

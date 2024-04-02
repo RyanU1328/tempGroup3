@@ -184,10 +184,20 @@ public class GameController {
     }
 
     private Square movePlayerAndGetSquare(Player player, int roll) {
-        int newPosition = (player.getPosition() + roll) % board.getSize();
+        int oldPosition = player.getPosition();
+        int newPosition = (oldPosition + roll) % board.getSize();
         player.setPosition(newPosition);
+    
+
+        if (newPosition < oldPosition || newPosition == 0) {
+            System.out.println(player.getName() + " passed or landed on Go! Gaining 50 resources.");
+            player.addResources("money", 50);
+
+        }
+    
         return board.getSquare(newPosition);
     }
+    
 
     private void handleSquareActions(Player player, Square square) {
         if (square instanceof ResourceSquare) {
@@ -221,9 +231,6 @@ public class GameController {
             }
         }
     }
-
-    String path = "";
-
     /**
      * Reads raw output from files. If data parsing is required it will have to be
      * done elsewhere.
