@@ -11,7 +11,7 @@ public class PollutionPenaltySquare extends Square {
     @Override
     public void landOn(Player player) {
         System.out.println(player.getName() + " has landed on " + getName() + ". Facing pollution penalties.");
-        player.deductResources(penalty);
-        System.out.println(player.getName() + " lost " + penalty + " resources due to pollution.");
+        player.addResources("carbonDebt", penalty);
+        System.out.println(player.getName() + " gained " + penalty + " carbon debt due to pollution.");
     }
 }

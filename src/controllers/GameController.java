@@ -25,6 +25,7 @@ public class GameController {
 
     public void startGame() {
         printFileContents("\\src\\resources\\asciititle.txt");
+        System.out.println("\n\n");
         initializePlayers();
         int currentPlayerIndex = determineStartingPlayer();
         System.out.println(players[currentPlayerIndex].getName() + " starts the game.");
@@ -35,11 +36,13 @@ public class GameController {
 
             while (!turnCompleted) {
                 System.out.println(
-                        currentPlayer.getName() + "'s turn. Press 'r' to roll the dice and 's' to show resources.");
+                        currentPlayer.getName() + "'s turn. Press 'r' to roll the dice and 's' to show resources.\n");
                 String action = scanner.nextLine().trim().toLowerCase();
 
                 if ("s".equals(action)) {
-                    System.out.println(currentPlayer.getName() + "'s resources: " + currentPlayer.getResources());
+                    System.out.println(
+                            "\n" + currentPlayer.getName() + "'s resources: \nMoney: " + currentPlayer.getMoney()
+                                    + "\nCarbon Debt: " + currentPlayer.getCarbonDebt() + "\n");
                     // Continue in the loop, allowing the player to also press 'r' to roll the dice.
                 } else if ("r".equals(action)) {
                     turnCompleted = playerTurn(currentPlayer); // This method now returns true if the turn is completed.
@@ -54,8 +57,8 @@ public class GameController {
             }
 
             // Check for a game-ending condition
-            if (currentPlayer.getResources() <= 0) {
-                System.out.println(currentPlayer.getName() + " has won the game by running out of resources!");
+            if (currentPlayer.getCarbonDebt() <= 0) {
+                System.out.println(currentPlayer.getName() + " has won the game by negating all of their!");
                 gameRunning = false;
             }
         }
@@ -77,12 +80,13 @@ public class GameController {
     private void endGame() {
         System.out.println("Game over. Final resources:");
         for (Player player : players) {
-            System.out.println(player.getName() + ": " + player.getResources());
+            System.out.println(
+                    player.getName() + ": \nMoney: " + player.getMoney() + "\nCarbon Debt: " + player.getCarbonDebt());
         }
     }
 
     private boolean playerTurn(Player player) {
-        int[] diceRoll = rollDice(2); 
+        int[] diceRoll = rollDice(2);
 
         System.out.println(player.getName() + " rolled a " + diceRoll[0] + " and a " + diceRoll[1] + ", moves "
                 + (diceRoll[0] + diceRoll[1]) + " spaces.");
@@ -98,33 +102,31 @@ public class GameController {
     }
 
     private boolean handleRollAndActions(Player player) {
-        int[] diceRoll = rollDice(2); 
+        int[] diceRoll = rollDice(2);
         System.out.println(player.getName() + " rolled a " + diceRoll[0] + " and a " + diceRoll[1] + ", moves "
                 + (diceRoll[0] + diceRoll[1]) + " spaces.");
         Square currentSquare = movePlayerAndGetSquare(player, diceRoll[0] + diceRoll[1]);
         System.out.println(player.getName() + " has landed on " + currentSquare.getName());
         handleSquareActions(player, currentSquare);
-    
+
         // If no doubles are rolled, return true to end the turn.
         return diceRoll[0] != diceRoll[1];
     }
-    
 
-/**
- * Rolls a specified number of dice and returns the result.
- *
- * @param numDice the number of dice to roll.
- * @return an array of integers representing the outcome of each die roll.
- */
-private int[] rollDice(int numDice) {
-    Random rand = new Random();
-    int[] rolls = new int[numDice];
-    for (int i = 0; i < numDice; i++) {
-        rolls[i] = rand.nextInt(4) + 1;
+    /**
+     * Rolls a specified number of dice and returns the result.
+     *
+     * @param numDice the number of dice to roll.
+     * @return an array of integers representing the outcome of each die roll.
+     */
+    private int[] rollDice(int numDice) {
+        Random rand = new Random();
+        int[] rolls = new int[numDice];
+        for (int i = 0; i < numDice; i++) {
+            rolls[i] = rand.nextInt(4) + 1;
+        }
+        return rolls;
     }
-    return rolls;
-}
-
 
     private int determineStartingPlayer() {
         ArrayList<Integer> playersWithHighestRolls = new ArrayList<>();
@@ -186,10 +188,11 @@ private int[] rollDice(int numDice) {
         int newPosition = (oldPosition + roll) % board.getSize();
         player.setPosition(newPosition);
     
-        // Check if player passed or landed on Go
+
         if (newPosition < oldPosition || newPosition == 0) {
             System.out.println(player.getName() + " passed or landed on Go! Gaining 50 resources.");
-            player.addResources(50);
+            player.addResources("money", 50);
+
         }
     
         return board.getSquare(newPosition);
@@ -200,7 +203,7 @@ private int[] rollDice(int numDice) {
         if (square instanceof ResourceSquare) {
             ResourceSquare resourceSquare = (ResourceSquare) square;
             System.out.println("This is a resource square. Collecting resources.");
-            player.addResources(resourceSquare.collectResources());
+            player.addResources("money", resourceSquare.collectResources());
             System.out.println("Your new balance: " + player.getResources());
         } else if (square instanceof InvestmentSquare) {
             handleInvestmentSquare(player, (InvestmentSquare) square);
@@ -211,7 +214,7 @@ private int[] rollDice(int numDice) {
 
     private void handleResourceSquare(Player player, ResourceSquare square) {
         System.out.println("This is a resource square. Collecting resources.");
-        player.addResources(square.collectResources());
+        player.addResources("money", square.collectResources());
         System.out.println("Your new balance: " + player.getResources());
     }
 
@@ -219,16 +222,15 @@ private int[] rollDice(int numDice) {
         if (!square.isOwned()) {
         } else if (square.getOwner() != player) {
             System.out.println("This area is owned by " + square.getOwner().getName() + ". Paying fees.");
-            if (player.getResources() >= square.getFee()) {
-                player.deductResources(square.getFee());
-                square.getOwner().addResources(square.getFee());
+            if (player.getMoney() >= square.getFee()) {
+                player.deductResources("money", square.getFee());
+                square.getOwner().addResources("money", square.getFee());
                 System.out.println("Paid " + square.getFee() + " resources to " + square.getOwner().getName());
             } else {
                 System.out.println("Not enough resources to pay the fee.");
             }
         }
     }
-
     /**
      * Reads raw output from files. If data parsing is required it will have to be
      * done elsewhere.
@@ -244,7 +246,7 @@ private int[] rollDice(int numDice) {
         // This code snippet is attempting to read and print the
         // contents of a file specified by the `filePath` parameter.
         try {
-            file = new File(System.getProperty("user.dir")  + filePath);
+            file = new File(System.getProperty("user.dir") + filePath);
             fr = new FileReader(file);
             br = new BufferedReader(fr);
 

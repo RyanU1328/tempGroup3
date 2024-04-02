@@ -1,0 +1,45 @@
+# This automatically compiles the code when merges are made to main. 
+# It may eventually be integrated with JUnit5 testing. 
+# For now it just shows issues in compiling the codebase
+
+image: eclipse-temurin:11
+
+stages:          # List of stages for jobs, and their order of execution
+  - build
+  - test-1
+  - merge-test
+
+build-job:       # This job runs in the build stage, which runs first.
+  stage: build
+  script:
+    - echo "Compiling the code..."
+    - javac -sourcepath ./src -d ./bin/ ./src/main/Main.java
+    - echo "Compile complete."
+
+# Default pipeline, runs when there are any commits to branches or to main
+JUnit-tests:
+  stage: test-1
+  script:
+  - echo "Running Tests..."
+  - echo "Compiling test code..."
+  - wget https://repo1.maven.org/maven2/org/junit/jupiter/junit-jupiter/5.10.2/junit-jupiter-5.10.2.jar https://repo1.maven.org/maven2/org/junit/platform/junit-platform-console-standalone/1.10.2/junit-platform-console-standalone-1.10.2.jar -P ./JARs/ -w 10
+  - find . -type f -name "*.java" | xargs -I % javac -cp ./JARs/junit-jupiter-5.10.2.jar -cp ./JARs/junit-platform-console-standalone-1.10.2.jar -sourcepath ./src -d ./bin %
+  - java -jar ./JARs/junit-platform-console-standalone-1.10.2.jar execute --class-path ./bin/ --scan-class-path --reports-dir ./reports
+  - echo "Tests complete."
+
+  artifacts:
+    reports:
+      junit: ./reports/*jupiter.xml
+
+merge-request-job:
+  stage: merge-test
+  script:
+  - echo "Running Tests..."
+  - echo "Compiling test code..."
+  - wget https://repo1.maven.org/maven2/org/junit/jupiter/junit-jupiter/5.10.2/junit-jupiter-5.10.2.jar https://repo1.maven.org/maven2/org/junit/platform/junit-platform-console-standalone/1.10.2/junit-platform-console-standalone-1.10.2.jar -P ./JARs/ -w 10
+  - find . -type f -name "*.java" | xargs -I % javac -cp ./JARs/junit-jupiter-5.10.2.jar -cp ./JARs/junit-platform-console-standalone-1.10.2.jar -sourcepath ./src -d ./bin %
+  - java -jar ./JARs/junit-platform-console-standalone-1.10.2.jar execute --class-path ./bin/ --scan-class-path --reports-dir ./reports
+  - echo "Tests complete."
+  rules:
+    - if: $CI_PIPELINE_SOURCE == 'merge_request_event'
+

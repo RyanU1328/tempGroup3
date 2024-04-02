@@ -35,8 +35,8 @@ public class InvestmentSquare extends Square {
     @Override
     public void landOn(Player player) {
         if (isOwned() && !owner.equals(player)) {
-            player.deductResources(fee);
-            owner.addResources(fee);
+            player.deductResources("money", fee);
+            owner.addResources("money", fee);
             System.out.println(player.getName() + " paid a fee of " + fee + " resources to " + owner.getName());
         }
     }
