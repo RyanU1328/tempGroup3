@@ -8,13 +8,19 @@ public class Board {
 
     public Board() {
         squares.add(new GoSquare("Go"));
-        squares.add(new ResourceSquare("Green Forest", 100));
-        squares.add(new InvestmentSquare("Solar Power Plant", 500, 50));
-        squares.add(new ConservationArea("Local Park Conservation", 200, 50)); 
-        squares.add(new PollutionPenaltySquare("Factory Pollution", 150));
-        squares.add(new GreenTechnologyInvestmentSquare("Solar Farm", 300, 50, 100));
-        squares.add(new CommunityOutreachSquare("Local School Partnership", 200, 50));
-        squares.add(new RenewableEnergyProjectSquare("Wind Turbine", 400, 75, 150));
+
+        squares.add(new InvestmentSquare("Sunny Acres", 20, 10)); 
+        squares.add(new InvestmentSquare("Radiant Ridge", 30, 15));
+        squares.add(new InvestmentSquare("Windy Mills", 50, 25)); 
+        squares.add(new InvestmentSquare("Gusto Grove", 60, 30));
+        squares.add(new InvestmentSquare("Airy Heights", 70, 35)); 
+        
+        squares.add(new InvestmentSquare("Splashviille", 90, 45));
+        squares.add(new InvestmentSquare("Torrential Terrace", 100, 50)); 
+        squares.add(new InvestmentSquare("Hydro Haven", 110, 55));
+        squares.add(new InvestmentSquare("Nucleo nest", 130, 65)); 
+        squares.add(new InvestmentSquare("Atomic Oasis", 140, 70));
+
     }
 
     public Square getSquare(int position) {
