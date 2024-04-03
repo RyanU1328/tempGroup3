@@ -72,6 +72,7 @@ public class Player {
 		if (kind.equals("money")) {
 			this.money += collectResources;
 		} else if (kind.equals("carbonDebt")) {
+			// Ensure carbon debt does not go negative
 			this.carbonDebt = Math.max(0, this.carbonDebt + collectResources);
 		}
 	}

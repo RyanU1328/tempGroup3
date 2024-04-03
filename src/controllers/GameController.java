@@ -12,7 +12,6 @@ import java.util.Scanner;
 import models.Board;
 import models.InvestmentSquare;
 import models.Player;
-import models.ResourceSquare;
 import models.Square;
 import utils.ConsoleUI;
 
@@ -202,23 +201,13 @@ public class GameController {
     
 
     private void handleSquareActions(Player player, Square square) {
-        if (square instanceof ResourceSquare) {
-            ResourceSquare resourceSquare = (ResourceSquare) square;
-            System.out.println("This is a resource square. Collecting resources.");
-            player.addResources("money", resourceSquare.collectResources());
-            System.out.println("Your new balance: " + player.getResources());
-        } else if (square instanceof InvestmentSquare) {
+    if (square instanceof InvestmentSquare) {
             handleInvestmentSquare(player, (InvestmentSquare) square);
         } else {
             square.performAction(player, scanner);
         }
     }
 
-    private void handleResourceSquare(Player player, ResourceSquare square) {
-        System.out.println("This is a resource square. Collecting resources.");
-        player.addResources("money", square.collectResources());
-        System.out.println("Your new balance: " + player.getResources());
-    }
 
     private void handleInvestmentSquare(Player player, InvestmentSquare square) {
         if (!square.isOwned()) {
