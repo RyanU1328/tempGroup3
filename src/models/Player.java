@@ -1,44 +1,89 @@
 package models;
 
 public class Player {
-    private String name;
-    private int resources; 
-    private int position = 0;
+	private String name;
+	private int money;
+	private int carbonDebt;
+	private int position = 0;
 
-    public Player(String name) {
-        this.name = name;
-        this.resources = 1000; 
-    }
+	private static final int STARTING_CARBON = 500;
+	private static final int STARTING_MONEY = 500;
 
+	public Player(String name) {
+		super();
+		this.setName(name);
+		this.setMoney(STARTING_MONEY);
+		this.setCarbonDebt(STARTING_CARBON);
+	}
 
-    public String getName() {
-        return name;
-    }
+	public String getName() {
+		return name;
+	}
 
-    public int getResources() {
-        return resources;
-    }
+	/*
+	 * Player name must be at least one character and not null
+	 */
+	public void setName(String name) throws IllegalArgumentException, NullPointerException {
+		if (name == null) {
+			throw new NullPointerException("Name is null");
+		}
+		if (name.length() > 0) {
+			this.name = name;
+		} else
+			throw new IllegalArgumentException("Player name must be at least one character");
+		;
 
-    public void setResources(int resources) {
-        this.resources = resources;
-    }
+	}
 
-    // Add methods for managing resources
-    public void addResources(int amount) {
-        this.resources += amount;
-    }
+	public int getMoney() {
 
-    public void deductResources(int amount) {
-        this.resources -= amount;
-   
-    }
+		return money;
+	}
 
-    
-    public int getPosition() {
-        return position;
-    }
+	public void setMoney(int money) {
 
-    public void setPosition(int position) {
-        this.position = position;
-    }
+		this.money = money;
+	}
+
+	public int getCarbonDebt() {
+		return carbonDebt;
+	}
+
+	public void setCarbonDebt(int carbonDebt) {
+
+		this.carbonDebt = carbonDebt;
+	}
+
+	public int[] getResources() {
+		int[] resources = { money, carbonDebt };
+		return resources;
+
+	}
+
+	public int getPosition() {
+		return position;
+	}
+
+	public void setPosition(int newPosition) {
+		this.position = newPosition;
+	}
+
+	public void addResources(String kind, int collectResources) {
+		if (kind.equals("money")) {
+			this.money += collectResources;
+		} else if (kind.equals("carbonDebt")) {
+			// Ensure carbon debt does not go negative
+			this.carbonDebt = Math.max(0, this.carbonDebt + collectResources);
+		}
+	}
+	
+
+	public void deductResources(String kind, int fee) {
+		if (kind.equals("money")) {
+			this.money -= fee;
+		} else {
+			this.carbonDebt -= fee;
+		}
+	}
+
 }

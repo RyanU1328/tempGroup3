@@ -12,7 +12,6 @@ import java.util.Scanner;
 import models.Board;
 import models.InvestmentSquare;
 import models.Player;
-import models.ResourceSquare;
 import models.Square;
 import utils.ConsoleUI;
 
@@ -25,6 +24,7 @@ public class GameController {
 
     public void startGame() {
         printFileContents("\\src\\resources\\asciititle.txt");
+        System.out.println("\n\n");
         initializePlayers();
         int currentPlayerIndex = determineStartingPlayer();
         System.out.println(players[currentPlayerIndex].getName() + " starts the game.");
@@ -35,11 +35,13 @@ public class GameController {
 
             while (!turnCompleted) {
                 System.out.println(
-                        currentPlayer.getName() + "'s turn. Press 'r' to roll the dice and 's' to show resources.");
+                        currentPlayer.getName() + "'s turn. Press 'r' to roll the dice and 's' to show resources.\n");
                 String action = scanner.nextLine().trim().toLowerCase();
 
                 if ("s".equals(action)) {
-                    System.out.println(currentPlayer.getName() + "'s resources: " + currentPlayer.getResources());
+                    System.out.println(
+                            "\n" + currentPlayer.getName() + "'s resources: \nMoney: " + currentPlayer.getMoney()
+                                    + "\nCarbon Debt: " + currentPlayer.getCarbonDebt() + "\n");
                     // Continue in the loop, allowing the player to also press 'r' to roll the dice.
                 } else if ("r".equals(action)) {
                     turnCompleted = playerTurn(currentPlayer); // This method now returns true if the turn is completed.
@@ -54,8 +56,8 @@ public class GameController {
             }
 
             // Check for a game-ending condition
-            if (currentPlayer.getResources() <= 0) {
-                System.out.println(currentPlayer.getName() + " has won the game by running out of resources!");
+            if (currentPlayer.getCarbonDebt() <= 0) {
+                System.out.println(currentPlayer.getName() + " has won the game by negating all of their!");
                 gameRunning = false;
             }
         }
@@ -77,12 +79,14 @@ public class GameController {
     private void endGame() {
         System.out.println("Game over. Final resources:");
         for (Player player : players) {
-            System.out.println(player.getName() + ": " + player.getResources());
+            System.out.println(
+                    player.getName() + ": \nMoney: " + player.getMoney() + "\nCarbon Debt: " + player.getCarbonDebt());
         }
     }
 
     private boolean playerTurn(Player player) {
-        int[] diceRoll = rollDice();
+        int[] diceRoll = rollDice(2);
+
         System.out.println(player.getName() + " rolled a " + diceRoll[0] + " and a " + diceRoll[1] + ", moves "
                 + (diceRoll[0] + diceRoll[1]) + " spaces.");
         Square currentSquare = movePlayerAndGetSquare(player, diceRoll[0] + diceRoll[1]);
@@ -97,7 +101,7 @@ public class GameController {
     }
 
     private boolean handleRollAndActions(Player player) {
-        int[] diceRoll = rollDice();
+        int[] diceRoll = rollDice(2);
         System.out.println(player.getName() + " rolled a " + diceRoll[0] + " and a " + diceRoll[1] + ", moves "
                 + (diceRoll[0] + diceRoll[1]) + " spaces.");
         Square currentSquare = movePlayerAndGetSquare(player, diceRoll[0] + diceRoll[1]);
@@ -108,17 +112,19 @@ public class GameController {
         return diceRoll[0] != diceRoll[1];
     }
 
-    private int[] rollDice() {
+    /**
+     * Rolls a specified number of dice and returns the result.
+     *
+     * @param numDice the number of dice to roll.
+     * @return an array of integers representing the outcome of each die roll.
+     */
+    private int[] rollDice(int numDice) {
         Random rand = new Random();
-        int die1 = rand.nextInt(4) + 1;
-        int die2 = rand.nextInt(4) + 1;
-        return new int[] { die1, die2 };
-    }
-
-    private int rollSingleDice() {
-        Random rand = new Random();
-        return rand.nextInt(4) + 1;
-
+        int[] rolls = new int[numDice];
+        for (int i = 0; i < numDice; i++) {
+            rolls[i] = rand.nextInt(4) + 1;
+        }
+        return rolls;
     }
 
     private int determineStartingPlayer() {
@@ -131,7 +137,8 @@ public class GameController {
             String input = scanner.nextLine();
             if ("r".equalsIgnoreCase(input.trim())) {
                 System.out.println("Rolling dice...");
-                int roll = rollSingleDice();
+                int roll = rollDice(1)[0];
+
                 System.out.println(players[i].getName() + " rolled a " + roll);
 
                 if (roll > highestRoll) {
@@ -155,7 +162,8 @@ public class GameController {
                 String input = scanner.nextLine();
                 if ("r".equalsIgnoreCase(input.trim())) {
                     System.out.println("Rolling dice...");
-                    int roll = rollSingleDice();
+                    int roll = rollDice(1)[0];
+
                     System.out.println(players[playerIndex].getName() + " re-rolled a " + roll);
 
                     if (roll > highestRoll) {
@@ -175,44 +183,45 @@ public class GameController {
     }
 
     private Square movePlayerAndGetSquare(Player player, int roll) {
-        int newPosition = (player.getPosition() + roll) % board.getSize();
+        int oldPosition = player.getPosition();
+        int newPosition = (oldPosition + roll) % board.getSize();
         player.setPosition(newPosition);
+    
+
+        if (newPosition < oldPosition || newPosition == 0) {
+            System.out.println(player.getName() + " passed or landed on Go! Gaining 50 resources and reducing their carbon debt by 10!");
+            player.addResources("money", 50);
+            player.addResources("carbonDebt", -10);
+
+
+        }
+    
         return board.getSquare(newPosition);
     }
+    
 
     private void handleSquareActions(Player player, Square square) {
-        if (square instanceof ResourceSquare) {
-            ResourceSquare resourceSquare = (ResourceSquare) square;
-            System.out.println("This is a resource square. Collecting resources.");
-            player.addResources(resourceSquare.collectResources());
-            System.out.println("Your new balance: " + player.getResources());
-        } else if (square instanceof InvestmentSquare) {
+    if (square instanceof InvestmentSquare) {
             handleInvestmentSquare(player, (InvestmentSquare) square);
         } else {
             square.performAction(player, scanner);
         }
     }
 
-    private void handleResourceSquare(Player player, ResourceSquare square) {
-        System.out.println("This is a resource square. Collecting resources.");
-        player.addResources(square.collectResources());
-        System.out.println("Your new balance: " + player.getResources());
-    }
 
     private void handleInvestmentSquare(Player player, InvestmentSquare square) {
         if (!square.isOwned()) {
         } else if (square.getOwner() != player) {
             System.out.println("This area is owned by " + square.getOwner().getName() + ". Paying fees.");
-            if (player.getResources() >= square.getFee()) {
-                player.deductResources(square.getFee());
-                square.getOwner().addResources(square.getFee());
+            if (player.getMoney() >= square.getFee()) {
+                player.deductResources("money", square.getFee());
+                square.getOwner().addResources("money", square.getFee());
                 System.out.println("Paid " + square.getFee() + " resources to " + square.getOwner().getName());
             } else {
                 System.out.println("Not enough resources to pay the fee.");
             }
         }
     }
-
     /**
      * Reads raw output from files. If data parsing is required it will have to be
      * done elsewhere.
@@ -228,7 +237,7 @@ public class GameController {
         // This code snippet is attempting to read and print the
         // contents of a file specified by the `filePath` parameter.
         try {
-            file = new File(System.getProperty("user.dir") + "\\CSC7083-2324-G3" + filePath);
+            file = new File(System.getProperty("user.dir") + filePath);
             fr = new FileReader(file);
             br = new BufferedReader(fr);
 
