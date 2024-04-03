@@ -1,9 +1,13 @@
 package models;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Player {
 	private String name;
 	private int money;
 	private int carbonDebt;
+     private List<String> properties;
 	private int position = 0;
 
 	private static final int STARTING_CARBON = 500;
@@ -14,6 +18,7 @@ public class Player {
 		this.setName(name);
 		this.setMoney(STARTING_MONEY);
 		this.setCarbonDebt(STARTING_CARBON);
+        this.properties = new ArrayList<>();
 	}
 
 	public String getName() {
@@ -59,6 +64,9 @@ public class Player {
 		return resources;
 
 	}
+    public List<String> getProperties() {
+		return properties;
+	}
 
 	public int getPosition() {
 		return position;
@@ -86,4 +94,22 @@ public class Player {
 		}
 	}
 
+    public void addProperty(String property) {
+        properties.add(property);
+    }
+
+    
+    public void removeProperty(String property) {
+        properties.remove(property);
+    }
+    public void displayPlayerInfo() {
+        System.out.println("Player: " + name);
+        System.out.println("Money Resources: £" + money);
+        System.out.println("Carbon Debt: " + carbonDebt);
+        System.out.println("Properties owned:");
+        for (String property : properties) {
+            System.out.println("- " + property);
+        }
+
+}
 }
