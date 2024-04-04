@@ -91,7 +91,8 @@ public class GameController {
                 + (diceRoll[0] + diceRoll[1]) + " spaces.");
         Square currentSquare = movePlayerAndGetSquare(player, diceRoll[0] + diceRoll[1]);
         System.out.println(player.getName() + " has landed on " + currentSquare.getName());
-        handleSquareActions(player, currentSquare);
+        handleSquareActions(player, currentSquare, scanner); // Add 'scanner' as the third argument
+
 
         if (diceRoll[0] == diceRoll[1]) {
             System.out.println("Doubles! " + player.getName() + " gets another turn.");
@@ -106,7 +107,8 @@ public class GameController {
                 + (diceRoll[0] + diceRoll[1]) + " spaces.");
         Square currentSquare = movePlayerAndGetSquare(player, diceRoll[0] + diceRoll[1]);
         System.out.println(player.getName() + " has landed on " + currentSquare.getName());
-        handleSquareActions(player, currentSquare);
+        handleSquareActions(player, currentSquare, scanner); // Add 'scanner' as the third argument
+
 
         // If no doubles are rolled, return true to end the turn.
         return diceRoll[0] != diceRoll[1];
@@ -186,27 +188,23 @@ public class GameController {
         int oldPosition = player.getPosition();
         int newPosition = (oldPosition + roll) % board.getSize();
         player.setPosition(newPosition);
-    
-
-        if (newPosition < oldPosition || newPosition == 0) {
-            System.out.println(player.getName() + " passed or landed on Go! Gaining 50 resources and reducing their carbon debt by 10!");
+        
+        if (newPosition < oldPosition && newPosition != 0) {
+            System.out.println(player.getName() + " passed Go! Gaining 50 resources and reducing their carbon debt by 10!");
             player.addResources("money", 50);
             player.addResources("carbonDebt", -10);
-
-
         }
     
         return board.getSquare(newPosition);
     }
     
+    
+    
 
-    private void handleSquareActions(Player player, Square square) {
-    if (square instanceof InvestmentSquare) {
-            handleInvestmentSquare(player, (InvestmentSquare) square);
-        } else {
-            square.performAction(player, scanner);
-        }
+    private void handleSquareActions(Player player, Square square, Scanner scanner) {
+        square.landOn(player, scanner);
     }
+    
 
 
     private void handleInvestmentSquare(Player player, InvestmentSquare square) {

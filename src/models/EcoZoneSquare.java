@@ -1,5 +1,7 @@
 package models;
 
+import java.util.Scanner;
+
 public class EcoZoneSquare extends Square {
 
     public EcoZoneSquare(String name) {
@@ -7,8 +9,7 @@ public class EcoZoneSquare extends Square {
     }
 
     @Override
-    public void landOn(Player player) {
- 
+    public void landOn(Player player, Scanner scanner) {
         System.out.println(player.getName() + " landed on the ECO Zone. Chill there for a sec!");
     }
 }
