@@ -1,5 +1,7 @@
 package models;
 
+import java.util.Scanner;
+
 public class InvestmentSquare extends Square {
     private Player owner;
     private int investmentCost;
@@ -33,11 +35,28 @@ public class InvestmentSquare extends Square {
     }
 
     @Override
-    public void landOn(Player player) {
-        if (isOwned() && !owner.equals(player)) {
-            player.deductResources("money", fee);
-            owner.addResources("money", fee);
-            System.out.println(player.getName() + " paid a fee of " + fee + " resources to " + owner.getName());
+    public void landOn(Player player, Scanner scanner) {
+        if (!this.isOwned()) {
+            System.out.println("Do you want to invest in " + this.getName() + "? It costs " + this.getInvestmentCost() + " resources. (yes/no)");
+            String input = scanner.nextLine().trim().toLowerCase();
+            if ("yes".equals(input)) {
+                if (player.getMoney() >= this.getInvestmentCost()) {
+                    player.deductResources("money", this.getInvestmentCost());
+                    this.setOwner(player);
+                    System.out.println("Investment successful. You now own " + this.getName());
+                } else {
+                    System.out.println("Not enough resources to invest.");
+                }
+            }
+        } else if (this.getOwner() != player) {
+            System.out.println("This area is owned by " + this.getOwner().getName() + ". Paying fees.");
+            if (player.getMoney() >= this.getFee()) {
+                player.deductResources("money", this.getFee());
+                this.getOwner().addResources("money", this.getFee());
+                System.out.println("Paid " + this.getFee() + " resources to " + this.getOwner().getName());
+            } else {
+                System.out.println("Not enough resources to pay the fee.");
+            }
         }
     }
 }
