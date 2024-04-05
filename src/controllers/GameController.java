@@ -5,6 +5,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.Random;
 import java.util.Scanner;
@@ -22,7 +23,7 @@ public class GameController {
     private Scanner scanner = new Scanner(System.in);
     private ArrayList<String> nameList = new ArrayList<>();
 
-    public void startGame() {
+    public void startGame() throws IOException, URISyntaxException {
         printFileContents("\\src\\resources\\asciititle.txt");
         System.out.println("\n\n");
 
@@ -84,7 +85,7 @@ public class GameController {
         scanner.close();
     }
 
-    private void displayInstructions() {
+    private void displayInstructions() throws IOException, URISyntaxException {
         printFileContents("/src/resources/NetZeroInstructions.txt");
 
         // Display option to return to the main menu or continue in the loop
@@ -99,8 +100,7 @@ public class GameController {
         }
     }
 
-    
-    private void initializePlayers() {
+    private void initializePlayers() throws IOException, URISyntaxException {{
         int playerCount = ConsoleUI.promptForPlayerCount();
         players = new Player[playerCount];
         for (int i = 0; i < playerCount; i++) {
@@ -109,7 +109,7 @@ public class GameController {
             players[i] = new Player(name);
         }
     }
-
+    }
     private void endGame() {
         System.out.println("Game over. Final resources:");
         for (Player player : players) {
