@@ -38,7 +38,7 @@ public class TestGameController {
                         "treeavatar.txt", "waveavatar.txt" });
         dir2Expected = Arrays.asList(new String[] {
                 ".classpath", ".git", ".gitignore", ".gitlab-ci.yml", ".metadata", ".project", ".settings", "JARs",
-                "README.md", "bin", "reports", "src", "test", "whileScript.sh" });
+                "README.md", "bin", "jacoco.exec", "reports", "src", "test", "whileScript.sh" });
         dir3Expected = Arrays.asList(new String[] { "Main.java" });
         dir4Expected = Arrays.asList(new String[] { "Board.java", "EcoZoneSquare.java", "GoSquare.java",
                 "InvestmentSquare.java", "Player.java", "Square.java" });
