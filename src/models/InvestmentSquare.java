@@ -32,6 +32,9 @@ public class InvestmentSquare extends Square {
         this.minorUpgradeCost = investmentCost / 2;
         this.majorUpgradeCost = (investmentCost / 2) * 3;
         this.owner = null;
+        if (this.fee < 1) {
+            this.fee = 1;
+        }
     }
 
     public boolean isOwned() {
