@@ -5,20 +5,10 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
-import java.net.URI;
-import java.net.URISyntaxException;
-import java.nio.file.FileVisitResult;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.nio.file.SimpleFileVisitor;
-import java.nio.file.attribute.BasicFileAttributes;
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Random;
 import java.util.Scanner;
-import java.util.Set;
 
 import models.Board;
 import models.InvestmentSquare;
@@ -28,36 +18,54 @@ import utils.ConsoleUI;
 
 public class GameController {
     private Player[] players;
-    private boolean gameRunning = true;
+    private boolean gameRunning = false; // Initially, the game has not started
     private Board board = new Board();
     private Scanner scanner = new Scanner(System.in);
     private ArrayList<String> nameList = new ArrayList<>();
     private String resouceRelativePath = "/src/resources/";
 
-    public void startGame() throws IOException, URISyntaxException {
+    public void startGame() throws IOException {
         System.out.println(printFileContents(resouceRelativePath + "asciititle.txt").toString().replace(", ", "\n")
                 .replace("[", "").replace("]", ""));
         System.out.println("\n\n");
-        initializePlayers();
-        int currentPlayerIndex = determineStartingPlayer();
-        System.out.println(players[currentPlayerIndex].getName() + " starts the game.");
 
+        // Display options for the player
+        System.out.println("Press 'i' to view instructions or 'p' to start the game.");
+        String choice = scanner.nextLine().trim().toLowerCase();
+
+        if ("i".equals(choice)) {
+            displayInstructions();
+        } else if ("p".equals(choice)) {
+            gameRunning = true; // Mark the game as started
+            System.out.println("Starting the game...");
+            initializePlayers();
+            int currentPlayerIndex = determineStartingPlayer();
+            System.out.println(players[currentPlayerIndex].getName() + " starts the game.");
+            // Continue with the game loop
+            gameLoop(currentPlayerIndex);
+        } else {
+            System.out.println("Invalid choice. Please enter 'i' to view instructions or 'p' to start the game.");
+            startGame(); // Restart the game if the choice is invalid
+        }
+    }
+
+    private void gameLoop(int currentPlayerIndex) {
         while (gameRunning) {
             boolean turnCompleted = false;
             Player currentPlayer = players[currentPlayerIndex];
 
             while (!turnCompleted) {
                 System.out.println(
-                        currentPlayer.getName() + "'s turn. Press 'r' to roll the dice and 's' to show resources.\n");
+                        currentPlayer.getName() + "'s turn. Press 'r' to roll the dice or 's' to show resources.\n");
                 String action = scanner.nextLine().trim().toLowerCase();
 
                 if ("s".equals(action)) {
                     System.out.println(
                             "\n" + currentPlayer.getName() + "'s resources: \nMoney: " + currentPlayer.getMoney()
                                     + "\nCarbon Debt: " + currentPlayer.getCarbonDebt() + "\n");
-                    // Continue in the loop, allowing the player to also press 'r' to roll the dice.
+                    // Continue in the loop
                 } else if ("r".equals(action)) {
-                    turnCompleted = playerTurn(currentPlayer); // This method now returns true if the turn is completed.
+                    turnCompleted = playerTurn(currentPlayer);
                 } else {
                     System.out.println("Invalid input. Please press 'r' to roll the dice or 's' to show resources.");
                 }
@@ -79,28 +87,46 @@ public class GameController {
         scanner.close();
     }
 
+    private void displayInstructions() throws IOException {
+        printFileContents("/src/resources/NetZeroInstructions.txt");
+
+        // Display option to return to the main menu or continue in the loop
+        System.out.println("\nPress 'm' to return to main menu/restart.");
+        String choice = scanner.nextLine().trim().toLowerCase();
+
+        if ("m".equals(choice)) {
+            startGame(); // Restart the game
+        } else {
+            System.out.println("Invalid choice. Returning to the game...");
+            // If the choice is invalid, return to the game loop
+        }
+    }
+
     /**
      * Method to initialise players for the game. Includes defining number of
      * players,
      * each player defining a name, and selecting an avatar.
      * 
      * @throws IOException
-     * @throws URISyntaxException
      */
-    private void initializePlayers() throws IOException, URISyntaxException {
-        int playerCount = ConsoleUI.promptForPlayerCount();
-        players = new Player[playerCount];
-        List<String> avatarList = new ArrayList<>();
-        for (String j : listFilesInDir(System.getProperty("user.dir") + resouceRelativePath, "avatar")) {
-            avatarList.add(printFileContents(resouceRelativePath + j).toString().replace(", ", "\n").replace("[", "")
-                    .replace("]", ""));
-        }
-        for (int i = 0; i < playerCount; i++) {
-            String name = ConsoleUI.promptForPlayerName(nameList, i);
-            nameList.add(name);
-            players[i] = new Player(name);
-            players[i].setAvatar(ConsoleUI.promptForPlayerAvatar(avatarList, i));
-            avatarList.remove(players[i].getAvatar());
+
+    private void initializePlayers() throws IOException {
+        {
+            int playerCount = ConsoleUI.promptForPlayerCount();
+            players = new Player[playerCount];
+            List<String> avatarList = new ArrayList<>();
+            for (String j : listFilesInDir(System.getProperty("user.dir") + resouceRelativePath, "avatar")) {
+                avatarList
+                        .add(printFileContents(resouceRelativePath + j).toString().replace(", ", "\n").replace("[", "")
+                                .replace("]", ""));
+            }
+            for (int i = 0; i < playerCount; i++) {
+                String name = ConsoleUI.promptForPlayerName(nameList, i);
+                nameList.add(name);
+                players[i] = new Player(name);
+                players[i].setAvatar(ConsoleUI.promptForPlayerAvatar(avatarList, i));
+                avatarList.remove(players[i].getAvatar());
+            }
         }
     }
 
@@ -290,10 +316,9 @@ public class GameController {
      *                contains the string
      * @return List<String> A list of the contents of the directory
      * @throws IOException
-     * @throws URISyntaxException
      */
 
-    public static List<String> listFilesInDir(String dir, String pattern) throws IOException, URISyntaxException {
+    public static List<String> listFilesInDir(String dir, String pattern) throws IOException {
         List<String> fileList = new ArrayList<>();
         File file = new File(dir);
 
