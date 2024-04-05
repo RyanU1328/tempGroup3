@@ -71,10 +71,12 @@ public class GameController {
                 }
             }
 
+            //Advance to the next player only after the turn is completed.
             if (turnCompleted) {
                 currentPlayerIndex = (currentPlayerIndex + 1) % players.length;
             }
 
+            //Check for a game-ending condition
             if (currentPlayer.getCarbonDebt() <= 0) {
                 System.out.println(currentPlayer.getName() + " has won the game by negating all of their!");
                 gameRunning = false;
