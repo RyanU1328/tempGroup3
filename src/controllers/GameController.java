@@ -5,10 +5,20 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.net.URI;
 import java.net.URISyntaxException;
+import java.nio.file.FileVisitResult;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.SimpleFileVisitor;
+import java.nio.file.attribute.BasicFileAttributes;
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
 import java.util.Random;
 import java.util.Scanner;
+import java.util.Set;
 
 import models.Board;
 import models.InvestmentSquare;
@@ -22,9 +32,11 @@ public class GameController {
     private Board board = new Board();
     private Scanner scanner = new Scanner(System.in);
     private ArrayList<String> nameList = new ArrayList<>();
+    private String resouceRelativePath = "/src/resources/";
 
     public void startGame() throws IOException, URISyntaxException {
-        printFileContents("\\src\\resources\\asciititle.txt");
+        System.out.println(printFileContents(resouceRelativePath + "asciititle.txt").toString().replace(", ", "\n")
+                .replace("[", "").replace("]", ""));
         System.out.println("\n\n");
 
         // Display options for the player
@@ -103,10 +115,17 @@ public class GameController {
     private void initializePlayers() throws IOException, URISyntaxException {{
         int playerCount = ConsoleUI.promptForPlayerCount();
         players = new Player[playerCount];
+        List<String> avatarList = new ArrayList<>();
+        for (String j : listFilesInDir(System.getProperty("user.dir") + resouceRelativePath, "avatar")) {
+            avatarList.add(printFileContents(resouceRelativePath + j).toString().replace(", ", "\n").replace("[", "")
+                    .replace("]", ""));
+        }
         for (int i = 0; i < playerCount; i++) {
             String name = ConsoleUI.promptForPlayerName(nameList, i);
             nameList.add(name);
             players[i] = new Player(name);
+            players[i].setAvatar(ConsoleUI.promptForPlayerAvatar(avatarList, i));
+            avatarList.remove(players[i].getAvatar());
         }
     }
     }
@@ -127,7 +146,6 @@ public class GameController {
         System.out.println(player.getName() + " has landed on " + currentSquare.getName());
         handleSquareActions(player, currentSquare, scanner); // Add 'scanner' as the third argument
 
-
         if (diceRoll[0] == diceRoll[1]) {
             System.out.println("Doubles! " + player.getName() + " gets another turn.");
             return false; // Turn not completed due to doubles.
@@ -142,7 +160,6 @@ public class GameController {
         Square currentSquare = movePlayerAndGetSquare(player, diceRoll[0] + diceRoll[1]);
         System.out.println(player.getName() + " has landed on " + currentSquare.getName());
         handleSquareActions(player, currentSquare, scanner); // Add 'scanner' as the third argument
-
 
         // If no doubles are rolled, return true to end the turn.
         return diceRoll[0] != diceRoll[1];
@@ -222,24 +239,20 @@ public class GameController {
         int oldPosition = player.getPosition();
         int newPosition = (oldPosition + roll) % board.getSize();
         player.setPosition(newPosition);
-        
+
         if (newPosition < oldPosition && newPosition != 0) {
-            System.out.println(player.getName() + " passed Go! Gaining 50 resources and reducing their carbon debt by 10!");
+            System.out.println(
+                    player.getName() + " passed Go! Gaining 50 resources and reducing their carbon debt by 10!");
             player.addResources("money", 50);
             player.addResources("carbonDebt", -10);
         }
-    
+
         return board.getSquare(newPosition);
     }
-    
-    
-    
 
     private void handleSquareActions(Player player, Square square, Scanner scanner) {
         square.landOn(player, scanner);
     }
-    
-
 
     private void handleInvestmentSquare(Player player, InvestmentSquare square) {
         if (!square.isOwned()) {
@@ -254,17 +267,20 @@ public class GameController {
             }
         }
     }
+
     /**
      * Reads raw output from files. If data parsing is required it will have to be
      * done elsewhere.
      * 
      * @param filePath file path from root of project folder, i.e.
-     *                 "\\src\\resources\\asciititle.txt"
+     *                 "/src/resources/asciititle.txt"
+     *                 Please use forward slashes for OS compatibility
      */
-    private void printFileContents(String filePath) {
+    private ArrayList<String> printFileContents(String filePath) {
         File file;
         FileReader fr;
         BufferedReader br;
+        ArrayList<String> fileContents = new ArrayList<>();
 
         // This code snippet is attempting to read and print the
         // contents of a file specified by the `filePath` parameter.
@@ -275,7 +291,7 @@ public class GameController {
 
             String line = br.readLine();
             while (line != null) {
-                System.out.println(line);
+                fileContents.add(line);
                 line = br.readLine();
             }
         } catch (FileNotFoundException e) {
@@ -283,6 +299,38 @@ public class GameController {
         } catch (IOException e) {
             e.printStackTrace();
         }
+
+        return fileContents;
+
+    }
+
+    /**
+     * The `listFilesInDir` method in the `GameController` class is a public
+     * method that takes two
+     * parameters: `dir` representing the directory path and `pattern`
+     * representing a pattern to match against file names.
+     * 
+     * @param dir     Directory of the files you wish to search
+     * @param pattern Pattern to match files against, this matches if the filename
+     *                contains the string
+     * @return List<String> A list of the contents of the directory
+     * @throws IOException
+     * @throws URISyntaxException
+     */
+
+    public static List<String> listFilesInDir(String dir, String pattern) throws IOException, URISyntaxException {
+        List<String> fileList = new ArrayList<>();
+        File file = new File(dir);
+
+        String[] list = file.list();
+
+        for (String i : list) {
+            if (i.contains(pattern)) {
+                fileList.add(i);
+            }
+        }
+
+        return fileList;
     }
 
 }
