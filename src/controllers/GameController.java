@@ -5,20 +5,10 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
-import java.net.URI;
-import java.net.URISyntaxException;
-import java.nio.file.FileVisitResult;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.nio.file.SimpleFileVisitor;
-import java.nio.file.attribute.BasicFileAttributes;
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Random;
 import java.util.Scanner;
-import java.util.Set;
 
 import models.Board;
 import models.InvestmentSquare;
@@ -34,7 +24,7 @@ public class GameController {
     private ArrayList<String> nameList = new ArrayList<>();
     private String resouceRelativePath = "/src/resources/";
 
-    public void startGame() throws IOException, URISyntaxException {
+    public void startGame() throws IOException {
         System.out.println(printFileContents(resouceRelativePath + "asciititle.txt").toString().replace(", ", "\n")
                 .replace("[", "").replace("]", ""));
         System.out.println("\n\n");
@@ -81,12 +71,12 @@ public class GameController {
                 }
             }
 
-            //Advance to the next player only after the turn is completed.
+            // Advance to the next player only after the turn is completed.
             if (turnCompleted) {
                 currentPlayerIndex = (currentPlayerIndex + 1) % players.length;
             }
 
-            //Check for a game-ending condition
+            // Check for a game-ending condition
             if (currentPlayer.getCarbonDebt() <= 0) {
                 System.out.println(currentPlayer.getName() + " has won the game by negating all of their!");
                 gameRunning = false;
@@ -97,7 +87,7 @@ public class GameController {
         scanner.close();
     }
 
-    private void displayInstructions() throws IOException, URISyntaxException {
+    private void displayInstructions() throws IOException {
         printFileContents("/src/resources/NetZeroInstructions.txt");
 
         // Display option to return to the main menu or continue in the loop
@@ -112,23 +102,34 @@ public class GameController {
         }
     }
 
-    private void initializePlayers() throws IOException, URISyntaxException {{
-        int playerCount = ConsoleUI.promptForPlayerCount();
-        players = new Player[playerCount];
-        List<String> avatarList = new ArrayList<>();
-        for (String j : listFilesInDir(System.getProperty("user.dir") + resouceRelativePath, "avatar")) {
-            avatarList.add(printFileContents(resouceRelativePath + j).toString().replace(", ", "\n").replace("[", "")
-                    .replace("]", ""));
-        }
-        for (int i = 0; i < playerCount; i++) {
-            String name = ConsoleUI.promptForPlayerName(nameList, i);
-            nameList.add(name);
-            players[i] = new Player(name);
-            players[i].setAvatar(ConsoleUI.promptForPlayerAvatar(avatarList, i));
-            avatarList.remove(players[i].getAvatar());
+    /**
+     * Method to initialise players for the game. Includes defining number of
+     * players,
+     * each player defining a name, and selecting an avatar.
+     * 
+     * @throws IOException
+     */
+
+    private void initializePlayers() throws IOException {
+        {
+            int playerCount = ConsoleUI.promptForPlayerCount();
+            players = new Player[playerCount];
+            List<String> avatarList = new ArrayList<>();
+            for (String j : listFilesInDir(System.getProperty("user.dir") + resouceRelativePath, "avatar")) {
+                avatarList
+                        .add(printFileContents(resouceRelativePath + j).toString().replace(", ", "\n").replace("[", "")
+                                .replace("]", ""));
+            }
+            for (int i = 0; i < playerCount; i++) {
+                String name = ConsoleUI.promptForPlayerName(nameList, i);
+                nameList.add(name);
+                players[i] = new Player(name);
+                players[i].setAvatar(ConsoleUI.promptForPlayerAvatar(avatarList, i));
+                avatarList.remove(players[i].getAvatar());
+            }
         }
     }
-    }
+
     private void endGame() {
         System.out.println("Game over. Final resources:");
         for (Player player : players) {
@@ -315,10 +316,9 @@ public class GameController {
      *                contains the string
      * @return List<String> A list of the contents of the directory
      * @throws IOException
-     * @throws URISyntaxException
      */
 
-    public static List<String> listFilesInDir(String dir, String pattern) throws IOException, URISyntaxException {
+    public static List<String> listFilesInDir(String dir, String pattern) throws IOException {
         List<String> fileList = new ArrayList<>();
         File file = new File(dir);
 
