@@ -85,7 +85,7 @@ public class GameController {
     }
 
     private void displayInstructions() {
-        printFileContents("./NetZeroInstructions.txt");
+        printFileContents("/src/resources/NetZeroInstructions.txt");
 
         // Display option to return to the main menu or continue in the loop
         System.out.println("\nPress 'm' to return to main menu/restart.");
