@@ -62,7 +62,7 @@ public class InvestmentSquare extends Square {
         if (!majorUpgrade) {
             return fee + ((int) (1.5 * (investmentCost * minorUpgrade)));
         } else {
-            return fee + ((int) ((1.5 * (investmentCost * minorUpgrade) * 5)));
+            return fee + ((int) (((1.5 * (investmentCost * minorUpgrade)) * 5)));
         }
     }
 
@@ -97,8 +97,8 @@ public class InvestmentSquare extends Square {
     /**
      * @param majorUpgrade the majorUpgrade to set
      */
-    public void setMajorUpgrade(boolean majorUpgrade) {
-        this.majorUpgrade = majorUpgrade;
+    public void setMajorUpgrade() {
+        this.majorUpgrade = true;
     }
 
     /**
