@@ -32,7 +32,7 @@ public class TestGameController {
         dir1 = System.getProperty("user.dir") + "/src/resources";
         dir2 = System.getProperty("user.dir") + "/";
         dir3 = System.getProperty("user.dir") + "/src/main";
-        dir4 = System.getProperty("user.dir") + "/src/models";
+        dir4 = System.getProperty("user.dir") + "/src";
         dir1Expected = Arrays
                 .asList(new String[] { "asciititle.txt", "cloudavatar.txt", "ligthningavatar.txt", "sunavatar.txt",
                         "treeavatar.txt", "waveavatar.txt" });
@@ -40,8 +40,7 @@ public class TestGameController {
                 ".classpath", ".git", ".gitignore", ".gitlab-ci.yml", ".metadata", ".project", ".settings", "JARs",
                 "README.md", "bin", "jacoco.exec", "reports", "src", "test", "whileScript.sh" });
         dir3Expected = Arrays.asList(new String[] { "Main.java" });
-        dir4Expected = Arrays.asList(new String[] { "Board.java", "EcoZoneSquare.java", "GoSquare.java",
-                "InvestmentSquare.java", "Player.java", "Square.java" });
+        dir4Expected = Arrays.asList(new String[] { "controllers", "main", "models", "resources", "utils" });
 
     }
 
