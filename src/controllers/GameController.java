@@ -17,7 +17,7 @@ import utils.ConsoleUI;
 
 public class GameController {
     private Player[] players;
-    private boolean gameRunning = true;
+    private boolean gameRunning = false; // Initially, the game has not started
     private Board board = new Board();
     private Scanner scanner = new Scanner(System.in);
     private ArrayList<String> nameList = new ArrayList<>();
@@ -25,37 +25,56 @@ public class GameController {
     public void startGame() {
         printFileContents("\\src\\resources\\asciititle.txt");
         System.out.println("\n\n");
-        initializePlayers();
-        int currentPlayerIndex = determineStartingPlayer();
-        System.out.println(players[currentPlayerIndex].getName() + " starts the game.");
 
+        // Display options for the player
+        System.out.println("Press 'i' to view instructions or 'p' to start the game.");
+        String choice = scanner.nextLine().trim().toLowerCase();
+
+        if ("i".equals(choice)) {
+            displayInstructions();
+        } else if ("p".equals(choice)) {
+            gameRunning = true; // Mark the game as started
+            System.out.println("Starting the game...");
+            initializePlayers();
+            int currentPlayerIndex = determineStartingPlayer();
+            System.out.println(players[currentPlayerIndex].getName() + " starts the game.");
+            // Continue with the game loop
+            gameLoop(currentPlayerIndex);
+        } else {
+            System.out.println("Invalid choice. Please enter 'i' to view instructions or 'p' to start the game.");
+            startGame(); // Restart the game if the choice is invalid
+        }
+    }
+
+    private void gameLoop(int currentPlayerIndex) {
         while (gameRunning) {
             boolean turnCompleted = false;
             Player currentPlayer = players[currentPlayerIndex];
 
             while (!turnCompleted) {
                 System.out.println(
-                        currentPlayer.getName() + "'s turn. Press 'r' to roll the dice and 's' to show resources.\n");
+                        currentPlayer.getName() + "'s turn. Press 'r' to roll the dice, 's' to show resources, or 'i' to view instructions.\n");
                 String action = scanner.nextLine().trim().toLowerCase();
 
                 if ("s".equals(action)) {
                     System.out.println(
                             "\n" + currentPlayer.getName() + "'s resources: \nMoney: " + currentPlayer.getMoney()
                                     + "\nCarbon Debt: " + currentPlayer.getCarbonDebt() + "\n");
-                    // Continue in the loop, allowing the player to also press 'r' to roll the dice.
+                    // Continue in the loop
                 } else if ("r".equals(action)) {
-                    turnCompleted = playerTurn(currentPlayer); // This method now returns true if the turn is completed.
+                    turnCompleted = playerTurn(currentPlayer);
+                } else if ("i".equals(action)) {
+                    displayInstructions();
+                    // After returning from instructions, continue in the loop
                 } else {
-                    System.out.println("Invalid input. Please press 'r' to roll the dice or 's' to show resources.");
+                    System.out.println("Invalid input. Please press 'r' to roll the dice, 's' to show resources, or 'i' to view instructions.");
                 }
             }
 
-            // Advance to the next player only after the turn is completed.
             if (turnCompleted) {
                 currentPlayerIndex = (currentPlayerIndex + 1) % players.length;
             }
 
-            // Check for a game-ending condition
             if (currentPlayer.getCarbonDebt() <= 0) {
                 System.out.println(currentPlayer.getName() + " has won the game by negating all of their!");
                 gameRunning = false;
@@ -66,6 +85,24 @@ public class GameController {
         scanner.close();
     }
 
+    private void displayInstructions() {
+        printFileContents("./NetZeroInstructions.txt");
+
+        // Display option to return to the main menu or continue in the loop
+        System.out.println("\nPress 'm' to return to main menu/restart or 'b' to go back to the game.");
+        String choice = scanner.nextLine().trim().toLowerCase();
+
+        if ("m".equals(choice)) {
+            startGame(); // Restart the game
+        } else if ("b".equals(choice)) {
+            // Do nothing, return to the game loop
+        } else {
+            System.out.println("Invalid choice. Returning to the game...");
+            // If the choice is invalid, return to the game loop
+        }
+    }
+
+    
     private void initializePlayers() {
         int playerCount = ConsoleUI.promptForPlayerCount();
         players = new Player[playerCount];
