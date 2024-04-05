@@ -53,7 +53,7 @@ public class GameController {
 
             while (!turnCompleted) {
                 System.out.println(
-                        currentPlayer.getName() + "'s turn. Press 'r' to roll the dice, 's' to show resources, or 'i' to view instructions.\n");
+                        currentPlayer.getName() + "'s turn. Press 'r' to roll the dice or 's' to show resources.\n");
                 String action = scanner.nextLine().trim().toLowerCase();
 
                 if ("s".equals(action)) {
@@ -63,11 +63,8 @@ public class GameController {
                     // Continue in the loop
                 } else if ("r".equals(action)) {
                     turnCompleted = playerTurn(currentPlayer);
-                } else if ("i".equals(action)) {
-                    displayInstructions();
-                    // After returning from instructions, continue in the loop
                 } else {
-                    System.out.println("Invalid input. Please press 'r' to roll the dice, 's' to show resources, or 'i' to view instructions.");
+                    System.out.println("Invalid input. Please press 'r' to roll the dice or 's' to show resources.");
                 }
             }
 
@@ -91,13 +88,11 @@ public class GameController {
         printFileContents("./NetZeroInstructions.txt");
 
         // Display option to return to the main menu or continue in the loop
-        System.out.println("\nPress 'm' to return to main menu/restart or 'b' to go back to the game.");
+        System.out.println("\nPress 'm' to return to main menu/restart.");
         String choice = scanner.nextLine().trim().toLowerCase();
 
         if ("m".equals(choice)) {
             startGame(); // Restart the game
-        } else if ("b".equals(choice)) {
-            // Do nothing, return to the game loop
         } else {
             System.out.println("Invalid choice. Returning to the game...");
             // If the choice is invalid, return to the game loop
