@@ -12,13 +12,8 @@ public abstract class Square {
     public String getName() {
         return name;
     }
-    public void landOn(Player player) {
-        // Default implementation, may be overridden by subclasses
-    }
 
-    public void performAction(Player player, Scanner scanner) {
-        // Default calls landOn for backward compatibility
-        this.landOn(player); // This ensures existing squares without input needs still work
-    }
+    // Make this method abstract to enforce implementation in all subclasses
+    // Also, add a Scanner parameter to allow subclasses to interact with the player
+    public abstract void landOn(Player player, Scanner scanner);
 }
-

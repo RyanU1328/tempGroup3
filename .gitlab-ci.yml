@@ -1,45 +1,34 @@
-# This automatically compiles the code when merges are made to main. 
-# It may eventually be integrated with JUnit5 testing. 
-# For now it just shows issues in compiling the codebase
+# This compiles and runs JUnit5 tests on the code base when pushes, merges, etc. are made.
 
+# Selected docker image for building the code
 image: eclipse-temurin:11
 
-stages:          # List of stages for jobs, and their order of execution
-  - build
-  - test-1
-  - merge-test
+stages: # List of stages for jobs, and their order of execution, just one for a simple execution
+  - tests
 
-build-job:       # This job runs in the build stage, which runs first.
-  stage: build
-  script:
-    - echo "Compiling the code..."
-    - javac -sourcepath ./src -d ./bin/ ./src/main/Main.java
-    - echo "Compile complete."
-
-# Default pipeline, runs when there are any commits to branches or to main
+# Default pipeline, runs on any change to repo.
 JUnit-tests:
-  stage: test-1
+  stage: tests
   script:
-  - echo "Running Tests..."
-  - echo "Compiling test code..."
-  - wget https://repo1.maven.org/maven2/org/junit/jupiter/junit-jupiter/5.10.2/junit-jupiter-5.10.2.jar https://repo1.maven.org/maven2/org/junit/platform/junit-platform-console-standalone/1.10.2/junit-platform-console-standalone-1.10.2.jar -P ./JARs/ -w 10
-  - find . -type f -name "*.java" | xargs -I % javac -cp ./JARs/junit-jupiter-5.10.2.jar -cp ./JARs/junit-platform-console-standalone-1.10.2.jar -sourcepath ./src -d ./bin %
-  - java -jar ./JARs/junit-platform-console-standalone-1.10.2.jar execute --class-path ./bin/ --scan-class-path --reports-dir ./reports
-  - echo "Tests complete."
+    - echo "Running Tests..."
+    - echo "Compiling test code..."
+    - wget https://repo1.maven.org/maven2/org/jacoco/org.jacoco.agent/0.8.12/org.jacoco.agent-0.8.12-runtime.jar https://repo1.maven.org/maven2/org/jacoco/org.jacoco.cli/0.8.12/org.jacoco.cli-0.8.12-nodeps.jar https://repo1.maven.org/maven2/org/junit/jupiter/junit-jupiter/5.10.2/junit-jupiter-5.10.2.jar https://repo1.maven.org/maven2/org/junit/platform/junit-platform-console-standalone/1.10.2/junit-platform-console-standalone-1.10.2.jar -P ./JARs/ --random-wait
+    - find . -type f -name "*.java" | xargs -I % javac -cp ./JARs/junit-jupiter-5.10.2.jar -cp ./JARs/junit-platform-console-standalone-1.10.2.jar -sourcepath ./src -d ./bin %
+    - java -javaagent:./JARs/org.jacoco.agent-0.8.12-runtime.jar=excludes=Test* -jar ./JARs/junit-platform-console-standalone-1.10.2.jar execute --class-path ./bin/ --scan-class-path --reports-dir ./reports
+    - rm -r ./bin
+    - find ./src -type f -name "*.java" | xargs -I % javac -cp ./JARs/junit-jupiter-5.10.2.jar -cp ./JARs/junit-platform-console-standalone-1.10.2.jar -sourcepath ./src -d ./bin %
+    - java -jar ./JARs/org.jacoco.cli-0.8.12-nodeps.jar report ./jacoco.exec --classfiles ./bin/ --sourcefiles ./src  --csv ./reports/report.csv
+    - ./whileScript.sh
+    - echo "Tests complete."
 
+  # No coverage report, just a percentage of the code that is tested by the JUnit tests
+  coverage: '/Code Coverage= \d+(?:\.\d+)?/'
+
+  # Test report, allows gitlab to know what parts of the code passed or failed
   artifacts:
     reports:
       junit: ./reports/*jupiter.xml
 
-merge-request-job:
-  stage: merge-test
-  script:
-  - echo "Running Tests..."
-  - echo "Compiling test code..."
-  - wget https://repo1.maven.org/maven2/org/junit/jupiter/junit-jupiter/5.10.2/junit-jupiter-5.10.2.jar https://repo1.maven.org/maven2/org/junit/platform/junit-platform-console-standalone/1.10.2/junit-platform-console-standalone-1.10.2.jar -P ./JARs/ -w 10
-  - find . -type f -name "*.java" | xargs -I % javac -cp ./JARs/junit-jupiter-5.10.2.jar -cp ./JARs/junit-platform-console-standalone-1.10.2.jar -sourcepath ./src -d ./bin %
-  - java -jar ./JARs/junit-platform-console-standalone-1.10.2.jar execute --class-path ./bin/ --scan-class-path --reports-dir ./reports
-  - echo "Tests complete."
+  # This rule means the code runs on any change to the codebase
   rules:
-    - if: $CI_PIPELINE_SOURCE == 'merge_request_event'
-
+    - when: always

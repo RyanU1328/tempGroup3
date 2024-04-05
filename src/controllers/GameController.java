@@ -6,6 +6,7 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 import java.util.Scanner;
 
@@ -17,34 +18,54 @@ import utils.ConsoleUI;
 
 public class GameController {
     private Player[] players;
-    private boolean gameRunning = true;
+    private boolean gameRunning = false; // Initially, the game has not started
     private Board board = new Board();
     private Scanner scanner = new Scanner(System.in);
     private ArrayList<String> nameList = new ArrayList<>();
+    private String resouceRelativePath = "/src/resources/";
 
-    public void startGame() {
-        printFileContents("\\src\\resources\\asciititle.txt");
+    public void startGame() throws IOException {
+        System.out.println(printFileContents(resouceRelativePath + "asciititle.txt").toString().replace(", ", "\n")
+                .replace("[", "").replace("]", ""));
         System.out.println("\n\n");
-        initializePlayers();
-        int currentPlayerIndex = determineStartingPlayer();
-        System.out.println(players[currentPlayerIndex].getName() + " starts the game.");
 
+        // Display options for the player
+        System.out.println("Press 'i' to view instructions or 'p' to start the game.");
+        String choice = scanner.nextLine().trim().toLowerCase();
+
+        if ("i".equals(choice)) {
+            displayInstructions();
+        } else if ("p".equals(choice)) {
+            gameRunning = true; // Mark the game as started
+            System.out.println("Starting the game...");
+            initializePlayers();
+            int currentPlayerIndex = determineStartingPlayer();
+            System.out.println(players[currentPlayerIndex].getName() + " starts the game.");
+            // Continue with the game loop
+            gameLoop(currentPlayerIndex);
+        } else {
+            System.out.println("Invalid choice. Please enter 'i' to view instructions or 'p' to start the game.");
+            startGame(); // Restart the game if the choice is invalid
+        }
+    }
+
+    private void gameLoop(int currentPlayerIndex) {
         while (gameRunning) {
             boolean turnCompleted = false;
             Player currentPlayer = players[currentPlayerIndex];
 
             while (!turnCompleted) {
                 System.out.println(
-                        currentPlayer.getName() + "'s turn. Press 'r' to roll the dice and 's' to show resources.\n");
+                        currentPlayer.getName() + "'s turn. Press 'r' to roll the dice or 's' to show resources.\n");
                 String action = scanner.nextLine().trim().toLowerCase();
 
                 if ("s".equals(action)) {
                     System.out.println(
                             "\n" + currentPlayer.getName() + "'s resources: \nMoney: " + currentPlayer.getMoney()
                                     + "\nCarbon Debt: " + currentPlayer.getCarbonDebt() + "\n");
-                    // Continue in the loop, allowing the player to also press 'r' to roll the dice.
+                    // Continue in the loop
                 } else if ("r".equals(action)) {
-                    turnCompleted = playerTurn(currentPlayer); // This method now returns true if the turn is completed.
+                    turnCompleted = playerTurn(currentPlayer);
                 } else {
                     System.out.println("Invalid input. Please press 'r' to roll the dice or 's' to show resources.");
                 }
@@ -66,13 +87,46 @@ public class GameController {
         scanner.close();
     }
 
-    private void initializePlayers() {
-        int playerCount = ConsoleUI.promptForPlayerCount();
-        players = new Player[playerCount];
-        for (int i = 0; i < playerCount; i++) {
-            String name = ConsoleUI.promptForPlayerName(nameList, i);
-            nameList.add(name);
-            players[i] = new Player(name);
+    private void displayInstructions() throws IOException {
+        printFileContents("/src/resources/NetZeroInstructions.txt");
+
+        // Display option to return to the main menu or continue in the loop
+        System.out.println("\nPress 'm' to return to main menu/restart.");
+        String choice = scanner.nextLine().trim().toLowerCase();
+
+        if ("m".equals(choice)) {
+            startGame(); // Restart the game
+        } else {
+            System.out.println("Invalid choice. Returning to the game...");
+            // If the choice is invalid, return to the game loop
+        }
+    }
+
+    /**
+     * Method to initialise players for the game. Includes defining number of
+     * players,
+     * each player defining a name, and selecting an avatar.
+     * 
+     * @throws IOException
+     */
+
+    private void initializePlayers() throws IOException {
+        {
+            int playerCount = ConsoleUI.promptForPlayerCount();
+            players = new Player[playerCount];
+            List<String> avatarList = new ArrayList<>();
+            for (String j : listFilesInDir(System.getProperty("user.dir") + resouceRelativePath, "avatar")) {
+                avatarList
+                        .add(printFileContents(resouceRelativePath + j).toString().replace(", ", "\n").replace("[", "")
+                                .replace("]", ""));
+            }
+            for (int i = 0; i < playerCount; i++) {
+                String name = ConsoleUI.promptForPlayerName(nameList, i);
+                nameList.add(name);
+                players[i] = new Player(name);
+                players[i].setAvatar(ConsoleUI.promptForPlayerAvatar(avatarList, i));
+                avatarList.remove(players[i].getAvatar());
+            }
         }
     }
 
@@ -91,7 +145,7 @@ public class GameController {
                 + (diceRoll[0] + diceRoll[1]) + " spaces.");
         Square currentSquare = movePlayerAndGetSquare(player, diceRoll[0] + diceRoll[1]);
         System.out.println(player.getName() + " has landed on " + currentSquare.getName());
-        handleSquareActions(player, currentSquare);
+        handleSquareActions(player, currentSquare, scanner); // Add 'scanner' as the third argument
 
         if (diceRoll[0] == diceRoll[1]) {
             System.out.println("Doubles! " + player.getName() + " gets another turn.");
@@ -106,7 +160,7 @@ public class GameController {
                 + (diceRoll[0] + diceRoll[1]) + " spaces.");
         Square currentSquare = movePlayerAndGetSquare(player, diceRoll[0] + diceRoll[1]);
         System.out.println(player.getName() + " has landed on " + currentSquare.getName());
-        handleSquareActions(player, currentSquare);
+        handleSquareActions(player, currentSquare, scanner); // Add 'scanner' as the third argument
 
         // If no doubles are rolled, return true to end the turn.
         return diceRoll[0] != diceRoll[1];
@@ -186,28 +240,20 @@ public class GameController {
         int oldPosition = player.getPosition();
         int newPosition = (oldPosition + roll) % board.getSize();
         player.setPosition(newPosition);
-    
 
-        if (newPosition < oldPosition || newPosition == 0) {
-            System.out.println(player.getName() + " passed or landed on Go! Gaining 50 resources and reducing their carbon debt by 10!");
+        if (newPosition < oldPosition && newPosition != 0) {
+            System.out.println(
+                    player.getName() + " passed Go! Gaining 50 resources and reducing their carbon debt by 10!");
             player.addResources("money", 50);
             player.addResources("carbonDebt", -10);
-
-
         }
-    
+
         return board.getSquare(newPosition);
     }
-    
 
-    private void handleSquareActions(Player player, Square square) {
-    if (square instanceof InvestmentSquare) {
-            handleInvestmentSquare(player, (InvestmentSquare) square);
-        } else {
-            square.performAction(player, scanner);
-        }
+    private void handleSquareActions(Player player, Square square, Scanner scanner) {
+        square.landOn(player, scanner);
     }
-
 
     private void handleInvestmentSquare(Player player, InvestmentSquare square) {
         if (!square.isOwned()) {
@@ -222,17 +268,20 @@ public class GameController {
             }
         }
     }
+
     /**
      * Reads raw output from files. If data parsing is required it will have to be
      * done elsewhere.
      * 
      * @param filePath file path from root of project folder, i.e.
-     *                 "\\src\\resources\\asciititle.txt"
+     *                 "/src/resources/asciititle.txt"
+     *                 Please use forward slashes for OS compatibility
      */
-    private void printFileContents(String filePath) {
+    private ArrayList<String> printFileContents(String filePath) {
         File file;
         FileReader fr;
         BufferedReader br;
+        ArrayList<String> fileContents = new ArrayList<>();
 
         // This code snippet is attempting to read and print the
         // contents of a file specified by the `filePath` parameter.
@@ -243,7 +292,7 @@ public class GameController {
 
             String line = br.readLine();
             while (line != null) {
-                System.out.println(line);
+                fileContents.add(line);
                 line = br.readLine();
             }
         } catch (FileNotFoundException e) {
@@ -251,6 +300,37 @@ public class GameController {
         } catch (IOException e) {
             e.printStackTrace();
         }
+
+        return fileContents;
+
+    }
+
+    /**
+     * The `listFilesInDir` method in the `GameController` class is a public
+     * method that takes two
+     * parameters: `dir` representing the directory path and `pattern`
+     * representing a pattern to match against file names.
+     * 
+     * @param dir     Directory of the files you wish to search
+     * @param pattern Pattern to match files against, this matches if the filename
+     *                contains the string
+     * @return List<String> A list of the contents of the directory
+     * @throws IOException
+     */
+
+    public static List<String> listFilesInDir(String dir, String pattern) throws IOException {
+        List<String> fileList = new ArrayList<>();
+        File file = new File(dir);
+
+        String[] list = file.list();
+
+        for (String i : list) {
+            if (i.contains(pattern)) {
+                fileList.add(i);
+            }
+        }
+
+        return fileList;
     }
 
 }
