@@ -4,6 +4,7 @@
 image: eclipse-temurin:11
 
 stages: # List of stages for jobs, and their order of execution, just one for a simple execution
+  # - build
   - tests
 
 # Default pipeline, runs on any change to repo.
