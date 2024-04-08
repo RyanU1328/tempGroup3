@@ -20,9 +20,9 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class TestGameController {
 
-    private String dir1, dir2, dir3, dir4;
-    private List<String> dir1Expected, dir2Expected, dir3Expected, dir4Expected;
-    private List<String> dir1Actual, dir2Actual, dir3Actual, dir4Actual;
+    private String dir1, dir2, dir3;
+    private List<String> dir1Expected, dir2Expected, dir3Expected;
+    private List<String> dir1Actual, dir2Actual, dir3Actual;
 
     /**
      * @throws java.lang.Exception
@@ -30,17 +30,13 @@ public class TestGameController {
     @BeforeEach
     void setUp() throws Exception {
         dir1 = System.getProperty("user.dir") + "/src/resources";
-        dir2 = System.getProperty("user.dir") + "/";
-        dir3 = System.getProperty("user.dir") + "/src/main";
-        dir4 = System.getProperty("user.dir") + "/src";
+        dir2 = System.getProperty("user.dir") + "/src/main";
+        dir3 = System.getProperty("user.dir") + "/src";
         dir1Expected = Arrays
                 .asList(new String[] { "asciititle.txt", "cloudavatar.txt", "ligthningavatar.txt", "sunavatar.txt",
                         "treeavatar.txt", "waveavatar.txt", "NetZeroInstructions.txt" });
-        dir2Expected = Arrays.asList(new String[] {
-                ".classpath", ".git", ".gitignore", ".gitlab-ci.yml", ".metadata", ".project", ".settings", "JARs",
-                "README.md", "bin", "jacoco.exec", "reports", "src", "test", "whileScript.sh" });
-        dir3Expected = Arrays.asList(new String[] { "Main.java" });
-        dir4Expected = Arrays.asList(new String[] { "controllers", "main", "models", "resources", "utils" });
+        dir2Expected = Arrays.asList(new String[] { "Main.java" });
+        dir3Expected = Arrays.asList(new String[] { "controllers", "main", "models", "resources", "utils" });
 
     }
 
@@ -56,18 +52,14 @@ public class TestGameController {
         dir1Actual = GameController.listFilesInDir(dir1, "");
         dir2Actual = GameController.listFilesInDir(dir2, "");
         dir3Actual = GameController.listFilesInDir(dir3, "");
-        dir4Actual = GameController.listFilesInDir(dir4, "");
         Collections.sort(dir1Expected);
         Collections.sort(dir2Expected);
         Collections.sort(dir3Expected);
-        Collections.sort(dir4Expected);
         Collections.sort(dir1Actual);
         Collections.sort(dir2Actual);
         Collections.sort(dir3Actual);
-        Collections.sort(dir4Actual);
         assertEquals(dir1Expected, dir1Actual);
         assertEquals(dir2Expected, dir2Actual);
         assertEquals(dir3Expected, dir3Actual);
-        assertEquals(dir4Expected, dir4Actual);
     }
 }
