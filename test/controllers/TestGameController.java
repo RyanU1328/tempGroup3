@@ -40,7 +40,6 @@ public class TestGameController {
                 ".classpath", ".git", ".gitignore", ".gitlab-ci.yml", ".metadata", ".project", ".settings", "JARs",
                 "README.md", "bin", "jacoco.exec", "reports", "src", "test", "whileScript.sh" });
         dir3Expected = Arrays.asList(new String[] { "Main.java" });
-        dir4Expected = Arrays.asList(new String[] { "controllers", "main", "models", "resources", "utils" });
 
     }
 
