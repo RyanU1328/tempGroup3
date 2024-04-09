@@ -27,34 +27,80 @@ public class InvestmentSquare extends Square {
      */
     public InvestmentSquare(String name, int investmentCost) {
         super(name);
-        this.investmentCost = investmentCost;
-        this.fee = investmentCost / 2;
-        this.minorUpgradeCost = investmentCost / 2;
-        this.majorUpgradeCost = (investmentCost / 2) * 3;
-        this.owner = null;
-        if (this.fee < 1) {
-            this.fee = 1;
+        setInvestmentCost(investmentCost);
+        setFee();
+        setMinorUpgradeCost();
+        setMajorUpgradeCost();
+        setOwner(null);
+    }
+
+    /**
+     * Sets the Investment Cost of the square, has checks to prevent setting the
+     * fee, and unit costs wrong
+     * 
+     * @param investmentCost the investmentCost to set
+     * @throws IllegalArgumentException if investment cost is negative
+     */
+    public void setInvestmentCost(int investmentCost) {
+        if (investmentCost > 0) {
+            this.investmentCost = investmentCost;
+        } else {
+            throw new IllegalArgumentException("Investment cost cannot be negative.");
         }
     }
 
+    /**
+     * Sets the fee, which is half of the investment cost
+     */
+    public void setFee() {
+        this.fee = getInvestmentCost() / 2;
+    }
+
+    /**
+     * Sets the minor upgrade cost, which is the same as the fee
+     */
+    public void setMinorUpgradeCost() {
+        this.minorUpgradeCost = getFee();
+    }
+
+    /**
+     * Sets major cost, based off of minor upgrade cost
+     */
+    public void setMajorUpgradeCost() {
+        this.majorUpgradeCost = getMinorUpgradeCost() * 3;
+    }
+
+    /**
+     * 
+     * @return boolean true if the square is owned, false if it is not.
+     */
     public boolean isOwned() {
         return owner != null;
     }
 
+    /**
+     * @return owner
+     */
     public Player getOwner() {
         return owner;
     }
 
+    /**
+     * @param owner default state null, as set by constructor
+     */
     public void setOwner(Player owner) {
         this.owner = owner;
     }
 
+    /**
+     * @return investmentCost this is set explicitly in the constructor
+     */
     public int getInvestmentCost() {
         return investmentCost;
     }
 
     /**
-     * Returns the fee based on the below forumulas
+     * Returns the fee based on the below formulas
      * 
      * @return fee
      */
@@ -78,6 +124,8 @@ public class InvestmentSquare extends Square {
 
     /**
      * This iterates the minor unit upgrade count, to a max of 3.
+     * 
+     * @throws IllegalCallerException
      */
     public void setMinorUpgrade() {
         if (minorUpgrade < 3) {
