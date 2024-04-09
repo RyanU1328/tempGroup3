@@ -1,0 +1,9 @@
+Game Objective:
+
+Net Zero is a strategic environmental conservation game designed for 2-4 players. Each player embarks on a journey to achieve "Net Zero" carbon emissions, competing against others to be the first to eliminate their Carbon Debt entirely.
+
+At the beginning of the game, players have the opportunity to choose their avatar, representing their environmental commitment. Avatars include the cloud, lightning, sun, tree, and wave, each symbolizing different aspects of nature and renewable energy.
+
+Players strategically invest in renewable energy properties across four fields: Wind, Solar, Hydroelectric, and Nuclear. By acquiring plots and developing them with both minor and major units, players can progressively reduce their Carbon Debt when another player lands on their plot. The other player will have the option to either pay a fine in money or accept Carbon Debt from the owner. This decision offers strategic choices for both the landing player and the property owner, affecting their financial and environmental standings in the game.
+
+Net Zero challenges players to strategically invest in renewable energy properties, manage their finances effectively, and navigate the dynamics of fines and debt transfer to be the first to achieve environmental sustainability by reaching "Net Zero" carbon emissions. Choose your avatar wisely and embark on the journey to save the planet!

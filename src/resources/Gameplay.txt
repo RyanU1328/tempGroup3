@@ -1,0 +1,13 @@
+Gameplay:
+
+- The game begins with each player starting with £500 and 500 CD (carbon debt).
+- Players take turns based on the order determined by rolling one 4-sided dice (d4). Player with the highest number goes first, with players moving sequentially.  Each player moves the number of squares equal to the sum of two 4-sided dice rolls.
+- On your turn, players roll two 4-sided dice (d4) to move your token around the board.
+- Land on unowned plots to purchase them.
+- If you choose not to buy a plot, offer it to the next player in turn order.
+- Develop your plots by adding minor units (e.g. solar panels, wind turbines) once you own all plots within a field (Solar, Wind, Hydroelectric, Nuclear).
+- After adding three minor units, you can add one major unit (e.g. solar farms, wind farms), once this major unit has been added, this plot is complete.
+- Gain £50 and reduce your CD by 10 each time you pass the "Go" space.
+- Other players are fined each time they land on your plots, calculated based on plot value and unit development level.
+- Choose to pay fines in money or transfer CD to the plot owner at a 5:1 ratio.
+- The game continues until one player reaches 0 CD, becoming the winner.

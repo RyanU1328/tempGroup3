@@ -34,9 +34,13 @@ public class TestGameController {
         dir3 = System.getProperty("user.dir") + "/src";
         dir1Expected = Arrays
                 .asList(new String[] { "asciititle.txt", "cloudavatar.txt", "ligthningavatar.txt", "sunavatar.txt",
-                        "treeavatar.txt", "waveavatar.txt", "NetZeroInstructions.txt" });
-        dir2Expected = Arrays.asList(new String[] { "Main.java" });
-        dir3Expected = Arrays.asList(new String[] { "controllers", "main", "models", "resources", "utils" });
+                        "treeavatar.txt", "waveavatar.txt", "Fines.txt", "GameObjective.txt", "Gameplay.txt",
+                        "GameSetup.txt", "PurchasingAndDevelopment.txt", "Upgrading.txt", "Units.txt" });
+        dir2Expected = Arrays.asList(new String[] {
+                ".classpath", ".git", ".gitignore", ".gitlab-ci.yml", ".metadata", ".project", ".settings", "JARs",
+                "README.md", "bin", "jacoco.exec", "reports", "src", "test", "whileScript.sh" });
+        dir3Expected = Arrays.asList(new String[] { "Main.java" });
+        dir4Expected = Arrays.asList(new String[] { "controllers", "main", "models", "resources", "utils" });
 
     }
 

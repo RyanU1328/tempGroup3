@@ -49,14 +49,14 @@ public class GameController {
         }
     }
 
-    private void gameLoop(int currentPlayerIndex) {
+    private void gameLoop(int currentPlayerIndex) throws IOException {
         while (gameRunning) {
             boolean turnCompleted = false;
             Player currentPlayer = players[currentPlayerIndex];
 
             while (!turnCompleted) {
                 System.out.println(
-                        currentPlayer.getName() + "'s turn. Press 'r' to roll the dice or 's' to show resources.\n");
+                        currentPlayer.getName() + "'s turn. Press 'r' to roll the dice , 's' to show resources, or 'i' to view instructions.\n");
                 String action = scanner.nextLine().trim().toLowerCase();
 
                 if ("s".equals(action)) {
@@ -66,8 +66,12 @@ public class GameController {
                     // Continue in the loop
                 } else if ("r".equals(action)) {
                     turnCompleted = playerTurn(currentPlayer);
+                } else if ("i".equals(action)) {
+                    displayInstructions();
+                    // After returning from instructions, continue in the loop
+
                 } else {
-                    System.out.println("Invalid input. Please press 'r' to roll the dice or 's' to show resources.");
+                    System.out.println("Invalid input. Please press 'r' to roll the dice or 's' to show resources, or 'i' to view instructions.");
                 }
             }
 
@@ -88,19 +92,62 @@ public class GameController {
     }
 
     private void displayInstructions() throws IOException {
-        printFileContents("/src/resources/NetZeroInstructions.txt");
-
-        // Display option to return to the main menu or continue in the loop
-        System.out.println("\nPress 'm' to return to main menu/restart.");
-        String choice = scanner.nextLine().trim().toLowerCase();
-
-        if ("m".equals(choice)) {
-            startGame(); // Restart the game
-        } else {
-            System.out.println("Invalid choice. Returning to the game...");
-            // If the choice is invalid, return to the game loop
+        
+    while(true) {
+    	System.out.println("\nChoose an option:");
+        System.out.println("1. Game Objective");
+        System.out.println("2. Game Setup");
+        System.out.println("3. Gameplay");
+        System.out.println("4. Purchasing and Development");
+        System.out.println("5. Units");
+        System.out.println("6. Upgrading");
+        System.out.println("7. Fines");
+        
+        if(gameRunning) {
+        	System.out.println("8. Return to Game");
+        }else {
+        	System.out.println("8. Return to Main Menu");
         }
+        
+        int choice = scanner.nextInt();
+        scanner.nextLine(); // Consume newline
+        
+        switch (choice) {
+        case 1:
+        	System.out.println("\n" + printFileContents(resouceRelativePath + "GameObjective.txt").toString().replace(", ", "\n").replace("[", "").replace("]", ""));
+            break;
+        case 2:
+        	System.out.println("\n" +printFileContents(resouceRelativePath + "GameSetup.txt").toString().replace(", ", "\n").replace("[", "").replace("]", ""));
+            break;
+        case 3:
+        	System.out.println("\n" +printFileContents(resouceRelativePath + "Gameplay.txt").toString().replace(", ", "\n").replace("[", "").replace("]", ""));
+            break;
+        case 4:
+        	System.out.println("\n" +printFileContents(resouceRelativePath + "PurchasingAndDevelopment.txt").toString().replace(", ", "\n").replace("[", "").replace("]", ""));
+            break;
+        case 5:
+        	System.out.println("\n" +printFileContents(resouceRelativePath + "Units.txt").toString().replace(", ", "\n").replace("[", "").replace("]", ""));
+            break;
+        case 6:
+        	System.out.println("\n" +printFileContents(resouceRelativePath + "Upgrading.txt").toString().replace(", ", "\n").replace("[", "").replace("]", ""));
+            break;
+        case 7:
+        	System.out.println("\n" +printFileContents(resouceRelativePath + "Fines.txt").toString().replace(", ", "\n").replace("[", "").replace("]", ""));
+            break;
+        case 8:
+        	if (gameRunning) {
+        		return;
+        		// Return to the game
+            } else {
+                startGame(); // Exit to main menu
+            }
+            break;
+        default:
+            System.out.println("Invalid choice.");
     }
+}
+}
+        
 
     /**
      * Method to initialise players for the game. Includes defining number of
