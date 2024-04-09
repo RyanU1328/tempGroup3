@@ -1,7 +1,9 @@
 package models;
 
 import java.util.ArrayList;
+import java.util.InputMismatchException;
 import java.util.List;
+import java.util.Scanner;
 
 public class Player {
 	private String name;
@@ -47,8 +49,12 @@ public class Player {
 	}
 
 	public void setMoney(int money) {
+		if (money > 0) {
+			this.money = money;
 
-		this.money = money;
+		} else
+			throw new IllegalArgumentException("Player cannot have zero money");
+
 	}
 
 	public int getCarbonDebt() {
@@ -56,8 +62,12 @@ public class Player {
 	}
 
 	public void setCarbonDebt(int carbonDebt) {
+		if (carbonDebt > 0) {
+			this.carbonDebt = carbonDebt;
 
-		this.carbonDebt = carbonDebt;
+		} else
+			throw new IllegalArgumentException("Player has won!!");
+
 	}
 
 	public int[] getResources() {
@@ -101,6 +111,31 @@ public class Player {
 
 	public void removeProperty(String property) {
 		properties.remove(property);
+	}
+
+	public boolean choosePaymentMethod(Scanner scanner) {
+		while (true) {
+			System.out.println("Choose payment method:");
+			System.out.println("1. Pay by money");
+			System.out.println("2. Pay by carbon debt");
+			System.out.println("Enter your choice (1 or 2): ");
+
+			try {
+				int choice = scanner.nextInt();
+				scanner.nextLine(); // Consume newline character
+
+				if (choice == 1) {
+					return true; // Pay by money
+				} else if (choice == 2) {
+					return false; // Pay by carbon debt
+				} else {
+					System.out.println("Invalid choice. Please enter 1 or 2.");
+				}
+			} catch (InputMismatchException e) {
+				System.out.println("Invalid input. Please enter a number.");
+				scanner.nextLine(); // Consume invalid input
+			}
+		}
 	}
 
 	public void displayPlayerInfo() {
