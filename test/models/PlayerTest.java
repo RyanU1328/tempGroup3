@@ -1,187 +1,421 @@
-/**
- * 
- */
 package models;
 
-///*import static org.junit.jupiter.api.Assertions.*;
-//
-//import org.junit.jupiter.api.AfterAll;
-//import org.junit.jupiter.api.AfterEach;
-//import org.junit.jupiter.api.BeforeAll;
-//import org.junit.jupiter.api.BeforeEach;
-//import org.junit.jupiter.api.Test;
-//
-//
-///**
-// * 
-// */
-///*class PlayerTest {
-//
-//	private String user1, user2, user3, user4;
-//	private Player testPlay;
-//	private int moneyValid, moneyValidLow, moneyValidHigh;
-//	private int moneyInvalid, moneyInvalidLow; */
-//
-//	//test data
-//
-//
-//
-//	/**
-//	 * @throws java.lang.Exception
-//	 */
-//	@BeforeAll
-//	static void setUpBeforeClass() throws Exception {
-//	}
-//
-//	/**
-//	 * @throws java.lang.Exception
-//	 */
-//	@AfterAll
-//	static void tearDownAfterClass() throws Exception {
-//	}
-//
-//	/**
-//	 * @throws java.lang.Exception
-//	 */
-//	@BeforeEach
-//	void setUp() throws Exception {
-//		user1 = "Ryan";
-//		moneyValid = 500;
-//		moneyValidLow = 501;
-//		moneyValidHigh = 600;
-//		moneyInvalid = 499;
-//		moneyInvalidLow = 490;
-//		
-//
-//
-//	}
-//
-//	/**
-//	 * @throws java.lang.Exception
-//	 */
-//	@AfterEach
-//	void tearDown() throws Exception {
-//	}
-//
-//	/**
-//	 * Test method for {@link models.Player#getName()}.
-//	 */
-//	@Test
-//	final void testGetName() {
-//		testPlay = new Player(user1);
-//		assertEquals(user1, testPlay.getName());
-//	}
-//
-//	/**
-//	 * test method for player money resources set at 500
-//	 */
-//	@Test
-//	final void testGetStartingMoney(){
-//		testPlay = new Player(user1);
-//		assertEquals(500, testPlay.getCarbonDebt());
-//	} */
-//}
 import static org.junit.jupiter.api.Assertions.*;
+
+import java.io.ByteArrayInputStream;
+import java.util.InputMismatchException;
+import java.util.Scanner;
+
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import java.util.List;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 
 public class PlayerTest {
+	// test data
 
-    @Test
-    public void testInitialization() {
-        // Arrange
-        String name = "TestPlayer";
-        Player player = new Player(name);
+	private String userValid;
+	private String userNull;
+	private String userInvalid;
 
-        // Assert
-        assertEquals(name, player.getName());
-        assertEquals(Player.STARTING_MONEY, player.getMoney());
-        assertEquals(Player.STARTING_CARBON, player.getCarbonDebt());
-        assertTrue(player.getProperties().isEmpty());
-        assertEquals(0, player.getPosition());
-    }
+	private int startingMoneyValid, moneyValid;
+	private int moneyInvalid, moneyInvalidLow;
+	private int startingCarbonValid, carbonValid;
+	private int carbonInvalid, carbonInvalidLow;
+	private int invalidAddResources;
+	private int postionStarterValid;
 
-    @Test
-    public void testSetNameValid() {
-        // Arrange
-        Player player = new Player("TestPlayer");
+	private String propertyValid, propertyValid2;
+	private String propertyNonExistent;
 
-        // Act
-        player.setName("NewName");
+	/**
+	 * @throws java.lang.Exception
+	 */
+	@BeforeEach
+	void setUp() throws Exception {
+		userValid = "Ryan";
+		userNull = null;
+		userInvalid = "";
 
-        // Assert
-        assertEquals("NewName", player.getName());
-    }
+		startingMoneyValid = 500;
+		moneyValid = 300;
+		moneyInvalid = 0;
+		moneyInvalidLow = -1;
 
-    @Test
-    public void testSetNameNull() {
-        // Arrange
-        Player player = new Player("TestPlayer");
+		startingCarbonValid = 500;
+		carbonValid = 300;
+		carbonInvalid = 0;
+		carbonInvalidLow = -1;
 
-        // Act & Assert
-        assertThrows(NullPointerException.class, () -> player.setName(null));
-    }
+		invalidAddResources = -100;
 
-    @Test
-    public void testSetNameEmpty() {
-        // Arrange
-        Player player = new Player("TestPlayer");
+		postionStarterValid = 0;
 
-        // Act & Assert
-        assertThrows(IllegalArgumentException.class, () -> player.setName(""));
-    }
+		propertyValid = "propertyValid";
+		propertyValid2 = "propertyValid2";
+		propertyNonExistent = "NonexistentProperty";
 
-    @Test
-    public void testAddResourcesMoney() {
-        // Arrange
-        Player player = new Player("TestPlayer");
-        int initialMoney = player.getMoney();
+	}
 
-        // Act
-        player.addResources("money", 100);
+	@Test
+	public void testInitializationValid() {
+		// Arrange
 
-        // Assert
-        assertEquals(initialMoney + 100, player.getMoney());
-    }
+		Player player = new Player(userValid);
 
-    @Test
-    public void testAddResourcesCarbonDebt() {
-        // Arrange
-        Player player = new Player("TestPlayer");
-        int initialCarbonDebt = player.getCarbonDebt();
+		// Assert
+		assertEquals(userValid, player.getName());
+		assertEquals(startingMoneyValid, player.getMoney());
+		assertEquals(startingCarbonValid, player.getCarbonDebt());
+		assertTrue(player.getProperties().isEmpty());
+		assertEquals(postionStarterValid, player.getPosition());
+	}
 
-        // Act
-        player.addResources("carbonDebt", 100);
+	@Test
+	public void testInitializationInvalid() {
 
-        // Assert
-        assertEquals(initialCarbonDebt + 100, player.getCarbonDebt());
-    }
+	}
 
-    @Test
-    public void testDeductResourcesMoney() {
-        // Arrange
-        Player player = new Player("TestPlayer");
-        player.setMoney(200);
+	@Test
+	public void testSetNameValid() {
+		// Arrange
+		Player player = new Player(userValid);
 
-        // Act
-        player.deductResources("money", 100);
+		// Act
+		player.setName("NewName");
 
-        // Assert
-        assertEquals(100, player.getMoney());
-    }
+		// Assert
+		assertEquals("NewName", player.getName());
+	}
 
-    @Test
-    public void testDeductResourcesCarbonDebt() {
-        // Arrange
-        Player player = new Player("TestPlayer");
-        player.setCarbonDebt(200);
+	@Test
+	public void testSetNameNull() {
+		// Arrange
+		Player player = new Player(userValid);
 
-        // Act
-        player.deductResources("carbonDebt", 100);
+		// Act & Assert
+		assertThrows(NullPointerException.class, () -> player.setName(userNull));
+	}
 
-        // Assert
-        assertEquals(100, player.getCarbonDebt());
-    }
+	@Test
+	public void testSetNameInvalid() {
+		// Arrange
+		Player player = new Player(userValid);
+
+		// Act & Assert
+		assertThrows(IllegalArgumentException.class, () -> player.setName(userInvalid));
+	}
+
+	@Test
+	public void testStartingMoneyAndCarbonDebt() {
+
+		// Arrange
+		Player player = new Player(userValid);
+
+		// Assert
+		assertEquals(startingMoneyValid, player.getMoney());
+		assertEquals(startingCarbonValid, player.getCarbonDebt());
+	}
+
+	/*
+	 * @Test // not sure if we will need these?? just the invalid tests for starting
+	 * money public void testGetSetMoney() { //Arrange Player player = new
+	 * Player(userValid);
+	 * 
+	 * // Act player.setMoney(moneyValidLow); // Assert assertEquals(moneyValidLow,
+	 * player.getMoney()); // Act player.setMoney(moneyValidHigh); // Assert
+	 * assertEquals(moneyValidHigh, player.getMoney());
+	 * 
+	 * 
+	 * }
+	 */
+
+//    added logic to player class need to update in branch not sure if correct logic??/
+	@Test
+	public void testGetSetMoneyInvalid() {
+		// Arrange
+		Player player = new Player(userValid);
+
+		// Act & Assert
+
+		assertThrows(IllegalArgumentException.class, () -> {
+			player.setMoney(moneyInvalid);
+
+		});
+		assertThrows(IllegalArgumentException.class, () -> {
+			player.setMoney(moneyInvalidLow);
+		});
+
+	}
+
+	@Test
+	public void testGetSetCarbonInvalid() {
+		// Arrange
+		Player player = new Player(userValid);
+
+		// Act & Assert
+
+		assertThrows(IllegalArgumentException.class, () -> {
+			player.setCarbonDebt(carbonInvalid);
+
+		});
+		assertThrows(IllegalArgumentException.class, () -> {
+			player.setCarbonDebt(carbonInvalidLow);
+		});
+	}
+
+	@Test
+	public void testAddResourcesMoney() {
+		// Arrange
+		Player player = new Player(userValid);
+		int startingMoneyValid = player.getMoney();
+
+		// Act
+		player.addResources("money", 100);
+
+		// Assert
+		assertEquals(startingMoneyValid + 100, player.getMoney());
+	}
+
+	@Test
+	public void testAddResourcesMoneyOtherAmount() {
+		// Arrange
+		Player player = new Player(userValid);
+		int moneyValid = player.getMoney();
+
+		// Act
+		player.addResources("money", 200);
+
+		// Assert
+		assertEquals(moneyValid + 200, player.getMoney());
+	}
+
+	@Test
+	public void testAddResourcesCarbonDebt() {
+		// Arrange
+		Player player = new Player(userValid);
+		int startingCarbonValid = player.getCarbonDebt();
+
+		// Act
+		player.addResources("carbonDebt", 100);
+
+		// Assert
+		assertEquals(startingCarbonValid + 100, player.getCarbonDebt());
+	}
+
+	@Test
+	public void testAddResourcesCarbonDebtOtherAmount() {
+		// Arrange
+		Player player = new Player(userValid);
+		int carbonValid = player.getCarbonDebt();
+
+		// Act
+		player.addResources("carbonDebt", 200);
+
+		// Assert
+		assertEquals(carbonValid + 200, player.getCarbonDebt());
+	}
+
+	@Test
+	public void testAddNegativeResources() {
+		// Arrange
+		Player player = new Player(userValid);
+
+		// Act & Assert
+		assertThrows(IllegalArgumentException.class, () -> player.addResources("money", invalidAddResources));
+		assertThrows(IllegalArgumentException.class, () -> player.addResources("carbonDebt", invalidAddResources));
+		// Additional checks if adding negative resources doesn't change the state
+	};
+
+	@Test
+	public void testDeductResourcesMoney() {
+		// Arrange
+		Player player = new Player(userValid);
+		player.setMoney(500);
+
+		// Act
+		player.deductResources("money", 100);
+
+		// Assert
+		assertEquals(400, player.getMoney());
+	}
+
+	@Test
+	public void testDeductResourcesCarbonDebt() {
+		// Arrange
+		Player player = new Player(userValid);
+		player.setCarbonDebt(500);
+
+		// Act
+		player.deductResources("carbonDebt", 100);
+
+		// Assert
+		assertEquals(400, player.getCarbonDebt());
+
+	}
+
+	@Test
+	public void testAddProperty() {
+		// Arrange
+		Player player = new Player(userValid);
+		String property = propertyValid;
+
+		// Act
+		player.addProperty(property);
+
+		// Assert
+		assertTrue(player.getProperties().contains(property));
+	}
+
+	@Test
+	public void testAddMultipleProperties() {
+		// Arrange
+		Player player = new Player(userValid);
+		String property1 = propertyValid;
+		String property2 = propertyValid2;
+
+		// Act
+		player.addProperty(property1);
+		player.addProperty(property2);
+
+		// Assert
+		assertTrue(player.getProperties().contains(property1));
+		assertTrue(player.getProperties().contains(property2));
+	}
+
+	@Test
+	public void testRemoveProperty() {
+		// Arrange
+		Player player = new Player(userValid);
+		String property = propertyValid;
+		player.addProperty(property);
+
+		// Act
+		player.removeProperty(property);
+
+		// Assert
+		assertFalse(player.getProperties().contains(property));
+	}
+
+	@Test
+	public void testRemoveNonexistentProperty() {
+		// Arrange
+		Player player = new Player(userValid);
+		String nonexistentProperty = propertyNonExistent;
+
+		// Act
+		player.removeProperty(nonexistentProperty);
+
+		// Assert
+		assertFalse(player.getProperties().contains(nonexistentProperty));
+	}
+
+	@Test
+	public void testRemoveNonexistentPropertyTwice() {
+		// Arrange
+		Player player = new Player(userValid);
+		String property = propertyValid;
+
+		// Act
+		player.removeProperty(property);
+		player.removeProperty(property);
+
+		// Assert
+		assertFalse(player.getProperties().contains(property)); // Ensure property is not present (should have no
+																// effect)
+	}
+
+	@Test
+	public void testRemovePropertyWithNoProperties() {
+		// Arrange
+		Player player = new Player(userValid);
+		String property = propertyValid;
+
+		// Act
+		player.removeProperty(property);
+
+		// Assert
+		assertFalse(player.getProperties().contains(property)); // Ensure property is not present (should have no
+																// effect)
+	}
+
+	@Test
+	public void testRemovePropertyWithMultipleProperties() {
+		// Arrange
+		Player player = new Player(userValid);
+		String property1 = propertyValid;
+		String property2 = propertyValid2;
+		player.addProperty(property1);
+		player.addProperty(property2);
+
+		// Act
+		player.removeProperty(property1);
+
+		// Assert
+		assertFalse(player.getProperties().contains(property1)); // Ensure property1 is removed
+		assertTrue(player.getProperties().contains(property2)); // Ensure property2 is still present
+	}
+
+	@Test
+	public void testChoosePaymentMethodValidInputMoneyFee() {
+		// Arrange
+		ByteArrayInputStream in = new ByteArrayInputStream("1\n".getBytes());
+		System.setIn(in);
+		Scanner scanner = new Scanner(System.in);
+		Player player = new Player("TestPlayer");
+
+		// Act
+		boolean result = player.choosePaymentMethod(scanner);
+
+		// Assert
+		assertEquals(true, result); // Pay by money
+
+	}
+	
+	@Test
+	public void testChoosePaymentMethodValidInputCarbonFee() {
+		// Arrange
+		ByteArrayInputStream in = new ByteArrayInputStream("2\n".getBytes());
+		System.setIn(in);
+		Scanner scanner = new Scanner(System.in);
+		Player player = new Player("TestPlayer");
+
+		// Act
+		boolean result = player.choosePaymentMethod(scanner);
+
+		// Assert
+		assertEquals(false, result); // Pay by carbon
+
+	}
+
+	@Test
+	public void testChoosePaymentMethodInvalidInputCorrectedChoiceMoneyFee() {
+		// Arrange
+		ByteArrayInputStream in = new ByteArrayInputStream("3\n1\n".getBytes());
+		System.setIn(in);
+		Scanner scanner = new Scanner(System.in);
+		Player player = new Player("TestPlayer");
+
+		// Act
+		boolean result = player.choosePaymentMethod(scanner);
+
+		// Assert
+		assertEquals(true, result); // Pay by moneyFee (after retrying)
+	}
+	
+	@Test
+	public void testChoosePaymentMethodInvalidInputCorrectedChoiceCarbonDebt() {
+	    // Arrange
+	    ByteArrayInputStream in = new ByteArrayInputStream("3\n2\n".getBytes());
+	    System.setIn(in);
+	    Scanner scanner = new Scanner(System.in);
+	    Player player = new Player("TestPlayer");
+
+	    // Act
+	    boolean result = player.choosePaymentMethod(scanner);
+
+	    // Assert
+	    assertEquals(false, result); // Pay by accepting to take carbon debt (after retrying)
+	}
+
+	
 }
-
-
