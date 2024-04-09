@@ -53,7 +53,7 @@ public class InvestmentSquare extends Square {
      * Sets the fee, which is half of the investment cost
      */
     public void setFee() {
-        this.fee = ((getInvestmentCost() / 2) > 0) ? getInvestmentCost() / 2 : 1;
+        this.fee = ((getInvestmentCost() / 2) > 0) ? (getInvestmentCost() / 2) : 1;
     }
 
     /**
