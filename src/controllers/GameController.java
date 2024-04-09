@@ -49,14 +49,14 @@ public class GameController {
         }
     }
 
-    private void gameLoop(int currentPlayerIndex) {
+    private void gameLoop(int currentPlayerIndex) throws IOException {
         while (gameRunning) {
             boolean turnCompleted = false;
             Player currentPlayer = players[currentPlayerIndex];
 
             while (!turnCompleted) {
                 System.out.println(
-                        currentPlayer.getName() + "'s turn. Press 'r' to roll the dice or 's' to show resources.\n");
+                        currentPlayer.getName() + "'s turn. Press 'r' to roll the dice , 's' to show resources, or 'i' to view instructions.\n");
                 String action = scanner.nextLine().trim().toLowerCase();
 
                 if ("s".equals(action)) {
@@ -66,8 +66,12 @@ public class GameController {
                     // Continue in the loop
                 } else if ("r".equals(action)) {
                     turnCompleted = playerTurn(currentPlayer);
+                } else if ("i".equals(action)) {
+                    displayInstructions();
+                    // After returning from instructions, continue in the loop
+
                 } else {
-                    System.out.println("Invalid input. Please press 'r' to roll the dice or 's' to show resources.");
+                    System.out.println("Invalid input. Please press 'r' to roll the dice or 's' to show resources, or 'i' to view instructions.");
                 }
             }
 
@@ -88,14 +92,21 @@ public class GameController {
     }
 
     private void displayInstructions() throws IOException {
-        printFileContents("/src/resources/NetZeroInstructions.txt");
+        System.out.println(printFileContents(resouceRelativePath + "NetZeroInstructions.txt").toString().replace(", ", "\n")
+        .replace("[", "").replace("]", ""));
 
-        // Display option to return to the main menu or continue in the loop
-        System.out.println("\nPress 'm' to return to main menu/restart.");
+     // Display option based on the game state
+        if (gameRunning) {
+            System.out.println("\nPress 'b' to go back to the game.");
+        } else {
+            System.out.println("\nPress 'm' to return to main menu.");
+        }
         String choice = scanner.nextLine().trim().toLowerCase();
 
-        if ("m".equals(choice)) {
+        if ("m".equals(choice) && !gameRunning) {
             startGame(); // Restart the game
+        } else if ("b".equals(choice) && gameRunning) {
+            // Do nothing, return to the game loop
         } else {
             System.out.println("Invalid choice. Returning to the game...");
             // If the choice is invalid, return to the game loop

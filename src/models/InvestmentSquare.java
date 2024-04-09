@@ -117,7 +117,31 @@ public class InvestmentSquare extends Square {
 
     @Override
     public void landOn(Player player, Scanner scanner) {
-        if (!this.isOwned()) {
+        if (isOwned() && !owner.equals(player)) {
+            System.out.println("This area is owned by " + this.getOwner().getName() + ". Paying fees.");
+            // Prompt the player for their choice
+            boolean payByMoney = player.choosePaymentMethod(scanner);
+
+            // Check if the player has enough resources based on their choice
+            if (payByMoney) {
+                if (player.getMoney() >= this.getFee()) {
+                    player.deductResources("money", this.getFee());
+                    this.getOwner().addResources("money", this.getFee());
+                    System.out.println("Paid " + this.getFee() + " resources to " + this.getOwner().getName());
+                } else {
+                    System.out.println("Not enough money to pay the fee.");
+                }
+            } else {
+                if (owner.getCarbonDebt() >= this.getFee()) {
+                    owner.deductResources("carbonDebt", this.getFee());
+                    player.addResources("carbonDebt", this.getFee());
+                    System.out.println(player.getName() + " paid a fee of " + this.getFee() + " carbon debt to "
+                            + this.getOwner().getName());
+                } else {
+                    System.out.println("Not enough carbon debt to pay the fee.");
+                }
+            }
+        } else if (!this.isOwned()) {
             System.out.println("Do you want to invest in " + this.getName() + "? It costs " + this.getInvestmentCost()
                     + " resources. (yes/no)");
             String input = scanner.nextLine().trim().toLowerCase();
@@ -130,15 +154,7 @@ public class InvestmentSquare extends Square {
                     System.out.println("Not enough resources to invest.");
                 }
             }
-        } else if (this.getOwner() != player) {
-            System.out.println("This area is owned by " + this.getOwner().getName() + ". Paying fees.");
-            if (player.getMoney() >= this.getFee()) {
-                player.deductResources("money", this.getFee());
-                this.getOwner().addResources("money", this.getFee());
-                System.out.println("Paid " + this.getFee() + " resources to " + this.getOwner().getName());
-            } else {
-                System.out.println("Not enough resources to pay the fee.");
-            }
         }
     }
+
 }
