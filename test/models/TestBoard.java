@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test;
 
 public class TestBoard {
 	
-	public class BoardTest {
+
 		@Test
 	    public void testGetSquareValidPosition() {
 	        Board board = new Board();
@@ -39,4 +39,4 @@ public class TestBoard {
         assertTrue(board.getSquare(3) instanceof InvestmentSquare);
     }
 }
-}
+
