@@ -1,6 +1,7 @@
 package utils;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class ConsoleUI {
@@ -35,5 +36,17 @@ public class ConsoleUI {
             }
         }
         return name;
+    }
+
+    public static String promptForPlayerAvatar(List<String> avatarList, int playerIndex) {
+        System.out.println("\nFrom the below list please select an avatar to represent you:");
+        for (int i = 0; i < avatarList.size(); i++) {
+            System.out.println("\n\t" + (i + 1) + "\n");
+            System.out.println(avatarList.get(i));
+        }
+        System.out.println("\nPlease enter the number of the avatar you wish to select:\n");
+        int selection = scanner.nextInt();
+
+        return avatarList.get(selection - 1);
     }
 }
