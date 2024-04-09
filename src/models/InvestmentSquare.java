@@ -163,6 +163,13 @@ public class InvestmentSquare extends Square {
         return majorUpgradeCost;
     }
 
+    /**
+     * This method handles what happens to a user when they land on the specific
+     * square
+     * 
+     * @param player  Player that lands on the specific square
+     * @param scanner Handles user input for choices related to square actions
+     */
     @Override
     public void landOn(Player player, Scanner scanner) {
         if (isOwned() && !owner.equals(player)) {
