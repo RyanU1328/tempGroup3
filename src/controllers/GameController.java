@@ -92,15 +92,20 @@ public class GameController {
     }
 
     private void displayInstructions() throws IOException {
-        printFileContents("/src/resources/NetZeroInstructions.txt");
+        System.out.println(printFileContents(resouceRelativePath + "NetZeroInstructions.txt").toString().replace(", ", "\n")
+        .replace("[", "").replace("]", ""));
 
-        // Display option to return to the main menu or continue in the loop
-        System.out.println("\nPress 'm' to return to main menu/restart or 'b' to go back to the game.");
+     // Display option based on the game state
+        if (gameRunning) {
+            System.out.println("\nPress 'b' to go back to the game.");
+        } else {
+            System.out.println("\nPress 'm' to return to main menu.");
+        }
         String choice = scanner.nextLine().trim().toLowerCase();
 
-        if ("m".equals(choice)) {
+        if ("m".equals(choice) && !gameRunning) {
             startGame(); // Restart the game
-        } else if ("b".equals(choice)) {
+        } else if ("b".equals(choice) && gameRunning) {
             // Do nothing, return to the game loop
         } else {
             System.out.println("Invalid choice. Returning to the game...");

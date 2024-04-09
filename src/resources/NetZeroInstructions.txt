@@ -67,8 +67,8 @@ Fines:
 - Players will be given the option of whether to pay the fine using their own money or by taking on CD from the owner.
 - Fines are calculated based on the price of the plot and how many units are on that plot, as shown below:
 
-Unit			Fine Calculation in £							Fine in Carbon Debt (CD)
-----			----------------------							------------------------
+Unit			Fine Calculation in £							     Fine in Carbon Debt (CD)
+----			----------------------							     ------------------------
 
 Minor 			cost of minor unit + 1.5(number of units x cost of minor unit)		     1/5 of £ value 
 
@@ -85,11 +85,11 @@ Let's say a player lands on "Sunny Acres", which is owned by another player. Her
 Number of units		Cost for Sunny Acres 		
 ---------------		---------------------				
 
-	0 		-£20 or +4CD
-	1		-£25 or +5CD
-	2		-£40 or +8CD
-	3		-£55 or +11CD
-	major		-£275 or +55CD
+	0 		      -£20 or +4CD
+	1		      -£25 or +5CD
+	2		      -£40 or +8CD
+	3		      -£55 or +11CD
+	major		      -£275 or +55CD
 
 
 ***
