@@ -56,7 +56,7 @@ public class GameController {
 
             while (!turnCompleted) {
                 System.out.println(
-                        currentPlayer.getName() + "'s turn. Press 'r' to roll the dice or 's' to show resources.\n");
+                        currentPlayer.getName() + "'s turn. Press 'r' to roll the dice , 's' to show resources, or 'i' to view instructions.\n");
                 String action = scanner.nextLine().trim().toLowerCase();
 
                 if ("s".equals(action)) {
@@ -66,8 +66,12 @@ public class GameController {
                     // Continue in the loop
                 } else if ("r".equals(action)) {
                     turnCompleted = playerTurn(currentPlayer);
+                } else if ("i".equals(action)) {
+                    displayInstructions();
+                    // After returning from instructions, continue in the loop
+
                 } else {
-                    System.out.println("Invalid input. Please press 'r' to roll the dice or 's' to show resources.");
+                    System.out.println("Invalid input. Please press 'r' to roll the dice or 's' to show resources, or 'i' to view instructions.");
                 }
             }
 
