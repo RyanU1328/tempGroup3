@@ -1,0 +1,11 @@
+Units:
+
+Field			Minor Unit			Major Unit
+-----			-----------			----------
+Solar			Solar Panel 			Solar Farm
+
+Wind			Wind Mill 			Wind Farm
+
+Hydroelectric		Dam				Reservoir
+
+Nuclear			Reactor				Plant

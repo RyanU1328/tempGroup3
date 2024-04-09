@@ -1,0 +1,20 @@
+Purchasing and Development:
+
+- Minor units can be added based on the price of the unit for that plot.
+- Players must own all plots within a theme before they can add units.
+- Fines for landing on plots are based on plot value and unit development level (shown below).
+
+
+
+
+Units:
+
+Field			Minor Unit			Major Unit
+-----			-----------			----------
+Solar			Solar Panel 			Solar Farm
+
+Wind			Wind Mill 			Wind Farm
+
+Hydroelectric		Dam				Reservoir
+
+Nuclear			Reactor				Plant
