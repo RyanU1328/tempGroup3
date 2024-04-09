@@ -7,8 +7,9 @@ public class Player {
 	private String name;
 	private int money;
 	private int carbonDebt;
-     private List<String> properties;
+	private List<String> properties;
 	private int position = 0;
+	private String avatar = "";
 
 	private static final int STARTING_CARBON = 500;
 	private static final int STARTING_MONEY = 500;
@@ -18,7 +19,7 @@ public class Player {
 		this.setName(name);
 		this.setMoney(STARTING_MONEY);
 		this.setCarbonDebt(STARTING_CARBON);
-        this.properties = new ArrayList<>();
+		this.properties = new ArrayList<>();
 	}
 
 	public String getName() {
@@ -64,7 +65,8 @@ public class Player {
 		return resources;
 
 	}
-    public List<String> getProperties() {
+
+	public List<String> getProperties() {
 		return properties;
 	}
 
@@ -84,7 +86,6 @@ public class Player {
 			this.carbonDebt = Math.max(0, this.carbonDebt + collectResources);
 		}
 	}
-	
 
 	public void deductResources(String kind, int fee) {
 		if (kind.equals("money")) {
@@ -94,22 +95,36 @@ public class Player {
 		}
 	}
 
-    public void addProperty(String property) {
-        properties.add(property);
-    }
+	public void addProperty(String property) {
+		properties.add(property);
+	}
 
-    
-    public void removeProperty(String property) {
-        properties.remove(property);
-    }
-    public void displayPlayerInfo() {
-        System.out.println("Player: " + name);
-        System.out.println("Money Resources: £" + money);
-        System.out.println("Carbon Debt: " + carbonDebt);
-        System.out.println("Properties owned:");
-        for (String property : properties) {
-            System.out.println("- " + property);
-        }
+	public void removeProperty(String property) {
+		properties.remove(property);
+	}
 
-}
+	public void displayPlayerInfo() {
+		System.out.println("Player: " + name);
+		System.out.println("Money Resources: £" + money);
+		System.out.println("Carbon Debt: " + carbonDebt);
+		System.out.println("Properties owned:");
+		for (String property : properties) {
+			System.out.println("- " + property);
+		}
+
+	}
+
+	/**
+	 * @return the avatar
+	 */
+	public String getAvatar() {
+		return avatar;
+	}
+
+	/**
+	 * @param avatar the avatar to set
+	 */
+	public void setAvatar(String avatar) {
+		this.avatar = avatar;
+	}
 }
