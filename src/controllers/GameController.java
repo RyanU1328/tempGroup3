@@ -95,11 +95,13 @@ public class GameController {
         printFileContents("/src/resources/NetZeroInstructions.txt");
 
         // Display option to return to the main menu or continue in the loop
-        System.out.println("\nPress 'm' to return to main menu/restart.");
+        System.out.println("\nPress 'm' to return to main menu/restart or 'b' to go back to the game.");
         String choice = scanner.nextLine().trim().toLowerCase();
 
         if ("m".equals(choice)) {
             startGame(); // Restart the game
+        } else if ("b".equals(choice)) {
+            // Do nothing, return to the game loop
         } else {
             System.out.println("Invalid choice. Returning to the game...");
             // If the choice is invalid, return to the game loop
