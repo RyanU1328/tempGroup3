@@ -49,7 +49,7 @@ public class GameController {
         }
     }
 
-    private void gameLoop(int currentPlayerIndex) {
+    private void gameLoop(int currentPlayerIndex) throws IOException {
         while (gameRunning) {
             boolean turnCompleted = false;
             Player currentPlayer = players[currentPlayerIndex];
