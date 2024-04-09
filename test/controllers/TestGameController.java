@@ -35,7 +35,8 @@ public class TestGameController {
         dir4 = System.getProperty("user.dir") + "/src";
         dir1Expected = Arrays
                 .asList(new String[] { "asciititle.txt", "cloudavatar.txt", "ligthningavatar.txt", "sunavatar.txt",
-                        "treeavatar.txt", "waveavatar.txt", "NetZeroInstructions.txt" });
+                        "treeavatar.txt", "waveavatar.txt", "Fines.txt", "GameObjective.txt", "Gameplay.txt", 
+                        "GameSetup.txt", "PurchasingAndDevelopment.txt", "Upgrading.txt", "Units.txt" });
         dir2Expected = Arrays.asList(new String[] {
                 ".classpath", ".git", ".gitignore", ".gitlab-ci.yml", ".metadata", ".project", ".settings", "JARs",
                 "README.md", "bin", "jacoco.exec", "reports", "src", "test", "whileScript.sh" });
