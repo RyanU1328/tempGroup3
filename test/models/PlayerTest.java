@@ -95,8 +95,8 @@ public class PlayerTest {
 
         // Assert
         assertEquals(name, player.getName());
-        assertEquals(Player.STARTING_MONEY, player.getMoney());
-        assertEquals(Player.STARTING_CARBON, player.getCarbonDebt());
+        assertEquals(500, player.getMoney());
+        assertEquals(500, player.getCarbonDebt());
         assertTrue(player.getProperties().isEmpty());
         assertEquals(0, player.getPosition());
     }
