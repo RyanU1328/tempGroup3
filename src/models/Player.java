@@ -89,12 +89,13 @@ public class Player {
 	}
 
 	public void addResources(String kind, int collectResources) {
-		if (kind.equals("money")) {
+		if (kind.equals("money") && collectResources > 0) {
 			this.money += collectResources;
-		} else if (kind.equals("carbonDebt")) {
+		} else if (kind.equals("carbonDebt") && collectResources > 0 ) {
 			// Ensure carbon debt does not go negative
 			this.carbonDebt = Math.max(0, this.carbonDebt + collectResources);
-		}
+		}else 
+			throw new IllegalArgumentException("resources cannot be zero");
 	}
 
 	public void deductResources(String kind, int fee) {
