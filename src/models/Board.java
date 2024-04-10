@@ -14,10 +14,10 @@ public class Board {
         squares.add(new InvestmentSquare("Gusto Grove", 60));
         squares.add(new InvestmentSquare("Airy Heights", 70));
         squares.add(new EcoZoneSquare("Eco Zone"));
-        squares.add(new InvestmentSquare("Splashviille", 90));
+        squares.add(new InvestmentSquare("Splashville", 90));
         squares.add(new InvestmentSquare("Torrential Terrace", 100));
         squares.add(new InvestmentSquare("Hydro Haven", 110));
-        squares.add(new InvestmentSquare("Nucleo nest", 130));
+        squares.add(new InvestmentSquare("Nucleo Nest", 130));
         squares.add(new InvestmentSquare("Atomic Oasis", 140));
 
     }
