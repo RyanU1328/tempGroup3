@@ -9,7 +9,7 @@ stages: # List of stages for jobs, and their order of execution, just one for a 
 # Default pipeline, runs on any change to repo.
 JUnit-tests:
   variables: 
-    NUM_TESTS:
+    NUM_TESTS: $NUM_TESTS
       value: 1000
   stage: tests
   script:
