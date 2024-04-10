@@ -3,10 +3,22 @@ package models;
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.io.ByteArrayInputStream;
+import java.nio.charset.Charset;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Random;
 import java.util.Scanner;
+import java.util.stream.IntStream;
+import java.util.stream.Stream;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.MethodSource;
+
 import static org.junit.jupiter.api.Assertions.assertFalse;
 
 public class PlayerTest {
@@ -25,6 +37,9 @@ public class PlayerTest {
 
 	private String propertyValid, propertyValid2;
 	private String propertyNonExistent;
+
+	private static List<Arguments> nameNumberList;
+	private static Random rand = new Random();
 
 	/**
 	 * @throws java.lang.Exception
@@ -417,4 +432,57 @@ public class PlayerTest {
 		assertEquals(false, result); // Pay by accepting to take carbon debt (after retrying)
 	}
 
+	private static String randomName() {
+		String name = "";
+		byte[] byteArray = new byte[rand.nextInt(99) + 1];
+		for (int j = 0; j < byteArray.length; j++) {
+			byteArray[j] = (byte) (rand.nextInt(122 - 97) + 97);
+		}
+		name = new String(byteArray, Charset.forName("UTF-8"));
+		return name;
+	}
+
+	private static Stream<String> randomNameStream() {
+		String[] names = new String[10];
+		for (int i = 0; i < names.length; i++) {
+			byte[] byteArray = new byte[rand.nextInt(99) + 1];
+			for (int j = 0; j < byteArray.length; j++) {
+				byteArray[j] = (byte) (rand.nextInt(122 - 97) + 97);
+			}
+			names[i] = new String(byteArray, Charset.forName("UTF-8"));
+		}
+		return Arrays.stream(names);
+	}
+
+	private static Stream<Arguments> randomTestNumbersAndNames() {
+		nameNumberList = new LinkedList<>();
+		for (int i = 0; i < 10; i++) {
+			String randomString = randomName();
+			nameNumberList.add(Arguments.of(rand.nextInt(999) + 1, randomString));
+		}
+		return nameNumberList.stream();
+	}
+
+	@ParameterizedTest
+	@MethodSource("randomNameStream")
+	public void testSetGetName(String name) {
+		Player methodTestPlayer = new Player(name);
+		assertEquals(name, methodTestPlayer.getName());
+	}
+
+	@ParameterizedTest
+	@MethodSource("randomTestNumbersAndNames")
+	public void testSetGetMoney(int money, String name) {
+		Player methodTestPlayer = new Player(name);
+		methodTestPlayer.setMoney(money);
+		assertEquals(money, methodTestPlayer.getMoney());
+	}
+
+	@ParameterizedTest
+	@MethodSource("randomTestNumbersAndNames")
+	public void testSetGetCarbonDebt(int carbonDebt, String name) {
+		Player methodTestPlayer = new Player(name);
+		methodTestPlayer.setCarbonDebt(carbonDebt);
+		assertEquals(carbonDebt, methodTestPlayer.getCarbonDebt());
+	}
 }
