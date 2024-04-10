@@ -25,8 +25,7 @@ public class GameController {
     private String resouceRelativePath = "/src/resources/";
 
     public void startGame() throws IOException {
-        System.out.println(printFileContents(resouceRelativePath + "asciititle.txt").toString().replace(", ", "\n")
-                .replace("[", "").replace("]", ""));
+        FileHandler.printFileContents(resouceRelativePath + "asciititle.txt");
         System.out.println("\n\n");
 
         // Display options for the player
@@ -56,7 +55,8 @@ public class GameController {
 
             while (!turnCompleted) {
                 System.out.println(
-                        currentPlayer.getName() + "'s turn. Press 'r' to roll the dice , 's' to show resources, or 'i' to view instructions.\n");
+                        currentPlayer.getName()
+                                + "'s turn. Press 'r' to roll the dice , 's' to show resources, or 'i' to view instructions.\n");
                 String action = scanner.nextLine().trim().toLowerCase();
 
                 if ("s".equals(action)) {
@@ -71,7 +71,8 @@ public class GameController {
                     // After returning from instructions, continue in the loop
 
                 } else {
-                    System.out.println("Invalid input. Please press 'r' to roll the dice or 's' to show resources, or 'i' to view instructions.");
+                    System.out.println(
+                            "Invalid input. Please press 'r' to roll the dice or 's' to show resources, or 'i' to view instructions.");
                 }
             }
 
@@ -92,62 +93,67 @@ public class GameController {
     }
 
     private void displayInstructions() throws IOException {
-        
-    while(true) {
-    	System.out.println("\nChoose an option:");
-        System.out.println("1. Game Objective");
-        System.out.println("2. Game Setup");
-        System.out.println("3. Gameplay");
-        System.out.println("4. Purchasing and Development");
-        System.out.println("5. Units");
-        System.out.println("6. Upgrading");
-        System.out.println("7. Fines");
-        
-        if(gameRunning) {
-        	System.out.println("8. Return to Game");
-        }else {
-        	System.out.println("8. Return to Main Menu");
-        }
-        
-        int choice = scanner.nextInt();
-        scanner.nextLine(); // Consume newline
-        
-        switch (choice) {
-        case 1:
-        	System.out.println("\n" + printFileContents(resouceRelativePath + "GameObjective.txt").toString().replace(", ", "\n").replace("[", "").replace("]", ""));
-            break;
-        case 2:
-        	System.out.println("\n" +printFileContents(resouceRelativePath + "GameSetup.txt").toString().replace(", ", "\n").replace("[", "").replace("]", ""));
-            break;
-        case 3:
-        	System.out.println("\n" +printFileContents(resouceRelativePath + "Gameplay.txt").toString().replace(", ", "\n").replace("[", "").replace("]", ""));
-            break;
-        case 4:
-        	System.out.println("\n" +printFileContents(resouceRelativePath + "PurchasingAndDevelopment.txt").toString().replace(", ", "\n").replace("[", "").replace("]", ""));
-            break;
-        case 5:
-        	System.out.println("\n" +printFileContents(resouceRelativePath + "Units.txt").toString().replace(", ", "\n").replace("[", "").replace("]", ""));
-            break;
-        case 6:
-        	System.out.println("\n" +printFileContents(resouceRelativePath + "Upgrading.txt").toString().replace(", ", "\n").replace("[", "").replace("]", ""));
-            break;
-        case 7:
-        	System.out.println("\n" +printFileContents(resouceRelativePath + "Fines.txt").toString().replace(", ", "\n").replace("[", "").replace("]", ""));
-            break;
-        case 8:
-        	if (gameRunning) {
-        		return;
-        		// Return to the game
+
+        while (true) {
+            System.out.println("\nChoose an option:");
+            System.out.println("1. Game Objective");
+            System.out.println("2. Game Setup");
+            System.out.println("3. Gameplay");
+            System.out.println("4. Purchasing and Development");
+            System.out.println("5. Units");
+            System.out.println("6. Upgrading");
+            System.out.println("7. Fines");
+
+            if (gameRunning) {
+                System.out.println("8. Return to Game");
             } else {
-                startGame(); // Exit to main menu
+                System.out.println("8. Return to Main Menu");
             }
-            break;
-        default:
-            System.out.println("Invalid choice.");
+
+            int choice = scanner.nextInt();
+            scanner.nextLine(); // Consume newline
+
+            switch (choice) {
+                case 1:
+                    FileHandler.printFileContents(resouceRelativePath + "GameObjective.txt");
+                    break;
+                case 2:
+                    FileHandler
+                            .printFileContents(resouceRelativePath + "GameSetup.txt");
+                    break;
+                case 3:
+                    FileHandler
+                            .printFileContents(resouceRelativePath + "Gameplay.txt");
+                    break;
+                case 4:
+                    FileHandler
+                            .printFileContents(resouceRelativePath + "PurchasingAndDevelopment.txt");
+                    break;
+                case 5:
+                    FileHandler
+                            .printFileContents(resouceRelativePath + "Units.txt");
+                    break;
+                case 6:
+                    FileHandler
+                            .printFileContents(resouceRelativePath + "Upgrading.txt");
+                    break;
+                case 7:
+                    FileHandler
+                            .printFileContents(resouceRelativePath + "Fines.txt");
+                    break;
+                case 8:
+                    if (gameRunning) {
+                        return;
+                        // Return to the game
+                    } else {
+                        startGame(); // Exit to main menu
+                    }
+                    break;
+                default:
+                    System.out.println("Invalid choice.");
+            }
+        }
     }
-}
-}
-        
 
     /**
      * Method to initialise players for the game. Includes defining number of
@@ -162,10 +168,11 @@ public class GameController {
             int playerCount = ConsoleUI.promptForPlayerCount();
             players = new Player[playerCount];
             List<String> avatarList = new ArrayList<>();
-            for (String j : listFilesInDir(System.getProperty("user.dir") + resouceRelativePath, "avatar")) {
+            for (String j : FileHandler
+                    .listFilesInDir(System.getProperty("user.dir") + resouceRelativePath, "avatar")) {
                 avatarList
-                        .add(printFileContents(resouceRelativePath + j).toString().replace(", ", "\n").replace("[", "")
-                                .replace("]", ""));
+                        .add(FileHandler
+                                .getFileContents(resouceRelativePath + j);
             }
             for (int i = 0; i < playerCount; i++) {
                 String name = ConsoleUI.promptForPlayerName(nameList, i);
@@ -314,70 +321,6 @@ public class GameController {
                 System.out.println("Not enough resources to pay the fee.");
             }
         }
-    }
-
-    /**
-     * Reads raw output from files. If data parsing is required it will have to be
-     * done elsewhere.
-     * 
-     * @param filePath file path from root of project folder, i.e.
-     *                 "/src/resources/asciititle.txt"
-     *                 Please use forward slashes for OS compatibility
-     */
-    private ArrayList<String> printFileContents(String filePath) {
-        File file;
-        FileReader fr;
-        BufferedReader br;
-        ArrayList<String> fileContents = new ArrayList<>();
-
-        // This code snippet is attempting to read and print the
-        // contents of a file specified by the `filePath` parameter.
-        try {
-            file = new File(System.getProperty("user.dir") + filePath);
-            fr = new FileReader(file);
-            br = new BufferedReader(fr);
-
-            String line = br.readLine();
-            while (line != null) {
-                fileContents.add(line);
-                line = br.readLine();
-            }
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        return fileContents;
-
-    }
-
-    /**
-     * The `listFilesInDir` method in the `GameController` class is a public
-     * method that takes two
-     * parameters: `dir` representing the directory path and `pattern`
-     * representing a pattern to match against file names.
-     * 
-     * @param dir     Directory of the files you wish to search
-     * @param pattern Pattern to match files against, this matches if the filename
-     *                contains the string
-     * @return List<String> A list of the contents of the directory
-     * @throws IOException
-     */
-
-    public static List<String> listFilesInDir(String dir, String pattern) throws IOException {
-        List<String> fileList = new ArrayList<>();
-        File file = new File(dir);
-
-        String[] list = file.list();
-
-        for (String i : list) {
-            if (i.contains(pattern)) {
-                fileList.add(i);
-            }
-        }
-
-        return fileList;
     }
 
 }
