@@ -493,4 +493,52 @@ public class PlayerTest {
 		methodTestPlayer.setPosition(position);
 		assertEquals(position, methodTestPlayer.getPosition());
 	}
+
+	@ParameterizedTest
+	@MethodSource("randomTestNumbersAndNames")
+	public void testAddResourcesRandom(int resource, String name) {
+		Player methodTestPlayer = new Player(name);
+		String kind = (rand.nextInt() % 2 == 0) ? "carbonDebt" : "money";
+		methodTestPlayer.addResources(kind, resource);
+		if (kind.equals("money")) {
+			assertEquals(resource + startingMoneyValid, methodTestPlayer.getMoney());
+		} else {
+			assertEquals(resource + startingCarbonValid, methodTestPlayer.getCarbonDebt());
+		}
+	}
+
+	@ParameterizedTest
+	@MethodSource("randomTestNumbersAndNames")
+	public void testDeductResourcesRandom(int resource, String name) {
+		Player methodTestPlayer = new Player(name);
+		String kind = (rand.nextInt() % 2 == 0) ? "carbonDebt" : "money";
+		methodTestPlayer.deductResources(kind, resource);
+		if (kind.equals("money")) {
+			assertEquals(startingMoneyValid - resource, methodTestPlayer.getMoney());
+		} else {
+			assertEquals(startingCarbonValid - resource, methodTestPlayer.getCarbonDebt());
+		}
+	}
+
+	@ParameterizedTest
+	@MethodSource("randomNameStream")
+	public void testSetGetProperty(String name) {
+		Player methodTestPlayer = new Player(name);
+		String propertyName = randomName();
+		methodTestPlayer.addProperty(propertyName);
+		assertEquals(Arrays.asList(propertyName), methodTestPlayer.getProperties());
+	}
+
+	@ParameterizedTest
+	@MethodSource("randomNameStream")
+	public void testSetGetPropertyList(String name) {
+		Player methodTestPlayer = new Player(name);
+		String[] propertyNames = new String[10];
+		for (int i = 0; i < propertyNames.length; i++) {
+			propertyNames[i] = randomName();
+			methodTestPlayer.addProperty(propertyNames[i]);
+		}
+		assertEquals(Arrays.asList(propertyNames), methodTestPlayer.getProperties());
+	}
+
 }
