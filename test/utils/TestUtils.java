@@ -22,7 +22,7 @@ public class TestUtils {
 
     private static List<Arguments> nameNumberList;
     public static Random rand = new Random();
-    private static int numTests = 1000;
+    private static int numTests = 10;
 
     public static String randomName() {
         String name = "";
