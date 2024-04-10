@@ -13,7 +13,7 @@ JUnit-tests:
     - echo "Running Tests..."
     - echo "Compiling test code..."
     - wget https://repo1.maven.org/maven2/org/jacoco/org.jacoco.agent/0.8.12/org.jacoco.agent-0.8.12-runtime.jar https://repo1.maven.org/maven2/org/jacoco/org.jacoco.cli/0.8.12/org.jacoco.cli-0.8.12-nodeps.jar https://repo1.maven.org/maven2/org/junit/jupiter/junit-jupiter/5.10.2/junit-jupiter-5.10.2.jar https://repo1.maven.org/maven2/org/junit/platform/junit-platform-console-standalone/1.10.2/junit-platform-console-standalone-1.10.2.jar -P ./JARs/ --random-wait
-    - find . -type f -name "*.java" | xargs -I % javac -cp ./JARs/junit-jupiter-5.10.2.jar -cp ./JARs/junit-platform-console-standalone-1.10.2.jar -sourcepath ./src -d ./bin %
+    - find . -type f -name "*.java" | xargs -I % javac -cp ./JARs/junit-jupiter-5.10.2.jar -cp ./JARs/junit-platform-console-standalone-1.10.2.jar -sourcepath ./src:./test -d ./bin %
     - java -javaagent:./JARs/org.jacoco.agent-0.8.12-runtime.jar=excludes=Test* -jar ./JARs/junit-platform-console-standalone-1.10.2.jar execute --class-path ./bin/ --scan-class-path --reports-dir ./reports
     - rm -r ./bin
     - find ./src -type f -name "*.java" | xargs -I % javac -cp ./JARs/junit-jupiter-5.10.2.jar -cp ./JARs/junit-platform-console-standalone-1.10.2.jar -sourcepath ./src -d ./bin %
