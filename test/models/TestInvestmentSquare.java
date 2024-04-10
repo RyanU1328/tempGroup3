@@ -1,44 +1,33 @@
 package models;
 
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
-import org.junit.jupiter.params.provider.ValueSource;
-
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.nio.charset.Charset;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Random;
-import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
 public class TestInvestmentSquare {
 
     InvestmentSquare testSquare;
     private static Random rand = new Random();
+    private static List<Arguments> nameNumberList;
 
-    /**
-     * @throws java.lang.Exception
-     */
     @BeforeEach
-    void setUp() throws Exception {
+    void setup() {
     }
 
     private static Stream<Arguments> randomTestNamesPlayersNumbers() {
-        List<Arguments> nameNumberList = new LinkedList<>();
+        nameNumberList = new LinkedList<>();
         List<Player> testPlayers = new ArrayList<>();
         for (int i = 0; i < 10; i++) {
-            byte[] byteArray = new byte[rand.nextInt(49) + 1];
-            for (int j = 0; j < byteArray.length; j++) {
-                byteArray[j] = (byte) (rand.nextInt(122 - 97) + 97);
-            }
-            String randomString = new String(byteArray, Charset.forName("UTF-8"));
+            String randomString = randomName();
             testPlayers.add(new Player(randomName()));
             nameNumberList.add(Arguments.of(rand.nextInt(999) + 1, randomString, testPlayers.get(i)));
         }
@@ -85,7 +74,6 @@ public class TestInvestmentSquare {
             testSquare.setMinorUpgrade();
         }
         assertEquals(testLimit, testSquare.getMinorUpgrade());
-
     }
 
     @ParameterizedTest

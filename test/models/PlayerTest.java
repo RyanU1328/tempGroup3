@@ -1,18 +1,13 @@
 package models;
 
-
-
-
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.io.ByteArrayInputStream;
-import java.util.InputMismatchException;
 import java.util.Scanner;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertFalse;
-
 
 public class PlayerTest {
 	// test data
@@ -133,7 +128,8 @@ public class PlayerTest {
 	 * }
 	 */
 
-//    added logic to player class need to update in branch not sure if correct logic??/
+	// added logic to player class need to update in branch not sure if correct
+	// logic??/
 	@Test
 	public void testGetSetMoneyInvalid() {
 		// Arrange
@@ -374,7 +370,7 @@ public class PlayerTest {
 		assertEquals(true, result); // Pay by money
 
 	}
-	
+
 	@Test
 	public void testChoosePaymentMethodValidInputCarbonFee() {
 		// Arrange
@@ -405,23 +401,20 @@ public class PlayerTest {
 		// Assert
 		assertEquals(true, result); // Pay by moneyFee (after retrying)
 	}
-	
+
 	@Test
 	public void testChoosePaymentMethodInvalidInputCorrectedChoiceCarbonDebt() {
-	    // Arrange
-	    ByteArrayInputStream in = new ByteArrayInputStream("3\n2\n".getBytes());
-	    System.setIn(in);
-	    Scanner scanner = new Scanner(System.in);
-	    Player player = new Player("TestPlayer");
+		// Arrange
+		ByteArrayInputStream in = new ByteArrayInputStream("3\n2\n".getBytes());
+		System.setIn(in);
+		Scanner scanner = new Scanner(System.in);
+		Player player = new Player("TestPlayer");
 
-	    // Act
-	    boolean result = player.choosePaymentMethod(scanner);
+		// Act
+		boolean result = player.choosePaymentMethod(scanner);
 
-	    // Assert
-	    assertEquals(false, result); // Pay by accepting to take carbon debt (after retrying)
+		// Assert
+		assertEquals(false, result); // Pay by accepting to take carbon debt (after retrying)
 	}
 
-	
 }
-
-
