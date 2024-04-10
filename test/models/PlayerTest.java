@@ -485,4 +485,12 @@ public class PlayerTest {
 		methodTestPlayer.setCarbonDebt(carbonDebt);
 		assertEquals(carbonDebt, methodTestPlayer.getCarbonDebt());
 	}
+
+	@ParameterizedTest
+	@MethodSource("randomTestNumbersAndNames")
+	public void testSetGetPosition(int position, String name) {
+		Player methodTestPlayer = new Player(name);
+		methodTestPlayer.setPosition(position);
+		assertEquals(position, methodTestPlayer.getPosition());
+	}
 }
