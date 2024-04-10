@@ -108,7 +108,7 @@ public class InvestmentSquare extends Square {
         if (!majorUpgrade) {
             return fee + ((int) (1.5 * (investmentCost * minorUpgrade)));
         } else {
-            return fee + ((int) (((1.5 * (investmentCost * minorUpgrade)) * 5)));
+            return (fee + ((int) (1.5 * (investmentCost * minorUpgrade))) * 5);
         }
     }
 
