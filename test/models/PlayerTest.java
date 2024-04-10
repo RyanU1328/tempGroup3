@@ -3,20 +3,13 @@ package models;
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.io.ByteArrayInputStream;
-import java.nio.charset.Charset;
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.LinkedList;
-import java.util.List;
 import java.util.Random;
 import java.util.Scanner;
-import java.util.stream.IntStream;
-import java.util.stream.Stream;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
@@ -38,8 +31,6 @@ public class PlayerTest {
 
 	private String propertyValid, propertyValid2;
 	private String propertyNonExistent;
-
-	private Random rand = new Random();
 
 	/**
 	 * @throws java.lang.Exception

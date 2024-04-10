@@ -6,7 +6,10 @@
 **/
 package utils;
 
+import models.*;
+
 import java.nio.charset.Charset;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
@@ -18,7 +21,8 @@ import org.junit.jupiter.params.provider.Arguments;
 public class TestUtils {
 
     private static List<Arguments> nameNumberList;
-    private static Random rand = new Random();
+    public static Random rand = new Random();
+    private static int numTests = 10000;
 
     public static String randomName() {
         String name = "";
@@ -31,7 +35,7 @@ public class TestUtils {
     }
 
     public static Stream<String> randomNameStream() {
-        String[] names = new String[10];
+        String[] names = new String[numTests];
         for (int i = 0; i < names.length; i++) {
             byte[] byteArray = new byte[rand.nextInt(99) + 1];
             for (int j = 0; j < byteArray.length; j++) {
@@ -44,9 +48,20 @@ public class TestUtils {
 
     public static Stream<Arguments> randomTestNumbersAndNames() {
         nameNumberList = new LinkedList<>();
-        for (int i = 0; i < 10; i++) {
+        for (int i = 0; i < numTests; i++) {
             String randomString = randomName();
             nameNumberList.add(Arguments.of(rand.nextInt(999) + 1, randomString));
+        }
+        return nameNumberList.stream();
+    }
+
+    private static Stream<Arguments> randomTestNamesPlayersNumbers() {
+        nameNumberList = new LinkedList<>();
+        List<Player> testPlayers = new ArrayList<>();
+        for (int i = 0; i < numTests; i++) {
+            String randomString = randomName();
+            testPlayers.add(new Player(randomName()));
+            nameNumberList.add(Arguments.of(rand.nextInt(999) + 1, randomString, testPlayers.get(i)));
         }
         return nameNumberList.stream();
     }
