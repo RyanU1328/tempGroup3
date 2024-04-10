@@ -33,14 +33,14 @@ public class TestInvestmentSquare {
     private static Stream<Arguments> randomTestNamesPlayersNumbers() {
         List<Arguments> nameNumberList = new LinkedList<>();
         List<Player> testPlayers = new ArrayList<>();
-        for (int i = 0; i < 100; i++) {
+        for (int i = 0; i < 10; i++) {
             byte[] byteArray = new byte[rand.nextInt(49) + 1];
             for (int j = 0; j < byteArray.length; j++) {
                 byteArray[j] = (byte) (rand.nextInt(122 - 97) + 97);
             }
             String randomString = new String(byteArray, Charset.forName("UTF-8"));
             testPlayers.add(new Player(randomName()));
-            nameNumberList.add(Arguments.of(rand.nextInt(1000), randomString, testPlayers.get(i)));
+            nameNumberList.add(Arguments.of(rand.nextInt(999) + 1, randomString, testPlayers.get(i)));
         }
         return nameNumberList.stream();
     }

@@ -15,7 +15,17 @@ class TestGoSquare {
     public void testGetName() {
         // Arrange
         GoSquare goSquare = new GoSquare("Go");
+    @Test
 
+    public void testGetName() {
+        // Arrange
+        GoSquare goSquare = new GoSquare("Go");
+
+        // Assert
+        assertEquals("Go", goSquare.getName());
+    }
+
+    @Test
         // Assert
         assertEquals("Go", goSquare.getName());
     }
@@ -34,8 +44,10 @@ class TestGoSquare {
         goSquare.landOn(player, new Scanner(System.in));
 
         // Assert
+        // Assert
         assertEquals(550, player.getMoney()); // Initial money is 500 + 50 gained
         assertEquals(490, player.getCarbonDebt()); // Initial carbon debt is 500 - 10 reduced
+        assertEquals("TestPlayer has gained 50 money and reduced their carbon debt by 10!\n", outContent.toString());
         assertEquals(
                 "TestPlayer has gained 50 money and reduced their carbon debt by 10!"
                         + System.getProperty("line.separator"),
@@ -46,9 +58,12 @@ class TestGoSquare {
     }
 
     @Test
+
+    @Test
     public void testAddResourcesInvalid() {
         // Arrange
         Player player = new Player("TestPlayer");
+        // GoSquare goSquare = new GoSquare("Go");
         // GoSquare goSquare = new GoSquare("Go");
 
         // Act & Assert
