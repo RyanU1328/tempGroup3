@@ -1,0 +1,7 @@
+Upgrading:
+
+- If you own all the plots in a field, you can upgrade by adding a unit, limited to one upgrade per turn.
+- You can upgrade a plot on any turn, even if you have not landed on that plot.
+- The price of a minor unit is half of the price of the plot.
+- You can add 3 minor units before adding 1 major unit.
+- Once a major unit is added, that plot is at maximum capacity.

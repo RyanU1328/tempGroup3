@@ -1,0 +1,5 @@
+Game Setup:
+
+- Choose the number of players and select an avatar for your game piece.
+- Choose a unique username.
+- Wait for all players to choose their avatars and confirm the number of players before starting.
