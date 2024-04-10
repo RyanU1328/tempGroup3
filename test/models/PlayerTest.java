@@ -20,6 +20,7 @@ import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static utils.TestUtils.*;
 
 public class PlayerTest {
 	// test data
@@ -38,8 +39,7 @@ public class PlayerTest {
 	private String propertyValid, propertyValid2;
 	private String propertyNonExistent;
 
-	private static List<Arguments> nameNumberList;
-	private static Random rand = new Random();
+	private Random rand = new Random();
 
 	/**
 	 * @throws java.lang.Exception
@@ -432,46 +432,15 @@ public class PlayerTest {
 		assertEquals(false, result); // Pay by accepting to take carbon debt (after retrying)
 	}
 
-	private static String randomName() {
-		String name = "";
-		byte[] byteArray = new byte[rand.nextInt(99) + 1];
-		for (int j = 0; j < byteArray.length; j++) {
-			byteArray[j] = (byte) (rand.nextInt(122 - 97) + 97);
-		}
-		name = new String(byteArray, Charset.forName("UTF-8"));
-		return name;
-	}
-
-	private static Stream<String> randomNameStream() {
-		String[] names = new String[10];
-		for (int i = 0; i < names.length; i++) {
-			byte[] byteArray = new byte[rand.nextInt(99) + 1];
-			for (int j = 0; j < byteArray.length; j++) {
-				byteArray[j] = (byte) (rand.nextInt(122 - 97) + 97);
-			}
-			names[i] = new String(byteArray, Charset.forName("UTF-8"));
-		}
-		return Arrays.stream(names);
-	}
-
-	private static Stream<Arguments> randomTestNumbersAndNames() {
-		nameNumberList = new LinkedList<>();
-		for (int i = 0; i < 10; i++) {
-			String randomString = randomName();
-			nameNumberList.add(Arguments.of(rand.nextInt(999) + 1, randomString));
-		}
-		return nameNumberList.stream();
-	}
-
 	@ParameterizedTest
-	@MethodSource("randomNameStream")
+	@MethodSource("utils.TestUtils#randomNameStream")
 	public void testSetGetName(String name) {
 		Player methodTestPlayer = new Player(name);
 		assertEquals(name, methodTestPlayer.getName());
 	}
 
 	@ParameterizedTest
-	@MethodSource("randomTestNumbersAndNames")
+	@MethodSource("utils.TestUtils#randomTestNumbersAndNames")
 	public void testSetGetMoney(int money, String name) {
 		Player methodTestPlayer = new Player(name);
 		methodTestPlayer.setMoney(money);
@@ -479,7 +448,7 @@ public class PlayerTest {
 	}
 
 	@ParameterizedTest
-	@MethodSource("randomTestNumbersAndNames")
+	@MethodSource("utils.TestUtils#randomTestNumbersAndNames")
 	public void testSetGetCarbonDebt(int carbonDebt, String name) {
 		Player methodTestPlayer = new Player(name);
 		methodTestPlayer.setCarbonDebt(carbonDebt);
@@ -487,7 +456,7 @@ public class PlayerTest {
 	}
 
 	@ParameterizedTest
-	@MethodSource("randomTestNumbersAndNames")
+	@MethodSource("utils.TestUtils#randomTestNumbersAndNames")
 	public void testSetGetPosition(int position, String name) {
 		Player methodTestPlayer = new Player(name);
 		methodTestPlayer.setPosition(position);
@@ -495,7 +464,7 @@ public class PlayerTest {
 	}
 
 	@ParameterizedTest
-	@MethodSource("randomTestNumbersAndNames")
+	@MethodSource("utils.TestUtils#randomTestNumbersAndNames")
 	public void testAddResourcesRandom(int resource, String name) {
 		Player methodTestPlayer = new Player(name);
 		String kind = (rand.nextInt() % 2 == 0) ? "carbonDebt" : "money";
@@ -508,7 +477,7 @@ public class PlayerTest {
 	}
 
 	@ParameterizedTest
-	@MethodSource("randomTestNumbersAndNames")
+	@MethodSource("utils.TestUtils#randomTestNumbersAndNames")
 	public void testDeductResourcesRandom(int resource, String name) {
 		Player methodTestPlayer = new Player(name);
 		String kind = (rand.nextInt() % 2 == 0) ? "carbonDebt" : "money";
@@ -521,7 +490,7 @@ public class PlayerTest {
 	}
 
 	@ParameterizedTest
-	@MethodSource("randomNameStream")
+	@MethodSource("utils.TestUtils#randomNameStream")
 	public void testSetGetProperty(String name) {
 		Player methodTestPlayer = new Player(name);
 		String propertyName = randomName();
@@ -530,7 +499,7 @@ public class PlayerTest {
 	}
 
 	@ParameterizedTest
-	@MethodSource("randomNameStream")
+	@MethodSource("utils.TestUtils#randomNameStream")
 	public void testSetGetPropertyList(String name) {
 		Player methodTestPlayer = new Player(name);
 		String[] propertyNames = new String[10];
