@@ -19,6 +19,7 @@ public class Board {
         squares.add(new InvestmentSquare("Hydro Haven", 110));
         squares.add(new InvestmentSquare("Nucleo Nest", 130));
         squares.add(new InvestmentSquare("Atomic Oasis", 140));
+        
 
     }
 
