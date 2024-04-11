@@ -195,7 +195,7 @@ public class TestInvestmentSquare {
         Scanner scanner = new Scanner(System.in);
 
         // Simulate player1 landing on the square
-        square.landOn(player1, scanner);
+        square.landOn(player1, scanner );
 
         // Assert that player1 pays the fee to player2
         assertEquals(80, player1.getMoney()); // Assuming fee is 20
