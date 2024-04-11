@@ -7,11 +7,14 @@ import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.io.ByteArrayInputStream;
+import java.io.InputStream;
 import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Random;
+import java.util.Scanner;
 import java.util.stream.Stream;
 
 public class TestInvestmentSquare {
@@ -172,6 +175,33 @@ public class TestInvestmentSquare {
             assertEquals(square.getFee(), square.getMinorUpgradeCost());
         }
     
+    @Test
+    public void testPlayerPaysFeeWhenLandingOnOwnedSquare() {
+        Board board = new Board();
+        Player player1 = new Player("Player 1");
+        Player player2 = new Player("Player 2");
+        InvestmentSquare square = (InvestmentSquare) board.getSquare(1); // Assuming Sunny Acres is the second square
+
+        // Set square owner
+        square.setOwner(player2);
+
+        // Set player1's money
+        player1.addResources("money", 100);
+
+        // Mock user input to simulate player1 choosing to pay by money
+        String input = "yes\n"; // Assuming player1 chooses to pay by money
+        InputStream in = new ByteArrayInputStream(input.getBytes());
+        System.setIn(in);
+        Scanner scanner = new Scanner(System.in);
+
+        // Simulate player1 landing on the square
+        square.landOn(player1, scanner);
+
+        // Assert that player1 pays the fee to player2
+        assertEquals(80, player1.getMoney()); // Assuming fee is 20
+        assertEquals(20, player2.getMoney()); // Player2 receives the fee
+    }
+
     
     
     
