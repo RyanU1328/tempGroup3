@@ -131,9 +131,12 @@ public class InvestmentSquare extends Square {
         if (minorUpgrade < 3) {
             this.minorUpgrade++;
         } else {
-            throw new IllegalCallerException();
+            throw new IllegalCallerException("Minor upgrade count is already at its maximum.");
         }
     }
+    
+    
+   
 
     /**
      * @return the majorUpgrade
@@ -171,29 +174,37 @@ public class InvestmentSquare extends Square {
      * @param scanner Handles user input for choices related to square actions
      */
     @Override
+    
     public void landOn(Player player, Scanner scanner) {
         if (isOwned() && !owner.equals(player)) {
             System.out.println("This area is owned by " + this.getOwner().getName() + ". Paying fees.");
-            // Prompt the player for their choice
-            boolean payByMoney = player.choosePaymentMethod(scanner);
-
-            // Check if the player has enough resources based on their choice
-            if (payByMoney) {
-                if (player.getMoney() >= this.getFee()) {
-                    player.deductResources("money", this.getFee());
-                    this.getOwner().addResources("money", this.getFee());
-                    System.out.println("Paid " + this.getFee() + " resources to " + this.getOwner().getName());
+            
+            // Loop until the player pays the fee or chooses a different payment method
+            while (true) {
+                // Prompt the player for their choice
+                boolean payByMoney = player.choosePaymentMethod(scanner);
+                
+                // Check if the player has enough resources based on their choice
+                if (payByMoney) {
+                    if (player.getMoney() >= this.getFee()) {
+                        player.deductResources("money", this.getFee());
+                        this.getOwner().addResources("money", this.getFee());
+                        System.out.println("Paid " + this.getFee() + " resources to " + this.getOwner().getName());
+                        break; // Exit the loop if the fee is paid successfully
+                    } else {
+                        System.out.println("Not enough money to pay the fee. Trying carbon debt.");
+                    }
                 } else {
-                    System.out.println("Not enough money to pay the fee.");
-                }
-            } else {
-                if (owner.getCarbonDebt() >= this.getFee()) {
-                    owner.deductResources("carbonDebt", this.getFee());
-                    player.addResources("carbonDebt", this.getFee());
-                    System.out.println(player.getName() + " paid a fee of " + this.getFee() + " carbon debt to "
-                            + this.getOwner().getName());
-                } else {
-                    System.out.println("Not enough carbon debt to pay the fee.");
+                    // Pay by carbon debt
+                    if (owner.getCarbonDebt() >= this.getFee()) {
+                        owner.deductResources("carbonDebt", this.getFee());
+                        player.addResources("carbonDebt", this.getFee());
+                        System.out.println(player.getName() + " paid a fee of " + this.getFee() + " carbon debt to "
+                                + this.getOwner().getName());
+                        break; // Exit the loop if the fee is paid successfully
+                    } else {
+                        System.out.println("Not enough carbon debt to pay the fee. Please choose another payment method.");
+                    }
                 }
             }
         } else if (!this.isOwned()) {
@@ -211,5 +222,4 @@ public class InvestmentSquare extends Square {
             }
         }
     }
-
-}
+    }
