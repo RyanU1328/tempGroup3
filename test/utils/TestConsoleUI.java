@@ -10,7 +10,9 @@ import java.io.InputStream;
 import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.InputMismatchException;
 import java.util.List;
+import java.util.NoSuchElementException;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -220,7 +222,7 @@ public class TestConsoleUI {
         String[] result = ConsoleUI.promptForPlayerAvatar(avatarList, 0);
 
         // Verify output
-        assertEquals("Avatar1", result, "Expected avatar to be Avatar1");
+        assertEquals("Avatar1", result[0], "Expected avatar to be Avatar1");
     }
 
     // Provide an
@@ -243,17 +245,12 @@ public class TestConsoleUI {
         List<String[]> avatarList = new ArrayList<>();
 
         // Invoke method
-        String[] result = ConsoleUI.promptForPlayerAvatar(avatarList, 0);
-        // Print result for debugging
-        System.out.println("Result: " + result);
-
-        // Verify output
-        assertNull(result);
+        assertThrows(NoSuchElementException.class, () -> {
+            ConsoleUI.promptForPlayerAvatar(avatarList, 0);
+        });
     }
 
-    // Simulate user
-    // input that
-
+    // Simulate user input that
     // is invalid (e.g., a non-integer or out-of-range
     // selection) and verify that the method handles it appropriately,
     // such as reprompting the user or throwing an exception.
@@ -270,10 +267,9 @@ public class TestConsoleUI {
         avatarList.add(new String[] { "Avatar1" });
 
         // Invoke method
-        String[] result = ConsoleUI.promptForPlayerAvatar(avatarList, 0);
-
-        // Verify output
-        assertNull(result);
+        assertThrows(InputMismatchException.class, () -> {
+            ConsoleUI.promptForPlayerAvatar(avatarList, 0);
+        });
     }
 
     // Boundary Case

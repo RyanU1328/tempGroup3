@@ -53,8 +53,8 @@ public class ConsoleUI {
         }
         System.out.println("\nPlease enter the number of the avatar you wish to select:\n");
         int selection = scanner.nextInt();
-
         return avatarList.get(selection - 1);
+
     }
 
 }
