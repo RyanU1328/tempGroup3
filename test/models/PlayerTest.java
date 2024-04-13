@@ -3,11 +3,17 @@ package models;
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.io.ByteArrayInputStream;
+import java.util.Arrays;
+import java.util.Random;
 import java.util.Scanner;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.MethodSource;
+
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static utils.TestUtils.*;
 
 public class PlayerTest {
 	// test data
@@ -415,6 +421,84 @@ public class PlayerTest {
 
 		// Assert
 		assertEquals(false, result); // Pay by accepting to take carbon debt (after retrying)
+	}
+
+	@ParameterizedTest
+	@MethodSource("utils.TestUtils#randomNameStream")
+	public void testSetGetName(String name) {
+		Player methodTestPlayer = new Player(name);
+		assertEquals(name, methodTestPlayer.getName());
+	}
+
+	@ParameterizedTest
+	@MethodSource("utils.TestUtils#randomTestNumbersAndNames")
+	public void testSetGetMoney(int money, String name) {
+		Player methodTestPlayer = new Player(name);
+		methodTestPlayer.setMoney(money);
+		assertEquals(money, methodTestPlayer.getMoney());
+	}
+
+	@ParameterizedTest
+	@MethodSource("utils.TestUtils#randomTestNumbersAndNames")
+	public void testSetGetCarbonDebt(int carbonDebt, String name) {
+		Player methodTestPlayer = new Player(name);
+		methodTestPlayer.setCarbonDebt(carbonDebt);
+		assertEquals(carbonDebt, methodTestPlayer.getCarbonDebt());
+	}
+
+	@ParameterizedTest
+	@MethodSource("utils.TestUtils#randomTestNumbersAndNames")
+	public void testSetGetPosition(int position, String name) {
+		Player methodTestPlayer = new Player(name);
+		methodTestPlayer.setPosition(position);
+		assertEquals(position, methodTestPlayer.getPosition());
+	}
+
+	@ParameterizedTest
+	@MethodSource("utils.TestUtils#randomTestNumbersAndNames")
+	public void testAddResourcesRandom(int resource, String name) {
+		Player methodTestPlayer = new Player(name);
+		String kind = (rand.nextInt() % 2 == 0) ? "carbonDebt" : "money";
+		methodTestPlayer.addResources(kind, resource);
+		if (kind.equals("money")) {
+			assertEquals(resource + startingMoneyValid, methodTestPlayer.getMoney());
+		} else {
+			assertEquals(resource + startingCarbonValid, methodTestPlayer.getCarbonDebt());
+		}
+	}
+
+	@ParameterizedTest
+	@MethodSource("utils.TestUtils#randomTestNumbersAndNames")
+	public void testDeductResourcesRandom(int resource, String name) {
+		Player methodTestPlayer = new Player(name);
+		String kind = (rand.nextInt() % 2 == 0) ? "carbonDebt" : "money";
+		methodTestPlayer.deductResources(kind, resource);
+		if (kind.equals("money")) {
+			assertEquals(startingMoneyValid - resource, methodTestPlayer.getMoney());
+		} else {
+			assertEquals(startingCarbonValid - resource, methodTestPlayer.getCarbonDebt());
+		}
+	}
+
+	@ParameterizedTest
+	@MethodSource("utils.TestUtils#randomNameStream")
+	public void testSetGetProperty(String name) {
+		Player methodTestPlayer = new Player(name);
+		String propertyName = randomName();
+		methodTestPlayer.addProperty(propertyName);
+		assertEquals(Arrays.asList(propertyName), methodTestPlayer.getProperties());
+	}
+
+	@ParameterizedTest
+	@MethodSource("utils.TestUtils#randomNameStream")
+	public void testSetGetPropertyList(String name) {
+		Player methodTestPlayer = new Player(name);
+		String[] propertyNames = new String[10];
+		for (int i = 0; i < propertyNames.length; i++) {
+			propertyNames[i] = randomName();
+			methodTestPlayer.addProperty(propertyNames[i]);
+		}
+		assertEquals(Arrays.asList(propertyNames), methodTestPlayer.getProperties());
 	}
 
 }

@@ -131,7 +131,7 @@ public class InvestmentSquare extends Square {
         if (minorUpgrade < 3) {
             this.minorUpgrade++;
         } else {
-            throw new IllegalCallerException();
+            throw new IllegalCallerException("Minor upgrade count is already at its maximum.");
         }
     }
 
