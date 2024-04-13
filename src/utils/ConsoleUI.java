@@ -44,6 +44,7 @@ public class ConsoleUI {
 
     public static String[] promptForPlayerAvatar(List<String[]> avatarList, int playerIndex) {
         scanner = new Scanner(System.in);
+        int selection;
         System.out.println("\nFrom the below list please select an avatar to represent you:");
         for (int i = 0; i < avatarList.size(); i++) {
             System.out.println("\n\t" + (i + 1) + "\n");
@@ -52,7 +53,15 @@ public class ConsoleUI {
             }
         }
         System.out.println("\nPlease enter the number of the avatar you wish to select:\n");
-        int selection = scanner.nextInt();
+        while (true) {
+            try {
+                selection = scanner.nextInt();
+                break;
+            } catch (Exception e) {
+                System.out.println("Invalid input, try again:");
+                scanner.next();
+            }
+        }
         return avatarList.get(selection - 1);
 
     }
