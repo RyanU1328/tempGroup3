@@ -216,7 +216,7 @@ public class InvestmentSquare extends Square {
                 } else {
                     System.out.println("Not enough resources to invest.");
                 }
-            }
+            } 
         }
     }
     }
