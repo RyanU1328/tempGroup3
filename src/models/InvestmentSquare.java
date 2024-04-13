@@ -28,34 +28,80 @@ public class InvestmentSquare extends Square {
      */
     public InvestmentSquare(String name, int investmentCost) {
         super(name);
-        this.investmentCost = investmentCost;
-        this.fee = investmentCost / 2;
-        this.minorUpgradeCost = investmentCost / 2;
-        this.majorUpgradeCost = (investmentCost / 2) * 3;
-        this.owner = null;
-        if (this.fee < 1) {
-            this.fee = 1;
+        setInvestmentCost(investmentCost);
+        setFee();
+        setMinorUpgradeCost();
+        setMajorUpgradeCost();
+        setOwner(null);
+    }
+
+    /**
+     * Sets the Investment Cost of the square, has checks to prevent setting the
+     * fee, and unit costs wrong
+     * 
+     * @param investmentCost the investmentCost to set
+     * @throws IllegalArgumentException if investment cost is negative
+     */
+    public void setInvestmentCost(int investmentCost) {
+        if (investmentCost > 0) {
+            this.investmentCost = investmentCost;
+        } else {
+            throw new IllegalArgumentException("Investment cost cannot be negative.");
         }
     }
 
+    /**
+     * Sets the fee, which is half of the investment cost
+     */
+    public void setFee() {
+        this.fee = ((getInvestmentCost() / 2) > 0) ? (getInvestmentCost() / 2) : 1;
+    }
+
+    /**
+     * Sets the minor upgrade cost, which is the same as the fee
+     */
+    public void setMinorUpgradeCost() {
+        this.minorUpgradeCost = getFee();
+    }
+
+    /**
+     * Sets major cost, based off of minor upgrade cost
+     */
+    public void setMajorUpgradeCost() {
+        this.majorUpgradeCost = getMinorUpgradeCost() * 3;
+    }
+
+    /**
+     * 
+     * @return boolean true if the square is owned, false if it is not.
+     */
     public boolean isOwned() {
         return owner != null;
     }
 
+    /**
+     * @return owner
+     */
     public Player getOwner() {
         return owner;
     }
 
+    /**
+     * @param owner default state null, as set by constructor
+     */
     public void setOwner(Player owner) {
         this.owner = owner;
     }
 
+    /**
+     * @return investmentCost this is set explicitly in the constructor
+     */
     public int getInvestmentCost() {
         return investmentCost;
     }
 
     /**
-     * Returns the fee based on the below forumulas
+     * Returns the fee based on the below formulas
      * 
      * @return fee
      */
@@ -79,12 +125,14 @@ public class InvestmentSquare extends Square {
 
     /**
      * This iterates the minor unit upgrade count, to a max of 3.
+     * 
+     * @throws IllegalCallerException
      */
     public void setMinorUpgrade() {
         if (minorUpgrade < 3) {
             this.minorUpgrade++;
         } else {
-            throw new IllegalCallerException();
+            throw new IllegalCallerException("Minor upgrade count is already at its maximum.");
         }
     }
 
@@ -116,46 +164,61 @@ public class InvestmentSquare extends Square {
         return majorUpgradeCost;
     }
 
+    /**
+     * This method handles what happens to a user when they land on the specific
+     * square
+     * 
+     * @param player  Player that lands on the specific square
+     * @param scanner Handles user input for choices related to square actions
+     */
     @Override
-public void landOn(Player player, List<Player> players, Scanner scanner) {
-    if (isOwned() && !owner.equals(player)) {
-        // The square is owned by another player
-        System.out.println("This area is owned by " + this.getOwner().getName() + ". Paying fees.");
-        // Prompt the player for their choice
-        boolean payByMoney = player.choosePaymentMethod(scanner);
-
-        // Check if the player has enough resources based on their choice
-        if (payByMoney) {
-            if (player.getMoney() >= this.getFee()) {
-                player.deductResources("money", this.getFee());
-                this.getOwner().addResources("money", this.getFee());
-                System.out.println("Paid " + this.getFee() + " resources to " + this.getOwner().getName());
-            } else {
-                System.out.println("Not enough money to pay the fee.");
+    
+    public void landOn(Player player, List<Player>, Scanner scanner) {
+        if (isOwned() && !owner.equals(player)) {
+                    // The square is owned by another player
+            System.out.println("This area is owned by " + this.getOwner().getName() + ". Paying fees.");
+            
+            // Loop until the player pays the fee or chooses a different payment method
+            while (true) {
+                // Prompt the player for their choice
+                boolean payByMoney = player.choosePaymentMethod(scanner);
+                
+                // Check if the player has enough resources based on their choice
+                if (payByMoney) {
+                    if (player.getMoney() >= this.getFee()) {
+                        player.deductResources("money", this.getFee());
+                        this.getOwner().addResources("money", this.getFee());
+                        System.out.println("Paid " + this.getFee() + " resources to " + this.getOwner().getName());
+                        break; // Exit the loop if the fee is paid successfully
+                    } else {
+                        System.out.println("Not enough money to pay the fee. Trying carbon debt.");
+                    }
+                } else {
+                    // Pay by carbon debt
+                    if (owner.getCarbonDebt() >= this.getFee()) {
+                        owner.deductResources("carbonDebt", this.getFee());
+                        player.addResources("carbonDebt", this.getFee());
+                        System.out.println(player.getName() + " paid a fee of " + this.getFee() + " carbon debt to "
+                                + this.getOwner().getName());
+                        break; // Exit the loop if the fee is paid successfully
+                    } else {
+                        System.out.println("Not enough carbon debt to pay the fee. Please choose another payment method.");
+                    }
+                }
             }
-        } else {
-            if (owner.getCarbonDebt() >= this.getFee()) {
-                owner.deductResources("carbonDebt", this.getFee());
-                player.addResources("carbonDebt", this.getFee());
-                System.out.println(player.getName() + " paid a fee of " + this.getFee() + " carbon debt to "
-                        + this.getOwner().getName());
-            } else {
-                System.out.println("Not enough carbon debt to pay the fee.");
-            }
-        }
-    } else if (!this.isOwned()) {
-        // The square is not owned by any player
-        System.out.println("Do you want to invest in " + this.getName() + "? It costs " + this.getInvestmentCost()
-                + " resources. (yes/no)");
-        String input = scanner.nextLine().trim().toLowerCase();
-        if ("yes".equals(input)) {
-            if (player.getMoney() >= this.getInvestmentCost()) {
-                player.deductResources("money", this.getInvestmentCost());
-                this.setOwner(player);
-                System.out.println("Investment successful. You now own " + this.getName());
-            } else {
-                System.out.println("Not enough resources to invest.");
-            }
+        } else if (!this.isOwned()) {
+            // The Square is not owned
+            System.out.println("Do you want to invest in " + this.getName() + "? It costs " + this.getInvestmentCost()
+                    + " resources. (yes/no)");
+            String input = scanner.nextLine().trim().toLowerCase();
+            if ("yes".equals(input)) {
+                if (player.getMoney() >= this.getInvestmentCost()) {
+                    player.deductResources("money", this.getInvestmentCost());
+                    this.setOwner(player);
+                    System.out.println("Investment successful. You now own " + this.getName());
+                } else {
+                    System.out.println("Not enough resources to invest.");
+}
         } else {
             // No player chose to buy the square, offer it to the next player
             System.out.println("Offering to next player...");

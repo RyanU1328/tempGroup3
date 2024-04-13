@@ -13,7 +13,7 @@ public class GoSquare extends Square {
     public void landOn(Player player, List<Player> players, Scanner scanner) {
         System.out.println(player.getName() + " has gained 50 money and reduced their carbon debt by 10!");
         player.addResources("money", 50);
-        player.addResources("carbonDebt", -10);
+        player.deductResources("carbonDebt", 10);
     }
-    
+
 }

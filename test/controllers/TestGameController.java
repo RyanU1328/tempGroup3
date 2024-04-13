@@ -8,33 +8,18 @@ import java.util.List;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 public class TestGameController {
-
-  private String dir1, dir2, dir3, dir4;
-  private List<String> dir1Expected, dir2Expected, dir3Expected, dir4Expected;
-  private List<String> dir1Actual, dir2Actual, dir3Actual, dir4Actual;
 
   /**
    * @throws java.lang.Exception
    */
   @BeforeEach
   void setUp() throws Exception {
-    dir1 = System.getProperty("user.dir") + "/src/resources";
-    dir2 = System.getProperty("user.dir") + "/";
-    dir3 = System.getProperty("user.dir") + "/src/main";
-    dir4 = System.getProperty("user.dir") + "/src";
-    dir1Expected = Arrays
-        .asList(new String[] { "asciititle.txt", "cloudavatar.txt", "ligthningavatar.txt", "sunavatar.txt",
-            "treeavatar.txt", "waveavatar.txt", "Fines.txt", "GameObjective.txt", "Gameplay.txt",
-            "GameSetup.txt", "PurchasingAndDevelopment.txt", "Upgrading.txt", "Units.txt" });
-    dir2Expected = Arrays.asList(new String[] {
-        ".classpath", ".git", ".gitignore", ".gitlab-ci.yml", ".metadata", ".project", ".settings", "JARs",
-        "README.md", "bin", "jacoco.exec", "reports", "src", "test", "whileScript.sh" });
-    dir3Expected = Arrays.asList(new String[] { "Main.java" });
-    dir4Expected = Arrays.asList(new String[] { "controllers", "main", "models", "resources", "utils" });
 
   }
 
@@ -45,23 +30,16 @@ public class TestGameController {
    * @throws IOException
    * @throws URISyntaxException
    */
-  @Test
-  void testListFilesInDir() throws IOException, URISyntaxException {
-    dir1Actual = FileHandler.listFilesInDir(dir1, "");
-    dir2Actual = FileHandler.listFilesInDir(dir2, "");
-    dir3Actual = FileHandler.listFilesInDir(dir3, "");
-    dir4Actual = FileHandler.listFilesInDir(dir4, "");
-    Collections.sort(dir1Expected);
-    Collections.sort(dir2Expected);
-    Collections.sort(dir3Expected);
-    Collections.sort(dir4Expected);
-    Collections.sort(dir1Actual);
-    Collections.sort(dir2Actual);
-    Collections.sort(dir3Actual);
-    Collections.sort(dir4Actual);
-    assertEquals(dir1Expected, dir1Actual);
-    assertEquals(dir2Expected, dir2Actual);
-    assertEquals(dir3Expected, dir3Actual);
-    assertEquals(dir4Expected, dir4Actual);
+  @ParameterizedTest
+  @CsvSource(value = { "/src/main:Main.java", "/src:controllers,main,models,utils,resources" }, delimiter = ':')
+  void testListFilesInDir(String dir, String expected) throws IOException, URISyntaxException {
+    dir = System.getProperty("user.dir") + dir;
+    System.out.println(expected);
+    String[] tempArray = expected.split(",");
+    List<String> expectedList = Arrays.asList(tempArray);
+    List<String> dirActual = FileHandler.listFilesInDir(dir, "");
+    Collections.sort(expectedList);
+    Collections.sort(dirActual);
+    assertEquals(expectedList, dirActual);
   }
 }
