@@ -24,8 +24,6 @@ public class ConsoleUI {
         } while (count < 1 || count > 4);
         return count;
     }
-    return name;
-  }
 
     public static String promptForPlayerName(ArrayList<String> nameList, int playerIndex) {
         scanner = new Scanner(System.in);
@@ -43,31 +41,20 @@ public class ConsoleUI {
         }
         return name;
     }
-    System.out.println("\nPlease enter the number of the avatar you wish to select:\n");
-    int selection = scanner.nextInt();
 
-    public static String promptForPlayerAvatar(List<String> avatarList, int playerIndex) {
+    public static String[] promptForPlayerAvatar(List<String[]> avatarList, int playerIndex) {
         scanner = new Scanner(System.in);
-        if (avatarList.isEmpty()) {
-            System.out.println("No avatars available.");
-            return null;
-        }
         System.out.println("\nFrom the below list please select an avatar to represent you:");
         for (int i = 0; i < avatarList.size(); i++) {
             System.out.println("\n\t" + (i + 1) + "\n");
-            System.out.println(avatarList.get(i));
+            for (String line : avatarList.get(i)) {
+                System.out.println(line);
+            }
         }
         System.out.println("\nPlease enter the number of the avatar you wish to select:\n");
-        try {
-            int selection = scanner.nextInt();
-            if (selection < 1 || selection > avatarList.size()) {
-                throw new InputMismatchException(); // Invalid selection
-            }
-            return avatarList.get(selection - 1);
-        } catch (InputMismatchException e) {
-            System.out.println("Invalid input. Please enter a valid number.");
-            scanner.next(); // Consume invalid input
-            return null; // Return null for invalid input
-        }
+        int selection = scanner.nextInt();
+
+        return avatarList.get(selection - 1);
     }
+
 }

@@ -213,11 +213,11 @@ public class TestConsoleUI {
         System.setIn(in);
 
         // Prepare list of avatars
-        List<String> avatarList = new ArrayList<>();
-        avatarList.add("Avatar1");
+        List<String[]> avatarList = new ArrayList<>();
+        avatarList.add(new String[] { "Avatar1" });
 
         // Invoke method
-        String result = ConsoleUI.promptForPlayerAvatar(avatarList, 0);
+        String[] result = ConsoleUI.promptForPlayerAvatar(avatarList, 0);
 
         // Verify output
         assertEquals("Avatar1", result, "Expected avatar to be Avatar1");
@@ -240,10 +240,10 @@ public class TestConsoleUI {
         System.setIn(in);
 
         // Prepare empty list of avatars
-        List<String> avatarList = new ArrayList<>();
+        List<String[]> avatarList = new ArrayList<>();
 
         // Invoke method
-        String result = ConsoleUI.promptForPlayerAvatar(avatarList, 0);
+        String[] result = ConsoleUI.promptForPlayerAvatar(avatarList, 0);
         // Print result for debugging
         System.out.println("Result: " + result);
 
@@ -266,11 +266,11 @@ public class TestConsoleUI {
         System.setIn(in);
 
         // Prepare list of avatars
-        List<String> avatarList = new ArrayList<>();
-        avatarList.add("Avatar1");
+        List<String[]> avatarList = new ArrayList<>();
+        avatarList.add(new String[] { "Avatar1" });
 
         // Invoke method
-        String result = ConsoleUI.promptForPlayerAvatar(avatarList, 0);
+        String[] result = ConsoleUI.promptForPlayerAvatar(avatarList, 0);
 
         // Verify output
         assertNull(result);
@@ -295,30 +295,30 @@ public class TestConsoleUI {
         InputStream inLast = new ByteArrayInputStream(inputLast.getBytes());
 
         // Prepare list of avatars
-        List<String> avatarList = new ArrayList<>();
-        avatarList.add("Avatar1");
-        avatarList.add("Avatar2");
-        avatarList.add("Avatar3");
-        avatarList.add("Avatar4");
-        avatarList.add("Avatar5");
-        avatarList.add("Avatar6");
+        List<String[]> avatarList = new ArrayList<>();
+        avatarList.add(new String[] { "Avatar1" });
+        avatarList.add(new String[] { "Avatar2" });
+        avatarList.add(new String[] { "Avatar3" });
+        avatarList.add(new String[] { "Avatar4" });
+        avatarList.add(new String[] { "Avatar5" });
+        avatarList.add(new String[] { "Avatar6" });
 
         // Invoke method for selecting the first avatar
         System.setIn(inFirst);
-        String resultFirst = ConsoleUI.promptForPlayerAvatar(avatarList, 0);
+        String[] resultFirst = ConsoleUI.promptForPlayerAvatar(avatarList, 0);
 
         // Verify output for the first avatar
-        assertEquals("Avatar1", resultFirst, "Expected first avatar");
+        assertEquals("Avatar1", resultFirst[0], "Expected first avatar");
 
         // Reset input stream
         System.setIn(System.in);
 
         // Invoke method for selecting the last avatar
         System.setIn(inLast);
-        String resultLast = ConsoleUI.promptForPlayerAvatar(avatarList, 0);
+        String[] resultLast = ConsoleUI.promptForPlayerAvatar(avatarList, 0);
 
         // Verify output for the last avatar
-        assertEquals("Avatar6", resultLast, "Expected last avatar");
+        assertEquals("Avatar6", resultLast[resultLast.length - 1], "Expected last avatar");
     }
 
     // Test selecting
@@ -333,9 +333,9 @@ public class TestConsoleUI {
     public void testPromptForPlayerAvatar_LargeAvatarList() {
 
         // Prepare list of avatars
-        List<String> avatarList = new ArrayList<>();
+        List<String[]> avatarList = new ArrayList<>();
         for (int i = 1; i <= 100; i++) {
-            avatarList.add("Avatar" + i);
+            avatarList.add(new String[] { "Avatar" + i });
         }
         // Prepare test input
         StringBuilder inputBuilder = new StringBuilder();
@@ -346,8 +346,8 @@ public class TestConsoleUI {
             String input = String.valueOf(i) + System.getProperty("line.separator");
             InputStream in = new ByteArrayInputStream(input.getBytes());
             System.setIn(in);
-            String result = ConsoleUI.promptForPlayerAvatar(avatarList, i);
-            assertEquals("Avatar" + i, result);
+            String[] result = ConsoleUI.promptForPlayerAvatar(avatarList, i);
+            assertEquals("Avatar" + i, result[0]);
 
         }
 
