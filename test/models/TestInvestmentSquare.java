@@ -19,195 +19,169 @@ import java.util.Scanner;
 import java.util.stream.Stream;
 
 public class TestInvestmentSquare {
-	
-	InvestmentSquare investSquare;
+
+    InvestmentSquare investSquare;
 
     InvestmentSquare testSquare;
     private static Random rand = new Random();
     private static List<Arguments> nameNumberList;
-    
+
     String investmentSquareName;
     int investmentCostValid;
-	int investmentCostValidHigh;
-	int investmentCostInvalid, investmentCostInvalidHigh;
-	
-	int SunnyAcresFeeValid, RadiantRidgeFeesValid, WindyMillsFeesValid, GustoGroveFeesValid, AiryHeightsFeesValid, SplashvilleFeesValid, 
-	TorrentialTerraceFeesValid, HydroHavenFeesValid, NucleoNestFeesValid, AtomicOasisFeesValid;
-	int SunnyAcresInvalidLow, SunnyAcresInvalidHigh;
-	
+    int investmentCostValidHigh;
+    int investmentCostInvalid, investmentCostInvalidHigh;
+
+    int SunnyAcresFeeValid, RadiantRidgeFeesValid, WindyMillsFeesValid, GustoGroveFeesValid, AiryHeightsFeesValid,
+            SplashvilleFeesValid,
+            TorrentialTerraceFeesValid, HydroHavenFeesValid, NucleoNestFeesValid, AtomicOasisFeesValid;
+    int SunnyAcresInvalidLow, SunnyAcresInvalidHigh;
 
     @BeforeEach
     void setup() {
-    	investmentSquareName = "Sunny Acres";
-    	investmentCostValid = 1;
-    	investmentCostValidHigh = 10;
-    	investmentCostInvalid = 0;
-    	investmentCostInvalidHigh = -1;
-    	
-    	SunnyAcresFeeValid = 10; 
-    	RadiantRidgeFeesValid = 15;
-    	WindyMillsFeesValid = 25;
-    	GustoGroveFeesValid = 30;
-    	AiryHeightsFeesValid = 35; 
-    	SplashvilleFeesValid =  45;
-    	TorrentialTerraceFeesValid =  50;
-    	HydroHavenFeesValid = 55;
-    	NucleoNestFeesValid = 65;
-    	AtomicOasisFeesValid = 70;
-    	
-    	SunnyAcresInvalidLow =9;
-    	SunnyAcresInvalidHigh = 11;
-    	
-    	
-    	
-    	
-    	investSquare = new InvestmentSquare(investmentSquareName , investmentCostValidHigh);
-    	
+        investmentSquareName = "Sunny Acres";
+        investmentCostValid = 1;
+        investmentCostValidHigh = 10;
+        investmentCostInvalid = 0;
+        investmentCostInvalidHigh = -1;
+
+        SunnyAcresFeeValid = 10;
+        RadiantRidgeFeesValid = 15;
+        WindyMillsFeesValid = 25;
+        GustoGroveFeesValid = 30;
+        AiryHeightsFeesValid = 35;
+        SplashvilleFeesValid = 45;
+        TorrentialTerraceFeesValid = 50;
+        HydroHavenFeesValid = 55;
+        NucleoNestFeesValid = 65;
+        AtomicOasisFeesValid = 70;
+
+        SunnyAcresInvalidLow = 9;
+        SunnyAcresInvalidHigh = 11;
+
+        investSquare = new InvestmentSquare(investmentSquareName, investmentCostValidHigh);
+
     }
-    
-    @Test 
-    public void testInitialsation(){
-    	// Arrange
-    	//InvestmentSquare investSquare = new InvestmentSquare(investmentSquareName , investmentCostValidHigh);
-    	
-    	//Assert
-    	assertEquals(investmentSquareName, investSquare.getName());
-    	assertEquals(investmentCostValidHigh, investSquare.getInvestmentCost());
-    	
+
+    @Test
+    public void testInitialsation() {
+        // Arrange
+        // InvestmentSquare investSquare = new InvestmentSquare(investmentSquareName ,
+        // investmentCostValidHigh);
+
+        // Assert
+        assertEquals(investmentSquareName, investSquare.getName());
+        assertEquals(investmentCostValidHigh, investSquare.getInvestmentCost());
+
     }
-    
+
     @Test
     public void testSetInvestmentCostValid() {
-    	// Arrange
-    	
-    	//InvestmentSquare investSquare = new InvestmentSquare(investmentSquareName , investmentCostValidHigh);
-    	
-    	//Act
-    	investSquare.setInvestmentCost(investmentCostValid);
-    	//Assert
-    	assertEquals(investmentCostValid, investSquare.getInvestmentCost());
-    	
+        // Arrange
 
-    	//Act
-    	investSquare.setInvestmentCost(investmentCostValidHigh);
-    	//Assert
-    	assertEquals(investmentCostValidHigh, investSquare.getInvestmentCost());
-    	
-    	
+        // InvestmentSquare investSquare = new InvestmentSquare(investmentSquareName ,
+        // investmentCostValidHigh);
+
+        // Act
+        investSquare.setInvestmentCost(investmentCostValid);
+        // Assert
+        assertEquals(investmentCostValid, investSquare.getInvestmentCost());
+
+        // Act
+        investSquare.setInvestmentCost(investmentCostValidHigh);
+        // Assert
+        assertEquals(investmentCostValidHigh, investSquare.getInvestmentCost());
+
     }
-    
+
     @Test
     public void testSetInvestmentCostInValid() {
-    	// Arrange
-    	//InvestmentSquare investSquare = new InvestmentSquare(investmentSquareName , investmentCostValidHigh);
-    	
-    	// Act & Assert
+        // Arrange
+        // InvestmentSquare investSquare = new InvestmentSquare(investmentSquareName ,
+        // investmentCostValidHigh);
 
-    			assertThrows(IllegalArgumentException.class, () -> {
-    				investSquare.setInvestmentCost(investmentCostInvalid);
+        // Act & Assert
 
-    			});
-    			assertThrows(IllegalArgumentException.class, () -> {
-    				investSquare.setInvestmentCost(investmentCostInvalidHigh);
-    			});
-    		
-    	
-    	
+        assertThrows(IllegalArgumentException.class, () -> {
+            investSquare.setInvestmentCost(investmentCostInvalid);
+
+        });
+        assertThrows(IllegalArgumentException.class, () -> {
+            investSquare.setInvestmentCost(investmentCostInvalidHigh);
+        });
+
     }
-    
+
     @Test
     public void testSetFeesValidEachSquare() {
-    	//InvestmentSquare investSquare = new InvestmentSquare(investmentSquareName , investmentCostValidHigh);
-    	
-    	//Assert
-    	investSquare.setInvestmentCost(20);
-    	investSquare.setFee();
-    	assertEquals(SunnyAcresFeeValid, investSquare.getFee());
-    	
-    	investSquare.setInvestmentCost(30);
-    	investSquare.setFee();
-    	assertEquals(RadiantRidgeFeesValid, investSquare.getFee());
-    	
-    	investSquare.setInvestmentCost(50);
-    	investSquare.setFee();
-    	assertEquals(WindyMillsFeesValid, investSquare.getFee());
-    	
-    	investSquare.setInvestmentCost(60);
-    	investSquare.setFee();
-    	assertEquals(GustoGroveFeesValid, investSquare.getFee());
-    	
-    	investSquare.setInvestmentCost(70);
-    	investSquare.setFee();
-    	assertEquals(AiryHeightsFeesValid, investSquare.getFee());
-    	
-    	investSquare.setInvestmentCost(90);
-    	investSquare.setFee();
-    	assertEquals(SplashvilleFeesValid, investSquare.getFee());
-    	
-    	investSquare.setInvestmentCost(100);
-    	investSquare.setFee();
-    	assertEquals(TorrentialTerraceFeesValid, investSquare.getFee());
-    	
-    	investSquare.setInvestmentCost(110);
-    	investSquare.setFee();
-    	assertEquals(HydroHavenFeesValid, investSquare.getFee());
-    	
-    	investSquare.setInvestmentCost(130);
-    	investSquare.setFee();
-    	assertEquals(NucleoNestFeesValid, investSquare.getFee());
-    	
-    	investSquare.setInvestmentCost(140);
-    	investSquare.setFee();
-    	assertEquals(AtomicOasisFeesValid, investSquare.getFee());
-    	
-    	
-    	 }
-    
-   
-    
-    
-    
-    
-    	
-    	@Test
-        public void testSetMinorUpgradeIncrement() {
-          
-            investSquare.setMinorUpgrade();
-            assertEquals(1, investSquare.getMinorUpgrade());
-        }
+        // InvestmentSquare investSquare = new InvestmentSquare(investmentSquareName ,
+        // investmentCostValidHigh);
 
-        @Test
-        public void testSetMinorUpgradeMaxValue() {
-            
-            investSquare.setMinorUpgrade(); // Increment once
-            investSquare.setMinorUpgrade(); // Increment twice
-            investSquare.setMinorUpgrade(); // Increment thrice, should throw exception
-            assertThrows(IllegalCallerException.class, investSquare::setMinorUpgrade);
-        }
-        
-        @Test
-        void testSetMinorUpgrade_whenAtMax() {
-            // Set minor upgrade 3 times
-            investSquare.setMinorUpgrade();
-            investSquare.setMinorUpgrade();
-            investSquare.setMinorUpgrade();
+        // Assert
+        investSquare.setInvestmentCost(20);
+        investSquare.setFee();
+        assertEquals(SunnyAcresFeeValid, investSquare.getFee());
 
-            // Attempt to set minor upgrade again
-            investSquare.setMinorUpgrade();
+        investSquare.setInvestmentCost(30);
+        investSquare.setFee();
+        assertEquals(RadiantRidgeFeesValid, investSquare.getFee());
 
-            // Minor upgrade count should remain 3
-            assertEquals(3, investSquare.getMinorUpgrade());
-        }
-    
-        @Test
-        public void testSetMajorUpgrade() {
-            investSquare.setMajorUpgrade();
-            assertTrue(investSquare.isMajorUpgrade());
-        }
-    
-    
+        investSquare.setInvestmentCost(50);
+        investSquare.setFee();
+        assertEquals(WindyMillsFeesValid, investSquare.getFee());
 
-    
+        investSquare.setInvestmentCost(60);
+        investSquare.setFee();
+        assertEquals(GustoGroveFeesValid, investSquare.getFee());
+
+        investSquare.setInvestmentCost(70);
+        investSquare.setFee();
+        assertEquals(AiryHeightsFeesValid, investSquare.getFee());
+
+        investSquare.setInvestmentCost(90);
+        investSquare.setFee();
+        assertEquals(SplashvilleFeesValid, investSquare.getFee());
+
+        investSquare.setInvestmentCost(100);
+        investSquare.setFee();
+        assertEquals(TorrentialTerraceFeesValid, investSquare.getFee());
+
+        investSquare.setInvestmentCost(110);
+        investSquare.setFee();
+        assertEquals(HydroHavenFeesValid, investSquare.getFee());
+
+        investSquare.setInvestmentCost(130);
+        investSquare.setFee();
+        assertEquals(NucleoNestFeesValid, investSquare.getFee());
+
+        investSquare.setInvestmentCost(140);
+        investSquare.setFee();
+        assertEquals(AtomicOasisFeesValid, investSquare.getFee());
+
+    }
+
+    @Test
+    public void testSetMinorUpgradeIncrement() {
+
+        investSquare.setMinorUpgrade();
+        assertEquals(1, investSquare.getMinorUpgrade());
+    }
+
+    @Test
+    public void testSetMinorUpgradeMaxValue() {
+
+        investSquare.setMinorUpgrade(); // Increment once
+        investSquare.setMinorUpgrade(); // Increment twice
+        investSquare.setMinorUpgrade(); // Increment thrice, should throw exception
+        assertThrows(IllegalCallerException.class, investSquare::setMinorUpgrade);
+        assertEquals(3, investSquare.getMinorUpgrade());
+    }
+
+    @Test
+    public void testSetMajorUpgrade() {
+        investSquare.setMajorUpgrade();
+        assertTrue(investSquare.isMajorUpgrade());
+    }
+
     @Test
     public void testPlayerPaysFeeWhenLandingOnOwnedSquare() {
         Board board = new Board();
@@ -222,22 +196,18 @@ public class TestInvestmentSquare {
         player1.addResources("money", 100);
 
         // Mock user input to simulate player1 choosing to pay by money
-        String input = "yes\n"; // Assuming player1 chooses to pay by money
+        String input = "1" + System.getProperty("line.separator"); // Assuming player1 chooses to pay by money
         InputStream in = new ByteArrayInputStream(input.getBytes());
         System.setIn(in);
         Scanner scanner = new Scanner(System.in);
 
         // Simulate player1 landing on the square
-        square.landOn(player1, scanner );
+        square.landOn(player1, scanner);
 
         // Assert that player1 pays the fee to player2
-        assertEquals(80, player1.getMoney()); // Assuming fee is 20
-        assertEquals(20, player2.getMoney()); // Player2 receives the fee
+        assertEquals(590, player1.getMoney()); // Assuming fee is 20
+        assertEquals(510, player2.getMoney()); // Player2 receives the fee
     }
-
-    
-    
-    
 
     private static Stream<Arguments> randomTestNamesPlayersNumbers() {
         nameNumberList = new LinkedList<>();
