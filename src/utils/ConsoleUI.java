@@ -6,10 +6,11 @@ import java.util.List;
 import java.util.Scanner;
 
 public class ConsoleUI {
-    private static final Scanner scanner = new Scanner(System.in);
+    private static Scanner scanner;
 
     public static int promptForPlayerCount() {
         int count;
+        scanner = new Scanner(System.in);
         do {
             System.out.println("Enter the number of players (1-4):");
             while (!scanner.hasNextInt()) {
@@ -25,6 +26,7 @@ public class ConsoleUI {
     }
 
     public static String promptForPlayerName(ArrayList<String> nameList, int playerIndex) {
+        scanner = new Scanner(System.in);
         boolean check = false;
         String name = "";
         while (!check) {
@@ -34,14 +36,15 @@ public class ConsoleUI {
                 check = true;
             } else {
                 System.out.println("The name you have input has already been used, please input another name");
-            
+
             }
         }
         return name;
     }
 
     public static String promptForPlayerAvatar(List<String> avatarList, int playerIndex) {
-    	if (avatarList.isEmpty()) {
+        scanner = new Scanner(System.in);
+        if (avatarList.isEmpty()) {
             System.out.println("No avatars available.");
             return null;
         }

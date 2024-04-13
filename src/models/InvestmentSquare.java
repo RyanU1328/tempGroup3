@@ -134,9 +134,6 @@ public class InvestmentSquare extends Square {
             throw new IllegalCallerException("Minor upgrade count is already at its maximum.");
         }
     }
-    
-    
-   
 
     /**
      * @return the majorUpgrade
@@ -174,16 +171,16 @@ public class InvestmentSquare extends Square {
      * @param scanner Handles user input for choices related to square actions
      */
     @Override
-    
+
     public void landOn(Player player, Scanner scanner) {
         if (isOwned() && !owner.equals(player)) {
             System.out.println("This area is owned by " + this.getOwner().getName() + ". Paying fees.");
-            
+
             // Loop until the player pays the fee or chooses a different payment method
             while (true) {
                 // Prompt the player for their choice
                 boolean payByMoney = player.choosePaymentMethod(scanner);
-                
+
                 // Check if the player has enough resources based on their choice
                 if (payByMoney) {
                     if (player.getMoney() >= this.getFee()) {
@@ -203,7 +200,8 @@ public class InvestmentSquare extends Square {
                                 + this.getOwner().getName());
                         break; // Exit the loop if the fee is paid successfully
                     } else {
-                        System.out.println("Not enough carbon debt to pay the fee. Please choose another payment method.");
+                        System.out.println(
+                                "Not enough carbon debt to pay the fee. Please choose another payment method.");
                     }
                 }
             }
@@ -222,4 +220,4 @@ public class InvestmentSquare extends Square {
             }
         }
     }
-    }
+}
