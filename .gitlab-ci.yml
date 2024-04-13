@@ -30,7 +30,8 @@ JUnit-tests:
   # Test report, allows gitlab to know what parts of the code passed or failed
   artifacts:
     reports:
-      junit: ./reports/*
+      junit: ./reports/*jupiter.xml
+      code_coverage: ./reports*.csv
 
   # This rule means the code runs on any change to the codebase
   rules:
