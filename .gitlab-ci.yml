@@ -31,7 +31,7 @@ JUnit-tests:
   artifacts:
     reports:
       junit: ./reports/*jupiter.xml
-      code_coverage: ./reports*.csv
+      coverage_report: ./reports*.csv
 
   # This rule means the code runs on any change to the codebase
   rules:
