@@ -11,13 +11,6 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
-import models.Board;
-import models.EcoZoneSquare;
-import models.GoSquare;
-import models.InvestmentSquare;
-import models.Player;
-import models.Square;
-
 import static org.junit.jupiter.api.Assertions.*;
 
 public class TestGameController {
@@ -28,7 +21,7 @@ public class TestGameController {
     @BeforeEach
     void setUp() throws Exception {
 
-    }
+  }
 
     /**
      * Tests 'listFilesInDir' from 'GameController', if more files are added in the

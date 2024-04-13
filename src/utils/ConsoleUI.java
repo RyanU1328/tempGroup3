@@ -24,6 +24,8 @@ public class ConsoleUI {
         } while (count < 1 || count > 4);
         return count;
     }
+    return name;
+  }
 
     public static String promptForPlayerName(ArrayList<String> nameList, int playerIndex) {
         scanner = new Scanner(System.in);
@@ -41,6 +43,8 @@ public class ConsoleUI {
         }
         return name;
     }
+    System.out.println("\nPlease enter the number of the avatar you wish to select:\n");
+    int selection = scanner.nextInt();
 
     public static String promptForPlayerAvatar(List<String> avatarList, int playerIndex) {
         scanner = new Scanner(System.in);
