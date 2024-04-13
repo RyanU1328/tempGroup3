@@ -88,14 +88,15 @@ public class Player {
     this.position = newPosition;
   }
 
-  public void addResources(String kind, int collectResources) {
-    if (kind.equals("money")) {
-      this.money += collectResources;
-    } else if (kind.equals("carbonDebt")) {
-      // Ensure carbon debt does not go negative
-      this.carbonDebt = Math.max(0, this.carbonDebt + collectResources);
-    }
-  }
+	public void addResources(String kind, int collectResources) {
+		if (kind.equals("money") && collectResources > 0) {
+			this.money += collectResources;
+		} else if (kind.equals("carbonDebt") && collectResources > 0 ) {
+			// Ensure carbon debt does not go negative
+			this.carbonDebt = Math.max(0, this.carbonDebt + collectResources);
+		}else 
+			throw new IllegalArgumentException("resources cannot be zero");
+	}
 
   public void deductResources(String kind, int fee) {
     if (kind.equals("money")) {
