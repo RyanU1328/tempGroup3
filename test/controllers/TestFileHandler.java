@@ -13,7 +13,7 @@ import org.junit.jupiter.params.provider.CsvSource;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class TestGameController {
+public class TestFileHandler {
 
   /**
    * @throws java.lang.Exception
