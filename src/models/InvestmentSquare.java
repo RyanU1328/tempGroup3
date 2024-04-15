@@ -237,6 +237,7 @@ public class InvestmentSquare extends Square {
                                 this.setOwner(nextPlayer);
                                 System.out.println("Investment successful. " + nextPlayer.getName() + " now owns "
                                         + this.getName());
+                                nextPlayer.addProperty(this.getName());
                                 return; // Exit the loop once a player buys the square
                             } else {
                                 System.out.println(nextPlayer.getName() + " does not have enough resources to buy "
