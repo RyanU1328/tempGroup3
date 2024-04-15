@@ -8,34 +8,24 @@ stages: # List of stages for jobs, and their order of execution, just one for a 
 
 # Default pipeline, runs on any change to repo.
 JUnit-tests:
-  variables:
-    SLEEPTIME: 1
   stage: tests
   script:
     - echo "Running Tests..."
-    - sleep $SLEEPTIME
     - echo "Compiling test code..."
-    - sleep $SLEEPTIME
     - wget https://repo1.maven.org/maven2/org/jacoco/org.jacoco.agent/0.8.12/org.jacoco.agent-0.8.12-runtime.jar https://repo1.maven.org/maven2/org/jacoco/org.jacoco.cli/0.8.12/org.jacoco.cli-0.8.12-nodeps.jar https://repo1.maven.org/maven2/org/junit/jupiter/junit-jupiter/5.10.2/junit-jupiter-5.10.2.jar https://repo1.maven.org/maven2/org/junit/platform/junit-platform-console-standalone/1.10.2/junit-platform-console-standalone-1.10.2.jar -P ./JARs/ --random-wait
     - echo "Finished downloading needed JARS..."
-    - sleep $SLEEPTIME
     - find . -type f -name "*.java" | xargs -I % javac -cp ./JARs/junit-jupiter-5.10.2.jar -cp ./JARs/junit-platform-console-standalone-1.10.2.jar -sourcepath ./src:./test -d ./bin %
     - echo "Finished compiling code..."
-    - sleep $SLEEPTIME
     - java -javaagent:./JARs/org.jacoco.agent-0.8.12-runtime.jar=excludes=Test* -jar ./JARs/junit-platform-console-standalone-1.10.2.jar execute --class-path ./bin/ --scan-class-path --reports-dir ./reports
     - echo "Finished running JUnit Tests with Jacoco to provide coverage report..."
-    - sleep $SLEEPTIME
     - rm -r ./bin
     - echo "Deleted bin file..."
-    - sleep $SLEEPTIME
     - find ./src -type f -name "*.java" | xargs -I % javac -cp ./JARs/junit-jupiter-5.10.2.jar -cp ./JARs/junit-platform-console-standalone-1.10.2.jar -sourcepath ./src -d ./bin %
     - echo "Finished recompiling code, but excluding JUnit tests, this is a necessary step for calculating code coverage..."
     - java -jar ./JARs/org.jacoco.cli-0.8.12-nodeps.jar report ./jacoco.exec --classfiles ./bin/ --sourcefiles ./src  --csv ./reports/report.csv
     - echo "Finished generating Jacoco coverage report..."
-    - sleep $SLEEPTIME
     - ./whileScript.sh
     - echo "Finished parsing coverage report..."
-    - sleep $SLEEPTIME
     - echo "Tests complete."
 
   # No coverage report, just a percentage of the code that is tested by the JUnit tests
