@@ -241,7 +241,7 @@ public class TestInvestmentSquare {
         Scanner scanner = new Scanner(System.in);
 
         // Act: Simulate player1 landing on the square
-        square.landOn(player1, null, scanner);
+        square.landOn(player1, null, scanner, null);
 
         // Assert: Player1 becomes the owner of the square
         assertEquals(player1, square.getOwner());
@@ -264,7 +264,7 @@ public class TestInvestmentSquare {
         int initialMoneyPlayer1 = player1.getMoney();
 
         // Act: Simulate player1 landing on the square they already own
-        square.landOn(player1, null, new Scanner(System.in));
+        square.landOn(player1, null, new Scanner(System.in), null);
 
         // Assert: Player1's resources should remain unchanged
         assertEquals(initialMoneyPlayer1, player1.getMoney());
@@ -348,7 +348,7 @@ public class TestInvestmentSquare {
         System.setIn(in);
 
         // Act: Simulate player1 landing on the square they already own
-        square.landOn(player, null, new Scanner(System.in));
+        square.landOn(player, null, new Scanner(System.in), null);
 
         // Assert that player's resources remain unchanged
         assertEquals(500, player.getMoney()); // Player's money remains unchanged
@@ -382,7 +382,7 @@ public class TestInvestmentSquare {
         // Scanner scanner = new Scanner(System.in);
 
         // Simulate player1 landing on the square
-        square.landOn(player1, players, scanner);
+        square.landOn(player1, players, scanner, null);
 
         // Assert that ownership remains unchanged
         assertNull(square.getOwner()); // Square remains unowned
@@ -402,7 +402,7 @@ public class TestInvestmentSquare {
         player.getMoney(); // Player has enough money
 
         // Simulate player landing on the square
-        square.landOn(player, null, null); // No scanner needed for neutral squares
+        square.landOn(player, null, null, null); // No scanner needed for neutral squares
 
         // Assert that player's resources remain unchanged
         assertEquals(500, player.getMoney()); // Player's money remains unchanged
@@ -445,7 +445,7 @@ public class TestInvestmentSquare {
         Scanner scanner = new Scanner(System.in);
 
         // Simulate player landing on the square
-        square.landOn(player, null, scanner);
+        square.landOn(player, null, scanner, null);
 
         // Assert that player's money is deducted by the fee
         assertEquals(0, player.getMoney()); // Player's money becomes 0
