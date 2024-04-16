@@ -222,16 +222,19 @@ public class PlayerTest {
 	public void testAddNegativeResources() {
 		Player player = new Player("TestPlayer");
 		player.setMoney(500); 
-		player.setCarbonDebt(500); 
+		player.setCarbonDebt(500);
+	
 		Exception moneyException = assertThrows(IllegalArgumentException.class, () -> {
 			player.addResources("money", -100);
 		});
 		assertEquals("Money resources cannot be zero", moneyException.getMessage());
+	
 		assertDoesNotThrow(() -> {
 			player.addResources("carbonDebt", -100);
 		});
 		assertEquals(400, player.getCarbonDebt(), "Carbon debt should be reduced to 400 but not go negative.");
 	}
+	
 	
 	
 
