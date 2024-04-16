@@ -16,12 +16,9 @@ import static org.junit.jupiter.api.Assertions.*;
 
 
 
-class TestGameController {
+public class TestGameController {
 	
-	
-
-	public class GameControllerTest {
-	    private GameController gameController;
+        private GameController gameController;
 	    private InputStream originalSystemIn;
 	    
 	    //do we need to add in validation in the start game method if the number players etc is wrong?
@@ -212,7 +209,7 @@ class TestGameController {
 
 	       }
 	}
-	}
+	
 	
 	  
 	   
