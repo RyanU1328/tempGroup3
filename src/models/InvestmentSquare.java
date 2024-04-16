@@ -1,5 +1,6 @@
 package models;
 
+import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
 
@@ -331,6 +332,7 @@ public class InvestmentSquare extends Square {
         } else if (!this.isOwned()) {
             System.out.println("Do you want to invest in " + this.getName() + "? It costs " + this.getInvestmentCost() +
                     " resources. (yes/no)");
+<<<<<<< HEAD
             String input = scanner.nextLine().trim().toLowerCase();
             if ("yes".equals(input)) {
                 if (player.getMoney() >= this.getInvestmentCost()) {
@@ -451,10 +453,56 @@ public class InvestmentSquare extends Square {
                         } else {
                             System.out.println(nextPlayer.getName() + " declined to buy " + this.getName());
                         }
+=======
+            while (true) {
+                String input = scanner.nextLine().trim().toLowerCase();
+                try {
+                    if (!input.equals("yes") && !input.equals("no")) {
+                        throw new InputMismatchException("Please enter 'yes' or 'no'.");
+>>>>>>> branch 'main' of https://gitlab.eeecs.qub.ac.uk/CSC7083-2324/CSC7083-2324-G3.git
                     }
+                    if ("yes".equals(input)) {
+                        if (player.getMoney() >= this.getInvestmentCost()) {
+                            player.deductResources("money", this.getInvestmentCost());
+                            this.setOwner(player);
+                            System.out.println("Investment successful. You now own " + this.getName() +
+                                    ". Remaining balance: " + player.getMoney());
+                        } else {
+                            System.out.println("Not enough resources to invest.");
+                        }
+                    } else {
+                        System.out.println("Offering to next player...");
+                        int currentPlayerIndex = players.indexOf(player);
+                        int nextPlayerIndex = (currentPlayerIndex + 1) % players.size();
+                        for (int i = 0; i < players.size(); i++) {
+                            int index = (nextPlayerIndex + i) % players.size();
+                            Player nextPlayer = players.get(index);
+                            if (!nextPlayer.equals(player)) {
+                                System.out.println(
+                                        nextPlayer.getName() + ", would you like to buy " + this.getName() + "? (yes/no)");
+                                String response = scanner.nextLine().trim().toLowerCase();
+                                if ("yes".equals(response)) {
+                                    if (nextPlayer.getMoney() >= this.getInvestmentCost()) {
+                                        nextPlayer.deductResources("money", this.getInvestmentCost());
+                                        this.setOwner(nextPlayer);
+                                        System.out.println("Investment successful. " + nextPlayer.getName() + " now owns " +
+                                                this.getName() + ". Remaining balance: " + nextPlayer.getMoney());
+                                        return; 
+                                    } else {
+                                        System.out.println(nextPlayer.getName() + " does not have enough resources to buy " +
+                                                this.getName());
+                                    }
+                                } else {
+                                    System.out.println(nextPlayer.getName() + " declined to buy " + this.getName());
+                                }
+                            }
+                        }
+                        System.out.println("No player chose to buy " + this.getName() + ". Moving to the next player's turn.");
+                    }
+                    break; 
+                } catch (InputMismatchException e) {
+                    System.out.println("Invalid input: " + e.getMessage());
                 }
-                // No player chose to buy the square
-                System.out.println("No player chose to buy " + this.getName() + ". Moving to the next player's turn.");
             }
         }
     }
