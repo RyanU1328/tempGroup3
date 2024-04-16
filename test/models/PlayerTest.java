@@ -219,16 +219,23 @@ public class PlayerTest {
 	}
 
 	@Test
-	public void testAddNegativeResources() {
-		Player player = new Player("TestPlayer");
-		assertThrows(IllegalArgumentException.class, () -> {
-			player.addResources("money", -100); // Adding a negative amount to money should throw an exception.
-		});
-		assertDoesNotThrow(() -> {
-			player.addResources("carbonDebt", -100); // Adding a negative amount to carbon debt should not throw an exception.
-			assertTrue(player.getCarbonDebt() >= 0); // Ensures carbon debt never drops below zero.
-		});
-	}
+    public void testAddNegativeResources() {
+        Player player = new Player("TestPlayer");
+        player.setMoney(500);  // Assume starting with 500 for a clear test
+        player.setCarbonDebt(500);  // Assume starting with 500 carbon debt
+
+        // Test negative money should throw IllegalArgumentException
+        Exception exception = assertThrows(IllegalArgumentException.class, () -> {
+            player.addResources("money", -100);
+        });
+        assertEquals("Money resources cannot be zero", exception.getMessage());
+
+        // Test negative carbon debt does not throw an exception and adjusts correctly
+        assertDoesNotThrow(() -> {
+            player.addResources("carbonDebt", -100);
+        });
+        assertEquals(400, player.getCarbonDebt(), "Carbon debt should be reduced to 400.");
+    }
 	
 	
 
