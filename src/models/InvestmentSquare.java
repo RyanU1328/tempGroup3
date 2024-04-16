@@ -177,7 +177,8 @@ public class InvestmentSquare extends Square {
             System.out.println("This area is owned by " + this.getOwner().getName() + ". Paying fees.");
             
             // Loop until the player pays the fee or chooses a different payment method
-            while (true) {
+            boolean feePaid = false;
+            while (!feePaid){
                 // Prompt the player for their choice
                 boolean payByMoney = player.choosePaymentMethod(scanner);
                 
@@ -187,7 +188,7 @@ public class InvestmentSquare extends Square {
                         player.deductResources("money", this.getFee());
                         this.getOwner().addResources("money", this.getFee());
                         System.out.println("Paid " + this.getFee() + " resources to " + this.getOwner().getName());
-                        break; // Exit the loop if the fee is paid successfully
+                        feePaid = true;
                     } else {
                         System.out.println("Not enough money to pay the fee. Trying carbon debt.");
                     }
@@ -198,7 +199,7 @@ public class InvestmentSquare extends Square {
                         player.addResources("carbonDebt", this.getFee());
                         System.out.println(player.getName() + " paid a fee of " + this.getFee() + " carbon debt to "
                                 + this.getOwner().getName());
-                        break; // Exit the loop if the fee is paid successfully
+                        feePaid = true;
                     } else {
                         System.out.println("Not enough carbon debt to pay the fee. Please choose another payment method.");
                     }
