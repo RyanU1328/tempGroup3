@@ -135,6 +135,7 @@ class TestGameController {
 
 	        
 	    }
+	 
 	   
 	    //This test verifies the behavior of the startGame() method when the user provides no input followed 
 	    //by a valid input ('p' option) to start the game.
