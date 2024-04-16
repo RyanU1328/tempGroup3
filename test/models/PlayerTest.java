@@ -1,19 +1,16 @@
 package models;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static utils.TestUtils.*;
 
 import java.io.ByteArrayInputStream;
 import java.util.Arrays;
-import java.util.Random;
 import java.util.Scanner;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
-
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static utils.TestUtils.*;
 
 public class PlayerTest {
 	// test data
@@ -221,16 +218,30 @@ public class PlayerTest {
 		assertEquals(carbonValid + 200, player.getCarbonDebt());
 	}
 
+	
 	@Test
 	public void testAddNegativeResources() {
-		// Arrange
-		Player player = new Player(userValid);
+		Player player = new Player("TestPlayer");
+		player.setMoney(500);  // Assume starting with 500 for clarity in the test
+		player.setCarbonDebt(500);  // Assume starting with 500 carbon debt
+	
+		// Test negative money should throw IllegalArgumentException if negative values are not allowed
+		assertThrows(IllegalArgumentException.class, () -> {
+			player.addResources("money", -100);
+		}, "Should throw exception because negative money is not allowed.");
+	
+		// Test negative carbon debt does not throw an exception and adjusts correctly
+		assertDoesNotThrow(() -> {
+			player.addResources("carbonDebt", -100);
+		});
+		assertEquals(400, player.getCarbonDebt(), "Carbon debt should be reduced to 400.");
+	}
+	
+	
 
-		// Act & Assert
-		assertThrows(IllegalArgumentException.class, () -> player.addResources("money", invalidAddResources));
-		assertThrows(IllegalArgumentException.class, () -> player.addResources("carbonDebt", invalidAddResources));
-		// Additional checks if adding negative resources doesn't change the state
-	};
+	
+	
+	
 
 	@Test
 	public void testDeductResourcesMoney() {

@@ -1,5 +1,6 @@
 package models;
 
+import java.util.List;
 import java.util.Scanner;
 
 public class InvestmentSquare extends Square {
@@ -106,6 +107,10 @@ public class InvestmentSquare extends Square {
      */
     public void setOwner(Player owner) {
         this.owner = owner;
+        if (owner != null) {
+            owner.addProperty(this.getName());
+        }
+
     }
 
     /**
@@ -189,12 +194,13 @@ public class InvestmentSquare extends Square {
     @Override
 
     public void landOn(Player player, Scanner scanner) {
+    public void landOn(Player player, List<Player> players, Scanner scanner) {
         if (isOwned() && !owner.equals(player)) {
             System.out.println("This area is owned by " + this.getOwner().getName() + ". Paying fees.");
 
             // Loop until the player pays the fee or chooses a different payment method
+
             while (true) {
-                // Prompt the player for their choice
                 boolean payByMoney = player.choosePaymentMethod(scanner);
 
                 // Check if the player has enough resources based on their choice
@@ -202,19 +208,19 @@ public class InvestmentSquare extends Square {
                     if (player.getMoney() >= this.getFee()) {
                         player.deductResources("money", this.getFee());
                         this.getOwner().addResources("money", this.getFee());
-                        System.out.println("Paid " + this.getFee() + " resources to " + this.getOwner().getName());
-                        break; // Exit the loop if the fee is paid successfully
+                        System.out.println("Paid " + this.getFee() + " money to " + this.getOwner().getName()
+                                + ". Remaining balance: " + player.getMoney());
+                        break;
                     } else {
                         System.out.println("Not enough money to pay the fee. Trying carbon debt.");
                     }
                 } else {
-                    // Pay by carbon debt
                     if (owner.getCarbonDebt() >= this.getFee()) {
                         owner.deductResources("carbonDebt", this.getFee());
                         player.addResources("carbonDebt", this.getFee());
-                        System.out.println(player.getName() + " paid a fee of " + this.getFee() + " carbon debt to "
-                                + this.getOwner().getName());
-                        break; // Exit the loop if the fee is paid successfully
+                        System.out.println(player.getName() + " paid a fee of " + this.getFee() + " carbon debt to " +
+                                this.getOwner().getName() + ". Remaining carbon debt: " + player.getCarbonDebt());
+                        break;
                     } else {
                         System.out.println(
                                 "Not enough carbon debt to pay the fee. Please choose another payment method.");
@@ -222,17 +228,48 @@ public class InvestmentSquare extends Square {
                 }
             }
         } else if (!this.isOwned()) {
-            System.out.println("Do you want to invest in " + this.getName() + "? It costs " + this.getInvestmentCost()
-                    + " resources. (yes/no)");
+            System.out.println("Do you want to invest in " + this.getName() + "? It costs " + this.getInvestmentCost() +
+                    " resources. (yes/no)");
             String input = scanner.nextLine().trim().toLowerCase();
             if ("yes".equals(input)) {
                 if (player.getMoney() >= this.getInvestmentCost()) {
                     player.deductResources("money", this.getInvestmentCost());
                     this.setOwner(player);
-                    System.out.println("Investment successful. You now own " + this.getName());
+                    System.out.println("Investment successful. You now own " + this.getName() +
+                            ". Remaining balance: " + player.getMoney());
                 } else {
                     System.out.println("Not enough resources to invest.");
                 }
+            }
+            } else {
+                System.out.println("Offering to next player...");
+                int currentPlayerIndex = players.indexOf(player); // Get the index of the current player
+                int nextPlayerIndex = (currentPlayerIndex + 1) % players.size(); // Get the index of the next player
+                for (int i = 0; i < players.size(); i++) {
+                    int index = (nextPlayerIndex + i) % players.size(); // Calculate the index of the player to offer
+                    Player nextPlayer = players.get(index);
+                    if (!nextPlayer.equals(player)) {
+                        System.out.println(
+                                nextPlayer.getName() + ", would you like to buy " + this.getName() + "? (yes/no)");
+                        String response = scanner.nextLine().trim().toLowerCase();
+                        if ("yes".equals(response)) {
+                            if (nextPlayer.getMoney() >= this.getInvestmentCost()) {
+                                nextPlayer.deductResources("money", this.getInvestmentCost());
+                                this.setOwner(nextPlayer);
+                                System.out.println("Investment successful. " + nextPlayer.getName() + " now owns " +
+                                        this.getName() + ". Remaining balance: " + nextPlayer.getMoney());
+                                return; // Exit once a player buys the square
+                            } else {
+                                System.out.println(nextPlayer.getName() + " does not have enough resources to buy " +
+                                        this.getName());
+                            }
+                        } else {
+                            System.out.println(nextPlayer.getName() + " declined to buy " + this.getName());
+                        }
+                    }
+                }
+                // No player chose to buy the square
+                System.out.println("No player chose to buy " + this.getName() + ". Moving to the next player's turn.");
             }
         }
     }

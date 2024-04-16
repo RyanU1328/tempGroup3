@@ -200,7 +200,7 @@ public class GameController {
         + (diceRoll[0] + diceRoll[1]) + " spaces.");
     Square currentSquare = movePlayerAndGetSquare(player, diceRoll[0] + diceRoll[1]);
     System.out.println(player.getName() + " has landed on " + currentSquare.getName());
-    handleSquareActions(player, currentSquare, scanner); // Add 'scanner' as the third argument
+    handleSquareActions(player, currentSquare, Arrays.asList(players), scanner); // Add 'scanner' as the third argument
 
     if (diceRoll[0] == diceRoll[1]) {
       System.out.println("Doubles! " + player.getName() + " gets another turn.");
@@ -215,7 +215,7 @@ public class GameController {
         + (diceRoll[0] + diceRoll[1]) + " spaces.");
     Square currentSquare = movePlayerAndGetSquare(player, diceRoll[0] + diceRoll[1]);
     System.out.println(player.getName() + " has landed on " + currentSquare.getName());
-    handleSquareActions(player, currentSquare, scanner); // Add 'scanner' as the third argument
+    handleSquareActions(player, currentSquare, null, scanner); // Add 'scanner' as the third argument
 
     // If no doubles are rolled, return true to end the turn.
     return diceRoll[0] != diceRoll[1];
@@ -306,8 +306,8 @@ public class GameController {
     return board.getSquare(newPosition);
   }
 
-  private void handleSquareActions(Player player, Square square, Scanner scanner) {
-    square.landOn(player, scanner);
+  private void handleSquareActions(Player player, Square square, List<Player> players, Scanner scanner) {
+    square.landOn(player, players, scanner);
   }
 
   private void handleInvestmentSquare(Player player, InvestmentSquare square) {
