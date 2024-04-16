@@ -90,8 +90,11 @@ public class InvestmentSquare extends Square {
      * @param owner default state null, as set by constructor
      */
     public void setOwner(Player owner) {
-        owner.addProperty(this.getName());
         this.owner = owner;
+        if (owner != null) {
+            owner.addProperty(this.getName());
+        }
+
     }
 
     /**
