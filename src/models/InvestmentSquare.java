@@ -192,8 +192,6 @@ public class InvestmentSquare extends Square {
      * @param scanner Handles user input for choices related to square actions
      */
     @Override
-
-    public void landOn(Player player, Scanner scanner) {
     public void landOn(Player player, List<Player> players, Scanner scanner) {
         if (isOwned() && !owner.equals(player)) {
             System.out.println("This area is owned by " + this.getOwner().getName() + ". Paying fees.");
@@ -241,36 +239,35 @@ public class InvestmentSquare extends Square {
                     System.out.println("Not enough resources to invest.");
                 }
             }
-            } else {
-                System.out.println("Offering to next player...");
-                int currentPlayerIndex = players.indexOf(player); // Get the index of the current player
-                int nextPlayerIndex = (currentPlayerIndex + 1) % players.size(); // Get the index of the next player
-                for (int i = 0; i < players.size(); i++) {
-                    int index = (nextPlayerIndex + i) % players.size(); // Calculate the index of the player to offer
-                    Player nextPlayer = players.get(index);
-                    if (!nextPlayer.equals(player)) {
-                        System.out.println(
-                                nextPlayer.getName() + ", would you like to buy " + this.getName() + "? (yes/no)");
-                        String response = scanner.nextLine().trim().toLowerCase();
-                        if ("yes".equals(response)) {
-                            if (nextPlayer.getMoney() >= this.getInvestmentCost()) {
-                                nextPlayer.deductResources("money", this.getInvestmentCost());
-                                this.setOwner(nextPlayer);
-                                System.out.println("Investment successful. " + nextPlayer.getName() + " now owns " +
-                                        this.getName() + ". Remaining balance: " + nextPlayer.getMoney());
-                                return; // Exit once a player buys the square
-                            } else {
-                                System.out.println(nextPlayer.getName() + " does not have enough resources to buy " +
-                                        this.getName());
-                            }
+        } else {
+            System.out.println("Offering to next player...");
+            int currentPlayerIndex = players.indexOf(player); // Get the index of the current player
+            int nextPlayerIndex = (currentPlayerIndex + 1) % players.size(); // Get the index of the next player
+            for (int i = 0; i < players.size(); i++) {
+                int index = (nextPlayerIndex + i) % players.size(); // Calculate the index of the player to offer
+                Player nextPlayer = players.get(index);
+                if (!nextPlayer.equals(player)) {
+                    System.out.println(
+                            nextPlayer.getName() + ", would you like to buy " + this.getName() + "? (yes/no)");
+                    String response = scanner.nextLine().trim().toLowerCase();
+                    if ("yes".equals(response)) {
+                        if (nextPlayer.getMoney() >= this.getInvestmentCost()) {
+                            nextPlayer.deductResources("money", this.getInvestmentCost());
+                            this.setOwner(nextPlayer);
+                            System.out.println("Investment successful. " + nextPlayer.getName() + " now owns " +
+                                    this.getName() + ". Remaining balance: " + nextPlayer.getMoney());
+                            return; // Exit once a player buys the square
                         } else {
-                            System.out.println(nextPlayer.getName() + " declined to buy " + this.getName());
+                            System.out.println(nextPlayer.getName() + " does not have enough resources to buy " +
+                                    this.getName());
                         }
+                    } else {
+                        System.out.println(nextPlayer.getName() + " declined to buy " + this.getName());
                     }
                 }
-                // No player chose to buy the square
-                System.out.println("No player chose to buy " + this.getName() + ". Moving to the next player's turn.");
             }
+            // No player chose to buy the square
+            System.out.println("No player chose to buy " + this.getName() + ". Moving to the next player's turn.");
         }
     }
 }
