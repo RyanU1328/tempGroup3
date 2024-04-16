@@ -88,7 +88,7 @@ public class Player {
     this.position = newPosition;
   }
 
-  public void addResources(String kind, int collectResources) {
+public void addResources(String kind, int collectResources) {
     if (kind.equals("money")) {
         if (collectResources != 0) this.money += collectResources;
         else throw new IllegalArgumentException("Money resources cannot be zero");

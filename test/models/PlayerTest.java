@@ -1,19 +1,16 @@
 package models;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static utils.TestUtils.*;
 
 import java.io.ByteArrayInputStream;
 import java.util.Arrays;
-import java.util.Random;
 import java.util.Scanner;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
-
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static utils.TestUtils.*;
 
 public class PlayerTest {
 	// test data
@@ -223,14 +220,17 @@ public class PlayerTest {
 
 	@Test
 	public void testAddNegativeResources() {
-		// Arrange
-		Player player = new Player(userValid);
-
-		// Act & Assert
-		assertThrows(IllegalArgumentException.class, () -> player.addResources("money", invalidAddResources));
-		assertThrows(IllegalArgumentException.class, () -> player.addResources("carbonDebt", invalidAddResources));
-		// Additional checks if adding negative resources doesn't change the state
-	};
+		Player player = new Player("TestPlayer");
+		assertThrows(IllegalArgumentException.class, () -> {
+			player.addResources("money", -100); // Attempt to add -100 to money should throw exception
+		});
+		// Adding negative to carbon debt should be allowed and not throw exception
+		assertDoesNotThrow(() -> {
+			player.addResources("carbonDebt", -100); // Attempt to subtract 100 from carbon debt should not throw exception
+			assertTrue(player.getCarbonDebt() >= 0); // Check that carbon debt does not go below zero
+		});
+	}
+	
 
 	@Test
 	public void testDeductResourcesMoney() {

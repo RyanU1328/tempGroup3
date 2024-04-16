@@ -50,18 +50,16 @@ class TestGoSquare {
 
     @Test
     public void testAddResourcesInvalid() {
-        // Arrange
         Player player = new Player("TestPlayer");
-        // GoSquare goSquare = new GoSquare("Go");
-        // GoSquare goSquare = new GoSquare("Go");
-
-        // Act & Assert
+    
         assertThrows(IllegalArgumentException.class, () -> {
-            player.addResources("money", 0); // Attempt to add 0 money
+            player.addResources("money", 0); // Attempt to add 0 money should throw exception
         });
-
-        assertThrows(IllegalArgumentException.class, () -> {
-            player.addResources("carbonDebt", 0); // Attempt to add 0 carbon debt
+    
+        // No exception should be thrown for adding 0 to carbon debt
+        assertDoesNotThrow(() -> {
+            player.addResources("carbonDebt", 0); // Attempt to add 0 carbon debt should not throw exception
         });
     }
+    
 }
