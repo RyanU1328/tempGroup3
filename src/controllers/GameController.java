@@ -200,7 +200,8 @@ public class GameController {
         + (diceRoll[0] + diceRoll[1]) + " spaces.");
     Square currentSquare = movePlayerAndGetSquare(player, diceRoll[0] + diceRoll[1]);
     System.out.println(player.getName() + " has landed on " + currentSquare.getName());
-    handleSquareActions(player, currentSquare, Arrays.asList(players), scanner); // Add 'scanner' as the third argument
+    handleSquareActions(player, currentSquare, Arrays.asList(players), scanner, board); // Add 'scanner' as the third
+                                                                                        // argument
 
     if (diceRoll[0] == diceRoll[1]) {
       System.out.println("Doubles! " + player.getName() + " gets another turn.");
@@ -215,7 +216,7 @@ public class GameController {
         + (diceRoll[0] + diceRoll[1]) + " spaces.");
     Square currentSquare = movePlayerAndGetSquare(player, diceRoll[0] + diceRoll[1]);
     System.out.println(player.getName() + " has landed on " + currentSquare.getName());
-    handleSquareActions(player, currentSquare, null, scanner); // Add 'scanner' as the third argument
+    handleSquareActions(player, currentSquare, null, scanner, board); // Add 'scanner' as the third argument
 
     // If no doubles are rolled, return true to end the turn.
     return diceRoll[0] != diceRoll[1];
@@ -306,11 +307,11 @@ public class GameController {
     return board.getSquare(newPosition);
   }
 
-  private void handleSquareActions(Player player, Square square, List<Player> players, Scanner scanner) {
-    square.landOn(player, players, scanner);
+  private void handleSquareActions(Player player, Square square, List<Player> players, Scanner scanner, Board board) {
+    square.landOn(player, players, scanner, board);
   }
 
-  private void handleInvestmentSquare(Player player, InvestmentSquare square) {
+  private void handleInvestmentSquare(Player player, InvestmentSquare square, Board board) {
     if (!square.isOwned()) {
     } else if (square.getOwner() != player) {
       System.out.println("This area is owned by " + square.getOwner().getName() + ". Paying fees.");

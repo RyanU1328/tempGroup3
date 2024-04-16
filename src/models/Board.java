@@ -34,4 +34,8 @@ public class Board {
     public int getSize() {
         return squares.size();
     }
+
+    public List<Square> getSquares() {
+        return squares;
+    }
 }
