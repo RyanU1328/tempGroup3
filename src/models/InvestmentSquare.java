@@ -10,6 +10,7 @@ public class InvestmentSquare extends Square {
     private boolean majorUpgrade;
     private int minorUpgradeCost; // set in the constructor, based on the investment cost
     private int majorUpgradeCost; // set in the constructor, based on the investment cost
+    private int field;
 
     /**
      * The `InvestmentSquare` class in Java is a subclass of the `Square` class
@@ -25,13 +26,28 @@ public class InvestmentSquare extends Square {
      * @param name
      * @param investmentCost
      */
-    public InvestmentSquare(String name, int investmentCost) {
+    public InvestmentSquare(String name, int investmentCost, int fieldNumber) {
         super(name);
         setInvestmentCost(investmentCost);
         setFee();
         setMinorUpgradeCost();
         setMajorUpgradeCost();
         setOwner(null);
+        setField(fieldNumber);
+    }
+
+    /**
+     * @return the field
+     */
+    public int getField() {
+        return field;
+    }
+
+    /**
+     * @param field the field to set
+     */
+    public void setField(int field) {
+        this.field = field;
     }
 
     /**
@@ -171,16 +187,16 @@ public class InvestmentSquare extends Square {
      * @param scanner Handles user input for choices related to square actions
      */
     @Override
-    
+
     public void landOn(Player player, Scanner scanner) {
         if (isOwned() && !owner.equals(player)) {
             System.out.println("This area is owned by " + this.getOwner().getName() + ". Paying fees.");
-            
+
             // Loop until the player pays the fee or chooses a different payment method
             while (true) {
                 // Prompt the player for their choice
                 boolean payByMoney = player.choosePaymentMethod(scanner);
-                
+
                 // Check if the player has enough resources based on their choice
                 if (payByMoney) {
                     if (player.getMoney() >= this.getFee()) {
@@ -200,7 +216,8 @@ public class InvestmentSquare extends Square {
                                 + this.getOwner().getName());
                         break; // Exit the loop if the fee is paid successfully
                     } else {
-                        System.out.println("Not enough carbon debt to pay the fee. Please choose another payment method.");
+                        System.out.println(
+                                "Not enough carbon debt to pay the fee. Please choose another payment method.");
                     }
                 }
             }
@@ -216,7 +233,7 @@ public class InvestmentSquare extends Square {
                 } else {
                     System.out.println("Not enough resources to invest.");
                 }
-            } 
+            }
         }
     }
-    }
+}

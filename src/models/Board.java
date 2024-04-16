@@ -7,20 +7,24 @@ public class Board {
     private List<Square> squares = new ArrayList<>();
 
     public Board() {
+        // Go square
         squares.add(new GoSquare("Go"));
-        squares.add(new InvestmentSquare("Sunny Acres", 20));
-        squares.add(new InvestmentSquare("Radiant Ridge", 30));
-        squares.add(new InvestmentSquare("Windy Mills", 50));
-        squares.add(new InvestmentSquare("Gusto Grove", 60));
-        squares.add(new InvestmentSquare("Airy Heights", 70));
+        // Solar field
+        squares.add(new InvestmentSquare("Sunny Acres", 20, 1));
+        squares.add(new InvestmentSquare("Radiant Ridge", 30, 1));
+        // Wind field
+        squares.add(new InvestmentSquare("Windy Mills", 50, 2));
+        squares.add(new InvestmentSquare("Gusto Grove", 60, 2));
+        squares.add(new InvestmentSquare("Airy Heights", 70, 2));
+        // Nothing Square
         squares.add(new EcoZoneSquare("Eco Zone"));
-        squares.add(new InvestmentSquare("Splashville", 90));
-        squares.add(new InvestmentSquare("Torrential Terrace", 100));
-        squares.add(new InvestmentSquare("Hydro Haven", 110));
-        squares.add(new InvestmentSquare("Nucleo Nest", 130));
-        squares.add(new InvestmentSquare("Atomic Oasis", 140));
-        
-
+        // Hydro field
+        squares.add(new InvestmentSquare("Splashville", 90, 3));
+        squares.add(new InvestmentSquare("Torrential Terrace", 100, 3));
+        squares.add(new InvestmentSquare("Hydro Haven", 110, 3));
+        // Nuclear field
+        squares.add(new InvestmentSquare("Nucleo Nest", 130, 4));
+        squares.add(new InvestmentSquare("Atomic Oasis", 140, 4));
     }
 
     public Square getSquare(int position) {
