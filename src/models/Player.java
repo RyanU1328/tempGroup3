@@ -90,20 +90,18 @@ public class Player {
 
   public void addResources(String kind, int collectResources) {
     if (kind.equals("money")) {
-        if (collectResources <= 0)
-            throw new IllegalArgumentException("Money resources cannot be zero or negative");
-        this.money += collectResources;
+      if (collectResources <= 0)
+        throw new IllegalArgumentException("Money resources cannot be zero or negative");
+      this.money += collectResources;
     } else if (kind.equals("carbonDebt")) {
-        // Allow negative values to reduce carbon debt
-        this.carbonDebt += collectResources;
-        // Optionally ensure carbon debt does not go negative
-        this.carbonDebt = Math.max(0, this.carbonDebt);
+      // Allow negative values to reduce carbon debt
+      this.carbonDebt += collectResources;
+      // Optionally ensure carbon debt does not go negative
+      this.carbonDebt = Math.max(0, this.carbonDebt);
     } else {
-        throw new IllegalArgumentException("Invalid resource type");
+      throw new IllegalArgumentException("Invalid resource type");
     }
-}
-
-
+  }
 
   public void deductResources(String kind, int fee) {
     if (kind.equals("money")) {
