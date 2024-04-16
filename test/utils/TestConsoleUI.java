@@ -267,7 +267,7 @@ public class TestConsoleUI {
         avatarList.add(new String[] { "Avatar1" });
 
         // Invoke method
-        assertThrows(InputMismatchException.class, () -> {
+        assertThrows(NoSuchElementException.class, () -> {
             ConsoleUI.promptForPlayerAvatar(avatarList, 0);
         });
     }

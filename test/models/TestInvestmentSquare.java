@@ -192,6 +192,7 @@ public class TestInvestmentSquare {
         Player player1 = new Player("Player 1");
         Player player2 = new Player("Player 2");
         InvestmentSquare square = (InvestmentSquare) board.getSquare(1); // Assuming Sunny Acres is the second square
+        List<Player> players = new ArrayList<>();
 
         // Set square owner
         square.setOwner(player2);
@@ -206,7 +207,7 @@ public class TestInvestmentSquare {
         Scanner scanner = new Scanner(System.in);
 
         // Simulate player1 landing on the square
-        square.landOn(player1, scanner);
+        square.landOn(player1, players, scanner);
 
         // Assert that player1 pays the fee to player2
         assertEquals(590, player1.getMoney()); // Assuming fee is 20
