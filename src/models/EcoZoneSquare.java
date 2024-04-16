@@ -10,7 +10,7 @@ public class EcoZoneSquare extends Square {
     }
 
     @Override
-    public void landOn(Player player, List<Player> players, Scanner scanner) {
+    public void landOn(Player player, List<Player> players, Scanner scanner, Board board) {
         System.out.println(player.getName() + " landed on the ECO Zone. Chill there for a sec!");
     }
 }

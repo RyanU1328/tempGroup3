@@ -34,7 +34,7 @@ class TestEcoZoneSquare {
         List<Player> players = new ArrayList<>();
 
         // Act
-        ecoZoneSquare.landOn(player, players, new Scanner(System.in));
+        ecoZoneSquare.landOn(player, players, new Scanner(System.in), new Board());
         // Reset System.out
         System.setOut(originalOut);
 
