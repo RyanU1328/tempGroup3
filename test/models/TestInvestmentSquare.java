@@ -9,7 +9,9 @@ import org.junit.jupiter.params.provider.MethodSource;
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
+import java.io.PrintStream;
 import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.LinkedList;
@@ -242,7 +244,7 @@ public class TestInvestmentSquare {
         Scanner scanner = new Scanner(System.in);
 
         // Act: Simulate player1 landing on the square
-        square.landOn(player1, scanner);
+        square.landOn(player1, null, scanner);
 
         // Assert: Player1 becomes the owner of the square
         assertEquals(player1, square.getOwner());
@@ -263,7 +265,7 @@ public class TestInvestmentSquare {
         int initialMoneyPlayer1 = player1.getMoney();
 
         // Act: Simulate player1 landing on the square they already own
-        square.landOn(player1, new Scanner(System.in));
+        square.landOn(player1, null, new Scanner(System.in));
 
         // Assert: Player1's resources should remain unchanged
         assertEquals(initialMoneyPlayer1, player1.getMoney());
@@ -342,10 +344,11 @@ public class TestInvestmentSquare {
         String input = "no" + System.getProperty("line.separator"); // Player chooses not to invest
         InputStream in = new ByteArrayInputStream(input.getBytes());
         System.setIn(in);
-        Scanner scanner = new Scanner(System.in);
+        
 
-        // Simulate player landing on the square
-        square.landOn(player, scanner);
+       
+        // Act: Simulate player1 landing on the square they already own
+        square.landOn(player, null, new Scanner(System.in));
 
         // Assert that player's resources remain unchanged
         assertEquals(500, player.getMoney()); // Player's money remains unchanged
@@ -358,25 +361,32 @@ public class TestInvestmentSquare {
     @Test
     public void testPlayerChoosesNotToInvest() {
         Board board = new Board();
-        Player player = new Player("Player 1");
+        Player player1 = new Player("Player 1");
+        Player player2 = new Player("Player 2"); // Add another player for testing
+
         InvestmentSquare square = (InvestmentSquare) board.getSquare(1); // Assuming Sunny Acres is the second square
 
-        // Set up player's resources
-        player.addResources("money", 100); // Player has enough money
+        // Set up player1's resources
+        player1.addResources("money", 100); // Player1 has enough money
 
-        // Mock user input to simulate player choosing not to invest
-        String input = "no" + System.getProperty("line.separator"); // Player chooses not to invest
+        // Add players to the board
+        ArrayList<Player> players = new ArrayList<>();
+        players.add(player1);
+        players.add(player2);
+
+        // Mock user input to simulate player2 declining to buy
+        String input = "no\n" + System.getProperty("line.separator"); // Player2 declines to buy
         InputStream in = new ByteArrayInputStream(input.getBytes());
         System.setIn(in);
-        Scanner scanner = new Scanner(System.in);
+        Scanner scanner = new Scanner(in);
+        //Scanner scanner = new Scanner(System.in);
 
-        // Simulate player landing on the square
-        square.landOn(player, scanner);
+        // Simulate player1 landing on the square
+        square.landOn(player1, players, scanner);
 
         // Assert that ownership remains unchanged
         assertNull(square.getOwner()); // Square remains unowned
     }
-    
     /*
      * This test case verifies the behaviour when a player lands on a neutral square 
      * the ecoZone nothing changes in a players resources.
@@ -391,7 +401,7 @@ public class TestInvestmentSquare {
         player.getMoney(); // Player has enough money
 
         // Simulate player landing on the square
-        square.landOn(player, null); // No scanner needed for neutral squares
+        square.landOn(player, null, null); // No scanner needed for neutral squares
 
         // Assert that player's resources remain unchanged
         assertEquals(500, player.getMoney()); // Player's money remains unchanged
@@ -433,7 +443,7 @@ public class TestInvestmentSquare {
         Scanner scanner = new Scanner(System.in);
 
         // Simulate player landing on the square
-        square.landOn(player, scanner);
+        square.landOn(player, null, scanner);
 
         // Assert that player's money is deducted by the fee
         assertEquals(0, player.getMoney()); // Player's money becomes 0
@@ -447,6 +457,72 @@ public class TestInvestmentSquare {
         // Assert that owner's carbon debt remains unchanged
         assertEquals(500, owner.getCarbonDebt()); // Owner's carbon debt remains unchanged
     }
+    
+
+//    @Test
+//    public void testOfferSquareToNextPlayer_PlayerChoosesNotToBuy() {
+//        Board board = new Board();
+//        Player player1 = new Player("Player 1");
+//        Player player2 = new Player("Player 2");
+//        InvestmentSquare square = (InvestmentSquare) board.getSquare(1); // Assuming Sunny Acres is the second square
+//        List<Player> players = new ArrayList<>();
+//        players.add(player1);
+//        players.add(player2);
+//
+//        // Set up player 1's resources
+//        player1.addResources("money", 100); // Player 1 has enough money
+//
+//        // Set up player 2's resources
+//        player2.addResources("money", 50); // Player 2 has insufficient money to buy the square
+//
+//        // Create a ByteArrayOutputStream to capture the printed output
+//        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+//        System.setOut(new PrintStream(outputStream));
+//
+//        // Mock user input to simulate player 1 choosing not to buy the square
+//        String input = "no" + System.getProperty("line.separator");
+//        InputStream in = new ByteArrayInputStream(input.getBytes());
+//        System.setIn(in);
+//        Scanner scanner = new Scanner(System.in);
+//
+//        // Simulate player 1 landing on the square(failing this line here)
+//        //square.landOn(player1, players, scanner);
+//
+//        // Get the printed output
+//        String printedOutput = outputStream.toString();
+//
+//        // Assert that player 2 is offered to buy the square
+//        assertTrue(printedOutput.contains("Offering to next player..."));
+//        assertTrue(printedOutput.contains("Player 2, would you like to buy"));
+//        assertTrue(printedOutput.contains("Player 2 declined to buy"));
+//
+//        // Assert that the square remains unowned
+//        assertNull(square.getOwner());
+//    }
+    @Test
+    public void testPlayerUpgradesToMajor() {
+        Board board = new Board();
+        Player player = new Player("Player 1");
+        InvestmentSquare square = (InvestmentSquare) board.getSquare(1);
+
+        // Set up player's resources
+        player.addResources("money", square.getInvestmentCost() * 3); // Ensure player has enough money for major upgrade
+
+        // Perform three minor upgrades
+        for (int i = 0; i < 3; i++) {
+            square.setMinorUpgrade();
+        }
+
+        // Ensure minor upgrade count is 3
+        assertEquals(3, square.getMinorUpgrade());
+
+        // Perform major upgrade
+        square.setMajorUpgrade();
+
+        // Assert that major upgrade is successful
+        assertTrue(square.isMajorUpgrade());
+
+      }
     
     
     private static String randomName() {
