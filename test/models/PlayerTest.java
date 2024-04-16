@@ -222,14 +222,14 @@ public class PlayerTest {
 	public void testAddNegativeResources() {
 		Player player = new Player("TestPlayer");
 		assertThrows(IllegalArgumentException.class, () -> {
-			player.addResources("money", -100); // Attempt to add -100 to money should throw exception
+			player.addResources("money", -100); // Adding a negative amount to money should throw an exception.
 		});
-		// Adding negative to carbon debt should be allowed and not throw exception
 		assertDoesNotThrow(() -> {
-			player.addResources("carbonDebt", -100); // Attempt to subtract 100 from carbon debt should not throw exception
-			assertTrue(player.getCarbonDebt() >= 0); // Check that carbon debt does not go below zero
+			player.addResources("carbonDebt", -100); // Adding a negative amount to carbon debt should not throw an exception.
+			assertTrue(player.getCarbonDebt() >= 0); // Ensures carbon debt never drops below zero.
 		});
 	}
+	
 	
 
 	@Test
