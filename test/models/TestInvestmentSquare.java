@@ -268,7 +268,7 @@ public class TestInvestmentSquare {
         assertEquals(initialMoneyPlayer1, player1.getMoney());
     }
     
-//    @Test
+//    @Test not doing right calculations need to think and re work and help!!
 //    public void testPlayerPaysFeeWithCarbonDebt() {
 //        // Create a new board, player, and owner
 //        Board board = new Board();
@@ -406,7 +406,7 @@ public class TestInvestmentSquare {
         }
         return nameNumberList.stream();
     }
-
+//not doing right calculations!! need help
     @Test
     public void testPlayerPaysFeeWithInsufficientResources() {
         Board board = new Board();
