@@ -16,6 +16,6 @@ public abstract class Square {
 
     // Make this method abstract to enforce implementation in all subclasses
     // Also, add a Scanner parameter to allow subclasses to interact with the player
-    public abstract void landOn(Player player, List<Player> players, Scanner scanner);
-    
+    public abstract void landOn(Player player, List<Player> players, Scanner scanner, Board board);
+
 }

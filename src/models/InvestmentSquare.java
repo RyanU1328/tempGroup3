@@ -1,8 +1,12 @@
 package models;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
+
+import org.hamcrest.core.IsInstanceOf;
 
 public class InvestmentSquare extends Square {
     private Player owner;
@@ -12,6 +16,7 @@ public class InvestmentSquare extends Square {
     private boolean majorUpgrade;
     private int minorUpgradeCost; // set in the constructor, based on the investment cost
     private int majorUpgradeCost; // set in the constructor, based on the investment cost
+    private int field;
 
     /**
      * The `InvestmentSquare` class in Java is a subclass of the `Square` class
@@ -27,13 +32,14 @@ public class InvestmentSquare extends Square {
      * @param name
      * @param investmentCost
      */
-    public InvestmentSquare(String name, int investmentCost) {
+    public InvestmentSquare(String name, int investmentCost, int fieldNumber) {
         super(name);
         setInvestmentCost(investmentCost);
         setFee();
         setMinorUpgradeCost();
         setMajorUpgradeCost();
         setOwner(null);
+        setField(fieldNumber);
     }
 
     /**
@@ -49,6 +55,20 @@ public class InvestmentSquare extends Square {
         } else {
             throw new IllegalArgumentException("Investment cost cannot be negative.");
         }
+    }
+
+    /**
+     * @return the field
+     */
+    public int getField() {
+        return field;
+    }
+
+    /**
+     * @param field the field to set
+     */
+    public void setField(int field) {
+        this.field = field;
     }
 
     /**
@@ -177,7 +197,7 @@ public class InvestmentSquare extends Square {
      * @param scanner Handles user input for choices related to square actions
      */
     @Override
-    public void landOn(Player player, List<Player> players, Scanner scanner) {
+    public void landOn(Player player, List<Player> players, Scanner scanner, Board board) {
         if (isOwned() && !owner.equals(player)) {
             System.out.println("This area is owned by " + this.getOwner().getName() + ". Paying fees.");
 
@@ -233,29 +253,141 @@ public class InvestmentSquare extends Square {
                             Player nextPlayer = players.get(index);
                             if (!nextPlayer.equals(player)) {
                                 System.out.println(
-                                        nextPlayer.getName() + ", would you like to buy " + this.getName() + "? (yes/no)");
+                                        nextPlayer.getName() + ", would you like to buy " + this.getName()
+                                                + "? (yes/no)");
                                 String response = scanner.nextLine().trim().toLowerCase();
                                 if ("yes".equals(response)) {
                                     if (nextPlayer.getMoney() >= this.getInvestmentCost()) {
                                         nextPlayer.deductResources("money", this.getInvestmentCost());
                                         this.setOwner(nextPlayer);
-                                        System.out.println("Investment successful. " + nextPlayer.getName() + " now owns " +
+                                        System.out.println("Investment successful. " + nextPlayer.getName()
+                                                + " now owns " +
                                                 this.getName() + ". Remaining balance: " + nextPlayer.getMoney());
-                                        return; 
+                                        return;
                                     } else {
-                                        System.out.println(nextPlayer.getName() + " does not have enough resources to buy " +
-                                                this.getName());
+                                        System.out.println(
+                                                nextPlayer.getName() + " does not have enough resources to buy " +
+                                                        this.getName());
                                     }
                                 } else {
                                     System.out.println(nextPlayer.getName() + " declined to buy " + this.getName());
                                 }
                             }
                         }
-                        System.out.println("No player chose to buy " + this.getName() + ". Moving to the next player's turn.");
+                        System.out.println(
+                                "No player chose to buy " + this.getName() + ". Moving to the next player's turn.");
                     }
-                    break; 
+                    break;
                 } catch (InputMismatchException e) {
                     System.out.println("Invalid input: " + e.getMessage());
+                }
+            }
+        } else if (this.isOwned() && this.owner == player) {
+            List<String> fieldList = new ArrayList<>();
+            List<String> playerProperties = player.getProperties();
+            if (playerProperties.size() > 1) {
+                fieldList.add(getName());
+                for (Square square : board.getSquares()) {
+                    if (square instanceof InvestmentSquare && !square.getName().equals(this.getName())) {
+                        InvestmentSquare compareSquare = (InvestmentSquare) square;
+                        if (compareSquare.getField() == this.field && fieldList.size() < 4) {
+                            fieldList.add(compareSquare.getName());
+                        }
+                    }
+                }
+                Collections.sort(playerProperties);
+                Collections.sort(fieldList);
+                if (playerProperties.equals(fieldList)) {
+                    if (!this.majorUpgrade && this.getMinorUpgrade() < 3) {
+                        System.out.println("It is possible to upgrade this property.");
+                        if (this.getMinorUpgrade() < 3) {
+                            System.out.println("Would you like to buy a minor upgrade? It would cost: "
+                                    + this.getMinorUpgradeCost());
+                            String input = scanner.nextLine().trim().toLowerCase();
+                            if (input.contains("y") && player.getMoney() > this.getMinorUpgradeCost()) {
+                                player.deductResources("money", this.getMinorUpgradeCost());
+                                this.setMinorUpgrade();
+                            } else {
+                                System.out
+                                        .println((player.getMoney() < this.getMinorUpgradeCost() && input.contains("n"))
+                                                ? "No upgrade purchased"
+                                                : "No upgrade purchased, player doesn't have enough money");
+                            }
+                        }
+                    } else if (!this.isMajorUpgrade()) {
+                        System.out.println(
+                                "Would you like to buy a major upgrade? It will cost: " + this.getMajorUpgradeCost());
+                        String input = scanner.nextLine().trim().toLowerCase();
+                        if (input.contains("y") && player.getMoney() > this.getMajorUpgradeCost()) {
+                            player.deductResources("money", this.getMajorUpgradeCost());
+                            this.setMajorUpgrade();
+                        } else {
+                            System.out.println((player.getMoney() < this.getMajorUpgradeCost() && input.contains("n"))
+                                    ? "No upgrade purchased"
+                                    : "No upgrade purchased, player doesn't have enough money");
+
+                        }
+                    }
+                } else {
+                    System.out.println(
+                            "For the user to purchase upgrades on this property you need to own all the properties listed below:\n");
+                    for (String i : fieldList) {
+                        System.out.println(i);
+                    }
+                }
+            }
+        } else if (this.isOwned() && this.owner == player) {
+            List<String> fieldList = new ArrayList<>();
+            List<String> playerProperties = player.getProperties();
+            if (playerProperties.size() > 1) {
+                fieldList.add(getName());
+                for (Square square : board.getSquares()) {
+                    if (square instanceof InvestmentSquare && !square.getName().equals(this.getName())) {
+                        InvestmentSquare compareSquare = (InvestmentSquare) square;
+                        if (compareSquare.getField() == this.field && fieldList.size() < 4) {
+                            fieldList.add(compareSquare.getName());
+                        }
+                    }
+                }
+                Collections.sort(playerProperties);
+                Collections.sort(fieldList);
+                if (playerProperties.equals(fieldList)) {
+                    if (!this.majorUpgrade && this.getMinorUpgrade() < 3) {
+                        System.out.println("It is possible to upgrade this property.");
+                        if (this.getMinorUpgrade() < 3) {
+                            System.out.println("Would you like to buy a minor upgrade? It would cost: "
+                                    + this.getMinorUpgradeCost());
+                            String input = scanner.nextLine().trim().toLowerCase();
+                            if (input.contains("y") && player.getMoney() > this.getMinorUpgradeCost()) {
+                                player.deductResources("money", this.getMinorUpgradeCost());
+                                this.setMinorUpgrade();
+                            } else {
+                                System.out
+                                        .println((player.getMoney() < this.getMinorUpgradeCost() && input.contains("n"))
+                                                ? "No upgrade purchased"
+                                                : "No upgrade purchased, player doesn't have enough money");
+                            }
+                        }
+                    } else if (!this.isMajorUpgrade()) {
+                        System.out.println(
+                                "Would you like to buy a major upgrade? It will cost: " + this.getMajorUpgradeCost());
+                        String input = scanner.nextLine().trim().toLowerCase();
+                        if (input.contains("y") && player.getMoney() > this.getMajorUpgradeCost()) {
+                            player.deductResources("money", this.getMajorUpgradeCost());
+                            this.setMajorUpgrade();
+                        } else {
+                            System.out.println((player.getMoney() < this.getMajorUpgradeCost() && input.contains("n"))
+                                    ? "No upgrade purchased"
+                                    : "No upgrade purchased, player doesn't have enough money");
+
+                        }
+                    }
+                } else {
+                    System.out.println(
+                            "For the user to purchase upgrades on this property you need to own all the properties listed below:\n");
+                    for (String i : fieldList) {
+                        System.out.println(i);
+                    }
                 }
             }
         }

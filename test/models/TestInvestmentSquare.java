@@ -60,7 +60,7 @@ public class TestInvestmentSquare {
         SunnyAcresInvalidLow = 9;
         SunnyAcresInvalidHigh = 11;
 
-        investSquare = new InvestmentSquare(investmentSquareName, investmentCostValidHigh);
+        investSquare = new InvestmentSquare(investmentSquareName, investmentCostValidHigh, 0);
 
     }
 
@@ -205,7 +205,7 @@ public class TestInvestmentSquare {
         Scanner scanner = new Scanner(System.in);
 
         // Simulate player1 landing on the square
-        square.landOn(player1, players, scanner);
+        square.landOn(player1, players, scanner, board);
 
         // Assert that player1 pays the fee to player2
         assertEquals(590, player1.getMoney()); // Assuming fee is 20
@@ -540,21 +540,21 @@ public class TestInvestmentSquare {
     @ParameterizedTest
     @MethodSource("randomTestNamesPlayersNumbers")
     void testGetFee(int num, String name) {
-        testSquare = new InvestmentSquare(name, num);
+        testSquare = new InvestmentSquare(name, num, 0);
         assertEquals(Integer.max(1, num / 2), testSquare.getFee());
     }
 
     @ParameterizedTest
     @MethodSource("randomTestNamesPlayersNumbers")
     void testGetInvestmentCost(int num, String name) {
-        testSquare = new InvestmentSquare(name, num);
+        testSquare = new InvestmentSquare(name, num, 0);
         assertEquals(num, testSquare.getInvestmentCost());
     }
 
     @ParameterizedTest
     @MethodSource("randomTestNamesPlayersNumbers")
     void testGetMajorUpgradeCost(int num, String name) {
-        testSquare = new InvestmentSquare(name, num);
+        testSquare = new InvestmentSquare(name, num, 0);
         int expectedCost = ((num / 2) * 3);
         assertEquals(expectedCost, testSquare.getMajorUpgradeCost());
     }
@@ -562,7 +562,7 @@ public class TestInvestmentSquare {
     @ParameterizedTest
     @MethodSource("randomTestNamesPlayersNumbers")
     void testSetGetMinorUpgrade(int num, String name) {
-        testSquare = new InvestmentSquare(name, num);
+        testSquare = new InvestmentSquare(name, num, 0);
         int testLimit = rand.nextInt(4);
         for (int i = 0; i < testLimit; i++) {
             testSquare.setMinorUpgrade();
@@ -573,7 +573,7 @@ public class TestInvestmentSquare {
     @ParameterizedTest
     @MethodSource("randomTestNamesPlayersNumbers")
     void testSetGetMinorUpgradeCost(int num, String name) {
-        testSquare = new InvestmentSquare(name, num);
+        testSquare = new InvestmentSquare(name, num, 0);
         int expectedCost = num / 2;
         assertEquals(expectedCost, testSquare.getMinorUpgradeCost());
     }
@@ -581,7 +581,7 @@ public class TestInvestmentSquare {
     @ParameterizedTest
     @MethodSource("randomTestNamesPlayersNumbers")
     void testSetGetOwner(int num, String name, Player player) {
-        testSquare = new InvestmentSquare(name, num);
+        testSquare = new InvestmentSquare(name, num, 0);
         testSquare.setOwner(player);
         assertEquals(player, testSquare.getOwner());
     }
@@ -589,7 +589,7 @@ public class TestInvestmentSquare {
     @ParameterizedTest
     @MethodSource("randomTestNamesPlayersNumbers")
     void testSetIsMajorUpgrade(int num, String name) {
-        testSquare = new InvestmentSquare(name, num);
+        testSquare = new InvestmentSquare(name, num, 0);
         boolean check = false;
         if (rand.nextInt(Integer.MAX_VALUE) % 2 == 0) {
             testSquare.setMajorUpgrade();
@@ -601,7 +601,7 @@ public class TestInvestmentSquare {
     @ParameterizedTest
     @MethodSource("randomTestNamesPlayersNumbers")
     void testIsOwned(int num, String name, Player player) {
-        testSquare = new InvestmentSquare(name, num);
+        testSquare = new InvestmentSquare(name, num, 0);
         boolean check = false;
         if (rand.nextInt(Integer.MAX_VALUE) % 2 == 0) {
             testSquare.setOwner(player);

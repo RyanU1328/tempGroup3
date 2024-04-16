@@ -33,7 +33,7 @@ class TestGoSquare {
         System.setOut(new PrintStream(outContent));
 
         // Act
-        goSquare.landOn(player, players, new Scanner(System.in));
+        goSquare.landOn(player, players, new Scanner(System.in), new Board());
 
         // Assert
         // Assert
@@ -51,15 +51,15 @@ class TestGoSquare {
     @Test
     public void testAddResourcesInvalid() {
         Player player = new Player("TestPlayer");
-    
+
         assertThrows(IllegalArgumentException.class, () -> {
             player.addResources("money", 0); // Attempt to add 0 money should throw exception
         });
-    
+
         // No exception should be thrown for adding 0 to carbon debt
         assertDoesNotThrow(() -> {
             player.addResources("carbonDebt", 0); // Attempt to add 0 carbon debt should not throw exception
         });
     }
-    
+
 }
