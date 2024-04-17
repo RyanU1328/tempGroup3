@@ -39,7 +39,7 @@ class TestEcoZoneSquare {
         System.setOut(originalOut);
 
         // Assert
-        String expectedOutput = "TestPlayer landed on the ECO Zone. Chill there for a sec!"
+        String expectedOutput = "Chill there for a sec :)"
                 + System.getProperty("line.separator");
 
         String actualOutput = outContent.toString();
