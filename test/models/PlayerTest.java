@@ -218,30 +218,24 @@ public class PlayerTest {
 		assertEquals(carbonValid + 200, player.getCarbonDebt());
 	}
 
-	
 	@Test
 	public void testAddNegativeResources() {
 		Player player = new Player("TestPlayer");
-		player.setMoney(500);  // Assume starting with 500 for clarity in the test
-		player.setCarbonDebt(500);  // Assume starting with 500 carbon debt
-	
-		// Test negative money should throw IllegalArgumentException if negative values are not allowed
+		player.setMoney(500); // Assume starting with 500 for clarity in the test
+		player.setCarbonDebt(500); // Assume starting with 500 carbon debt
+
+		// Test negative money should throw IllegalArgumentException if negative values
+		// are not allowed
 		assertThrows(IllegalArgumentException.class, () -> {
 			player.addResources("money", -100);
 		}, "Should throw exception because negative money is not allowed.");
-	
+
 		// Test negative carbon debt does not throw an exception and adjusts correctly
 		assertDoesNotThrow(() -> {
 			player.addResources("carbonDebt", -100);
 		});
 		assertEquals(400, player.getCarbonDebt(), "Carbon debt should be reduced to 400.");
 	}
-	
-	
-
-	
-	
-	
 
 	@Test
 	public void testDeductResourcesMoney() {
@@ -432,6 +426,23 @@ public class PlayerTest {
 
 		// Assert
 		assertEquals(false, result); // Pay by accepting to take carbon debt (after retrying)
+	}
+
+	@ParameterizedTest
+	@MethodSource("utils.TestUtils#randomNameStream")
+	public void testSetGetAvatar(String name) {
+		Player methodTestPlayer = new Player(name);
+		methodTestPlayer.setAvatar(new String[] { name });
+		assertTrue(Arrays.equals(new String[] { name }, methodTestPlayer.getAvatar()));
+	}
+
+	@ParameterizedTest
+	@MethodSource("utils.TestUtils#randomTestNumbersAndNames")
+	public void testGetResources(int num, String name) {
+		Player methodTestPLayer = new Player(name);
+		methodTestPLayer.setMoney(num);
+		methodTestPLayer.setCarbonDebt(num);
+		assertTrue(Arrays.equals(new int[] { num, num }, methodTestPLayer.getResources()));
 	}
 
 	@ParameterizedTest
