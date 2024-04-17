@@ -270,61 +270,53 @@ public class TestInvestmentSquare {
         assertEquals(initialMoneyPlayer1, player1.getMoney());
     }
 
-    // @Test not doing right calculations need to think and re work and help!!
-    // public void testPlayerPaysFeeWithCarbonDebt() {
-    // // Create a new board, player, and owner
-    // Board board = new Board();
-    // Player player = new Player("Player 1");
-    // Player owner = new Player("Owner");
-    //
-    // // Get the investment square from the board
-    // InvestmentSquare square = (InvestmentSquare) board.getSquare(1);
-    //
-    // // Set square owner
-    // square.setOwner(owner);
-    //
-    // // Set up owner's initial resources (500 money/ 500 carbon)
-    // owner.getMoney();
-    // owner.getCarbonDebt();
-    //
-    // // Set up player's initial resources (500 money/ 500 carbon )
-    // player.getMoney(); // Player has less money than the fee
-    // player.getCarbonDebt();
-    //
-    // // Mock user input to simulate player choosing to pay by money
-    // String input = "1" + System.getProperty("line.separator"); // Assuming player
-    // chooses to pay by money
-    // InputStream in = new ByteArrayInputStream(input.getBytes());
-    // System.setIn(in);
-    // Scanner scanner = new Scanner(System.in);
-    //
-    // // Simulate player landing on the square
-    // square.landOn(player, scanner);
-    //
-    // // Assert that player's money remains unchanged (expected: 10)
-    // assertEquals(490, player.getMoney());
-    //
-    //
-    // // Mock user input to simulate player choosing to pay by money
-    // input = "1" + System.getProperty("line.separator"); // Assuming player
-    // chooses to pay by money
-    // in = new ByteArrayInputStream(input.getBytes());
-    // System.setIn(in);
-    //
-    //
-    //
-    //
-    // //Assert that player's carbon debt is increased by the fee (expected:505?? )
-    // assertEquals(500, player.getCarbonDebt());
-    //
-    // // Assert that owner's money is increased by the fee (expected: 105)
-    // assertEquals(510, owner.getMoney());
-    //
-    // // Assert that owner's carbon debt is decreased by the fee (expected: 495)
-    // assertEquals(500, owner.getCarbonDebt());
-    // }
+    @Test
+    public void testPlayerPaysFeeWithCarbonDebt() {
+        // Create a new board, player, and owner
+        Board board = new Board();
+        Player player = new Player("Player 1");
+        Player owner = new Player("Owner");
 
-    //
+        // Get the investment square from the board
+        InvestmentSquare square = (InvestmentSquare) board.getSquare(1);
+
+        // Set square owner
+        square.setOwner(owner);
+
+        // Set up owner's initial resources (500 money/ 500 carbon)
+        owner.getMoney();
+        owner.getCarbonDebt();
+
+        // Set up player's initial resources (500 money/ 500 carbon )
+        player.getMoney(); // Player has less money than the fee
+        player.getCarbonDebt();
+
+        // Mock user input to simulate player choosing to pay by money
+        String input = "1" + System.getProperty("line.separator"); // Assuming player chooses to pay by money
+        InputStream in = new ByteArrayInputStream(input.getBytes());
+        System.setIn(in);
+        Scanner scanner = new Scanner(System.in);
+
+        // Simulate player landing on the square
+        square.landOn(player, null, scanner, null);
+
+        // Assert that player's money remains unchanged (expected: 10)
+        assertEquals(490, player.getMoney());
+
+        // Mock user input to simulate player choosing to pay by money
+        input = "1" + System.getProperty("line.separator"); // Assuming player chooses to pay by money
+        in = new ByteArrayInputStream(input.getBytes());
+        System.setIn(in);
+
+        // Assert that player's carbon debt is increased by the fee (expected:505?? )
+        assertEquals(500, player.getCarbonDebt());
+
+        // Assert that owner's money is increased by the fee (expected: 105)
+        assertEquals(510, owner.getMoney());
+
+        // Assert that owner's carbon debt is decreased by the fee (expected: 495)
+        assertEquals(500, owner.getCarbonDebt());
+    }
 
     /*
      * This test case verifies the behaviour when a player lands on a square they
@@ -408,17 +400,6 @@ public class TestInvestmentSquare {
         assertEquals(500, player.getMoney()); // Player's money remains unchanged
     }
 
-    private static Stream<Arguments> randomTestNamesPlayersNumbers() {
-        nameNumberList = new LinkedList<>();
-        List<Player> testPlayers = new ArrayList<>();
-        for (int i = 0; i < 10; i++) {
-            String randomString = randomName();
-            testPlayers.add(new Player(randomName()));
-            nameNumberList.add(Arguments.of(rand.nextInt(999) + 1, randomString, testPlayers.get(i)));
-        }
-        return nameNumberList.stream();
-    }
-
     // not doing right calculations!! need help
     @Test
     public void testPlayerPaysFeeWithInsufficientResources() {
@@ -449,59 +430,56 @@ public class TestInvestmentSquare {
 
         // Assert that player's money is deducted by the fee
         assertEquals(0, player.getMoney()); // Player's money becomes 0
-
         // Assert that player's carbon debt is increased by the fee
-        assertEquals(5, player.getCarbonDebt()); // Player's carbon debt is increased by the fee
-
+        assertEquals(5, player.getCarbonDebt()); // Player's carbon debt is unchanged by the fee
         // Assert that owner's money is increased by the fee
         assertEquals(510, owner.getMoney()); // Owner receives the fee in money
-
         // Assert that owner's carbon debt remains unchanged
         assertEquals(500, owner.getCarbonDebt()); // Owner's carbon debt remains unchanged
     }
 
-    // @Test
-    // public void testOfferSquareToNextPlayer_PlayerChoosesNotToBuy() {
-    // Board board = new Board();
-    // Player player1 = new Player("Player 1");
-    // Player player2 = new Player("Player 2");
-    // InvestmentSquare square = (InvestmentSquare) board.getSquare(1); // Assuming
-    // Sunny Acres is the second square
-    // List<Player> players = new ArrayList<>();
-    // players.add(player1);
-    // players.add(player2);
-    //
-    // // Set up player 1's resources
-    // player1.addResources("money", 100); // Player 1 has enough money
-    //
-    // // Set up player 2's resources
-    // player2.addResources("money", 50); // Player 2 has insufficient money to buy
-    // the square
-    //
-    // // Create a ByteArrayOutputStream to capture the printed output
-    // ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
-    // System.setOut(new PrintStream(outputStream));
-    //
-    // // Mock user input to simulate player 1 choosing not to buy the square
-    // String input = "no" + System.getProperty("line.separator");
-    // InputStream in = new ByteArrayInputStream(input.getBytes());
-    // System.setIn(in);
-    // Scanner scanner = new Scanner(System.in);
-    //
-    // // Simulate player 1 landing on the square(failing this line here)
-    // //square.landOn(player1, players, scanner);
-    //
-    // // Get the printed output
-    // String printedOutput = outputStream.toString();
-    //
-    // // Assert that player 2 is offered to buy the square
-    // assertTrue(printedOutput.contains("Offering to next player..."));
-    // assertTrue(printedOutput.contains("Player 2, would you like to buy"));
-    // assertTrue(printedOutput.contains("Player 2 declined to buy"));
-    //
-    // // Assert that the square remains unowned
-    // assertNull(square.getOwner());
-    // }
+    @Test
+    public void testOfferSquareToNextPlayer_PlayerChoosesNotToBuy() {
+        Board board = new Board();
+        Player player1 = new Player("Player 1");
+        Player player2 = new Player("Player 2");
+        InvestmentSquare square = (InvestmentSquare) board.getSquare(1); // Assuming Sunny Acres is the second square
+        List<Player> players = new ArrayList<>();
+        players.add(player1);
+        players.add(player2);
+
+        // Set up player 1's resources
+        player1.addResources("money", 100); // Player 1 has enough money
+
+        // Set up player 2's resources
+        player2.addResources("money", 50); // Player 2 has insufficient money to buy the square
+
+        // Create a ByteArrayOutputStream to capture the printed output
+        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(outputStream));
+
+        // Mock user input to simulate player 1 choosing not to buy the square
+        String input = "no" + System.getProperty("line.separator") + "no" + System.getProperty("line.separator");
+        InputStream in = new ByteArrayInputStream(input.getBytes());
+        System.setIn(in);
+        Scanner scanner = new Scanner(System.in);
+
+        // Simulate player 1 landing on the square(failing this line here)
+        square.landOn(player1, players, scanner, null);
+
+        // Get the printed output
+        String printedOutput = outputStream.toString();
+
+        // Assert that player 2 is offered to buy the square
+        assertTrue(printedOutput.contains("Offering to next player..." + System.getProperty("line.separator")));
+        assertTrue(printedOutput
+                .contains(player2.getName() + ", would you like to buy"));
+        assertTrue(printedOutput.contains("Player 2 declined to buy"));
+
+        // Assert that the square remains unowned
+        assertNull(square.getOwner());
+    }
+
     @Test
     public void testPlayerUpgradesToMajor() {
         Board board = new Board();
@@ -528,39 +506,55 @@ public class TestInvestmentSquare {
 
     }
 
-    private static String randomName() {
-        byte[] byteArray = new byte[rand.nextInt(49) + 1];
-        for (int j = 0; j < byteArray.length; j++) {
-            byteArray[j] = (byte) (rand.nextInt(122 - 97) + 97);
-        }
-        String randomString = new String(byteArray, Charset.forName("UTF-8"));
-        return randomString;
+    // The below tests are parameterized random tests, this is used as a backup to
+    // the edge-case testing done above
+    @ParameterizedTest
+    @MethodSource("utils.TestUtils#randomTestNumbersAndNames")
+    public void testSetGetField(int num, String name) {
+        testSquare = new InvestmentSquare(name, num, num);
+        assertEquals(num, testSquare.getField());
     }
 
     @ParameterizedTest
-    @MethodSource("randomTestNamesPlayersNumbers")
-    void testGetFee(int num, String name) {
+    @MethodSource("utils.TestUtils#randomTestNumbersAndNames")
+    public void testGetFee(int num, String name) {
         testSquare = new InvestmentSquare(name, num, 0);
         assertEquals(Integer.max(1, num / 2), testSquare.getFee());
     }
 
     @ParameterizedTest
-    @MethodSource("randomTestNamesPlayersNumbers")
+    @MethodSource("utils.TestUtils#randomTestNumbersAndNames")
+    public void testGetFeeWithUpgrades(int num, String name) {
+        testSquare = new InvestmentSquare(name, num, num);
+        int fee = (num / 2 > 0) ? num / 2 : 1;
+        testSquare.setMinorUpgrade();
+        assertEquals((int) (fee + ((int) (1.5 * (num * 1)))), testSquare.getFee());
+        testSquare.setMinorUpgrade();
+        assertEquals((int) (fee + ((int) (1.5 * (num * 2)))), testSquare.getFee());
+        testSquare.setMinorUpgrade();
+        assertEquals((int) (fee + ((int) (1.5 * (num * 3)))), testSquare.getFee());
+        testSquare.setMajorUpgrade();
+        assertEquals((int) (fee + ((int) (1.5 * (num * 3))) * 5), testSquare.getFee());
+    }
+
+    @ParameterizedTest
+    @MethodSource("utils.TestUtils#randomTestNumbersAndNames")
     void testGetInvestmentCost(int num, String name) {
         testSquare = new InvestmentSquare(name, num, 0);
         assertEquals(num, testSquare.getInvestmentCost());
     }
 
     @ParameterizedTest
-    @MethodSource("randomTestNamesPlayersNumbers")
+    @MethodSource("utils.TestUtils#randomTestNumbersAndNames")
     void testGetMajorUpgradeCost(int num, String name) {
         testSquare = new InvestmentSquare(name, num, 0);
-        int expectedCost = ((num / 2) * 3);
+        int fee = ((num / 2) > 0) ? num / 2 : 1;
+        int expectedCost = (fee * 3);
         assertEquals(expectedCost, testSquare.getMajorUpgradeCost());
     }
 
     @ParameterizedTest
-    @MethodSource("randomTestNamesPlayersNumbers")
+    @MethodSource("utils.TestUtils#randomTestNumbersAndNames")
     void testSetGetMinorUpgrade(int num, String name) {
         testSquare = new InvestmentSquare(name, num, 0);
         int testLimit = rand.nextInt(4);
@@ -571,15 +565,15 @@ public class TestInvestmentSquare {
     }
 
     @ParameterizedTest
-    @MethodSource("randomTestNamesPlayersNumbers")
+    @MethodSource("utils.TestUtils#randomTestNumbersAndNames")
     void testSetGetMinorUpgradeCost(int num, String name) {
         testSquare = new InvestmentSquare(name, num, 0);
-        int expectedCost = num / 2;
+        int expectedCost = (num / 2 > 0) ? num / 2 : 1;
         assertEquals(expectedCost, testSquare.getMinorUpgradeCost());
     }
 
     @ParameterizedTest
-    @MethodSource("randomTestNamesPlayersNumbers")
+    @MethodSource("utils.TestUtils#randomTestNamesPlayersNumbers")
     void testSetGetOwner(int num, String name, Player player) {
         testSquare = new InvestmentSquare(name, num, 0);
         testSquare.setOwner(player);
@@ -587,7 +581,7 @@ public class TestInvestmentSquare {
     }
 
     @ParameterizedTest
-    @MethodSource("randomTestNamesPlayersNumbers")
+    @MethodSource("utils.TestUtils#randomTestNumbersAndNames")
     void testSetIsMajorUpgrade(int num, String name) {
         testSquare = new InvestmentSquare(name, num, 0);
         boolean check = false;
@@ -599,7 +593,7 @@ public class TestInvestmentSquare {
     }
 
     @ParameterizedTest
-    @MethodSource("randomTestNamesPlayersNumbers")
+    @MethodSource("utils.TestUtils#randomTestNamesPlayersNumbers")
     void testIsOwned(int num, String name, Player player) {
         testSquare = new InvestmentSquare(name, num, 0);
         boolean check = false;
