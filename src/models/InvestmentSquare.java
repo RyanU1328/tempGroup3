@@ -228,7 +228,7 @@ public class InvestmentSquare extends Square {
             }
         } else if (!this.isOwned()) {
             System.out.println("Do you want to invest in " + this.getName() + "? It costs " + this.getInvestmentCost() +
-                    " resources. (yes/no)");
+                    " pounds. (yes/no)");
             while (true) {
                 String input = scanner.nextLine().trim().toLowerCase();
                 try {
