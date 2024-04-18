@@ -1,0 +1,2081 @@
+commit f754cbee96ec863486842f2fff90556a3f1fedfa
+Author: 40099112 <rurquhart01@qub.ac.uk>
+Date:   Thu Apr 18 11:40:13 2024 +0100
+
+    Removed unneeded file
+
+commit 237c05f07569da7f6340e69706bd948de4603d70
+Merge: fa5f7b4 577c176
+Author: Ryan Urquhart <rurquhart01@qub.ac.uk>
+Date:   Wed Apr 17 14:34:31 2024 +0000
+
+    Merge branch 'SET3-81-fix-eco-zone-message-duplication' into 'main'
+    
+    Resolve SET3-81 "Fix eco zone message duplication"
+    
+    Closes SET3-81
+    
+    See merge request CSC7083-2324/CSC7083-2324-G3!55
+
+commit fa5f7b4fb0fc03bc9a2e0b4bb00c9680353eb283
+Merge: 0bd2e8c f005130
+Author: 40004376 <josborne03@qub.ac.uk>
+Date:   Wed Apr 17 14:32:48 2024 +0000
+
+    Merge branch 'SET3-69-i-want-the-app-tested' into 'main'
+    
+    Resolve SET3-69 "I want the app tested"
+    
+    Closes SET3-69
+    
+    See merge request CSC7083-2324/CSC7083-2324-G3!54
+
+commit 577c1761118f27e7bb8b77da23632b01747aa8ca
+Author: Tony <tonycowan56@gmail.com>
+Date:   Wed Apr 17 15:32:34 2024 +0100
+
+    fixed duplicate line when landing on eco zone
+
+commit b47a03556d26dcea1cff29ec08caa96ccf34854d
+Author: Tony <tonycowan56@gmail.com>
+Date:   Wed Apr 17 15:30:09 2024 +0100
+
+    fixed duplicate line when landing on eco zone
+
+commit f0051303dcba9366ee1b539d0d8af8b2ae75b5cb
+Author: 29051737 <sshortt02@qub.ac.uk>
+Date:   Wed Apr 17 15:28:33 2024 +0100
+
+    testing to date
+
+commit 0655828fb430e67a47f0b57cf28f10ef76c46825
+Author: RyanUrq <rurquhart01@qub.ac.uk>
+Date:   Wed Apr 17 13:35:10 2024 +0100
+
+    Modified investment square, and tests for investment square
+
+commit 0bd2e8c9975737137ca42e31e6d344ff6fee9a7d
+Merge: f0cf6dd fa17d01
+Author: Ryan Urquhart <rurquhart01@qub.ac.uk>
+Date:   Wed Apr 17 12:02:53 2024 +0000
+
+    Merge branch 'SET3-84-fix-loop-in-startgame-method' into 'main'
+    
+    fixed loop start game method
+    
+    Closes SET3-84
+    
+    See merge request CSC7083-2324/CSC7083-2324-G3!53
+
+commit fa17d01f8bf8465c4d176dc320900a3e0c427636
+Author: 29051737 <sshortt02@qub.ac.uk>
+Date:   Wed Apr 17 12:56:50 2024 +0100
+
+    delete failing tests
+
+commit 744a0b46edddb39e0b9b5e806280cf885b5f9ed7
+Author: 29051737 <sshortt02@qub.ac.uk>
+Date:   Wed Apr 17 12:53:54 2024 +0100
+
+    fixed loop on start game
+
+commit 8e3194887b2060ef9809c683b48dac3b7b5840ee
+Author: 29051737 <sshortt02@qub.ac.uk>
+Date:   Wed Apr 17 12:52:29 2024 +0100
+
+    re cloned
+
+commit 3dd4c69ba82b00e01a80d77deffad193fdc1e2e9
+Author: 29051737 <sshortt02@qub.ac.uk>
+Date:   Wed Apr 17 12:19:57 2024 +0100
+
+    fixing loop in start game
+
+commit fd02fd63300d09a0df62a7f092ed74c0996a85ce
+Author: RyanUrq <rurquhart01@qub.ac.uk>
+Date:   Tue Apr 16 19:46:49 2024 +0100
+
+    Undoing changes
+
+commit d33c8656ea6f760c04f83a469b5e5aaa8b426e9f
+Author: RyanUrq <rurquhart01@qub.ac.uk>
+Date:   Tue Apr 16 19:44:42 2024 +0100
+
+    Testing for code covergae
+
+commit cd52f659c0f7bae010786bfb8ba44704ef08cbb9
+Author: RyanUrq <rurquhart01@qub.ac.uk>
+Date:   Tue Apr 16 19:40:47 2024 +0100
+
+    Fixed lanon tests
+
+commit 490a012a102c7f9cd8c8624e5f39727114ec172c
+Merge: fdc536e f0cf6dd
+Author: RyanUrq <rurquhart01@qub.ac.uk>
+Date:   Tue Apr 16 19:36:54 2024 +0100
+
+    Merge branch 'main' of gitlab.eeecs.qub.ac.uk:CSC7083-2324/CSC7083-2324-G3 into SET3-69-i-want-the-app-tested
+
+commit fdc536e6e94f5a870ca60f491aee17af8dc6fcd8
+Merge: 78e834b 04cab74
+Author: RyanUrq <rurquhart01@qub.ac.uk>
+Date:   Tue Apr 16 19:36:39 2024 +0100
+
+    Merge branch 'SET3-69-i-want-the-app-tested' of gitlab.eeecs.qub.ac.uk:CSC7083-2324/CSC7083-2324-G3 into SET3-69-i-want-the-app-tested
+
+commit 78e834bb329caea42d03ed824499271197df3d9f
+Author: RyanUrq <rurquhart01@qub.ac.uk>
+Date:   Tue Apr 16 19:36:00 2024 +0100
+
+    Added tests for player.getResources() and player.getAvatar() and player.setAvatar()
+
+commit 04cab74a800fbf073b017a2ab93f27cf2180a7e4
+Author: 29051737 <sshortt02@qub.ac.uk>
+Date:   Tue Apr 16 19:33:00 2024 +0100
+
+    updated invest square testing
+
+commit f0cf6ddda8cb9560522e84c315e888e45ee33fce
+Merge: 86390e0 e64b054
+Author: 40004376 <josborne03@qub.ac.uk>
+Date:   Tue Apr 16 18:16:58 2024 +0000
+
+    Merge branch 'SET3-35-i-want-to-be-able-to-develop-an-area-i-own' into 'main'
+    
+    Added functionality for user to upgrade properties they own, if they own all...
+    
+    Closes SET3-35
+    
+    See merge request CSC7083-2324/CSC7083-2324-G3!52
+
+commit e64b0544d482608bb6328132ad507df9b7d1c802
+Author: RyanUrq <rurquhart01@qub.ac.uk>
+Date:   Tue Apr 16 19:13:55 2024 +0100
+
+    Added needed imports
+
+commit 49026937fc30861fe6164de148dfe5b6438fd767
+Merge: bcd2672 86390e0
+Author: RyanUrq <rurquhart01@qub.ac.uk>
+Date:   Tue Apr 16 19:13:23 2024 +0100
+
+    Merge branch 'main' of gitlab.eeecs.qub.ac.uk:CSC7083-2324/CSC7083-2324-G3 into SET3-35-i-want-to-be-able-to-develop-an-area-i-own
+
+commit bcd2672585f9930ba4b94acc69cdb5555f8163a8
+Author: RyanUrq <rurquhart01@qub.ac.uk>
+Date:   Tue Apr 16 19:12:32 2024 +0100
+
+    Added functionality for user to upgrade properties they own, if they own all the properties in a field
+
+commit ef8dadf0f8b068d69dd7d94b085d827733c2c290
+Author: 29051737 <sshortt02@qub.ac.uk>
+Date:   Tue Apr 16 19:02:18 2024 +0100
+
+    updated game controller tests AGAIN!! ah!
+
+commit a4382fba6c07fbca736c378801cf3c6c00906477
+Author: 29051737 <sshortt02@qub.ac.uk>
+Date:   Tue Apr 16 18:55:18 2024 +0100
+
+    updated invest square
+
+commit 64fcb907d03d7c2eb2afa2bf6c3813bacc2e54b4
+Merge: eeed797 86390e0
+Author: 29051737 <sshortt02@qub.ac.uk>
+Date:   Tue Apr 16 18:45:26 2024 +0100
+
+    Merge branch 'main' of
+    https://gitlab.eeecs.qub.ac.uk/CSC7083-2324/CSC7083-2324-G3.git into
+    SET3-69-i-want-the-app-tested
+
+commit eeed797500deabfb7044730dd0f1c93220316e52
+Merge: 3327e3e 7c0816c
+Author: 29051737 <sshortt02@qub.ac.uk>
+Date:   Tue Apr 16 18:44:38 2024 +0100
+
+    Merge branch 'main' of
+    https://gitlab.eeecs.qub.ac.uk/CSC7083-2324/CSC7083-2324-G3.git into
+    SET3-69-i-want-the-app-tested
+
+commit 86390e090896bbed70e9f677fcea02af5c0276a9
+Merge: 7c0816c a7f5a24
+Author: Ryan Urquhart <rurquhart01@qub.ac.uk>
+Date:   Tue Apr 16 17:37:55 2024 +0000
+
+    Merge branch 'SET3-83-fix-unexpected-behaviour-in-offer-of-plot-decision' into 'main'
+    
+    created and handled exception if incorrect data entered when choosing to buy plot after offer
+    
+    Closes SET3-83
+    
+    See merge request CSC7083-2324/CSC7083-2324-G3!51
+
+commit a7f5a240ba6e44948139dde48176dbaa6e0a5e79
+Author: Jenny <josborne2607@gmail.com>
+Date:   Tue Apr 16 18:30:31 2024 +0100
+
+    created and handled exception if incorrect data entered when choosing to buy plot after offer
+
+commit 3327e3e4196e55f2d8b3a3f85970be888e161115
+Merge: d35cb8f 4ec743f
+Author: 29051737 <sshortt02@qub.ac.uk>
+Date:   Tue Apr 16 18:26:12 2024 +0100
+
+    Merge branch 'main' of
+    https://gitlab.eeecs.qub.ac.uk/CSC7083-2324/CSC7083-2324-G3.git into
+    SET3-69-i-want-the-app-tested
+
+commit 0d2a4a35d0743839df3005c4c2affdf1283b3d80
+Author: RyanUrq <rurquhart01@qub.ac.uk>
+Date:   Tue Apr 16 17:59:55 2024 +0100
+
+    Merging main
+
+commit b725688ac13ce0984d03662fd73255b331cbf690
+Merge: 8acb873 7c0816c
+Author: RyanUrq <rurquhart01@qub.ac.uk>
+Date:   Tue Apr 16 17:59:49 2024 +0100
+
+    Merge branch 'main' of gitlab.eeecs.qub.ac.uk:CSC7083-2324/CSC7083-2324-G3 into SET3-35-i-want-to-be-able-to-develop-an-area-i-own
+
+commit 7c0816cecb6b8f4df80a8c993b006835b98b9091
+Merge: 6000cd5 7f1d487
+Author: 40004376 <josborne03@qub.ac.uk>
+Date:   Tue Apr 16 16:58:11 2024 +0000
+
+    Merge branch 'SET3-82-fix-unhandled-carbon-exception-when-passing-go' into 'main'
+    
+    fixed -10 carbon debt crash bug in the player class
+    
+    Closes SET3-82
+    
+    See merge request CSC7083-2324/CSC7083-2324-G3!50
+
+commit 6000cd50ff118bff3b890ea8691f338aa3cf5d77
+Merge: 4ec743f 7b737aa
+Author: 40004376 <josborne03@qub.ac.uk>
+Date:   Tue Apr 16 16:57:51 2024 +0000
+
+    Merge branch 'SET3-68-i-want-to-establish-a-way-to-save-a-players-resources' into 'main'
+    
+    Resolve SET3-68 "I want to establish a way to save a players resources"
+    
+    Closes SET3-68
+    
+    See merge request CSC7083-2324/CSC7083-2324-G3!48
+
+commit 8acb8739bb22488c5d4013965ae840d4ba315cbc
+Author: RyanUrq <rurquhart01@qub.ac.uk>
+Date:   Tue Apr 16 17:57:03 2024 +0100
+
+    Added concept of fields to InvestmentSquares
+
+commit 7b737aaeacd633aabe66508d9648c1da555306b3
+Author: RyanUrq <rurquhart01@qub.ac.uk>
+Date:   Tue Apr 16 17:41:31 2024 +0100
+
+    Fixed null pointer exception
+
+commit 2990f7ccfccb71f401940ae2e5207a1ced79faf5
+Merge: 4ec743f 121de9b
+Author: RyanUrq <rurquhart01@qub.ac.uk>
+Date:   Tue Apr 16 17:25:57 2024 +0100
+
+    Merged conflicts and added in way of saving when a player buys a property
+
+commit d35cb8f6c0c837fc43e77bdfcb96a0b738f0aaf2
+Author: 29051737 <sshortt02@qub.ac.uk>
+Date:   Tue Apr 16 14:10:39 2024 +0100
+
+    game controller try again update
+
+commit 7f1d487ea50cd559343f6ff6b60911901d733628
+Author: Tony <tonycowan56@gmail.com>
+Date:   Tue Apr 16 13:48:58 2024 +0100
+
+    made final chnages to unit tests and method
+
+commit c4632866acbc6fbb9a783d891db2124c1b1fc18b
+Author: Tony <tonycowan56@gmail.com>
+Date:   Tue Apr 16 13:36:05 2024 +0100
+
+    adjusted unit tests to comply
+
+commit 3841e40b191f75ba9260ee8657b98449d53aaf6c
+Author: Tony <tonycowan56@gmail.com>
+Date:   Tue Apr 16 13:32:22 2024 +0100
+
+    adjusted unit tests to comply
+
+commit ec701ec353394232d18de4773d3272fed83399df
+Author: Tony <tonycowan56@gmail.com>
+Date:   Tue Apr 16 13:27:09 2024 +0100
+
+    adjusted unit tests to comply
+
+commit ca6b76127beeaf683bf5b50d7becaa80f4e3260c
+Author: Tony <tonycowan56@gmail.com>
+Date:   Tue Apr 16 13:24:24 2024 +0100
+
+    adjusted unit tests to comply
+
+commit 40e7fa2bbc303820ad1d5761da81b34ff132b073
+Author: Tony <tonycowan56@gmail.com>
+Date:   Tue Apr 16 13:21:08 2024 +0100
+
+    adjusted unit tests to comply
+
+commit 994b7f200c939adfb6c58d4d6c008e57ff8be195
+Author: Tony <tonycowan56@gmail.com>
+Date:   Tue Apr 16 13:06:04 2024 +0100
+
+    fixed -10 carbon debt crash bug in the player class
+
+commit 4ec743f3b8d43b7cd4c27654852ebccf96ec116a
+Merge: 58d9cb8 ae2a497
+Author: Ryan Urquhart <rurquhart01@qub.ac.uk>
+Date:   Tue Apr 16 11:55:39 2024 +0000
+
+    Merge branch 'SET3-78-i-want-to-be-told-how-many-resources-i-have-left-after-i-purchase-or-pay-a-fine' into 'main'
+    
+    provided resource information to player after fines and  purchases
+    
+    Closes SET3-78
+    
+    See merge request CSC7083-2324/CSC7083-2324-G3!49
+
+commit 129ef8a54eb5d4e653989edf321b6da8e245ae03
+Merge: 4980bde 58d9cb8
+Author: 29051737 <sshortt02@qub.ac.uk>
+Date:   Tue Apr 16 12:54:24 2024 +0100
+
+    Merge branch 'main' of https://gitlab.eeecs.qub.ac.uk/CSC7083-2324/CSC7083-2324-G3.git into SET3-69-i-want-the-app-tested
+
+commit 4980bde4dedf6901b69aedb82da48784711e49fa
+Author: 29051737 <sshortt02@qub.ac.uk>
+Date:   Tue Apr 16 12:53:25 2024 +0100
+
+    more tests invest square
+
+commit ae2a4975bac0096cbb2788eda85a04eb88a7d4a5
+Author: Tony <tonycowan56@gmail.com>
+Date:   Tue Apr 16 12:50:06 2024 +0100
+
+    provided resource information to player after fines and  purchases
+
+commit 71f841a5444f1f067f3e11924e1cb4dfd176aa21
+Author: 29051737 <sshortt02@qub.ac.uk>
+Date:   Tue Apr 16 12:49:12 2024 +0100
+
+    more testing investment square
+
+commit 121de9b19df816035c93f986411fd5cd0bf0ad5c
+Author: 40099112 <rurquhart01@qub.ac.uk>
+Date:   Mon Apr 15 17:37:54 2024 +0100
+
+    Added more prints to test report for clarity
+
+commit 95b4fbfca45debd6f0b386d1d5da5123ce66a680
+Author: 40099112 <rurquhart01@qub.ac.uk>
+Date:   Mon Apr 15 17:35:22 2024 +0100
+
+    Added more prints to test report for clarity
+
+commit 534afe2bc886ccb2a7a8cd4c3476cfd9e92c388b
+Author: 40099112 <rurquhart01@qub.ac.uk>
+Date:   Mon Apr 15 17:33:02 2024 +0100
+
+    Added more prints to test report for clarity
+
+commit 357a7387c1dae9c378edb6ca7fd4bb23ef779ff3
+Author: 40099112 <rurquhart01@qub.ac.uk>
+Date:   Mon Apr 15 17:25:10 2024 +0100
+
+    When a player buys a property, the property name is added to their list of owned properties
+
+commit ad2a440fba6ebb03864db9e8e8d8455e6efb77f5
+Author: 40099112 <rurquhart01@qub.ac.uk>
+Date:   Mon Apr 15 16:28:54 2024 +0100
+
+    Small change to number of tests run
+
+commit 16e6d19f8c2c06d5e4fedd89fbcb4c348e5bbbf7
+Author: 29051737 <sshortt02@qub.ac.uk>
+Date:   Sun Apr 14 19:13:26 2024 +0100
+
+    again more updates on game controller tests - limited due private
+    methods
+
+commit 51c34b892dc99d46e6bef68959672643c849a486
+Author: 29051737 <sshortt02@qub.ac.uk>
+Date:   Sun Apr 14 19:11:48 2024 +0100
+
+    test of gameController- limited as some methods privates to date
+
+commit 58d9cb85bb09e79b930c3ba31adf061a97f26e96
+Merge: 107ab52 108a874
+Author: Ryan Urquhart <rurquhart01@qub.ac.uk>
+Date:   Sat Apr 13 16:04:18 2024 +0000
+
+    Merge branch 'SET3-76-i-want-to-buy-a-square-if-another-user-doesnt-buy-one-that-they-land-on' into 'main'
+    
+    added functionality to offer plot to other players
+    
+    Closes SET3-76
+    
+    See merge request CSC7083-2324/CSC7083-2324-G3!47
+
+commit 108a8740119ffcbf8986eb3689ec079aca2a1326
+Author: RyanUrq <rurquhart01@qub.ac.uk>
+Date:   Sat Apr 13 16:59:52 2024 +0100
+
+    Updated tests
+
+commit 165e0d9696f56b73b1a00f348bc408ef60ee6ebc
+Merge: 31d7ec2 107ab52
+Author: RyanUrq <rurquhart01@qub.ac.uk>
+Date:   Sat Apr 13 16:54:10 2024 +0100
+
+    Merge branch 'main' of gitlab.eeecs.qub.ac.uk:CSC7083-2324/CSC7083-2324-G3 into SET3-76-i-want-to-buy-a-square-if-another-user-doesnt-buy-one-that-they-land-on
+
+commit 31d7ec2e669e2d8c074d78c064adcfd2ab62131f
+Author: Jenny <josborne2607@gmail.com>
+Date:   Sat Apr 13 16:41:38 2024 +0100
+
+    added functionality to offer plot to other players
+
+commit 107ab52677de7d805bda650976d5b8968f271921
+Merge: f23dd27 4d6d6d1
+Author: 40004376 <josborne03@qub.ac.uk>
+Date:   Sat Apr 13 15:13:46 2024 +0000
+
+    Merge branch 'SET3-75-unhandled-exception-in-avatar-selection' into 'main'
+    
+    Handling exception thrown in avatar selection
+    
+    Closes SET3-75
+    
+    See merge request CSC7083-2324/CSC7083-2324-G3!46
+
+commit 4d6d6d1d21dff5ee6534f3ee5cf413eeaa09c2e5
+Author: RyanUrq <rurquhart01@qub.ac.uk>
+Date:   Sat Apr 13 16:12:33 2024 +0100
+
+    Changed exception to valid exception in test
+
+commit b56a4c728724b926ddc01741ad9a06ec1dac459a
+Author: RyanUrq <rurquhart01@qub.ac.uk>
+Date:   Sat Apr 13 16:09:52 2024 +0100
+
+    Handling exception thrown in avatar selection
+
+commit f23dd2752337844a30a4d2cc29a3b793b9863024
+Merge: a953cea f908736
+Author: 40004376 <josborne03@qub.ac.uk>
+Date:   Sat Apr 13 14:47:31 2024 +0000
+
+    Merge branch 'SET3-69-i-want-the-app-tested' into 'main'
+    
+    Resolve SET3-69 "I want the app tested"
+    
+    Closes SET3-69
+    
+    See merge request CSC7083-2324/CSC7083-2324-G3!44
+
+commit f9087366f1c6aae90e7755b0a519ef4346b72864
+Author: Ryan Urquhart <rurquhart01@qub.ac.uk>
+Date:   Sat Apr 13 14:46:10 2024 +0000
+
+    Update .gitlab-ci.yml file
+
+commit a045dbd6742db2c17138711f9589a4241b4256c7
+Author: Ryan Urquhart <rurquhart01@qub.ac.uk>
+Date:   Sat Apr 13 14:44:26 2024 +0000
+
+    Update .gitlab-ci.yml file
+
+commit e59263536700808f30ff5615362ba0e8de8850d2
+Author: RyanUrq <rurquhart01@qub.ac.uk>
+Date:   Sat Apr 13 15:42:59 2024 +0100
+
+    Added more files to artefacts
+
+commit 0e5e3256d12e3301b267270e6a067370d1a53e6c
+Merge: bc009c7 55035da
+Author: RyanUrq <rurquhart01@qub.ac.uk>
+Date:   Sat Apr 13 15:25:12 2024 +0100
+
+    Merge branch 'SET3-69-i-want-the-app-tested' of gitlab.eeecs.qub.ac.uk:CSC7083-2324/CSC7083-2324-G3 into SET3-69-i-want-the-app-tested
+
+commit bc009c7c471871214b19e5bf73b372ab7eab277d
+Author: RyanUrq <rurquhart01@qub.ac.uk>
+Date:   Sat Apr 13 15:24:24 2024 +0100
+
+    Added more files to artefacts
+
+commit 55035daa910c1915190fa5ee2dd105438441fefa
+Merge: f824066 a953cea
+Author: Ryan Urquhart <rurquhart01@qub.ac.uk>
+Date:   Sat Apr 13 14:21:11 2024 +0000
+
+    Merge branch 'main' into 'SET3-69-i-want-the-app-tested'
+    
+    # Conflicts:
+    #   src/models/InvestmentSquare.java
+
+commit f8240661fa9ee3d24370ab05fc6c176fb2dce5ee
+Author: RyanUrq <rurquhart01@qub.ac.uk>
+Date:   Sat Apr 13 15:19:01 2024 +0100
+
+    Fixed tests
+
+commit a953ceafd61252b5181c9f43c08658d3bbcd148b
+Merge: 76bc89a c2a2de5
+Author: 40004376 <josborne03@qub.ac.uk>
+Date:   Sat Apr 13 14:18:59 2024 +0000
+
+    Merge branch 'SET3-79-if-i-dont-have-enough-money-to-pay-fee-it-will-make-me-pay-in-carbon-debt' into 'main'
+    
+    updated edge case testing on investment square. still not fully
+    
+    Closes SET3-79
+    
+    See merge request CSC7083-2324/CSC7083-2324-G3!45
+
+commit c2a2de597771b7605bcdfc7fdff681eda9768187
+Merge: b1dc8c5 76bc89a
+Author: 29051737 <sshortt02@qub.ac.uk>
+Date:   Sat Apr 13 14:15:36 2024 +0000
+
+    Merge branch 'main' into 'SET3-79-if-i-dont-have-enough-money-to-pay-fee-it-will-make-me-pay-in-carbon-debt'
+    
+    # Conflicts:
+    #   src/models/Player.java
+
+commit b1dc8c52c4d99e99afdd454736821ea173738e30
+Author: 29051737 <sshortt02@qub.ac.uk>
+Date:   Sat Apr 13 15:12:32 2024 +0100
+
+    fixing bug make player pay carbon debt if no money resources
+
+commit ca950b5725ab889911d7e2d6ee8c6e4fe08ece87
+Author: RyanUrq <rurquhart01@qub.ac.uk>
+Date:   Sat Apr 13 14:59:43 2024 +0100
+
+    Fixing tests
+
+commit 5450c805870022193b83086168338bf20e6e1195
+Merge: 1bdc746 76bc89a
+Author: Ryan Urquhart <rurquhart01@qub.ac.uk>
+Date:   Sat Apr 13 13:19:37 2024 +0000
+
+    Merge branch 'main' into 'SET3-69-i-want-the-app-tested'
+    
+    # Conflicts:
+    #   src/models/Player.java
+    #   src/utils/ConsoleUI.java
+    #   test/controllers/TestGameController.java
+
+commit 76bc89a66f8e09dce2f6e5bf25f15347b41d834f
+Merge: 6f50bfb adf8eed
+Author: 40004376 <josborne03@qub.ac.uk>
+Date:   Sat Apr 13 13:18:10 2024 +0000
+
+    Merge branch 'SET3-77-refactor-print-file-contents' into 'main'
+    
+    Resolve SET3-77 "Refactor print file contents"
+    
+    Closes SET3-77
+    
+    See merge request CSC7083-2324/CSC7083-2324-G3!43
+
+commit 1bdc7469e85576efd37665e98e8adfe8aa9af7e2
+Author: RyanUrq <rurquhart01@qub.ac.uk>
+Date:   Sat Apr 13 14:13:55 2024 +0100
+
+    Fixed tests in InvestmentSquare
+
+commit a4bf372a2aa275d8ad1233b19b32396978780872
+Author: RyanUrq <rurquhart01@qub.ac.uk>
+Date:   Sat Apr 13 14:02:50 2024 +0100
+
+    Fixed testing for ConsoleUi
+
+commit b6180fa2692ef8a9d9968ef48d3ddb0d95f4d5df
+Merge: c2ae722 a5e6735
+Author: RyanUrq <rurquhart01@qub.ac.uk>
+Date:   Sat Apr 13 12:59:18 2024 +0100
+
+    Merge branch 'SET3-69-i-want-the-app-tested' of gitlab.eeecs.qub.ac.uk:CSC7083-2324/CSC7083-2324-G3 into SET3-69-i-want-the-app-tested
+
+commit a5e67350c11524ecaaf66ea3f6a36aa6b457a9a7
+Author: 29051737 <sshortt02@qub.ac.uk>
+Date:   Sat Apr 13 12:54:58 2024 +0100
+
+    merge attempt
+
+commit bdcc320b8cb6cd909fd93edbfbbe8eed4052c42e
+Author: 29051737 <sshortt02@qub.ac.uk>
+Date:   Sat Apr 13 12:50:36 2024 +0100
+
+    Merge branch 'main' of
+    https://gitlab.eeecs.qub.ac.uk/CSC7083-2324/CSC7083-2324-G3.git into
+    SET3-69-i-want-the-app-tested
+
+commit 7d6d33bf28f5a0366b081691e61323f2c9f73a08
+Author: RyanUrq <rurquhart01@qub.ac.uk>
+Date:   Wed Apr 10 11:53:35 2024 +0100
+
+    Fixed bug in major fee forumla
+
+commit 4276bbf3aadc0606187e7b81bf4e5cf50776d847
+Author: 29051737 <sshortt02@qub.ac.uk>
+Date:   Fri Apr 12 10:45:42 2024 +0100
+
+    updating invest class testing again
+
+commit cce18e7d6010bcdf5d4d76318bfdb5ae2c517bb8
+Author: 29051737 <sshortt02@qub.ac.uk>
+Date:   Thu Apr 11 12:57:50 2024 +0100
+
+    investment square testing update
+
+commit 6b77303c044f79b0795cd6b3b261c71e051c788b
+Author: 29051737 <sshortt02@qub.ac.uk>
+Date:   Wed Apr 10 19:05:03 2024 +0100
+
+    updated edge case testing on investment square. still not fully
+    completed
+
+commit adf8eedc54f7d0383fde6bef4aa2c95e9150b38a
+Author: ru1022 <ryan.urquhart@commscope.com>
+Date:   Thu Apr 11 15:26:40 2024 +0100
+
+    Removed accidental dir add
+
+commit 9583f73a8ba82504354f2463089f3d6503f2a41f
+Author: ru1022 <ryan.urquhart@commscope.com>
+Date:   Thu Apr 11 15:24:42 2024 +0100
+
+    Basic refactor done, needs small tests. Reinitialised test of listFileDir
+
+commit fc1267d5d35bcc2d707624eabd1ba3479ef97273
+Author: ru1022 <ryan.urquhart@commscope.com>
+Date:   Thu Apr 11 15:11:47 2024 +0100
+
+    Commented out test util finished refactoring - TEMP
+
+commit 76c1c6130f62cbc8c41741c59681508b5ea4547c
+Author: ru1022 <ryan.urquhart@commscope.com>
+Date:   Thu Apr 11 15:10:19 2024 +0100
+
+    Continuing refactor of printFile, changes to avatar selection
+
+commit 4f14bafff3b15831e293ea71d777bc8502ad7592
+Author: 29051737 <sshortt02@qub.ac.uk>
+Date:   Thu Apr 11 13:24:36 2024 +0100
+
+    updated landon method to include loop and force payment to carbon debt
+
+commit 481d7d52635642599e48574782bad4de27d19a6d
+Author: 29051737 <sshortt02@qub.ac.uk>
+Date:   Thu Apr 11 12:57:50 2024 +0100
+
+    investment square testing update
+
+commit d5e9172fad4eb485c3df3829df880da65017829a
+Author: 29051737 <sshortt02@qub.ac.uk>
+Date:   Wed Apr 10 19:05:03 2024 +0100
+
+    updated edge case testing on investment square. still not fully
+    completed
+
+commit 2f118b8e833216ec5af2f5cd05624a5ccea9a524
+Author: RyanUrq <rurquhart01@qub.ac.uk>
+Date:   Wed Apr 10 17:36:10 2024 +0100
+
+    Started refactoring file handler
+
+commit c2ae722d10c19d31fc2c362e86a7a3d366c3afb4
+Author: RyanUrq <rurquhart01@qub.ac.uk>
+Date:   Wed Apr 10 17:00:47 2024 +0100
+
+    Working on .env file to define amount of test runs
+
+commit 9cd1135856b6679e085ab3bc633174686de1f035
+Author: RyanUrq <rurquhart01@qub.ac.uk>
+Date:   Wed Apr 10 16:57:16 2024 +0100
+
+    Testing moved factory methods in seperate class
+
+commit 94b8b208a2ec92bf3513f4498b0bcf289fe50682
+Author: RyanUrq <rurquhart01@qub.ac.uk>
+Date:   Wed Apr 10 16:56:13 2024 +0100
+
+    Testing moved factory methods in seperate class
+
+commit 216c12ccdb5fbf163aa7d21d99d4fccc3c88c081
+Author: RyanUrq <rurquhart01@qub.ac.uk>
+Date:   Wed Apr 10 16:53:48 2024 +0100
+
+    Testing moved factory methods in seperate class
+
+commit ed215441c31f7cbe20b2794fe186892ed15955c3
+Author: RyanUrq <rurquhart01@qub.ac.uk>
+Date:   Wed Apr 10 16:52:41 2024 +0100
+
+    Testing moved factory methods in seperate class
+
+commit e979f71acb44c4b52b6ba6fbbefda10e0bed16ce
+Author: RyanUrq <rurquhart01@qub.ac.uk>
+Date:   Wed Apr 10 16:50:36 2024 +0100
+
+    Testing moved factory methods in seperate class
+
+commit 0cf1608797d2bdf9464500371952414fae1bf97c
+Author: RyanUrq <rurquhart01@qub.ac.uk>
+Date:   Wed Apr 10 16:48:12 2024 +0100
+
+    Testing moved factory methods in seperate class
+
+commit 0a28164facbd5c2ff15d5ae822930dd7dae95535
+Author: RyanUrq <rurquhart01@qub.ac.uk>
+Date:   Wed Apr 10 16:46:09 2024 +0100
+
+    Testing moved factory methods in seperate class
+
+commit 4354a5c9202450017a62fe6d77c17989d7de5238
+Author: RyanUrq <rurquhart01@qub.ac.uk>
+Date:   Wed Apr 10 16:44:33 2024 +0100
+
+    Testing moved factory methods in seperate class
+
+commit 3deb74f95250126fd4346cd13c90b14784d35d4a
+Author: RyanUrq <rurquhart01@qub.ac.uk>
+Date:   Wed Apr 10 16:38:56 2024 +0100
+
+    Testing moved factory methods in seperate class
+
+commit bafe9942e3677fc4d1beb343eb6c3c545679cde4
+Author: RyanUrq <rurquhart01@qub.ac.uk>
+Date:   Wed Apr 10 16:36:37 2024 +0100
+
+    Testing moved factory methods in seperate class
+
+commit fc04d24337e43a4278b0e23e482dbd96a35c7182
+Author: RyanUrq <rurquhart01@qub.ac.uk>
+Date:   Wed Apr 10 16:33:31 2024 +0100
+
+    Testing moved factory methods in seperate class
+
+commit 0335d70f0a110ab768f704917780e60428c0100f
+Author: RyanUrq <rurquhart01@qub.ac.uk>
+Date:   Wed Apr 10 16:32:10 2024 +0100
+
+    Testing moved factory methods in seperate class
+
+commit 6cff0d8e72a26fbc6935a90004fd02ac6ba0f045
+Author: RyanUrq <rurquhart01@qub.ac.uk>
+Date:   Wed Apr 10 16:18:29 2024 +0100
+
+    Testing moved factory methods in seperate class
+
+commit d459b579e53c7b8c8b1cbfdb0084d5b37cc27484
+Author: RyanUrq <rurquhart01@qub.ac.uk>
+Date:   Wed Apr 10 16:05:36 2024 +0100
+
+    Fixing automated testing
+
+commit c94919006b51fe0c8f51f74af430e8570ab949cb
+Author: RyanUrq <rurquhart01@qub.ac.uk>
+Date:   Wed Apr 10 16:00:31 2024 +0100
+
+    Moved factory methods into their own class
+
+commit 6f50bfbd7145c68135e59d48de43d5b9b69e7346
+Merge: c63dc2d ec3c28e
+Author: Ryan Urquhart <rurquhart01@qub.ac.uk>
+Date:   Wed Apr 10 14:50:11 2024 +0000
+
+    Merge branch 'SET3-50-i-want-to-establish-a-concept-of-minor-and-major-units-and-their-cost-and-outcomes-within-each-field' into 'main'
+    
+    Fixed bug in major fee forumla
+    
+    Closes SET3-50
+    
+    See merge request CSC7083-2324/CSC7083-2324-G3!42
+
+commit be6e93dee706e996fccd3f250b4b1490ca11fd6d
+Author: RyanUrq <rurquhart01@qub.ac.uk>
+Date:   Wed Apr 10 15:36:42 2024 +0100
+
+    Paramaterised testing in TestGameController
+
+commit 9883fefcf0b5890aeaeaa51eb8dea0fc6f117f15
+Author: RyanUrq <rurquhart01@qub.ac.uk>
+Date:   Wed Apr 10 14:17:19 2024 +0100
+
+    Adding paramaterised testing to PlayerTest
+
+commit 55c7be81f3711687d88ab7e0bc7b49940c7e22dc
+Author: RyanUrq <rurquhart01@qub.ac.uk>
+Date:   Wed Apr 10 14:13:37 2024 +0100
+
+    Adding paramaterised testing to PlayerTest
+
+commit 4ad1263b0589dee65ca079181dbea050c5877834
+Author: RyanUrq <rurquhart01@qub.ac.uk>
+Date:   Wed Apr 10 13:27:22 2024 +0100
+
+    refactored test method
+
+commit ec3c28ec50ed53adf54035d8c04d3adaff4e1f3a
+Author: RyanUrq <rurquhart01@qub.ac.uk>
+Date:   Wed Apr 10 11:53:35 2024 +0100
+
+    Fixed bug in major fee forumla
+
+commit b8a4a14f7e8e91239e966c81b37a3713c2848574
+Author: 29051737 <sshortt02@qub.ac.uk>
+Date:   Wed Apr 10 11:43:11 2024 +0100
+
+    ecosquare testing completed to date
+
+commit 2ed6d4d8ac04250a5c1697097fb476360751a74c
+Merge: cfe989b c63dc2d
+Author: RyanUrq <rurquhart01@qub.ac.uk>
+Date:   Wed Apr 10 11:12:04 2024 +0100
+
+    Merge branch 'main' of gitlab.eeecs.qub.ac.uk:CSC7083-2324/CSC7083-2324-G3 into SET3-69-i-want-the-app-tested
+
+commit cfe989b5dd8fbf5c20fc0b5c1c7402823bb83ee1
+Author: RyanUrq <rurquhart01@qub.ac.uk>
+Date:   Wed Apr 10 11:11:00 2024 +0100
+
+    fixes to gosquare and to TestGoSquare
+
+commit 5c90108942b793312b0ee653f786b5809d87c851
+Merge: 5d476ed a6954bf
+Author: RyanUrq <rurquhart01@qub.ac.uk>
+Date:   Wed Apr 10 11:10:52 2024 +0100
+
+    Merge branch 'SET3-69-i-want-the-app-tested' of gitlab.eeecs.qub.ac.uk:CSC7083-2324/CSC7083-2324-G3 into SET3-69-i-want-the-app-tested
+
+commit 5d476ed7b74a23e3abcf26bfc0d3a529aede6d98
+Author: RyanUrq <rurquhart01@qub.ac.uk>
+Date:   Wed Apr 10 11:09:22 2024 +0100
+
+    Fixes to bugs in GoSquare, and fixes to tests of GoSquare
+
+commit a6954bf3b61c602265df2b82919060751ba629e2
+Author: 40099112 <rurquhart01@qub.ac.uk>
+Date:   Tue Apr 9 22:03:43 2024 +0100
+
+    fixed testing for new InvestmentSquare
+
+commit c3ac7414bf950498f032ffbb3700339dc4ca0658
+Author: 40099112 <rurquhart01@qub.ac.uk>
+Date:   Tue Apr 9 21:56:54 2024 +0100
+
+    fixed testing for new InvestmentSquare
+
+commit cca1cb1c348deb34ca34f92c85380f48eae5716d
+Author: 40099112 <rurquhart01@qub.ac.uk>
+Date:   Tue Apr 9 21:49:22 2024 +0100
+
+    edited gosquare.java landOn method to use deductedResources() method
+
+commit 286a0fb578cb1eb1f9322b66fb22738ad224f315
+Author: 40099112 <rurquhart01@qub.ac.uk>
+Date:   Tue Apr 9 21:41:53 2024 +0100
+
+    Finalised a few comments for methods in InvestmentSquare.java
+
+commit 5fab10fb8e50156dbf7dd10bc12ce2c638b81964
+Merge: 2ba8e74 5a8ab68
+Author: RyanUrq <rurquhart01@qub.ac.uk>
+Date:   Tue Apr 9 21:06:35 2024 +0100
+
+    Merge branch 'SET3-69-i-want-the-app-tested' of gitlab.eeecs.qub.ac.uk:CSC7083-2324/CSC7083-2324-G3 into SET3-69-i-want-the-app-tested
+
+commit 2ba8e74dc580a8c20633ba326ec392dcc31e47a8
+Author: RyanUrq <rurquhart01@qub.ac.uk>
+Date:   Tue Apr 9 21:06:25 2024 +0100
+
+    Adding verification to InvestmentSquare class
+
+commit 5a8ab68d8e1d45d4edcc5933333de0e4c8e1c898
+Author: 29051737 <sshortt02@qub.ac.uk>
+Date:   Tue Apr 9 20:54:52 2024 +0100
+
+    testing for go-square need verify landon method
+
+commit c63dc2d3aa8b7ae68bc282bdb9b7f3f1a002d583
+Merge: 00c8bec 09b0e31
+Author: Ryan Urquhart <rurquhart01@qub.ac.uk>
+Date:   Tue Apr 9 15:33:50 2024 +0000
+
+    Merge branch 'SET3-24-i-want-a-menu-of-instructions-to-easily-understand-each-part-of-the-game' into 'main'
+    
+    Resolve SET3-24 "I want a menu of instructions to easily understand each part of the game"
+    
+    Closes SET3-24, SET3-17, SET3-21, and SET3-22
+    
+    See merge request CSC7083-2324/CSC7083-2324-G3!40
+
+commit 09b0e314fdfd03437f5b4a37eb6829f19c7b3f4d
+Author: Jenny <josborne2607@gmail.com>
+Date:   Tue Apr 9 16:22:25 2024 +0100
+
+    Renamed test data
+
+commit 5d637810070e929b33f291dd4a451dab58b2ded7
+Author: Jenny <josborne2607@gmail.com>
+Date:   Tue Apr 9 16:19:46 2024 +0100
+
+    Added tests for text files
+
+commit 6944bf49e1b352b081c3916913646242c750ad54
+Author: Jenny <josborne2607@gmail.com>
+Date:   Tue Apr 9 16:09:05 2024 +0100
+
+    Created menu for instructions
+
+commit bcd9c3355260a7372ffbb963c99c3b63279c173d
+Author: 29051737 <sshortt02@qub.ac.uk>
+Date:   Tue Apr 9 15:29:37 2024 +0100
+
+    fixed class name
+
+commit cb03757cdb69312ba5dcedafcb6fcfa68b65e7d0
+Author: 29051737 <sshortt02@qub.ac.uk>
+Date:   Tue Apr 9 14:49:26 2024 +0100
+
+    updated throw add resources method
+
+commit e1252fe667087f4b74a9114d05378c5ddebb7069
+Merge: 2b27d45 00c8bec
+Author: 29051737 <sshortt02@qub.ac.uk>
+Date:   Tue Apr 9 14:40:53 2024 +0100
+
+    Merge branch 'SET3-69-i-want-the-app-tested' of
+    https://gitlab.eeecs.qub.ac.uk/CSC7083-2324/CSC7083-2324-G3.git into
+    SET3-69-i-want-the-app-tested
+
+commit 2b27d45adafec2b2d1fb41f181fdecffb682010f
+Merge: 6133a2c 968654b
+Author: 29051737 <sshortt02@qub.ac.uk>
+Date:   Tue Apr 9 14:31:04 2024 +0100
+
+    Merge branch 'SET3-69-i-want-the-app-tested' of https://gitlab.eeecs.qub.ac.uk/CSC7083-2324/CSC7083-2324-G3.git into SET3-69-i-want-the-app-tested
+
+commit 6133a2c5daa743e86c1fa3ff5774909b2011e559
+Author: 29051737 <sshortt02@qub.ac.uk>
+Date:   Tue Apr 9 14:30:30 2024 +0100
+
+    player testing and board testing
+
+commit 00c8beccc5a935f161a12aa33cb781bac0d1c8c0
+Merge: 829f96f 6d3d93b
+Author: Ryan Urquhart <rurquhart01@qub.ac.uk>
+Date:   Tue Apr 9 13:29:51 2024 +0000
+
+    Merge branch 'SET3-59-i-want-to-be-able-to-press-i-to-display-instructions-at-any-point-in-the-game' into 'main'
+    
+    Resolve SET3-59 "I want to be able to press i to display instructions at any point in the game"
+    
+    Closes SET3-59
+    
+    See merge request CSC7083-2324/CSC7083-2324-G3!38
+
+commit 6d3d93b1a5d94a81cd59e7bacd3e07a52d2311a4
+Author: Jenny <josborne2607@gmail.com>
+Date:   Tue Apr 9 14:27:37 2024 +0100
+
+    added checks to see if game is running for display options
+
+commit 829f96f1100551850c30eea186e7d151b34d2edc
+Merge: b634bcf 760a827
+Author: 40004376 <josborne03@qub.ac.uk>
+Date:   Tue Apr 9 13:24:39 2024 +0000
+
+    Merge branch 'SET3-70-i-want-to-be-able-to-choose-to-pay-my-fine-in-money-or-carbon-debt' into 'main'
+    
+    Resolve SET3-70 "I want to be able to choose to pay my fine in money or carbon debt"
+    
+    Closes SET3-70
+    
+    See merge request CSC7083-2324/CSC7083-2324-G3!39
+
+commit 760a827c86cc157fd67ce2e9538d0e1b82f9c145
+Author: RyanUrq <rurquhart01@qub.ac.uk>
+Date:   Tue Apr 9 14:19:48 2024 +0100
+
+    added method to allow player option to choose payment method of money
+
+commit c7f2bec794b8c5b79379760240072eed0527631f
+Merge: c95f69e b634bcf
+Author: RyanUrq <rurquhart01@qub.ac.uk>
+Date:   Tue Apr 9 14:18:26 2024 +0100
+
+    Merge branch 'main' of gitlab.eeecs.qub.ac.uk:CSC7083-2324/CSC7083-2324-G3 into SET3-70-i-want-to-be-able-to-choose-to-pay-my-fine-in-money-or-carbon-debt
+
+commit c95f69e9c9b691a028ddebbc0e6eb8975803276e
+Author: 29051737 <sshortt02@qub.ac.uk>
+Date:   Tue Apr 9 14:05:18 2024 +0100
+
+    update player class tests
+
+commit 00f9828267b32026775537f8d1e5cd7c96650b22
+Author: Jenny <josborne2607@gmail.com>
+Date:   Tue Apr 9 13:35:42 2024 +0100
+
+    added IOException to displayInstructions method
+
+commit 5318d81d76bcfbdf960df3a301df5c89c412c4fc
+Merge: d29d7aa 6e19157
+Author: Jenny <josborne2607@gmail.com>
+Date:   Tue Apr 9 13:27:26 2024 +0100
+
+    added instructions to choose i during players turn
+
+commit d29d7aac51e5ab187860aefa3b3750be3c90ba9a
+Author: Jenny <josborne2607@gmail.com>
+Date:   Tue Apr 9 13:21:06 2024 +0100
+
+    Added instructions for option to press i during players turn
+
+commit 968654bd7ffbc9f784ce2d948e09effe465f9cd6
+Merge: e523695 b634bcf
+Author: 40099112 <rurquhart01@qub.ac.uk>
+Date:   Fri Apr 5 20:38:04 2024 +0100
+
+    Merge branch 'main' of https://gitlab.eeecs.qub.ac.uk/CSC7083-2324/CSC7083-2324-G3 into SET3-69-i-want-the-app-tested
+
+commit b634bcf69c01adf71c50c6843628fce54b4b0c1b
+Merge: 4973c97 8a3cf5a
+Author: Ryan Urquhart <rurquhart01@qub.ac.uk>
+Date:   Fri Apr 5 19:18:29 2024 +0000
+
+    Merge branch 'SET3-58-i-want-to-have-an-option-to-press-i-to-show-instructions-or-p-to-play-the-game' into 'main'
+    
+    Added instructions text file and functionality to press i or p to choose instructions or play at beginning of game
+    
+    Closes SET3-58
+    
+    See merge request CSC7083-2324/CSC7083-2324-G3!35
+
+commit 4973c97d3a15a15fd0471178e38e0d8ca37000e4
+Merge: 81c313a 33e46dc
+Author: Ryan Urquhart <rurquhart01@qub.ac.uk>
+Date:   Fri Apr 5 19:18:09 2024 +0000
+
+    Merge branch 'SET3-50-i-want-to-establish-a-concept-of-minor-and-major-units-and-their-cost-and-outcomes-within-each-field' into 'main'
+    
+    Resolve SET3-50 "I want to establish a concept of minor and major units and their cost and outcomes within each field"
+    
+    Closes SET3-50
+    
+    See merge request CSC7083-2324/CSC7083-2324-G3!36
+
+commit 33e46dc2385f1d933993f4146eabd8091de9b6d9
+Author: 40099112 <rurquhart01@qub.ac.uk>
+Date:   Fri Apr 5 20:15:34 2024 +0100
+
+    Added testing to InvestmentSquare.java
+
+commit 05ac781a279878ccd25d38ea4a4219340a95a99f
+Author: 40099112 <rurquhart01@qub.ac.uk>
+Date:   Fri Apr 5 20:04:39 2024 +0100
+
+    Added testing to InvestmentSquare.java
+
+commit 8a3cf5a78a1245aa74108da7023b59660d468190
+Author: 40099112 <rurquhart01@qub.ac.uk>
+Date:   Fri Apr 5 17:25:40 2024 +0100
+
+    Added in a comment, removed URIExceptions, and modified testing to work with new files
+
+commit b22554b630e994127885233fd30e3ebae110a15c
+Author: 40099112 <rurquhart01@qub.ac.uk>
+Date:   Fri Apr 5 17:21:09 2024 +0100
+
+    Adding testing to InvestmentSquare
+
+commit b66e75267a28d592941b146f3626f9ddd044e042
+Merge: 96371ba 81c313a
+Author: 40004376 <josborne03@qub.ac.uk>
+Date:   Fri Apr 5 16:14:35 2024 +0000
+
+    Merge branch 'main' into 'SET3-58-i-want-to-have-an-option-to-press-i-to-show-instructions-or-p-to-play-the-game'
+    
+    # Conflicts:
+    #   src/controllers/GameController.java
+
+commit 96371ba25fc424f5086c1c0d0c708560133ca667
+Author: Jenny <josborne2607@gmail.com>
+Date:   Fri Apr 5 17:05:16 2024 +0100
+
+    Added Exceptions to methods in GameController
+
+commit 62d6569d9012ef56ecc9558dc7a9369ebc6a26ed
+Author: Jenny <josborne2607@gmail.com>
+Date:   Fri Apr 5 16:43:47 2024 +0100
+
+    Added instructions text file and functionality to press i or p to choose instructions or play at beginning of game
+
+commit e3a4c05bf41a8bc64d598e41413e0284e2415168
+Author: Jenny <josborne2607@gmail.com>
+Date:   Fri Apr 5 16:42:35 2024 +0100
+
+    Added functionality to press i to show instructions at any point of the game
+
+commit 96b24af6e0745bc02d71aed39419ed12c097b4b2
+Author: 40099112 <rurquhart01@qub.ac.uk>
+Date:   Fri Apr 5 16:34:08 2024 +0100
+
+    modified board.java to work with new investment square constructor
+
+commit 2d45dd61ae6ffbc9139b593f82a34380c2d94db2
+Author: 40099112 <rurquhart01@qub.ac.uk>
+Date:   Fri Apr 5 16:10:51 2024 +0100
+
+    Added in minor units, costs and count, major units, costs and counts
+
+commit 6e1915733059a35a99b8ed50a07a4c3118662042
+Author: Jenny <josborne2607@gmail.com>
+Date:   Fri Apr 5 16:07:22 2024 +0100
+
+    Added functionality to display instructions at any point in the game
+
+commit d9759726c830537e67c1c0f48a39e358a8ec85f8
+Author: Jenny <josborne2607@gmail.com>
+Date:   Fri Apr 5 15:58:26 2024 +0100
+
+    Added instructions text file and functionality to press i or p for instructions or play at beginning of game
+
+commit e96f92d043018aa6f01a399cf22caad9ee16f773
+Author: Jenny <josborne2607@gmail.com>
+Date:   Fri Apr 5 15:41:50 2024 +0100
+
+    Edited instructions functionality
+
+commit 81c313a5eb62d523ba28c8e2bc6388dc81416d50
+Merge: 70b0071 676fb7c
+Author: Ryan Urquhart <rurquhart01@qub.ac.uk>
+Date:   Fri Apr 5 12:54:16 2024 +0000
+
+    Merge branch 'SET3-48-i-want-to-pick-an-avatar-to-represent-me-in-the-game' into 'main'
+    
+    Added in functionality for players to select an avatar, I also added a test...
+    
+    Closes SET3-48
+    
+    See merge request CSC7083-2324/CSC7083-2324-G3!34
+
+commit 676fb7c05b38d7055173652b4a7bb1d6b3de035e
+Author: 40099112 <rurquhart01@qub.ac.uk>
+Date:   Fri Apr 5 13:52:09 2024 +0100
+
+    Changed dir contents test to reflect contents in automated test dir
+
+commit 36366893710243b9e4def4a8dbf1b6f598739e9b
+Author: 40099112 <rurquhart01@qub.ac.uk>
+Date:   Fri Apr 5 13:49:59 2024 +0100
+
+    Changed dir contents test to reflect contents in automated test dir
+
+commit 12958d312693a1d3e4f2c97ce4b13914519ea9d8
+Author: 40099112 <rurquhart01@qub.ac.uk>
+Date:   Fri Apr 5 13:47:18 2024 +0100
+
+    Changed dir contents test to reflect contents in automated test dir
+
+commit 12c36105f6e8e4779b044aa826a23b88e047a739
+Merge: e5eff36 70b0071
+Author: 40099112 <rurquhart01@qub.ac.uk>
+Date:   Fri Apr 5 13:46:45 2024 +0100
+
+    Merge branch 'main' of https://gitlab.eeecs.qub.ac.uk/CSC7083-2324/CSC7083-2324-G3 into SET3-48-i-want-to-pick-an-avatar-to-represent-me-in-the-game
+
+commit 948084830f3fe270cfe1f041c802d367b5d291a1
+Author: Jenny <josborne2607@gmail.com>
+Date:   Fri Apr 5 13:39:31 2024 +0100
+
+    Added instructions text file and functionality to
+    view at any point of the game
+
+commit 70b0071f9d182f23f373a3f3372a5b5da4ec7aa9
+Merge: c662b13 e4f80db
+Author: 40004376 <josborne03@qub.ac.uk>
+Date:   Fri Apr 5 12:13:45 2024 +0000
+
+    Merge branch 'SET3-adding-code-coverage' into 'main'
+    
+    Cleaned the .gitlab-ci.yml file
+    
+    See merge request CSC7083-2324/CSC7083-2324-G3!33
+
+commit e5eff36e8fffe53663657695a34629aeb5772793
+Author: 40099112 <rurquhart01@qub.ac.uk>
+Date:   Fri Apr 5 13:12:03 2024 +0100
+
+    Added in functionality for players to select an avatar, I also added a test for the listFilesInDir method added for this functionality
+
+commit e4f80db5dff844b106a1ff567985b21cdb2874cf
+Author: 40099112 <rurquhart01@qub.ac.uk>
+Date:   Thu Apr 4 12:21:05 2024 +0100
+
+    Modified .gitlab-ci.yml file and added in small bash script
+
+commit c662b13b69cde4a00c557e752ef1d4e38c4e3d31
+Merge: cab4276 c925f93
+Author: 40381887 <tcowan04@qub.ac.uk>
+Date:   Thu Apr 4 11:07:19 2024 +0000
+
+    Merge branch 'SET3-adding-code-coverage' into 'main'
+    
+    Set3 adding code coverage
+    
+    See merge request CSC7083-2324/CSC7083-2324-G3!32
+
+commit c925f93f588efc080045c54e46b93af14dd7d045
+Merge: 5b2d2bc cab4276
+Author: 40099112 <rurquhart01@qub.ac.uk>
+Date:   Thu Apr 4 11:59:43 2024 +0100
+
+    Merge branch 'main' of https://gitlab.eeecs.qub.ac.uk/CSC7083-2324/CSC7083-2324-G3 into SET3-adding-code-coverage
+
+commit cab4276da6deacc06c25ad23bac61f6a8ddd3489
+Merge: dcb09b5 652a380
+Author: Ryan Urquhart <rurquhart01@qub.ac.uk>
+Date:   Thu Apr 4 10:59:04 2024 +0000
+
+    Merge branch 'SET3-74-i-want-to-consolodiate-the-handle-sqaure-calls-into-one-method-that-calls-the-land-on-method-of-the-given-square' into 'main'
+    
+    Consolodiated square actions in a more modular fashion and fixed the multiple...
+    
+    Closes SET3-74
+    
+    See merge request CSC7083-2324/CSC7083-2324-G3!31
+
+commit 5b2d2bcfb68c69068434a8664a1b6b5ab08c3eef
+Author: 40099112 <rurquhart01@qub.ac.uk>
+Date:   Thu Apr 4 11:52:17 2024 +0100
+
+    Modified .gitlab-ci.yml file and added in small bash script
+
+commit e71022731c05a310cc00bcfd1e87e6178fc9453c
+Author: 40099112 <rurquhart01@qub.ac.uk>
+Date:   Thu Apr 4 11:49:22 2024 +0100
+
+    Modified .gitlab-ci.yml file
+
+commit a8217f1a18f71eea2f61cbc6214e2b5b021ce3df
+Author: 40099112 <rurquhart01@qub.ac.uk>
+Date:   Thu Apr 4 11:45:49 2024 +0100
+
+    Modified .gitlab-ci.yml file
+
+commit e4cef81f21d2a2984ee64e89c6ab210f475a1991
+Author: 40099112 <rurquhart01@qub.ac.uk>
+Date:   Thu Apr 4 11:38:14 2024 +0100
+
+    Modified .gitlab-ci.yml file
+
+commit 627468303614e1be826c90117c5ecb5f6bf7cd7a
+Author: 40099112 <rurquhart01@qub.ac.uk>
+Date:   Thu Apr 4 11:36:03 2024 +0100
+
+    Modified .gitlab-ci.yml file
+
+commit faac66ce717cf994e125a1a3611b7a9fa9b61f69
+Merge: b9d682f b77547b
+Author: 40099112 <rurquhart01@qub.ac.uk>
+Date:   Thu Apr 4 11:35:36 2024 +0100
+
+    Modifired .gitlab-ci.yml file
+
+commit b9d682f7aad31ceddd1ba2120ecdbc929ccba40d
+Author: 40099112 <rurquhart01@qub.ac.uk>
+Date:   Thu Apr 4 11:32:36 2024 +0100
+
+    Modifired .gitlab-ci.yml file
+
+commit b77547b0e2c4bfe6f15aa5e8f869dfd24c34f492
+Author: Ryan Urquhart <rurquhart01@qub.ac.uk>
+Date:   Thu Apr 4 10:30:00 2024 +0000
+
+    Update .gitlab-ci.yml file
+
+commit f8c8bb8302dbb769ea4f7495598cf79345d5c4ea
+Author: Ryan Urquhart <rurquhart01@qub.ac.uk>
+Date:   Thu Apr 4 10:27:21 2024 +0000
+
+    Update .gitlab-ci.yml file
+
+commit d7451c173ac1a0bfbe3bfd33983d4692e6196b4b
+Author: 40099112 <rurquhart01@qub.ac.uk>
+Date:   Thu Apr 4 11:21:46 2024 +0100
+
+    Modifired .gitlab-ci.yml file
+
+commit 4110c462038c5a59588dbe53886490e400def936
+Author: 40099112 <rurquhart01@qub.ac.uk>
+Date:   Thu Apr 4 11:17:46 2024 +0100
+
+    Added code coverage statistics to pipeline
+
+commit 652a380021e9d19a188d6a2c9d834c8948f73d1e
+Author: Tony <tonycowan56@gmail.com>
+Date:   Thu Apr 4 09:57:11 2024 +0100
+
+    Consolodiated square actions in a more modular fashion and fixed the multiple print messages upon passing and or landing on go
+
+commit e523695ecf3dcd7fea3f195dd995222add95178e
+Author: 29051737 <sshortt02@qub.ac.uk>
+Date:   Wed Apr 3 15:37:15 2024 +0100
+
+    adding on tests for player class
+
+commit dcb09b5a6ce492f97f251754c3e9551c304ff7bd
+Merge: 41232cb 37c367c
+Author: 40381887 <tcowan04@qub.ac.uk>
+Date:   Wed Apr 3 12:27:44 2024 +0000
+
+    Merge branch 'SET3-54-i-want-to-change-the-players-resource-display-option-to-show-money-carbon-debt-and-properties-with-their-respective-units-and-taxes' into 'main'
+    
+    Resolve SET3-54 "I want to change the players resource display option to show money carbon debt and properties with their respective units and taxes"
+    
+    Closes SET3-54
+    
+    See merge request CSC7083-2324/CSC7083-2324-G3!29
+
+commit 37c367c7548d79da2b476f68e20de7746a24d359
+Author: 29051737 <sshortt02@qub.ac.uk>
+Date:   Wed Apr 3 13:26:37 2024 +0100
+
+    removed player copy.java
+
+commit b0e885ad6821bbdb76115f8dc2194cd77e13aa9f
+Author: 29051737 <sshortt02@qub.ac.uk>
+Date:   Wed Apr 3 13:02:30 2024 +0100
+
+    add properties/ display player
+
+commit 40437b14762818a094a201c3c188854a6c217c07
+Author: 29051737 <sshortt02@qub.ac.uk>
+Date:   Wed Apr 3 13:01:47 2024 +0100
+
+    updating player object add in properties/arraylist/display playe
+
+commit 41232cbd154ed30af579a496954d45210757c7b8
+Merge: 1a95a1a 81bc5b7
+Author: Ryan Urquhart <rurquhart01@qub.ac.uk>
+Date:   Wed Apr 3 11:46:47 2024 +0000
+
+    Merge branch 'SET3-40-i-want-to-see-ascii-visualisations-of-the-game' into 'main'
+    
+    Resolve SET3-40 "I want to see ascii visualisations of the game"
+    
+    Closes SET3-40
+    
+    See merge request CSC7083-2324/CSC7083-2324-G3!28
+
+commit 81bc5b712acf4980b2844bf83dfb822e7f7ab4f3
+Merge: c3f928c 1a95a1a
+Author: Ryan Urquhart <rurquhart01@qub.ac.uk>
+Date:   Wed Apr 3 11:45:58 2024 +0000
+
+    Merge branch 'main' into 'SET3-40-i-want-to-see-ascii-visualisations-of-the-game'
+    
+    # Conflicts:
+    #   src/resources/asciititle.txt
+
+commit c3f928c5fd4ac42d0f6fe1fcac9fe3d6bf139984
+Author: Jenny <josborne2607@gmail.com>
+Date:   Wed Apr 3 12:35:50 2024 +0100
+
+    "Added avatar text files"
+
+commit 1a95a1a8b728c1c892dd60b1462d8dad36affe83
+Merge: a2d6492 74f8d98
+Author: Ryan Urquhart <rurquhart01@qub.ac.uk>
+Date:   Wed Apr 3 10:56:37 2024 +0000
+
+    Merge branch 'SET3-65-i-want-to-remove-extraneous-files-from-the-models-folder' into 'main'
+    
+    Removed extra files
+    
+    Closes SET3-65
+    
+    See merge request CSC7083-2324/CSC7083-2324-G3!27
+
+commit 74f8d983f181944372a4d19d2bd6de3b9fd94ab2
+Author: Tony <tonycowan56@gmail.com>
+Date:   Wed Apr 3 11:54:55 2024 +0100
+
+    removed calls to deleted squares
+
+commit 746da9fda88081698238df444ae256ab6abf0571
+Author: Tony <tonycowan56@gmail.com>
+Date:   Wed Apr 3 11:45:14 2024 +0100
+
+    Removed extra files
+
+commit a2d649283c98f5aea0359a9d5d053800440011ae
+Merge: 500ecbe ca51a3b
+Author: Ryan Urquhart <rurquhart01@qub.ac.uk>
+Date:   Tue Apr 2 11:00:11 2024 +0000
+
+    Merge branch 'SET3-64-i-want-to-add-the-concept-of-an-eco-zone-square-at-position-6-on-the-board' into 'main'
+    
+    Added EcoZone SQuare
+    
+    Closes SET3-64
+    
+    See merge request CSC7083-2324/CSC7083-2324-G3!26
+
+commit ca51a3be5eceede5fb408eda8350fd5a390e3823
+Author: Tony <tonycowan56@gmail.com>
+Date:   Tue Apr 2 11:53:11 2024 +0100
+
+    Added EcoZone SQuare
+
+commit 500ecbe6b920f876ae231f8808c2a9b45ac77a29
+Merge: 95eeb6a 2f0a082
+Author: Ryan Urquhart <rurquhart01@qub.ac.uk>
+Date:   Tue Apr 2 10:26:08 2024 +0000
+
+    Merge branch 'SET3-49-i-want-four-fields-solar-wind-hydro-and-nuclear' into 'main'
+    
+    Added the four fields, solar, wind, hydro and nuke wiht their respective buy and unit values
+    
+    Closes SET3-49
+    
+    See merge request CSC7083-2324/CSC7083-2324-G3!25
+
+commit 2f0a0826e21dd756ec70f487226e8f05c00ae15c
+Author: Tony <tonycowan56@gmail.com>
+Date:   Tue Apr 2 11:24:30 2024 +0100
+
+    Added the four fields, solar, wind, hydro and nuke
+
+commit 95eeb6a168ec7578a7de52baf93d6913b052b7b4
+Merge: d76b9b0 d0c2467
+Author: Ryan Urquhart <rurquhart01@qub.ac.uk>
+Date:   Tue Apr 2 10:11:23 2024 +0000
+
+    Merge branch 'SET3-63-i-want-to-ensure-that-a-player-cannot-go-below-0-carbon-debt' into 'main'
+    
+    Ensured a player cannot go below 0 carbon debt
+    
+    Closes SET3-63
+    
+    See merge request CSC7083-2324/CSC7083-2324-G3!24
+
+commit d0c2467bcc35ffd966ae38818a2e2df5c2b588ce
+Author: Tony <tonycowan56@gmail.com>
+Date:   Tue Apr 2 11:09:31 2024 +0100
+
+    Ensured a player cannot go below 0 carbon debt
+
+commit d76b9b015b8217bc255975d3347c4a177a05e04d
+Merge: 83e46d9 003e1d1
+Author: Ryan Urquhart <rurquhart01@qub.ac.uk>
+Date:   Tue Apr 2 10:06:19 2024 +0000
+
+    Merge branch 'SET3-62-i-want-to-add-the-concept-of-a-go-square-which-gives-a-player-50-money-upon-landing' into 'main'
+    
+    added carbon debt concept to go square
+    
+    Closes SET3-62
+    
+    See merge request CSC7083-2324/CSC7083-2324-G3!23
+
+commit 83e46d92be3e4fd488898f0db00a9fa469e6f319
+Merge: 9513a34 bf918e9
+Author: Ryan Urquhart <rurquhart01@qub.ac.uk>
+Date:   Tue Apr 2 10:03:55 2024 +0000
+
+    Merge branch 'SET3-62-i-want-to-add-the-concept-of-a-go-square-which-gives-a-player-50-money-upon-landing' into 'main'
+    
+    Resolve SET3-62 "I want to add the concept of a go square which gives a player 50 money upon landing"
+    
+    Closes SET3-62
+    
+    See merge request CSC7083-2324/CSC7083-2324-G3!22
+
+commit 003e1d10c8991267d77737f8ff2723d24dacd33a
+Author: Tony <tonycowan56@gmail.com>
+Date:   Tue Apr 2 11:03:51 2024 +0100
+
+    added carbon debt conecpt to go square
+
+commit bf918e99db79045f3bf041bb23d84c027885aaf2
+Merge: 77d6d55 9513a34
+Author: Tony <tonycowan56@gmail.com>
+Date:   Tue Apr 2 10:54:21 2024 +0100
+
+    Added Go Square
+
+commit 77d6d55f1a742280adc9c77b378087fa68673880
+Author: Tony <tonycowan56@gmail.com>
+Date:   Tue Apr 2 10:30:35 2024 +0100
+
+    Added go square
+
+commit 9513a34fcd8a35cff800864a5b03bbe378991171
+Merge: 9cac6d6 c219d68
+Author: 40381887 <tcowan04@qub.ac.uk>
+Date:   Tue Apr 2 09:13:39 2024 +0000
+
+    Merge branch 'SET3-47-i-want-each-player-to-start-with-money-and-carbon-debt-fixes' into 'main'
+    
+    Added functionality to get resources, and get position. Updated places where...
+    
+    Closes SET3-47
+    
+    See merge request CSC7083-2324/CSC7083-2324-G3!20
+
+commit c219d68867277f999bc115971e2a2c62045d20b7
+Author: RyanUrq <rurquhart01@qub.ac.uk>
+Date:   Mon Apr 1 12:33:49 2024 +0100
+
+    Added functionality to get resources, and get position. Updated places where these methods are called so that they work as expected
+
+commit 9cac6d634b6587625ccf8092d7683aab6acf8ee6
+Merge: a988624 001be03
+Author: Ryan Urquhart <rurquhart01@qub.ac.uk>
+Date:   Mon Apr 1 10:26:16 2024 +0000
+
+    Merge branch 'SET3-Testing' into 'main'
+    
+    Set3 testing
+    
+    See merge request CSC7083-2324/CSC7083-2324-G3!19
+
+commit 001be036d828294c2ce00c081c2c04da156e51ca
+Author: Ryan Urquhart <rurquhart01@qub.ac.uk>
+Date:   Sun Mar 31 19:52:45 2024 +0000
+
+    Update .gitlab-ci.yml file
+
+commit 691a87a4c7c97aef8a0db46b37ecfb583a5ebd6e
+Author: RyanUrq <rurquhart01@qub.ac.uk>
+Date:   Sun Mar 31 17:54:04 2024 +0100
+
+    Updated .gitlab-ci.yml
+
+commit 66fcaa9c2e6887ab3d0ec28b7fceb04fbfd73926
+Author: RyanUrq <rurquhart01@qub.ac.uk>
+Date:   Sun Mar 31 17:51:33 2024 +0100
+
+    Updated .gitlab-ci.yml
+
+commit 95098f6bb7644fa0a2aeadbedc9eb67c59cad577
+Author: RyanUrq <rurquhart01@qub.ac.uk>
+Date:   Sun Mar 31 17:49:39 2024 +0100
+
+    Removed JAR files, and updated .gitlab-ci.yml
+
+commit 6b2455d3696352747acf7838a9960f79a399bc3e
+Author: RyanUrq <rurquhart01@qub.ac.uk>
+Date:   Fri Mar 29 22:40:03 2024 +0000
+
+    Further general testing
+
+commit 066520fd3293e5094361e566d7e9d11891a16644
+Author: RyanUrq <rurquhart01@qub.ac.uk>
+Date:   Fri Mar 29 22:38:48 2024 +0000
+
+    Further general testing
+
+commit 358d000055e60c11e5ef4506b77dfa9a388fed99
+Author: RyanUrq <rurquhart01@qub.ac.uk>
+Date:   Fri Mar 29 22:37:34 2024 +0000
+
+    Further general testing
+
+commit efab6150ae9bbc24addb1e32cfb568f33d7489a8
+Author: RyanUrq <rurquhart01@qub.ac.uk>
+Date:   Fri Mar 29 22:34:59 2024 +0000
+
+    Further general testing
+
+commit 4b8a35644a1486632910ba9d3e6e3164e298cf7a
+Author: RyanUrq <rurquhart01@qub.ac.uk>
+Date:   Fri Mar 29 22:32:09 2024 +0000
+
+    Further general testing
+
+commit 9e237c03fbb87ae36ad74d0f114428a79a8da80d
+Author: RyanUrq <rurquhart01@qub.ac.uk>
+Date:   Fri Mar 29 22:29:24 2024 +0000
+
+    Added in sucess test for POC
+
+commit aeba7b4e31ef3c45541fdf20074ded911b11f38a
+Author: RyanUrq <rurquhart01@qub.ac.uk>
+Date:   Fri Mar 29 22:27:01 2024 +0000
+
+    Fixing debugging steps
+
+commit dde922b4e9065d01f1efcd476219e7eb2eeaa155
+Author: RyanUrq <rurquhart01@qub.ac.uk>
+Date:   Fri Mar 29 22:25:53 2024 +0000
+
+    Fixing debugging steps
+
+commit 2dcdcb7b3356f699dfe888879a61e0efdcc3110f
+Author: RyanUrq <rurquhart01@qub.ac.uk>
+Date:   Fri Mar 29 22:23:26 2024 +0000
+
+    Fixing debugging steps
+
+commit 1292471031f381e0a39cdd51ab2b7c0eabce0ff9
+Author: RyanUrq <rurquhart01@qub.ac.uk>
+Date:   Fri Mar 29 22:23:14 2024 +0000
+
+    Fixing debugging steps
+
+commit 4156c1bfc33353d1f53045314a459f3d006a4093
+Author: RyanUrq <rurquhart01@qub.ac.uk>
+Date:   Fri Mar 29 22:22:15 2024 +0000
+
+    Fixing debugging steps
+
+commit 0710b3cc0d6165bf7322548eebd00e5942ac54e1
+Author: RyanUrq <rurquhart01@qub.ac.uk>
+Date:   Fri Mar 29 22:16:25 2024 +0000
+
+    Fixing debugging steps
+
+commit 5e608b178af0a4e5fe853e2adea4962b341519f5
+Author: RyanUrq <rurquhart01@qub.ac.uk>
+Date:   Fri Mar 29 22:15:24 2024 +0000
+
+    Fixed more typos
+
+commit 2c7fc927c56b58e5c7a038ef3e10e2430f792e9b
+Author: RyanUrq <rurquhart01@qub.ac.uk>
+Date:   Fri Mar 29 22:13:28 2024 +0000
+
+    Fixed typo
+
+commit 209dd4c000913343942daf414d99d615116c0d6c
+Author: RyanUrq <rurquhart01@qub.ac.uk>
+Date:   Fri Mar 29 22:12:15 2024 +0000
+
+    Added in debugging scripts to the gitlab-ci
+
+commit 03777b2d3831d966d20f96067d572c0e1d834991
+Author: RyanUrq <rurquhart01@qub.ac.uk>
+Date:   Fri Mar 29 22:10:04 2024 +0000
+
+    Changed how the command calls JAR files in compiling the tests
+
+commit 275763531b022d7fdaed5190880026e07c228212
+Author: RyanUrq <rurquhart01@qub.ac.uk>
+Date:   Fri Mar 29 22:05:38 2024 +0000
+
+    Added placeholder methods for player
+
+commit 8e5879922e632f44dfd586f0911d8b25fd597e6a
+Author: RyanUrq <rurquhart01@qub.ac.uk>
+Date:   Fri Mar 29 22:02:56 2024 +0000
+
+    Removed errors, fixes are still needed
+
+commit ebf27be2dcfe92f4925ed8fa7fffa2eb82487c86
+Author: RyanUrq <rurquhart01@qub.ac.uk>
+Date:   Fri Mar 29 21:59:40 2024 +0000
+
+    Added in JUnit jar file
+
+commit ab2f44d63da1cff7cdf985755af5abf630a66443
+Merge: 35e2c1b a988624
+Author: RyanUrq <rurquhart01@qub.ac.uk>
+Date:   Fri Mar 29 19:07:34 2024 +0000
+
+    Merge branch 'main' of gitlab.eeecs.qub.ac.uk:CSC7083-2324/CSC7083-2324-G3 into SET3-Testing
+
+commit 35e2c1bda8adffc247521d7777223501b825ecb7
+Author: RyanUrq <rurquhart01@qub.ac.uk>
+Date:   Fri Mar 29 19:02:15 2024 +0000
+
+    Update .gitlab-ci.yml file
+
+commit a9886243bf4e6ffa0fab21cd9a5241ace895062c
+Merge: 2e2ae42 db9c3be
+Author: Ryan Urquhart <rurquhart01@qub.ac.uk>
+Date:   Fri Mar 29 18:56:44 2024 +0000
+
+    Merge branch '40385386-main-patch-63787' into 'main'
+    
+    [SET3-47] I want each player to start with money and carbon debt
+    
+    Closes SET3-47
+    
+    See merge request CSC7083-2324/CSC7083-2324-G3!17
+
+commit d1ddb78f5ddb9d35023e86b7ae88755fbca1c92d
+Author: RyanUrq <rurquhart01@qub.ac.uk>
+Date:   Fri Mar 29 18:43:41 2024 +0000
+
+    Update .gitlab-ci.yml file
+
+commit 69a80d1d821ede0f398082800614fb90d720bd4f
+Author: RyanUrq <rurquhart01@qub.ac.uk>
+Date:   Fri Mar 29 18:41:58 2024 +0000
+
+    Attempt number 1 at integrating unit tests in to gitlab pipeline
+
+commit 3c0ff0b9d8fff6bc76c3577e27035f413119b78a
+Author: RyanUrq <rurquhart01@qub.ac.uk>
+Date:   Fri Mar 29 18:29:36 2024 +0000
+
+    Adding JAR for jUnit testing, and test reports
+
+commit 2e2ae42eec2ead7fb81c91cff382e6b7ec8cd31b
+Merge: 827c361 3c27c90
+Author: Ryan Urquhart <rurquhart01@qub.ac.uk>
+Date:   Fri Mar 29 18:27:57 2024 +0000
+
+    Merge branch 'SET3-attemping-to-create-automated-testing' into 'main'
+    
+    Set3 attemping to create automated testing
+    
+    See merge request CSC7083-2324/CSC7083-2324-G3!18
+
+commit 3c27c907352ff409024265b6a7f9f40e0bf160c5
+Author: RyanUrq <rurquhart01@qub.ac.uk>
+Date:   Fri Mar 29 15:12:35 2024 +0000
+
+    Cleaned up .gitlab-ci.yml file
+
+commit db9c3be929ab727f860f410e8eb68243cd881393
+Author: 40385386 <dlennon06@qub.ac.uk>
+Date:   Thu Mar 28 19:55:40 2024 +0000
+
+    Update Player.java
+
+commit 827c361f1e57524b9b6cbb4e3a01518639201c2e
+Merge: cc50556 9f39578
+Author: 29051737 <sshortt02@qub.ac.uk>
+Date:   Thu Mar 28 14:10:37 2024 +0000
+
+    Merge branch 'SET3-60-i-want-to-integrate-both-dice-methods-to-take-an-input-of-1-or-2-depending-on-the-use-case' into 'main'
+    
+    Integrated and implemented new dice roll method
+    
+    Closes SET3-60
+    
+    See merge request CSC7083-2324/CSC7083-2324-G3!15
+
+commit 9f395788a22d70bd00d87b7e459120ad2bd32d91
+Author: Tony <tonycowan56@gmail.com>
+Date:   Thu Mar 28 13:59:29 2024 +0000
+
+    Integrated and implemented new dice roll method
+
+commit 3cf39aa049e689caae222640d5142705aaeec109
+Merge: c184e31 cc50556
+Author: RyanUrq <rurquhart01@qub.ac.uk>
+Date:   Thu Mar 28 13:55:39 2024 +0000
+
+    Merge branch 'main' into SET3-40-i-want-to-see-ascii-visualisations-of-the-game
+
+commit cc50556234ac1348412c3ddace4920e6e8f59c47
+Merge: ec12315 97f42ca
+Author: Ryan Urquhart <rurquhart01@qub.ac.uk>
+Date:   Thu Mar 28 13:26:56 2024 +0000
+
+    Merge branch 'SET3-57-i-want-to-show-asci-title-upon-loading-the-game' into 'main'
+    
+    Created printFileContents() function. It is only used so far to diplay a...
+    
+    Closes SET3-57
+    
+    See merge request CSC7083-2324/CSC7083-2324-G3!13
+
+commit 97f42ca63a6806d23bc540a4214e4d141d4cc336
+Author: RyanUrq <rurquhart01@qub.ac.uk>
+Date:   Thu Mar 28 13:20:54 2024 +0000
+
+    Merged remote changes with local
+
+commit b83e84ce55c51fd3f81cde4ce7bd399d0f8c8b25
+Merge: f81e827 451d0d3
+Author: RyanUrq <rurquhart01@qub.ac.uk>
+Date:   Thu Mar 28 13:19:59 2024 +0000
+
+    Merge branch 'SET3-57-i-want-to-show-asci-title-upon-loading-the-game' of gitlab.eeecs.qub.ac.uk:CSC7083-2324/CSC7083-2324-G3 into SET3-57-i-want-to-show-asci-title-upon-loading-the-game
+
+commit f81e8278bb8c1e67fe16226e526987f79e813e18
+Author: RyanUrq <rurquhart01@qub.ac.uk>
+Date:   Thu Mar 28 11:15:40 2024 +0000
+
+    Created printFileContents() function. It is only used so far to diplay a title, but it can be expanded to other uses when needed
+
+commit 451d0d3127fed6913477cd460c44e7bd7644cbaa
+Merge: 7979c7d ec12315
+Author: 40381887 <tcowan04@qub.ac.uk>
+Date:   Thu Mar 28 13:10:01 2024 +0000
+
+    Merge branch 'main' into 'SET3-57-i-want-to-show-asci-title-upon-loading-the-game'
+    
+    # Conflicts:
+    #   src/controllers/GameController.java
+
+commit ec12315c8fdbec7d5e199403b1ce5841e707ea7a
+Merge: 8645b2a f1d91e7
+Author: Ryan Urquhart <rurquhart01@qub.ac.uk>
+Date:   Thu Mar 28 13:06:54 2024 +0000
+
+    Merge branch 'SET3-45-i-want-to-roll-a-d-4-instead-of-a-d-6' into 'main'
+    
+    changed d6 dice to d4
+    
+    Closes SET3-45
+    
+    See merge request CSC7083-2324/CSC7083-2324-G3!14
+
+commit f1d91e79bb1a1b592472daebfae9be00fc7791c6
+Author: Tony <tonycowan56@gmail.com>
+Date:   Thu Mar 28 12:45:29 2024 +0000
+
+    chaned d6 dice to d4
+
+commit 0b3cbeb7c570415ad26a7ca99d026beda55a9075
+Author: RyanUrq <rurquhart01@qub.ac.uk>
+Date:   Thu Mar 28 12:10:17 2024 +0000
+
+    Removing module-info.java for testing purposes, be not concerned
+
+commit eab379c1782e3bd2ed273cae27ff21c4691d0620
+Author: Ryan Urquhart <rurquhart01@qub.ac.uk>
+Date:   Thu Mar 28 11:59:46 2024 +0000
+
+    Update .gitlab-ci.yml file
+
+commit 6ff7ba94fe577ca004e3629d563a21ca36dee8f5
+Author: Ryan Urquhart <rurquhart01@qub.ac.uk>
+Date:   Thu Mar 28 11:59:26 2024 +0000
+
+    Update .gitlab-ci.yml file
+
+commit ae07c0fba6311fa2f0cb2980c3fec6942907d684
+Author: Ryan Urquhart <rurquhart01@qub.ac.uk>
+Date:   Thu Mar 28 11:45:35 2024 +0000
+
+    Update .gitlab-ci.yml file
+
+commit 7979c7d36afdd6f6b7abe7dac3303f91c327e587
+Author: RyanUrq <rurquhart01@qub.ac.uk>
+Date:   Thu Mar 28 11:15:40 2024 +0000
+
+    Created printFileContents() function. It is only used so far to diplay a title, but it can be expanded to other uses when needed
+
+commit c184e316a833c8d094c7be75b3cb1a98bbc27975
+Merge: 0a6ce1c 8645b2a
+Author: RyanUrq <rurquhart01@qub.ac.uk>
+Date:   Mon Mar 25 15:07:06 2024 +0000
+
+    Merge branch 'main' into SET3-40-i-want-to-see-ascii-visualisations-of-the-game
+
+commit 8645b2afa092a6f2f0dad33b56ec79c7dd3e1484
+Merge: a53a02f 3ffbb57
+Author: Ryan Urquhart <rurquhart01@qub.ac.uk>
+Date:   Mon Mar 25 14:52:13 2024 +0000
+
+    Merge branch 'SET3-remove-bin-directory' into 'main'
+    
+    Removed BIN directory
+    
+    See merge request CSC7083-2324/CSC7083-2324-G3!12
+
+commit 3ffbb57136b6a22d11123243d1eb43fcef6be95f
+Author: RyanUrq <rurquhart01@qub.ac.uk>
+Date:   Mon Mar 25 14:50:41 2024 +0000
+
+    Removed BIN directory
+
+commit a53a02f641f9bcfc59b9b3b1596b5e474865b66a
+Merge: f290384 b1555fc
+Author: Ryan Urquhart <rurquhart01@qub.ac.uk>
+Date:   Mon Mar 25 14:36:06 2024 +0000
+
+    Merge branch 'SET3-adding-bin-directory-to-git-ignore' into 'main'
+    
+    Edited git ignore files to ignore bin directory
+    
+    See merge request CSC7083-2324/CSC7083-2324-G3!11
+
+commit b1555fc8c3cdfd4dd80a21186f966cbca1c4c427
+Author: RyanUrq <rurquhart01@qub.ac.uk>
+Date:   Mon Mar 25 14:30:24 2024 +0000
+
+    Edited git ignore files to ignore bin directory
+
+commit f2903848ace8b492e463c5eeefcd65ebaa95ed36
+Merge: 3160571 b75235f
+Author: Ryan Urquhart <rurquhart01@qub.ac.uk>
+Date:   Mon Mar 25 14:08:53 2024 +0000
+
+    Merge branch 'SET3-18-i-dont-want-anyone-to-have-the-same-name-as-me' into 'main'
+    
+    Added in checks for duplicate usernames
+    
+    Closes SET3-18
+    
+    See merge request CSC7083-2324/CSC7083-2324-G3!10
+
+commit 0a6ce1ca6f2e5f1bb75333a661c6dbf7f0666de8
+Author: Jenny <josborne2607@gmail.com>
+Date:   Mon Mar 25 14:00:56 2024 +0000
+
+    Added text file containing ASCII title
+
+commit b75235f8597be7a6e3ef32c525a11b69ba3b21a3
+Author: RyanUrq <rurquhart01@qub.ac.uk>
+Date:   Mon Mar 25 13:03:41 2024 +0000
+
+    Added in checks for duplicate usernames
+
+commit 3160571a752ba735c296cd2ec50637ca0825e67b
+Merge: e24e95c 5481ddc
+Author: 40381887 <tcowan04@qub.ac.uk>
+Date:   Mon Mar 25 12:25:19 2024 +0000
+
+    Merge branch 'SET3-adding-bin-directory-to-git-ignore' into 'main'
+    
+    Added .gitignore to prevent compiled files from being committed to the repo
+    
+    See merge request CSC7083-2324/CSC7083-2324-G3!9
+
+commit 5481ddc318b1fd6474bad6aa61d40565ba31f9cc
+Author: RyanUrq <rurquhart01@qub.ac.uk>
+Date:   Mon Mar 25 12:22:44 2024 +0000
+
+    Added .gitignore to prevent compiled files from being committed to the repo
+
+commit e24e95c663395b636d00b837f1c9162582190700
+Merge: 150cc6f f531c8b
+Author: Ryan Urquhart <rurquhart01@qub.ac.uk>
+Date:   Mon Mar 25 12:17:55 2024 +0000
+
+    Merge branch 'SET3-38-i-want-to-be-able-to-check-what-i-own-on-my-turn-SET3-41-i-want-each-player-to-roll-a-dice-to-see-who-goes-first' into 'main'
+    
+    dice roll and game ending logic
+    
+    Closes SET3-38
+    
+    See merge request CSC7083-2324/CSC7083-2324-G3!8
+
+commit f531c8bca13d8d4afa4db36498763c41713678bb
+Author: Tony <tonycowan56@gmail.com>
+Date:   Mon Mar 25 11:57:24 2024 +0000
+
+    appended branch to increase scope of code
+
+commit 08a6b90146e448df83c2da9621b96ce66e5928fc
+Author: Tony <tonycowan56@gmail.com>
+Date:   Sun Mar 24 12:27:41 2024 +0000
+
+    changed the playerTurn method to return a boolean to allow the user to show resources as many times as needed within a players turn and after rolling (excluding the situation of a double) for a players turn to end.
+
+commit 072da245bbf44b3da599316b720c3c2e9fe33726
+Author: Tony <tonycowan56@gmail.com>
+Date:   Sun Mar 24 11:22:29 2024 +0000
+
+    Within game controller I created an additional dice rolling method to allow a player to roll a single dice to see who goes first, re rolling upon a tie instance. In addition to this I change the flow of the game to proceed directly to the next player upon a players turn beign finsihed without the unnessecary 'Continue playing' prompt. I also made the seperate dice being rolled explicitly obvious to the players and included the capability for a user to go again after rolling a double. Finally I controlled the flow of the game to end when one player has 0 resources left.
+
+commit 150cc6f58a29a38c0d5bcb59e5a05bff32b70b11
+Merge: c572ad8 7ecc619
+Author: Ryan Urquhart <rurquhart01@qub.ac.uk>
+Date:   Tue Mar 19 20:40:12 2024 +0000
+
+    Merge branch 'gameSkeleton' into 'main'
+    
+    gameSkeleton
+    
+    See merge request CSC7083-2324/CSC7083-2324-G3!7
+
+commit 7ecc619a6db2cc6c0aee403f5e22e3173e5eab20
+Author: Tony <tonycowan56@gmail.com>
+Date:   Tue Mar 19 20:34:43 2024 +0000
+
+    gameSkeleton
+
+commit c572ad8febf98fd31e012e516ec4ed386a30975d
+Merge: bfec68c b41ca14
+Author: 40381887 <tcowan04@qub.ac.uk>
+Date:   Tue Mar 19 19:04:36 2024 +0000
+
+    Merge branch 'Initial-project-setup' into 'main'
+    
+    Initial project setup
+    
+    See merge request CSC7083-2324/CSC7083-2324-G3!5
+
+commit b41ca14755d406afe1068d5322b70038e39889d8
+Author: Ryan Urquhart <86496134+RyanU1328@users.noreply.github.com>
+Date:   Tue Mar 19 17:36:07 2024 +0000
+
+    Finish adding intial project structure
+
+commit 0e471a2bd983cc48435a82e8d2d47f002b764ee4
+Author: Ryan Urquhart <86496134+RyanU1328@users.noreply.github.com>
+Date:   Tue Mar 19 17:32:43 2024 +0000
+
+    Set up of eclipse project for code to be added to
+
+commit bfec68cef13ae420de43681ed2928b6ddba3bc55
+Author: 40099112 <rurquhart01@qub.ac.uk>
+Date:   Sat Mar 9 01:25:33 2024 +0000
+
+    SET3
+    
+    Adding the coursework specification to the README.md file so that it's easier to access
+
+commit e0ef9884f456af208d3750c091f2659a50c7479e
+Merge: 18306f1 0178862
+Author: Ryan Urquhart <rurquhart01@qub.ac.uk>
+Date:   Mon Mar 4 21:55:34 2024 +0000
+
+    Merge branch 'SET3-2-user-can-roll-two-dice' into 'main'
+    
+    Resolve SET3 "2 user can roll two dice"
+    
+    See merge request CSC7083-2324/CSC7083-2324-G3!1
+
+commit 0178862c0160373ecae709f97ee618c2aebefe1d
+Author: Ryan Urquhart <rurquhart01@qub.ac.uk>
+Date:   Mon Mar 4 21:46:24 2024 +0000
+
+    Update README.md
+
+commit 9a391a9b15e3cdbea6fea1403725cde12412c251
+Author: RyanU1328 <ryan1328@hotmail.com>
+Date:   Mon Mar 4 21:42:24 2024 +0000
+
+    Test commit
+
+commit 18306f1693ac42668f6af0e5e92ce97b8f780e0f
+Author: RyanU1328 <ryan1328@hotmail.com>
+Date:   Mon Mar 4 21:38:55 2024 +0000
+
+    SET3 Test Commit
+
+commit 32b9a2c3e10d5195173506c3f28c0c2b1a14e7cd
+Author: Jenny Osborne <josborne03@qub.ac.uk>
+Date:   Mon Mar 4 21:26:46 2024 +0000
+
+    Update README.md
+
+commit 304e6eec7316cd4e0a836512e941cb6876964593
+Author: Ryan Urquhart <rurquhart01@qub.ac.uk>
+Date:   Mon Mar 4 21:25:06 2024 +0000
+
+    Upload New File
