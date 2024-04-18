@@ -94,15 +94,17 @@ public class GameController {
         currentPlayerIndex = (currentPlayerIndex + 1) % players.length;
       }
 
-       // Check for a game-ending condition 
-      if (currentPlayer.getCarbonDebt() <= 0) {
-        System.out.println(currentPlayer.getName() + " has won the game by negating all of their carbon debt!!");
-        gameRunning = false;
-      }
-    }
+       // Check for any player achieving Net zero - will check all players rather than player on the current turn
+      for (Player player : players) {
+    	    if (player.getCarbonDebt() <= 0) {
+    	        System.out.println(player.getName() + " has won the game by negating all of their carbon debt!!");
+    	        gameRunning = false;
+    	        break; 
+    	    }
+    	}
 
     endGame();
-    scanner.close();
+    scanner.close();}
   }
 
   private void displayInstructions() throws IOException {
