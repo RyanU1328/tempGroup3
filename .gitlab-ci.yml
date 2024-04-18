@@ -26,6 +26,7 @@ JUnit-tests:
     - echo "Finished generating Jacoco coverage report..."
     - ./whileScript.sh
     - echo "Finished parsing coverage report..."
+    - scp -r ./reports ryan_urq@omv.local:/export/NAS
     - echo "Tests complete."
 
   # No coverage report, just a percentage of the code that is tested by the JUnit tests
