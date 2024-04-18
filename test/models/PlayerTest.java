@@ -4,7 +4,9 @@ import static org.junit.jupiter.api.Assertions.*;
 import static utils.TestUtils.*;
 
 import java.io.ByteArrayInputStream;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import java.util.Scanner;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -26,8 +28,8 @@ public class PlayerTest {
 	private int invalidAddResources;
 	private int postionStarterValid;
 
-	private String propertyValid, propertyValid2;
-	private String propertyNonExistent;
+	private InvestmentSquare propertyValid, propertyValid2;
+	private InvestmentSquare propertyNonExistent;
 
 	/**
 	 * @throws java.lang.Exception
@@ -52,9 +54,9 @@ public class PlayerTest {
 
 		postionStarterValid = 0;
 
-		propertyValid = "propertyValid";
-		propertyValid2 = "propertyValid2";
-		propertyNonExistent = "NonexistentProperty";
+		propertyValid = new InvestmentSquare("propertyValid", 1, 0);
+		propertyValid2 = new InvestmentSquare("propertyValid2", 1, 0);
+		propertyNonExistent = null;
 
 	}
 
@@ -268,7 +270,7 @@ public class PlayerTest {
 	public void testAddProperty() {
 		// Arrange
 		Player player = new Player(userValid);
-		String property = propertyValid;
+		InvestmentSquare property = propertyValid;
 
 		// Act
 		player.addProperty(property);
@@ -281,8 +283,8 @@ public class PlayerTest {
 	public void testAddMultipleProperties() {
 		// Arrange
 		Player player = new Player(userValid);
-		String property1 = propertyValid;
-		String property2 = propertyValid2;
+		InvestmentSquare property1 = propertyValid;
+		InvestmentSquare property2 = propertyValid2;
 
 		// Act
 		player.addProperty(property1);
@@ -297,7 +299,7 @@ public class PlayerTest {
 	public void testRemoveProperty() {
 		// Arrange
 		Player player = new Player(userValid);
-		String property = propertyValid;
+		InvestmentSquare property = propertyValid;
 		player.addProperty(property);
 
 		// Act
@@ -311,7 +313,7 @@ public class PlayerTest {
 	public void testRemoveNonexistentProperty() {
 		// Arrange
 		Player player = new Player(userValid);
-		String nonexistentProperty = propertyNonExistent;
+		InvestmentSquare nonexistentProperty = propertyNonExistent;
 
 		// Act
 		player.removeProperty(nonexistentProperty);
@@ -324,7 +326,7 @@ public class PlayerTest {
 	public void testRemoveNonexistentPropertyTwice() {
 		// Arrange
 		Player player = new Player(userValid);
-		String property = propertyValid;
+		InvestmentSquare property = propertyValid;
 
 		// Act
 		player.removeProperty(property);
@@ -339,7 +341,7 @@ public class PlayerTest {
 	public void testRemovePropertyWithNoProperties() {
 		// Arrange
 		Player player = new Player(userValid);
-		String property = propertyValid;
+		InvestmentSquare property = propertyValid;
 
 		// Act
 		player.removeProperty(property);
@@ -353,8 +355,8 @@ public class PlayerTest {
 	public void testRemovePropertyWithMultipleProperties() {
 		// Arrange
 		Player player = new Player(userValid);
-		String property1 = propertyValid;
-		String property2 = propertyValid2;
+		InvestmentSquare property1 = propertyValid;
+		InvestmentSquare property2 = propertyValid2;
 		player.addProperty(property1);
 		player.addProperty(property2);
 
@@ -503,10 +505,10 @@ public class PlayerTest {
 	}
 
 	@ParameterizedTest
-	@MethodSource("utils.TestUtils#randomNameStream")
-	public void testSetGetProperty(String name) {
+	@MethodSource("utils.TestUtils#randomTestNumbersAndNames")
+	public void testSetGetProperty(int num, String name) {
 		Player methodTestPlayer = new Player(name);
-		String propertyName = randomName();
+		InvestmentSquare propertyName = new InvestmentSquare(randomName(), num, num);
 		methodTestPlayer.addProperty(propertyName);
 		assertEquals(Arrays.asList(propertyName), methodTestPlayer.getProperties());
 	}
@@ -515,12 +517,12 @@ public class PlayerTest {
 	@MethodSource("utils.TestUtils#randomNameStream")
 	public void testSetGetPropertyList(String name) {
 		Player methodTestPlayer = new Player(name);
-		String[] propertyNames = new String[10];
-		for (int i = 0; i < propertyNames.length; i++) {
-			propertyNames[i] = randomName();
-			methodTestPlayer.addProperty(propertyNames[i]);
+		List<InvestmentSquare> propertyNames = new ArrayList<>();
+		for (int i = 0; i < 9; i++) {
+			propertyNames.add(new InvestmentSquare(randomName(), 1, 0));
+			methodTestPlayer.addProperty(propertyNames.get(i));
 		}
-		assertEquals(Arrays.asList(propertyNames), methodTestPlayer.getProperties());
+		assertEquals(propertyNames, methodTestPlayer.getProperties());
 	}
 
 }

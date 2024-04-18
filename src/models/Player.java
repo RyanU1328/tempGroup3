@@ -9,7 +9,7 @@ public class Player {
   private String name;
   private int money;
   private int carbonDebt;
-  private List<String> properties;
+  private List<InvestmentSquare> properties;
   private int position = 0;
   private String[] avatar;
 
@@ -76,7 +76,7 @@ public class Player {
 
   }
 
-  public List<String> getProperties() {
+  public List<InvestmentSquare> getProperties() {
     return properties;
   }
 
@@ -111,11 +111,11 @@ public class Player {
     }
   }
 
-  public void addProperty(String property) {
+  public void addProperty(InvestmentSquare property) {
     properties.add(property);
   }
 
-  public void removeProperty(String property) {
+  public void removeProperty(InvestmentSquare property) {
     properties.remove(property);
   }
 
@@ -145,14 +145,17 @@ public class Player {
   }
 
   public void displayPlayerInfo() {
+    System.out.println();
     System.out.println("Player: " + name);
     System.out.println("Money Resources: £" + money);
     System.out.println("Carbon Debt: " + carbonDebt);
     System.out.println("Properties owned:");
-    for (String property : properties) {
-      System.out.println("- " + property);
+    for (InvestmentSquare property : properties) {
+      System.out.print("- " + property.getName());
+      System.out.print((property.getMinorUpgrade() > 0) ? " - Minor Upgrades: " + property.getMinorUpgrade() : "");
+      System.out.print((property.isMajorUpgrade()) ? " - Major Upgrade: Yes\n" : "\n");
     }
-
+    System.out.println();
   }
 
   /**
