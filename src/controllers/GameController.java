@@ -24,58 +24,57 @@ public class GameController {
   private Scanner scanner = new Scanner(System.in);
   private ArrayList<String> nameList = new ArrayList<>();
   private String resouceRelativePath = "/src/resources/";
-  
- 
-    public void startGame() throws IOException {
+
+  public void startGame() throws IOException {
     FileHandler.printFileContents(resouceRelativePath + "asciititle.txt");
-    System.out.println("\n\n"); 
-  
-  
-   
-    
+    System.out.println("\n\n");
+
     boolean validChoice = false;
     while (!validChoice) {
-        // Display options for the player
-        System.out.println("Press 'i' to view instructions or 'p' to start the game.");
-        String choice = scanner.nextLine().trim().toLowerCase();
-        
-        if ("i".equals(choice)) {
-            displayInstructions();
-            validChoice = true; // Set validChoice to true to exit the loop
-        } else if ("p".equals(choice)) {
-            gameRunning = true; // Mark the game as started
-            System.out.println("Starting the game...");
-            initializePlayers();
-            int currentPlayerIndex = determineStartingPlayer();
-            System.out.println(players[currentPlayerIndex].getName() + " starts the game.");
-            // Continue with the game loop
-            gameLoop(currentPlayerIndex);
-            validChoice = true; // Set validChoice to true to exit the loop
-        } else {
-            System.out.println("Invalid choice. Please enter 'i' to view instructions or 'p' to start the game.");
-            // validChoice remains false, so the loop will continue
-         }
-     // Consume any extra characters left in the buffer
-        scanner.nextLine();
-       
+      // Display options for the player
+      System.out.println("Press 'i' to view instructions or 'p' to start the game.");
+      String choice = scanner.nextLine().trim().toLowerCase();
+
+      if ("i".equals(choice)) {
+        displayInstructions();
+        validChoice = true; // Set validChoice to true to exit the loop
+      } else if ("p".equals(choice)) {
+        gameRunning = true; // Mark the game as started
+        System.out.println("Starting the game...");
+        initializePlayers();
+        int currentPlayerIndex = determineStartingPlayer();
+        System.out.println(players[currentPlayerIndex].getName() + " starts the game.");
+        // Continue with the game loop
+        gameLoop(currentPlayerIndex);
+        validChoice = true; // Set validChoice to true to exit the loop
+      } else {
+        System.out.println("Invalid choice. Please enter 'i' to view instructions or 'p' to start the game.");
+        // validChoice remains false, so the loop will continue
+      }
+      // Consume any extra characters left in the buffer
+      scanner.nextLine();
+
     }
-}
-  
-	private void gameLoop(int currentPlayerIndex) throws IOException {
+  }
+
+  private void gameLoop(int currentPlayerIndex) throws IOException {
     while (gameRunning) {
       boolean turnCompleted = false;
       Player currentPlayer = players[currentPlayerIndex];
 
       while (!turnCompleted) {
-        System.out.println(
+        System.out.println("\n" +
             currentPlayer.getName()
-                + "'s turn. Press 'r' to roll the dice , 's' to show resources, or 'i' to view instructions.\n");
+            + "'s turn. Press 'r' to roll the dice , 's' to show resources, or 'i' to view instructions.\n");
         String action = scanner.nextLine().trim().toLowerCase();
 
         if ("s".equals(action)) {
           System.out.println(
               "\n" + currentPlayer.getName() + "'s resources: \nMoney: " + currentPlayer.getMoney()
                   + "\nCarbon Debt: " + currentPlayer.getCarbonDebt() + "\n");
+          currentPlayer.getProperties().forEach(property -> {
+            System.out.println(property.getName());
+          });
           // Continue in the loop
         } else if ("r".equals(action)) {
           turnCompleted = playerTurn(currentPlayer);
@@ -360,8 +359,8 @@ public class GameController {
   private void handleSquareActions(Player player, Square square, List<Player> players, Scanner scanner, Board board) {
     square.landOn(player, players, scanner, board);
   }
- 
- private void handleInvestmentSquare(Player player, InvestmentSquare square, Board board) {
+
+  private void handleInvestmentSquare(Player player, InvestmentSquare square, Board board) {
     if (!square.isOwned()) {
     } else if (square.getOwner() != player) {
       System.out.println("This area is owned by " + square.getOwner().getName() + ". Paying fees.");
