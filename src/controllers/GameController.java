@@ -199,13 +199,49 @@ public class GameController {
     }
   }
 
-  private void endGame() {
-    System.out.println("Game over. Final resources:");
-    for (Player player : players) {
-      System.out.println(
-          player.getName() + ": \nMoney: " + player.getMoney() + "\nCarbon Debt: " + player.getCarbonDebt());
-    }
+   private void endGame() {
+      System.out.println("Game over. Final resources:");
+
+      // Array to store ratings temporarily rather than add a new field to the player class
+      int[] ratings = new int[players.length];
+
+      for (int i = 0; i < players.length; i++) {
+          Player player = players[i];
+          System.out.println(
+                  player.getName() + ": \nMoney: " + player.getMoney() + "\nCarbon Debt: " + player.getCarbonDebt());
+
+          // Prompt the player to rate their game experience
+          System.out.print("Please rate your game experience (1-5): ");
+          
+          // Prompt the player to rate their game experience, ensures its between 1 and 5
+          int rating;
+          while (true) {
+              System.out.print("Please rate your game experience (1-5): ");
+              try {
+                  rating = scanner.nextInt();
+                  if (rating >= 1 && rating <= 5) {
+                      break; 
+                  } else {
+                      System.out.println("Please enter a number between 1 and 5.");
+                  }
+              } catch (Exception e) {
+                  System.out.println("Please enter a valid number.");
+                  scanner.next(); // Clear the invalid input
+              }
+          }
+
+          ratings[i] = rating;
+      }
+
+      // Print out ratings
+      System.out.println("\nPlayer Ratings:");
+      for (int i = 0; i < players.length; i++) {
+          Player player = players[i];
+          int rating = ratings[i];
+          System.out.println(player.getName() + ": " + rating);
+      }
   }
+
 
   private boolean playerTurn(Player player) {
     int[] diceRoll = rollDice(2);
