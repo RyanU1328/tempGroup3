@@ -62,7 +62,7 @@ public class Player {
   }
 
   public void setCarbonDebt(int carbonDebt) {
-    if (carbonDebt > 0) {
+    if (carbonDebt >= 0) {
       this.carbonDebt = carbonDebt;
 
     } else

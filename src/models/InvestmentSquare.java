@@ -219,24 +219,31 @@ public class InvestmentSquare extends Square {
                         break;
                     } else {
                         System.out.println("Not enough money to pay the fee. Trying carbon debt.");
+                        if (owner.getCarbonDebt() >= this.getFee()) {
+                            owner.deductResources("carbonDebt", this.getFee());
+                            player.addResources("carbonDebt", this.getFee());
+                            System.out.println(player.getName() + " took " + this.getFee() + " carbon debt from "
+                                    + owner.getName() + "\n" +
+                                    this.getOwner().getName() + ". Remaining carbon debt: " + player.getCarbonDebt());
+                            break;
+                        }
                     }
+                } else if (owner.getCarbonDebt() >= this.getFee()) {
+                    owner.deductResources("carbonDebt", this.getFee());
+                    player.addResources("carbonDebt", this.getFee());
+                    System.out.println(player.getName() + " took " + this.getFee() + " carbon debt from "
+                            + owner.getName() + "\n" +
+                            this.getOwner().getName() + ". Remaining carbon debt: " + player.getCarbonDebt());
+                    break;
                 } else {
-                    if (owner.getCarbonDebt() >= this.getFee()) {
-                        owner.deductResources("carbonDebt", this.getFee());
-                        player.addResources("carbonDebt", this.getFee());
-                        System.out.println(player.getName() + " took " + this.getFee() + " carbon debt from "
-                                + owner.getName() + "\n" +
-                                this.getOwner().getName() + ". Remaining carbon debt: " + player.getCarbonDebt());
+                    if (owner.getCarbonDebt() <= this.getFee() && player.getMoney() < this.getFee()) {
+                        System.out
+                                .println("Unable to pay fee with money, paying with what carbon debt can be taken");
+                        owner.setCarbonDebt(0);
                         break;
                     } else {
-                        if (owner.getCarbonDebt() <= this.getFee() && player.getMoney() < this.getFee()) {
-                            System.out
-                                    .println("Unable to pay fee with money, paying with what carbon debt can be taken");
-                            owner.setCarbonDebt(0);
-                        } else {
-                            System.out.println(
-                                    "If you pay this fee by taking the owners carbon debt they will win.");
-                        }
+                        System.out.println(
+                                "If you pay this fee by taking the owners carbon debt they will win.");
                     }
                 }
             }
