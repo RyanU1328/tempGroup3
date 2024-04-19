@@ -63,12 +63,28 @@ public class ConsoleUI {
                 }
             } catch (InputMismatchException e) {
                 System.out.println("Invalid input, try again:");
-                scanner.next(); 
+                scanner.next();
             }
         }
     }
-    
-    
+
+    public static boolean confirmation(String message, Scanner scanner) {
+        while (true) {
+            try {
+                System.out.println(message + "\tY/n");
+                String input = scanner.nextLine().trim().toLowerCase();
+                if (input.contains("n")) {
+                    return false;
+                } else if (input.contains("y") || input.length() == 0) {
+                    return true;
+                } else {
+                    System.out.println("Input invalid, please try again");
+                    scanner.next();
+                }
+            } catch (Exception e) {
+
+            }
+        }
     }
 
-
+}

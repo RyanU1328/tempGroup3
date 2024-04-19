@@ -9,6 +9,8 @@ import java.util.Scanner;
 
 import org.hamcrest.core.IsInstanceOf;
 
+import utils.ConsoleUI;
+
 public class InvestmentSquare extends Square {
     private Player owner;
     private int investmentCost;
@@ -199,9 +201,9 @@ public class InvestmentSquare extends Square {
      */
     @Override
     public void landOn(Player player, List<Player> players, Scanner scanner, Board board) {
+        boolean check;
         if (isOwned() && !owner.equals(player)) {
             System.out.println("This area is owned by " + this.getOwner().getName() + ". Paying fees.");
-
             while (true) {
                 boolean payByMoney = player.choosePaymentMethod(scanner);
                 if (payByMoney) {
@@ -228,60 +230,53 @@ public class InvestmentSquare extends Square {
                 }
             }
         } else if (!this.isOwned()) {
-            System.out.println("Do you want to invest in " + this.getName() + "? It costs " + this.getInvestmentCost() +
-                    " pounds. (yes/no)");
+            check = ConsoleUI.confirmation(
+                    "Do you want to invest in " + this.getName() + "? It costs " + this.getInvestmentCost() +
+                            " pounds",
+                    scanner);
             while (true) {
-                String input = scanner.nextLine().trim().toLowerCase();
-                try {
-                    if (!input.equals("yes") && !input.equals("no")) {
-                        throw new InputMismatchException("Please enter 'yes' or 'no'.");
-                    }
-                    if ("yes".equals(input)) {
-                        if (player.getMoney() >= this.getInvestmentCost()) {
-                            player.deductResources("money", this.getInvestmentCost());
-                            this.setOwner(player);
-                            System.out.println("Investment successful. You now own " + this.getName() +
-                                    ". Remaining balance: " + player.getMoney());
-                        } else {
-                            System.out.println("Not enough resources to invest.");
-                        }
+                if (check) {
+                    if (player.getMoney() >= this.getInvestmentCost()) {
+                        player.deductResources("money", this.getInvestmentCost());
+                        this.setOwner(player);
+                        System.out.println("Investment successful. You now own " + this.getName() +
+                                ". Remaining balance: " + player.getMoney());
                     } else {
-                        System.out.println("Offering to next player...");
-                        int currentPlayerIndex = players.indexOf(player);
-                        int nextPlayerIndex = (currentPlayerIndex + 1) % players.size();
-                        for (int i = 0; i < players.size(); i++) {
-                            int index = (nextPlayerIndex + i) % players.size();
-                            Player nextPlayer = players.get(index);
-                            if (!nextPlayer.equals(player)) {
-                                System.out.println(
-                                        nextPlayer.getName() + ", would you like to buy " + this.getName()
-                                                + "? (yes/no)");
-                                String response = scanner.nextLine().trim().toLowerCase();
-                                if ("yes".equals(response)) {
-                                    if (nextPlayer.getMoney() >= this.getInvestmentCost()) {
-                                        nextPlayer.deductResources("money", this.getInvestmentCost());
-                                        this.setOwner(nextPlayer);
-                                        System.out.println("Investment successful. " + nextPlayer.getName()
-                                                + " now owns " +
-                                                this.getName() + ". Remaining balance: " + nextPlayer.getMoney());
-                                        return;
-                                    } else {
-                                        System.out.println(
-                                                nextPlayer.getName() + " does not have enough resources to buy " +
-                                                        this.getName());
-                                    }
+                        System.out.println("Not enough resources to invest.");
+                    }
+                } else {
+                    System.out.println("Offering to next player...");
+                    int currentPlayerIndex = players.indexOf(player);
+                    int nextPlayerIndex = (currentPlayerIndex + 1) % players.size();
+                    for (int i = 0; i < players.size(); i++) {
+                        int index = (nextPlayerIndex + i) % players.size();
+                        Player nextPlayer = players.get(index);
+                        if (!nextPlayer.equals(player)) {
+                            check = ConsoleUI
+                                    .confirmation(nextPlayer.getName() + ", would you like to buy " + this.getName()
+                                            + "?", scanner);
+                            if (check) {
+                                if (nextPlayer.getMoney() >= this.getInvestmentCost()) {
+                                    nextPlayer.deductResources("money", this.getInvestmentCost());
+                                    this.setOwner(nextPlayer);
+                                    System.out.println("Investment successful. " + nextPlayer.getName()
+                                            + " now owns " +
+                                            this.getName() + ". Remaining balance: " + nextPlayer.getMoney());
+                                    return;
                                 } else {
-                                    System.out.println(nextPlayer.getName() + " declined to buy " + this.getName());
+                                    System.out.println(
+                                            nextPlayer.getName() + " does not have enough resources to buy " +
+                                                    this.getName());
                                 }
+                            } else {
+                                System.out.println(nextPlayer.getName() + " declined to buy " + this.getName());
                             }
                         }
-                        System.out.println(
-                                "No player chose to buy " + this.getName() + ". Moving to the next player's turn.");
                     }
-                    break;
-                } catch (InputMismatchException e) {
-                    System.out.println("Invalid input: " + e.getMessage());
+                    System.out.println(
+                            "No player chose to buy " + this.getName() + ". Moving to the next player's turn.");
                 }
+                break;
             }
         } else if (this.isOwned() && this.owner == player) {
             List<String> fieldList = new ArrayList<>();
@@ -311,33 +306,32 @@ public class InvestmentSquare extends Square {
                     if (!this.majorUpgrade && this.getMinorUpgrade() < 3) {
                         System.out.println("It is possible to upgrade this property.");
                         if (this.getMinorUpgrade() < 3) {
-                            System.out.println("Would you like to buy a minor upgrade? It would cost: £"
-                                    + this.getMinorUpgradeCost() + "   Y/n");
-                            String input = scanner.nextLine().trim().toLowerCase();
-                            if (!input.contains("n") && player.getMoney() > this.getMinorUpgradeCost()) {
+                            check = ConsoleUI
+                                    .confirmation("Would you like to buy a minor upgrade? It would cost: £"
+                                            + this.getMinorUpgradeCost(), scanner);
+                            if (check && player.getMoney() > this.getMinorUpgradeCost()) {
                                 player.deductResources("money", this.getMinorUpgradeCost());
                                 this.setMinorUpgrade();
                                 System.out.println(player.getName() + " has bought an upgrade on " + this.getName()
                                         + " this square now has " + this.getMinorUpgrade() + " upgrades");
                             } else {
                                 System.out
-                                        .println((input.contains("n"))
+                                        .println((!check)
                                                 ? "No upgrade purchased"
                                                 : "No upgrade purchased, player doesn't have enough money");
                             }
                         }
                     } else if (!this.isMajorUpgrade()) {
-                        System.out.println(
-                                "Would you like to buy a major upgrade? It will cost: £" + this.getMajorUpgradeCost()
-                                        + "\t(Y/n)");
-                        String input = scanner.nextLine().trim().toLowerCase();
-                        if (!input.contains("n") && player.getMoney() > this.getMajorUpgradeCost()) {
+                        check = ConsoleUI
+                                .confirmation("Would you like to buy a major upgrade? It will cost: £" + this
+                                        .getMajorUpgradeCost(), scanner);
+                        if (check && player.getMoney() > this.getMajorUpgradeCost()) {
                             player.deductResources("money", this.getMajorUpgradeCost());
                             this.setMajorUpgrade();
                             System.out.println(player.getName() + " has upgraded " + this.getName()
                                     + " this square is now upgraded as much as possible. Well done eco-warrior");
                         } else {
-                            System.out.println((input.contains("n"))
+                            System.out.println((!check)
                                     ? "No upgrade purchased"
                                     : "No upgrade purchased, player doesn't have enough money");
 
