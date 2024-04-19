@@ -207,9 +207,6 @@ public class GameController {
       System.out.println(
           player.getName() + ": \nMoney: " + player.getMoney() + "\nCarbon Debt: " + player.getCarbonDebt());
 
-      // Prompt the player to rate their game experience
-      System.out.print("Please rate your game experience (1-5): ");
-
       // Prompt the player to rate their game experience, ensures its between 1 and 5
       int rating;
       while (true) {
@@ -255,8 +252,6 @@ public class GameController {
     }
     return true; // Turn completed.
   }
-
-
 
   /**
    * Rolls a specified number of dice and returns the result.
@@ -346,6 +341,5 @@ public class GameController {
   private void handleSquareActions(Player player, Square square, List<Player> players, Scanner scanner, Board board) {
     square.landOn(player, players, scanner, board);
   }
-
 
 }
