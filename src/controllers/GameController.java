@@ -97,10 +97,10 @@ public class GameController {
           break;
         }
       }
-
-      endGame();
-      scanner.close();
     }
+    endGame();
+    scanner.close();
+
   }
 
   private void displayInstructions() throws IOException {
