@@ -1,9 +1,5 @@
 package controllers;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -12,7 +8,6 @@ import java.util.Random;
 import java.util.Scanner;
 
 import models.Board;
-import models.InvestmentSquare;
 import models.Player;
 import models.Square;
 import utils.ConsoleUI;
@@ -259,17 +254,7 @@ public class GameController {
     return true; // Turn completed.
   }
 
-  private boolean handleRollAndActions(Player player) {
-    int[] diceRoll = rollDice(2);
-    System.out.println(player.getName() + " rolled a " + diceRoll[0] + " and a " + diceRoll[1] + ", moves "
-        + (diceRoll[0] + diceRoll[1]) + " spaces.");
-    Square currentSquare = movePlayerAndGetSquare(player, diceRoll[0] + diceRoll[1]);
-    System.out.println(player.getName() + " has landed on " + currentSquare.getName());
-    handleSquareActions(player, currentSquare, null, scanner, board); // Add 'scanner' as the third argument
 
-    // If no doubles are rolled, return true to end the turn.
-    return diceRoll[0] != diceRoll[1];
-  }
 
   /**
    * Rolls a specified number of dice and returns the result.
@@ -360,18 +345,5 @@ public class GameController {
     square.landOn(player, players, scanner, board);
   }
 
-  private void handleInvestmentSquare(Player player, InvestmentSquare square, Board board) {
-    if (!square.isOwned()) {
-    } else if (square.getOwner() != player) {
-      System.out.println("This area is owned by " + square.getOwner().getName() + ". Paying fees.");
-      if (player.getMoney() >= square.getFee()) {
-        player.deductResources("money", square.getFee());
-        square.getOwner().addResources("money", square.getFee());
-        System.out.println("Paid " + square.getFee() + " resources to " + square.getOwner().getName());
-      } else {
-        System.out.println("Not enough resources to pay the fee.");
-      }
-    }
-  }
 
 }
