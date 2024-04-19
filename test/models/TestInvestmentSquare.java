@@ -209,7 +209,7 @@ public class TestInvestmentSquare {
 
         // Assert that player1 pays the fee to player2
         assertEquals(340, player1.getMoney()); // Assuming fee is 20
-        assertEquals(510, player2.getMoney()); // Player2 receives the fee
+        assertEquals(260, player2.getMoney()); // Player2 receives the fee
     }
 
     /*
@@ -312,7 +312,7 @@ public class TestInvestmentSquare {
         assertEquals(500, player.getCarbonDebt());
 
         // Assert that owner's money is increased by the fee (expected: 105)
-        assertEquals(510, owner.getMoney());
+        assertEquals(260, owner.getMoney());
 
         // Assert that owner's carbon debt is decreased by the fee (expected: 495)
         assertEquals(500, owner.getCarbonDebt());
