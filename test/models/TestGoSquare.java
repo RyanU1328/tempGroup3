@@ -37,10 +37,10 @@ class TestGoSquare {
 
         // Assert
         // Assert
-        assertEquals(550, player.getMoney()); // Initial money is 500 + 50 gained
+        assertEquals(260, player.getMoney()); // Initial money is 250 + 10 gained
         assertEquals(490, player.getCarbonDebt()); // Initial carbon debt is 500 - 10 reduced
         assertEquals(
-                "TestPlayer has gained 50 money and reduced their carbon debt by 10!"
+                "TestPlayer has gained 10 money and reduced their carbon debt by 10!"
                         + System.getProperty("line.separator"),
                 outContent.toString());
 

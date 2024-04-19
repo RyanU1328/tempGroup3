@@ -40,8 +40,8 @@ public class PlayerTest {
 		userNull = null;
 		userInvalid = "";
 
-		startingMoneyValid = 500;
-		moneyValid = 300;
+		startingMoneyValid = 250;
+		moneyValid = 200;
 		moneyInvalid = 0;
 		moneyInvalidLow = -1;
 
@@ -223,7 +223,7 @@ public class PlayerTest {
 	@Test
 	public void testAddNegativeResources() {
 		Player player = new Player("TestPlayer");
-		player.setMoney(500); // Assume starting with 500 for clarity in the test
+		player.setMoney(250); // Assume starting with 250 for clarity in the test
 		player.setCarbonDebt(500); // Assume starting with 500 carbon debt
 
 		// Test negative money should throw IllegalArgumentException if negative values
