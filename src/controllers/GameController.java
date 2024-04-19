@@ -88,17 +88,19 @@ public class GameController {
         currentPlayerIndex = (currentPlayerIndex + 1) % players.length;
       }
 
-       // Check for any player achieving Net zero - will check all players rather than player on the current turn
+      // Check for any player achieving Net zero - will check all players rather than
+      // player on the current turn
       for (Player player : players) {
-    	    if (player.getCarbonDebt() <= 0) {
-    	        System.out.println(player.getName() + " has won the game by negating all of their carbon debt!!");
-    	        gameRunning = false;
-    	        break; 
-    	    }
-    	}
-
+        if (player.getCarbonDebt() <= 0) {
+          System.out.println(player.getName() + " has won the game by negating all of their carbon debt!!");
+          gameRunning = false;
+          break;
+        }
+      }
+    }
     endGame();
-    scanner.close();}
+    scanner.close();
+
   }
 
   private void displayInstructions() throws IOException {
@@ -193,49 +195,49 @@ public class GameController {
     }
   }
 
-   private void endGame() {
-      System.out.println("Game over. Final resources:");
+  private void endGame() {
+    System.out.println("Game over. Final resources:");
 
-      // Array to store ratings temporarily rather than add a new field to the player class
-      int[] ratings = new int[players.length];
+    // Array to store ratings temporarily rather than add a new field to the player
+    // class
+    int[] ratings = new int[players.length];
 
-      for (int i = 0; i < players.length; i++) {
-          Player player = players[i];
-          System.out.println(
-                  player.getName() + ": \nMoney: " + player.getMoney() + "\nCarbon Debt: " + player.getCarbonDebt());
+    for (int i = 0; i < players.length; i++) {
+      Player player = players[i];
+      System.out.println(
+          player.getName() + ": \nMoney: " + player.getMoney() + "\nCarbon Debt: " + player.getCarbonDebt());
 
-          // Prompt the player to rate their game experience
-          System.out.print("Please rate your game experience (1-5): ");
-          
-          // Prompt the player to rate their game experience, ensures its between 1 and 5
-          int rating;
-          while (true) {
-              System.out.print("Please rate your game experience (1-5): ");
-              try {
-                  rating = scanner.nextInt();
-                  if (rating >= 1 && rating <= 5) {
-                      break; 
-                  } else {
-                      System.out.println("Please enter a number between 1 and 5.");
-                  }
-              } catch (Exception e) {
-                  System.out.println("Please enter a valid number.");
-                  scanner.next(); // Clear the invalid input
-              }
+      // Prompt the player to rate their game experience
+      System.out.print("Please rate your game experience (1-5): ");
+
+      // Prompt the player to rate their game experience, ensures its between 1 and 5
+      int rating;
+      while (true) {
+        System.out.print("Please rate your game experience (1-5): ");
+        try {
+          rating = scanner.nextInt();
+          if (rating >= 1 && rating <= 5) {
+            break;
+          } else {
+            System.out.println("Please enter a number between 1 and 5.");
           }
-
-          ratings[i] = rating;
+        } catch (Exception e) {
+          System.out.println("Please enter a valid number.");
+          scanner.next(); // Clear the invalid input
+        }
       }
 
-      // Print out ratings
-      System.out.println("\nPlayer Ratings:");
-      for (int i = 0; i < players.length; i++) {
-          Player player = players[i];
-          int rating = ratings[i];
-          System.out.println(player.getName() + ": " + rating);
-      }
+      ratings[i] = rating;
+    }
+
+    // Print out ratings
+    System.out.println("\nPlayer Ratings:");
+    for (int i = 0; i < players.length; i++) {
+      Player player = players[i];
+      int rating = ratings[i];
+      System.out.println(player.getName() + ": " + rating);
+    }
   }
-
 
   private boolean playerTurn(Player player) {
     int[] diceRoll = rollDice(2);
