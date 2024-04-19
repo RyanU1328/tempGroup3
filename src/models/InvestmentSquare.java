@@ -205,6 +205,10 @@ public class InvestmentSquare extends Square {
         if (isOwned() && !owner.equals(player)) {
             System.out.println("This area is owned by " + this.getOwner().getName() + ". Paying fees.");
             while (true) {
+                System.out.println("Money fee: " + this.getFee() + "\nCarbon Debt fee: " + this.getFee());
+                System.out.println();
+                System.out.println("Your resources are: ");
+                player.displayPlayerInfo();
                 boolean payByMoney = player.choosePaymentMethod(scanner);
                 if (payByMoney) {
                     if (player.getMoney() >= this.getFee()) {
@@ -220,12 +224,19 @@ public class InvestmentSquare extends Square {
                     if (owner.getCarbonDebt() >= this.getFee()) {
                         owner.deductResources("carbonDebt", this.getFee());
                         player.addResources("carbonDebt", this.getFee());
-                        System.out.println(player.getName() + " paid a fee of " + this.getFee() + " carbon debt to " +
+                        System.out.println(player.getName() + " took " + this.getFee() + " carbon debt from "
+                                + owner.getName() + "\n" +
                                 this.getOwner().getName() + ". Remaining carbon debt: " + player.getCarbonDebt());
                         break;
                     } else {
-                        System.out.println(
-                                "Not enough carbon debt to pay the fee. Please choose another payment method.");
+                        if (owner.getCarbonDebt() <= this.getFee() && player.getMoney() < this.getFee()) {
+                            System.out
+                                    .println("Unable to pay fee with money, paying with what carbon debt can be taken");
+                            owner.setCarbonDebt(0);
+                        } else {
+                            System.out.println(
+                                    "If you pay this fee by taking the owners carbon debt they will win.");
+                        }
                     }
                 }
             }
