@@ -56,14 +56,19 @@ public class ConsoleUI {
         while (true) {
             try {
                 selection = scanner.nextInt();
-                break;
-            } catch (Exception e) {
+                if (selection < 1 || selection > avatarList.size()) {
+                    System.out.println("Invalid input, please select a valid avatar number:");
+                } else {
+                    return avatarList.get(selection - 1);
+                }
+            } catch (InputMismatchException e) {
                 System.out.println("Invalid input, try again:");
-                scanner.next();
+                scanner.next(); 
             }
         }
-        return avatarList.get(selection - 1);
-
+    }
+    
+    
     }
 
-}
+
