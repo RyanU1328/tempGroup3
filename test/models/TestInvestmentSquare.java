@@ -208,7 +208,7 @@ public class TestInvestmentSquare {
         square.landOn(player1, players, scanner, board);
 
         // Assert that player1 pays the fee to player2
-        assertEquals(590, player1.getMoney()); // Assuming fee is 20
+        assertEquals(340, player1.getMoney()); // Assuming fee is 20
         assertEquals(510, player2.getMoney()); // Player2 receives the fee
     }
 
@@ -301,7 +301,7 @@ public class TestInvestmentSquare {
         square.landOn(player, null, scanner, null);
 
         // Assert that player's money remains unchanged (expected: 10)
-        assertEquals(490, player.getMoney());
+        assertEquals(240, player.getMoney());
 
         // Mock user input to simulate player choosing to pay by money
         input = "1" + System.getProperty("line.separator"); // Assuming player chooses to pay by money
@@ -343,7 +343,7 @@ public class TestInvestmentSquare {
         square.landOn(player, null, new Scanner(System.in), null);
 
         // Assert that player's resources remain unchanged
-        assertEquals(500, player.getMoney()); // Player's money remains unchanged
+        assertEquals(250, player.getMoney()); // Player's money remains unchanged
     }
 
     /*
@@ -397,7 +397,7 @@ public class TestInvestmentSquare {
         square.landOn(player, null, null, null); // No scanner needed for neutral squares
 
         // Assert that player's resources remain unchanged
-        assertEquals(500, player.getMoney()); // Player's money remains unchanged
+        assertEquals(250, player.getMoney()); // Player's money remains unchanged
     }
 
     // not doing right calculations!! need help
@@ -433,7 +433,7 @@ public class TestInvestmentSquare {
         // Assert that player's carbon debt is increased by the fee
         assertEquals(5, player.getCarbonDebt()); // Player's carbon debt is unchanged by the fee
         // Assert that owner's money is increased by the fee
-        assertEquals(510, owner.getMoney()); // Owner receives the fee in money
+        assertEquals(260, owner.getMoney()); // Owner receives the fee in money
         // Assert that owner's carbon debt remains unchanged
         assertEquals(500, owner.getCarbonDebt()); // Owner's carbon debt remains unchanged
     }
