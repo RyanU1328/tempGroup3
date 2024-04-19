@@ -367,7 +367,7 @@ public class TestInvestmentSquare {
         players.add(player2);
 
         // Mock user input to simulate player2 declining to buy
-        String input = "no\n" + System.getProperty("line.separator"); // Player2 declines to buy
+        String input = "no\nno\n"; // Player2 declines to buy
         InputStream in = new ByteArrayInputStream(input.getBytes());
         System.setIn(in);
         Scanner scanner = new Scanner(in);
