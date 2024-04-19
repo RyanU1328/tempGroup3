@@ -205,51 +205,52 @@ public class InvestmentSquare extends Square {
         if (isOwned() && !owner.equals(player)) {
             System.out.println("This area is owned by " + this.getOwner().getName() + ". Paying fees.");
             while (true) {
-                System.out.println("Money fee: " + this.getFee() + "\nCarbon Debt fee: " + this.getFee());
+                System.out.println("Money fee: £" + this.getFee() + "\nCarbon Debt fee: " + this.getFee());
                 System.out.println();
                 System.out.println("Your resources are: ");
                 player.displayPlayerInfo();
-                boolean payByMoney = player.choosePaymentMethod(scanner);
-                if (payByMoney) {
+                if (player.choosePaymentMethod(scanner)) {
                     if (player.getMoney() >= this.getFee()) {
                         player.deductResources("money", this.getFee());
                         this.getOwner().addResources("money", this.getFee());
-                        System.out.println("Paid " + this.getFee() + " money to " + this.getOwner().getName()
+                        System.out.println("Paid £" + this.getFee() + " to " + this.getOwner().getName()
                                 + ". Remaining balance: " + player.getMoney());
                         break;
-                    } else {
-                        System.out.println("Not enough money to pay the fee. Trying carbon debt.");
-                        if (owner.getCarbonDebt() >= this.getFee()) {
-                            owner.deductResources("carbonDebt", this.getFee());
-                            player.addResources("carbonDebt", this.getFee());
-                            System.out.println(player.getName() + " took " + this.getFee() + " carbon debt from "
-                                    + owner.getName() + "\n" +
-                                    this.getOwner().getName() + ". Remaining carbon debt: " + player.getCarbonDebt());
-                            break;
-                        }
+                    }
+                    System.out.println("Not enough money to pay the fee. Trying carbon debt.");
+                    if (owner.getCarbonDebt() >= this.getFee()) {
+                        owner.deductResources("carbonDebt", this.getFee());
+                        player.addResources("carbonDebt", this.getFee());
+                        System.out.println(player.getName() + " took " + this.getFee() + " carbon debt from "
+                                + owner.getName() + "\n" +
+                                this.getOwner().getName() + ". Remaining carbon debt: " + player.getCarbonDebt());
+                        break;
                     }
                 } else if (owner.getCarbonDebt() >= this.getFee()) {
                     owner.deductResources("carbonDebt", this.getFee());
                     player.addResources("carbonDebt", this.getFee());
                     System.out.println(player.getName() + " took " + this.getFee() + " carbon debt from "
-                            + owner.getName() + "\n" +
-                            this.getOwner().getName() + ". Remaining carbon debt: " + player.getCarbonDebt());
+                            + this.owner.getName() + "\n" +
+                            "Remaining carbon debt: " + player.getCarbonDebt());
+                    break;
+                }
+                if (owner.getCarbonDebt() <= this.getFee() && player.getMoney() < this.getFee()) {
+                    System.out
+                            .println(
+                                    "Unable to pay fee with money, or total fee with carbon debt, paying with what carbon debt can be taken");
+                    owner.setCarbonDebt(0);
                     break;
                 } else {
-                    if (owner.getCarbonDebt() <= this.getFee() && player.getMoney() < this.getFee()) {
-                        System.out
-                                .println("Unable to pay fee with money, paying with what carbon debt can be taken");
-                        owner.setCarbonDebt(0);
-                        break;
-                    } else {
-                        System.out.println(
-                                "If you pay this fee by taking the owners carbon debt they will win.");
-                    }
+                    System.out.println(
+                            "If you pay this fee by taking the owners carbon debt they will win.");
                 }
+
             }
-        } else if (!this.isOwned()) {
+        } else if (!this.isOwned())
+
+        {
             check = ConsoleUI.confirmation(
-                    "Do you want to invest in " + this.getName() + "? It costs " + this.getInvestmentCost() +
+                    "Do you want to invest in " + this.getName() + "? It costs £" + this.getInvestmentCost() +
                             " pounds",
                     scanner);
             while (true) {
@@ -258,7 +259,7 @@ public class InvestmentSquare extends Square {
                         player.deductResources("money", this.getInvestmentCost());
                         this.setOwner(player);
                         System.out.println("Investment successful. You now own " + this.getName() +
-                                ". Remaining balance: " + player.getMoney());
+                                ". Remaining balance: £" + player.getMoney());
                     } else {
                         System.out.println("Not enough resources to invest.");
                     }
@@ -279,7 +280,7 @@ public class InvestmentSquare extends Square {
                                     this.setOwner(nextPlayer);
                                     System.out.println("Investment successful. " + nextPlayer.getName()
                                             + " now owns " +
-                                            this.getName() + ". Remaining balance: " + nextPlayer.getMoney());
+                                            this.getName() + ". Remaining balance: £" + nextPlayer.getMoney());
                                     return;
                                 } else {
                                     System.out.println(
@@ -360,6 +361,13 @@ public class InvestmentSquare extends Square {
                     System.out.println(
                             "For the user to purchase upgrades on this property you need to own all the properties listed below:\n");
                     fieldList.forEach(System.out::println);
+                    System.out.println();
+                    System.out.println("These are the properties in the field that you own:\n");
+                    player.getProperties().forEach(property -> {
+                        if (property.getField() == this.getField()) {
+                            System.out.println(property.getName());
+                        }
+                    });
                     System.out.println();
                 }
             }

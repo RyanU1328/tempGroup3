@@ -58,6 +58,7 @@ public class GameController {
       Player currentPlayer = players[currentPlayerIndex];
 
       while (!turnCompleted) {
+        checkForGameWinner();
         System.out.println("\n" +
             currentPlayer.getName()
             + "'s turn. Press 'r' to roll the dice , 's' to show resources, or 'i' to view instructions.\n");
@@ -90,17 +91,21 @@ public class GameController {
 
       // Check for any player achieving Net zero - will check all players rather than
       // player on the current turn
-      for (Player player : players) {
-        if (player.getCarbonDebt() <= 0) {
-          System.out.println(player.getName() + " has won the game by negating all of their carbon debt!!");
-          gameRunning = false;
-          break;
-        }
-      }
+
     }
     endGame();
     scanner.close();
 
+  }
+
+  private void checkForGameWinner() {
+    for (Player player : players) {
+      if (player.getCarbonDebt() <= 0) {
+        System.out.println(player.getName() + " has won the game by negating all of their carbon debt!!");
+        gameRunning = false;
+        break;
+      }
+    }
   }
 
   private void displayInstructions() throws IOException {
@@ -237,6 +242,7 @@ public class GameController {
   }
 
   private boolean playerTurn(Player player) {
+    checkForGameWinner();
     int[] diceRoll = rollDice(2);
 
     System.out.println(player.getName() + " rolled a " + diceRoll[0] + " and a " + diceRoll[1] + ", moves "
@@ -245,8 +251,8 @@ public class GameController {
     System.out.println(player.getName() + " has landed on " + currentSquare.getName());
     handleSquareActions(player, currentSquare, Arrays.asList(players), scanner, board); // Add 'scanner' as the third
                                                                                         // argument
-
-    if (diceRoll[0] == diceRoll[1]) {
+    checkForGameWinner();
+    if (diceRoll[0] == diceRoll[1] && gameRunning) {
       System.out.println("Doubles! " + player.getName() + " gets another turn.");
       return false; // Turn not completed due to doubles.
     }
