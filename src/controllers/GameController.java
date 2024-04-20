@@ -343,8 +343,8 @@ public class GameController {
 
     if (newPosition < oldPosition && newPosition != 0) {
       System.out.println(
-          player.getName() + " passed Go! Gaining 50 resources and reducing their carbon debt by 10!");
-      player.addResources("money", 50);
+          player.getName() + " passed Go! Gaining 10 resources and reducing their carbon debt by 10!");
+      player.addResources("money", 10);
       player.addResources("carbonDebt", -10);
     }
 
