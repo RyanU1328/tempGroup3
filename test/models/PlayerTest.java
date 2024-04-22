@@ -47,8 +47,8 @@ public class PlayerTest {
 
 		startingCarbonValid = 500;
 		carbonValid = 300;
-		carbonInvalid = 0;
-		carbonInvalidLow = -1;
+		carbonInvalid = -1;
+		carbonInvalidLow = -2;
 
 		invalidAddResources = -100;
 

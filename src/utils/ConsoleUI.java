@@ -79,7 +79,6 @@ public class ConsoleUI {
                     return true;
                 } else {
                     System.out.println("Input invalid, please try again");
-                    scanner.next();
                 }
             } catch (Exception e) {
 
