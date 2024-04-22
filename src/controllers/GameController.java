@@ -77,7 +77,21 @@ public class GameController {
         } else if ("i".equals(action)) {
           displayInstructions();
           // After returning from instructions, continue in the loop
+        } else if ("q".equals(action)) {
+          if (ConsoleUI.confirmation("Are you sure you want to quit?", scanner)) {
+            System.out.println("Quitting the game...");
+            gameRunning = false; // Set gameRunning to false to exit the loop
 
+            // Show start page again
+            try {
+              startGame();
+            } catch (IOException e) {
+              System.out.println("Error occurred while starting the game: " + e.getMessage());
+            }
+            return; // Exit the method
+          } else {
+            // Continue in the loop
+          }
         } else {
           System.out.println(
               "Invalid input. Please press 'r' to roll the dice or 's' to show resources, or 'i' to view instructions.");
@@ -91,21 +105,16 @@ public class GameController {
 
       // Check for any player achieving Net zero - will check all players rather than
       // player on the current turn
-
+      for (Player player : players) {
+        if (player.getCarbonDebt() <= 0) {
+          System.out.println(player.getName() + " has won the game by negating all of their carbon debt!!");
+          gameRunning = false;
+          break;
+        }
+      }
     }
     endGame();
     scanner.close();
-
-  }
-
-  private void checkForGameWinner() {
-    for (Player player : players) {
-      if (player.getCarbonDebt() <= 0) {
-        System.out.println(player.getName() + " has won the game by negating all of their carbon debt!!");
-        gameRunning = false;
-        break;
-      }
-    }
   }
 
   private void displayInstructions() throws IOException {
@@ -336,8 +345,8 @@ public class GameController {
 
     if (newPosition < oldPosition && newPosition != 0) {
       System.out.println(
-          player.getName() + " passed Go! Gaining 50 resources and reducing their carbon debt by 10!");
-      player.addResources("money", 50);
+          player.getName() + " passed Go! Gaining 10 resources and reducing their carbon debt by 10!");
+      player.addResources("money", 10);
       player.addResources("carbonDebt", -10);
     }
 

@@ -14,7 +14,7 @@ public class Player {
   private String[] avatar;
 
   private static final int STARTING_CARBON = 500;
-  private static final int STARTING_MONEY = 500;
+  private static final int STARTING_MONEY = 250;
 
   public Player(String name) {
     super();
