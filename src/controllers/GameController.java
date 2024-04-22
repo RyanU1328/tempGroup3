@@ -64,12 +64,7 @@ public class GameController {
         String action = scanner.nextLine().trim().toLowerCase();
 
         if ("s".equals(action)) {
-          System.out.println(
-              "\n" + currentPlayer.getName() + "'s resources: \nMoney: " + currentPlayer.getMoney()
-                  + "\nCarbon Debt: " + currentPlayer.getCarbonDebt() + "\n");
-          currentPlayer.getProperties().forEach(property -> {
-            System.out.println(property.getName());
-          });
+          currentPlayer.displayPlayerInfo();
           // Continue in the loop
         } else if ("r".equals(action)) {
           turnCompleted = playerTurn(currentPlayer);
