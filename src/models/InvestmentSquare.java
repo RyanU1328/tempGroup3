@@ -265,7 +265,7 @@ public class InvestmentSquare extends Square {
                         System.out.println("Investment successful. You now own " + this.getName() +
                                 ".\n");
                         player.displayPlayerInfo();
-                        return;
+                        break;
                     } else {
                         System.out.println("Not enough resources to invest.");
                         check = false;
