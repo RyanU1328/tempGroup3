@@ -214,7 +214,9 @@ public class InvestmentSquare extends Square {
                         player.deductResources("money", this.getFee());
                         this.getOwner().addResources("money", this.getFee());
                         System.out.println("Paid £" + this.getFee() + " to " + this.getOwner().getName()
-                                + ". Remaining balance: " + player.getMoney());
+                                + ".\n");
+                        owner.displayPlayerInfo();
+                        player.displayPlayerInfo();
                         break;
                     }
                     System.out.println("Not enough money to pay the fee. Trying carbon debt.");
@@ -222,16 +224,18 @@ public class InvestmentSquare extends Square {
                         owner.deductResources("carbonDebt", this.getFee());
                         player.addResources("carbonDebt", this.getFee());
                         System.out.println(player.getName() + " took " + this.getFee() + " carbon debt from "
-                                + owner.getName() + "\n" +
-                                this.getOwner().getName() + ". Remaining carbon debt: " + player.getCarbonDebt());
+                                + owner.getName() + "\n");
+                        owner.displayPlayerInfo();
+                        player.displayPlayerInfo();
                         break;
                     }
                 } else if (owner.getCarbonDebt() >= this.getFee()) {
                     owner.deductResources("carbonDebt", this.getFee());
                     player.addResources("carbonDebt", this.getFee());
                     System.out.println(player.getName() + " took " + this.getFee() + " carbon debt from "
-                            + this.owner.getName() + "\n" +
-                            "Remaining carbon debt: " + player.getCarbonDebt());
+                            + this.owner.getName() + "\n");
+                    owner.displayPlayerInfo();
+                    player.displayPlayerInfo();
                     break;
                 }
                 if (owner.getCarbonDebt() <= this.getFee() && player.getMoney() < this.getFee()) {
@@ -259,7 +263,8 @@ public class InvestmentSquare extends Square {
                         player.deductResources("money", this.getInvestmentCost());
                         this.setOwner(player);
                         System.out.println("Investment successful. You now own " + this.getName() +
-                                ". Remaining balance: £" + player.getMoney());
+                                ".\n");
+                        player.displayPlayerInfo();
                     } else {
                         System.out.println("Not enough resources to invest.");
                     }
@@ -280,7 +285,8 @@ public class InvestmentSquare extends Square {
                                     this.setOwner(nextPlayer);
                                     System.out.println("Investment successful. " + nextPlayer.getName()
                                             + " now owns " +
-                                            this.getName() + ". Remaining balance: £" + nextPlayer.getMoney());
+                                            this.getName() + ".\n");
+                                    nextPlayer.displayPlayerInfo();
                                     return;
                                 } else {
                                     System.out.println(
