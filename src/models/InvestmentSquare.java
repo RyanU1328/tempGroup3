@@ -265,8 +265,10 @@ public class InvestmentSquare extends Square {
                         System.out.println("Investment successful. You now own " + this.getName() +
                                 ".\n");
                         player.displayPlayerInfo();
+                        return;
                     } else {
                         System.out.println("Not enough resources to invest.");
+                        check = false;
                     }
                 } else {
                     System.out.println("Offering to next player...");
@@ -301,7 +303,6 @@ public class InvestmentSquare extends Square {
                     System.out.println(
                             "No player chose to buy " + this.getName() + ". Moving to the next player's turn.");
                 }
-                break;
             }
         } else if (this.isOwned() && this.owner == player) {
             List<String> fieldList = new ArrayList<>();
