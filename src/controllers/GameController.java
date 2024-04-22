@@ -58,7 +58,6 @@ public class GameController {
       Player currentPlayer = players[currentPlayerIndex];
 
       while (!turnCompleted) {
-        checkForGameWinner();
         System.out.println("\n" +
             currentPlayer.getName()
             + "'s turn. Press 'r' to roll the dice , 's' to show resources, or 'i' to view instructions.\n");
@@ -251,7 +250,6 @@ public class GameController {
   }
 
   private boolean playerTurn(Player player) {
-    checkForGameWinner();
     int[] diceRoll = rollDice(2);
 
     System.out.println(player.getName() + " rolled a " + diceRoll[0] + " and a " + diceRoll[1] + ", moves "
@@ -260,8 +258,8 @@ public class GameController {
     System.out.println(player.getName() + " has landed on " + currentSquare.getName());
     handleSquareActions(player, currentSquare, Arrays.asList(players), scanner, board); // Add 'scanner' as the third
                                                                                         // argument
-    checkForGameWinner();
-    if (diceRoll[0] == diceRoll[1] && gameRunning) {
+
+    if (diceRoll[0] == diceRoll[1]) {
       System.out.println("Doubles! " + player.getName() + " gets another turn.");
       return false; // Turn not completed due to doubles.
     }
