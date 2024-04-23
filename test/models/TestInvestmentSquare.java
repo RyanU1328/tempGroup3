@@ -452,14 +452,14 @@ public class TestInvestmentSquare {
         player1.addResources("money", 100); // Player 1 has enough money
 
         // Set up player 2's resources
-        player2.addResources("money", 50); // Player 2 has insufficient money to buy the square
+        player2.addResources("money", 50); // Player 2 has sufficient money to buy the square
 
         // Create a ByteArrayOutputStream to capture the printed output
         ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
         System.setOut(new PrintStream(outputStream));
 
         // Mock user input to simulate player 1 choosing not to buy the square
-        String input = "no" + System.getProperty("line.separator") + "no" + System.getProperty("line.separator");
+        String input = "no" + System.lineSeparator() + "no\n\n\n";
         InputStream in = new ByteArrayInputStream(input.getBytes());
         System.setIn(in);
         Scanner scanner = new Scanner(System.in);
@@ -474,7 +474,8 @@ public class TestInvestmentSquare {
         assertTrue(printedOutput.contains("Offering to next player..." + System.getProperty("line.separator")));
         assertTrue(printedOutput
                 .contains(player2.getName() + ", would you like to buy"));
-        assertTrue(printedOutput.contains("Player 2 declined to buy"));
+        assertTrue(printedOutput.contains(player2.getName() + " declined to buy "),
+                printedOutput + "\n" + new String(input.getBytes()));
 
         // Assert that the square remains unowned
         assertNull(square.getOwner());

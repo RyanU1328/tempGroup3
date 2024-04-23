@@ -302,6 +302,7 @@ public class InvestmentSquare extends Square {
                     }
                     System.out.println(
                             "No player chose to buy " + this.getName() + ". Moving to the next player's turn.");
+                    break;
                 }
             }
         } else if (this.isOwned() && this.owner == player) {
